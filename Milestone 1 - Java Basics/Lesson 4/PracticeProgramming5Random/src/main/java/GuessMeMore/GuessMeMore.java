@@ -16,17 +16,26 @@ public class GuessMeMore {
         
         System.out.println("I've chosen a number between -100 and 100. Betcha can't guess it!");
         
-        do {
-            System.out.println("\nYour guess: ");
-            guess = sc.nextInt();
+        System.out.println("\nYour guess: ");
+        guess = sc.nextInt();
             
-            if (guess < x) {
-                System.out.println("Ha, nice try - too low! Try again!");
-            } else if (guess > x) {
-                System.out.println("Nice try, way too high!");
-            } else if (guess == x) {
-                System.out.println("Wow, nice guess! That was it!");
-            }
-        } while (guess != x);
+        if (guess < x) {
+            System.out.println("Ha, nice try - too low! Try again!");
+        } else if (guess > x) {
+            System.out.println("Nice try, way too high!");
+        } else if (guess == x) {
+            System.out.println("Wow, nice guess! That was it!");
+        }
+        
+        System.out.println("\nYour guess: ");
+        guess = sc.nextInt();
+        
+        if (guess < x) {
+            System.out.println("Ha, nice try - too low! Try again!");
+        } else if (guess > x) {
+            System.out.println("Nice try, way too high!");
+        } else if (guess == x) {
+            System.out.println("Wow, nice guess! That was it!");
+        }
     }
 }

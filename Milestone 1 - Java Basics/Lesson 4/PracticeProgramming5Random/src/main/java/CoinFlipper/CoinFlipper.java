@@ -7,6 +7,7 @@ package CoinFlipper;
 
 import java.util.*;
 import static java.lang.Math.*;
+import java.util.Random;
 public class CoinFlipper {
     public static void main(String[] args) {
         double x = Math.round(Math.random());
