@@ -54,7 +54,7 @@ public class InterestCalculator {
         System.out.println("---------------");
         for (int i = 1; i <= periods; i++) {
             System.out.println(periodLabel + ": " + i);
-            newAmt = initialAmt * (1 + ((interestRate / 100 / compound) * 1)); //calculate interest
+            newAmt = initialAmt * Math.pow(1 + ((interestRate / 100 / compound) * 1), compound * years); //calculate interest
             
             System.out.println("Principal at Beginning of " + periodLabel + ": $" + initialAmt);
             System.out.println("Total Amount of Interest Earned: $" + (newAmt - initialAmt));
