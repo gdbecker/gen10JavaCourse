@@ -76,10 +76,10 @@ public class RockPaperScissors {
                 //Be prepared for either combination
                 else if ((userMove == 2 && compMove == 3) || (userMove == 3 && compMove == 2)) {
                     if (userMove == 2 && compMove == 3) {
-                        System.out.println("Paper beats Scissors: I won the round");
+                        System.out.println("Scissors beats Paper: I won the round");
                         compWins++;
                     } else if (userMove == 3 && compMove == 2) {
-                        System.out.println("Paper beats Scissors: You won the round!");
+                        System.out.println("Scissors beats Paper: You won the round!");
                         userWins++;
                     }
                 }
