@@ -21,6 +21,9 @@ public class RockPaperScissors {
         int compWins = 0;
         int userWins = 0;
         int ties = 0;
+        int userMove = 0;
+        int compMove = 0;
+        boolean badInput = false;
         
         do {
             //Ask user for number of rounds to play, between 1 and 10
@@ -36,10 +39,29 @@ public class RockPaperScissors {
             
             //If input is valid, begin playing the game using a For loop
             for (int i = 1; i <= numRounds; i++) {
-                System.out.println("\nROUND " + i);
-                System.out.print("Make your move. Rock, Paper, or Scissors? (1,2,3): ");
-                int userMove = sc.nextInt();
-                int compMove = r.nextInt(3) + 1;
+                
+                //Check to make sure that input is valid for while playing the game
+                do {
+                    System.out.println("\nROUND " + i);
+                    System.out.print("Make your move. Rock, Paper, or Scissors? (1,2,3): ");
+                    
+                    if (sc.hasNextInt()) {
+                        userMove = sc.nextInt();
+                        
+                        if(userMove < 1 || userMove > 3) {
+                            System.out.println("ERROR: Bad Input. Please try again.");
+                        } else {
+                            break;
+                        }
+                        
+                    } else {
+                        System.out.println("ERROR: Bad Input. Please try again.");
+                        badInput = true;
+                    }
+                    sc.nextLine();
+                } while(userMove < 1 || userMove > 3 || badInput);
+                
+                compMove = r.nextInt(3) + 1;
                 System.out.println("My move: " + compMove);
                 
                 //If result is a tie:
@@ -110,10 +132,10 @@ public class RockPaperScissors {
             compWins = 0;
             ties = 0;
             
-        } while (playGame.equals("y"));
+        } while (playGame.equals("y") || playGame.equalsIgnoreCase("yes"));
         
         //Print out final message only if the game was played at least once
-        if (playGame.equals("n")) {
+        if (playGame.equals("n") || playGame.equalsIgnoreCase("no")) {
             System.out.println("Thanks for playing!");
         }
     }

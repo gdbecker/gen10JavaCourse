@@ -33,8 +33,8 @@ public class SummativeSums {
         
         //Loop through each array and change the "sum" variable to continuously
         //add each array element.
-        for (int i = 0; i < array.length; i++) {
-            sum += array[i];
+        for (int x: array) {
+            sum += x;
         }
         
         return sum;
