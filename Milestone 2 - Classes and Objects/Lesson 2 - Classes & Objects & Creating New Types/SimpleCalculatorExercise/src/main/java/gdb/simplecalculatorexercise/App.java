@@ -43,22 +43,22 @@ public class App {
             //Run the operation depending on user input
             //If addition:
             if (operation.equals("+")) {
-                System.out.println("Result: " + calculator.add(operand1, operand2));
+                System.out.println(operand1 + " " + operation + " " + operand2 + " = " + calculator.add(operand1, operand2));
             }
             
             //If subtraction
             else if (operation.equals("-")) {
-                System.out.println("Result: " + calculator.subtract(operand1, operand2));
+                System.out.println(operand1 + " " + operation + " " + operand2 + " = " + calculator.subtract(operand1, operand2));
             }
             
             //If multipication
             else if (operation.equals("*")) {
-                System.out.println("Result: " + calculator.multiply(operand1, operand2));
+                System.out.println(operand1 + " " + operation + " " + operand2 + " = " + calculator.multiply(operand1, operand2));
             }
             
             //If division
             else if (operation.equals("/")) {
-                System.out.println("Result: " + calculator.divide(operand1, operand2));
+                System.out.println(operand1 + " " + operation + " " + operand2 + " = " + calculator.divide(operand1, operand2));
             }
             
             sc.nextLine(); //Ensure that user can input a new operation if so desired
