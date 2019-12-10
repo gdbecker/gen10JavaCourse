@@ -1,12 +1,11 @@
-package gdb.simplecalculatorexercise;
+package gdb.userioclassexercise;
 
 /**
- * @date Monday December 9, 2019
- * @author garrettbecker
+ * @date Tuesday December 10, 2019
+ * @author Garrett Becker
  */
 
 public class SimpleCalculator {
-   
     //Addition
     public int add(int a, int b) {
         return a + b;

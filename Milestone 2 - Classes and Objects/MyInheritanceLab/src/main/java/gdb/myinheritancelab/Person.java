@@ -6,9 +6,9 @@ package gdb.myinheritancelab;
  */
 public class Person {
     //Attributes
-    private String name;
-    private int age;
-    private Address address;
+    protected String name;
+    protected int age;
+    protected Address address;
     
     //Main method, test driver
     public static void main(String[] args) {
