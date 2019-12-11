@@ -63,8 +63,6 @@ public class StateCapitals1 {
         statesCapitals.put("Wisconsin","Madison");
         statesCapitals.put("Wyoming","Cheyenne");
         
-        System.out.println(statesCapitals.size());
-        
         //Print out all state names to console
         Set<String> keys = statesCapitals.keySet();
         
