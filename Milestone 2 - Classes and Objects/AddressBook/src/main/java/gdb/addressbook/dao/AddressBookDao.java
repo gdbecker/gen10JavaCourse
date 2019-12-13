@@ -29,7 +29,7 @@ public interface AddressBookDao {
      * 
      * @param lastName last name of address to be removed
      * @return Address object that was removed or null if no address 
-     * was associated with the given student id
+     * was associated with the given last name
      */
     Address removeAddress(String lastName) throws AddressBookDaoException;
     
@@ -56,4 +56,14 @@ public interface AddressBookDao {
      * @return int representing total number of addresses in address book
      */
     String getNumAddresses() throws AddressBookDaoException;
+    
+    /**
+     * Returns the edited version of the address object associated with 
+     * the given last name
+     * 
+     * @param lastName last name of address to be edited
+     * @return Address object that was edit or null if no address 
+     * was associated with the given last name
+     */
+    Address editAddress(String lastName, Address address) throws AddressBookDaoException;
 }

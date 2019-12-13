@@ -2,6 +2,7 @@ package gdb.addressbook.dto;
 
 /**
  * @date Thursday December 12, 2019
+ * Also Friday December 13, 2019
  * @author garrettbecker
  */
 
@@ -18,6 +19,7 @@ public class Address {
         this.lastName = lastName;
     }
 
+    //Getters and setters
     public String getFirstName() {
         return firstName;
     }

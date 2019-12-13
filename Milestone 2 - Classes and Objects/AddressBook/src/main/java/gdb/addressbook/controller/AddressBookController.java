@@ -23,6 +23,7 @@ public class AddressBookController {
     public void run() {
         boolean keepGoing = true;
         int menuSelection = 0;
+        //loadFile();
         
         try {
             while (keepGoing) {
@@ -46,6 +47,9 @@ public class AddressBookController {
                         listAddresses();
                         break;
                     case 6:
+                        editAddress();
+                        break;
+                    case 7:
                         keepGoing = false;
                         break;
                     default:
@@ -101,6 +105,23 @@ public class AddressBookController {
         List<Address> addressList = dao.getAllAddresses();
         view.displayAddressList(addressList);
     }
+    
+    //Option 6
+    private void editAddress() throws AddressBookDaoException {
+        view.displayEditAddressBanner();
+        String lastName = view.getLastNameChoice(); //ask user for address to edit
+        Address address = dao.getAddress(lastName); //pull up that address
+        view.displayAddressToEdit(address); //show original address, confirm to edit
+        Address editedAddress = view.editAddress(); //get new address details from user
+        dao.editAddress(lastName, editedAddress); //write new info to the file
+        view.displayEditSuccessBanner(); //confirm edits are made
+    }
+    
+    /*
+    private void loadFile() {
+        dao.loadAllAddressesFromFile();
+    }
+    */
     
     private void unknownCommand() {
         view.displayUnknownCommandBanner();

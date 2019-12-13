@@ -59,6 +59,17 @@ public class AddressBookDaoFileImpl implements AddressBookDao {
         return ("There are " + counter + " addresses in the book.");
     }
     
+    @Override
+    public Address editAddress(String lastName, Address address) throws AddressBookDaoException {
+        Address editedAddress = addresses.put(lastName, address);
+        writeAddressBook();
+        return editedAddress;
+    }
+    
+    public void loadFile() throws AddressBookDaoException {
+        loadAddressBook();
+    }
+    
     private Address unmarshallAddress(String addressAsText){
         // addressAsText is expecting a line read in from our file.
         String[] addressTokens = addressAsText.split(DELIMITER);
@@ -105,22 +116,22 @@ public class AddressBookDaoFileImpl implements AddressBookDao {
         //currentLine holds the most recent line read from the file
         String currentLine;
         
-        //currentAddress holds the most recent student unmarshalled
+        //currentAddress holds the most recent address unmarshalled
         Address currentAddress;
         
-        //Go through the ABOOK_FILE line by line, decoding each line into a 
+        //Go through the ABOOK_FILE line by line, decoding each line into an 
         //Address object by calling the unmarshallAddress method.
         //Process while we have more lines in the file
         while (scanner.hasNextLine()) {
             //Get the next line in the file
             currentLine = scanner.nextLine();
             
-            //Unmarshall the line into a Student
+            //Unmarshall the line into an Address
             currentAddress = unmarshallAddress(currentLine);
         }
     }
     
-    private String marshallStudent(Address anAddress){
+    private String marshallAddress(Address anAddress){
     // We need to turn an Address object into a line of text for our file.
 
     // It's not a complicated process. Just get out each property,
@@ -175,18 +186,53 @@ public class AddressBookDaoFileImpl implements AddressBookDao {
         // get the Collection of Students and iterate over them but we've
         // already created a method that gets a List of Students so
         // we'll reuse it.
-        String studentAsText;
+        String addressAsText;
         List<Address> addressList = this.getAllAddresses();
         for (Address currentAddress : addressList) {
             // turn a Student into a String
-            studentAsText = marshallStudent(currentAddress);
+            addressAsText = marshallAddress(currentAddress);
             // write the Student object to the file
-            out.println(studentAsText);
+            out.println(addressAsText);
             // force PrintWriter to write line to the file
             out.flush();
         }
         // Clean up
         out.close();
     }
-    
+   
+    /**
+    * Reads all addresses in ABOOK_FILE to addresses map. 
+    * 
+    * @throws AddressBookDaoException if an error occurs while reading from
+    * the file
+    */
+    public void loadAllAddressesFromFile() throws AddressBookDaoException {
+        Scanner scanner;
+        
+        try {
+            //Create Scanner for reading the file
+            scanner = new Scanner(new BufferedReader(new FileReader(ABOOK_FILE)));
+        } catch (FileNotFoundException e) {
+            throw new AddressBookDaoException("-_- Could not load address book data into memory.", e);
+        }
+        
+        //currentLine holds the most recent line read from the file
+        String currentLine;
+        
+        //currentAddress holds the most recent address unmarshalled
+        Address currentAddress;
+        
+        //Go through the ABOOK_FILE line by line, decoding each line into an 
+        //Address object by calling the unmarshallAddress method.
+        //Process while we have more lines in the file
+        while (scanner.hasNextLine()) {
+            //Get the next line in the file
+            currentLine = scanner.nextLine();
+            
+            //Unmarshall the line into an Address
+            currentAddress = unmarshallAddress(currentLine);
+            
+            addresses.put(currentAddress.getLastName(), currentAddress);
+        }
+    }
 }
