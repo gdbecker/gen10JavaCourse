@@ -65,18 +65,14 @@ public interface mp3libraryDao {
     /**
      * Main function: import a file containing mp3 objects to add to collection
      * 
-     * Option 6 on menu
-     * 
-     * @return new mp3 objects added to collection in memory 
+     * New mp3 objects will be added to collection in memory 
      */
     void loadMP3Library() throws mp3libraryDaoException;
     
     /**
      * Main function: write a file containing mp3 objects from the collection
      * 
-     * Option 7 on menu
-     * 
-     * @return new mp3 objects written from collection in memory to a file
+     * New mp3 objects will be written from collection in memory to a file
      */
     void writeMP3Library() throws mp3libraryDaoException;
     

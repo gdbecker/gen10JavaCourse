@@ -23,21 +23,101 @@ public class mp3libraryController {
     public void run() {
         boolean keepGoing = true;
         int menuSelection = 0;
+        int addRemoveEditMenuSelection = 0;
+        
+        //Load the existing MP3 library into memory
+        try {
+            loadLibrary(); 
+        } catch (mp3libraryDaoException e) {
+            view.displayErrorMessage(e.getMessage());
+        }
+        
+        view.displayWelcomeBanner();
         
         try {
             while (keepGoing) {
-            
                 menuSelection = getMenuSelection();
             
                 switch (menuSelection) {
                     case 1:
                         addMP3();
+                        
+                        //Make it possible to keep adding, removing, or editing tracks
+                        //in one sitting
+                        do {
+                            addRemoveEditMenuSelection = getAddEditRemoveMenuSelection();
+                            
+                            switch (addRemoveEditMenuSelection) {
+                                case 1:
+                                    addMP3();
+                                    break;
+                                case 2: 
+                                    removeMP3();
+                                    break;
+                                case 3:
+                                    editMP3();
+                                    break;
+                                case 4: 
+                                    break;
+                                default:
+                                    addRemoveEditMenuSelection = 4;
+                                    //unknownCommand();
+                            }
+                        } while (addRemoveEditMenuSelection != 4);
                         break;
                     case 2:
                         removeMP3();
+                        
+                        //Make it possible to keep adding, removing, or editing tracks
+                        //in one sitting
+                        do {
+                            addRemoveEditMenuSelection = getAddEditRemoveMenuSelection();
+                            
+                            switch (addRemoveEditMenuSelection) {
+                                case 1:
+                                    addMP3();
+                                    break;
+                                case 2: 
+                                    removeMP3();
+                                    break;
+                                case 3:
+                                    editMP3();
+                                    break;
+                                case 4: 
+                                    break;
+                                default:
+                                    addRemoveEditMenuSelection = 4;
+                                    //unknownCommand();
+                            }
+                        } while (addRemoveEditMenuSelection != 4);
+                        
                         break;
                     case 3:
                         editMP3();
+                        
+                        //Make it possible to keep adding, removing, or editing tracks
+                        //in one sitting
+                        do {
+                            addRemoveEditMenuSelection = getAddEditRemoveMenuSelection();
+                            
+                            switch (addRemoveEditMenuSelection) {
+                                case 1:
+                                    addMP3();
+                                    break;
+                                case 2: 
+                                    removeMP3();
+                                    break;
+                                case 3:
+                                    editMP3();
+                                    break;
+                                case 4: 
+                                    break;
+                                default:
+                                    addRemoveEditMenuSelection = 4;
+                                    //unknownCommand();
+                            }
+                        } while (addRemoveEditMenuSelection != 4);
+                        
                         break;
                     case 4:
                         displayAllMP3();
@@ -46,20 +126,22 @@ public class mp3libraryController {
                         displaySingleMP3();
                         break;
                     case 6:
-                        loadLibrary();
-                        break;
-                    case 7:
-                        writeLibrary();
-                        break;
-                    case 8:
                         keepGoing = false;
                         break;
                     default:
-                        unknownCommand();
+                        //unknownCommand();
+                        keepGoing = false;
                 }
             
             }
-        } catch (mp3libraryDaoException e){
+        } catch (mp3libraryDaoException e) {
+            view.displayErrorMessage(e.getMessage());
+        }
+        
+        //Write the MP3 library in memory back to the file
+        try {
+            writeLibrary(); 
+        } catch (mp3libraryDaoException e) {
             view.displayErrorMessage(e.getMessage());
         }
         
@@ -67,8 +149,14 @@ public class mp3libraryController {
             
         }
     
+    //Collect initial menu selection
     public int getMenuSelection() {
         return view.showMenuGetSelection();
+    }
+    
+    //Allow user to add, remove, or edit more than one track in one session
+    public int getAddEditRemoveMenuSelection() {
+        return view.showAddRemoveEditMenuGetSelection();
     }
     
     //Option 1: add
@@ -83,8 +171,14 @@ public class mp3libraryController {
     private void removeMP3() throws mp3libraryDaoException {
         view.displayRemoveMP3Banner();
         String title = view.getTitleChoice();
-        dao.removeMP3(title);
-        view.displayRemoveSuccessBanner();
+        mp3 findMP3 = dao.displayMP3Info(title);
+        
+        if (findMP3 == null) {
+            view.displayErrorBanner(); //if input from user doesn't match any tracks
+        } else {
+            dao.removeMP3(title);
+            view.displayRemoveSuccessBanner();
+        }
     }
     
     //Option 3: edit
@@ -93,9 +187,20 @@ public class mp3libraryController {
         String title = view.getTitleChoice(); //ask user for title of track to edit
         mp3 toEditMP3 = dao.displayMP3Info(title); //dao gets mp3 object with title
         view.showMP3ToEdit(toEditMP3); //shows that track's info to screen
-        mp3 editedMP3 = view.editMP3(toEditMP3); //get new details for track from user
-        dao.editMP3(title, editedMP3); //dao puts new track info into collection
-        view.displayEditSuccessBanner();
+        
+        if (toEditMP3 == null) {
+            view.displayErrorBanner(); //if input from user doesn't match any tracks
+        } else {
+            mp3 editedMP3 = view.editMP3(toEditMP3); //get new details for track from user
+            dao.editMP3(editedMP3.getTitle(), editedMP3); //dao puts new track info into collection
+            
+            if (!title.equals(editedMP3.getTitle())) {
+                dao.removeMP3(title); //dao removes old track info from memory, only if name changes
+            }
+            
+            //view.displayEditSuccessBanner();
+        }
+        
     }
     
     //Option 4: display all tracks
@@ -107,22 +212,19 @@ public class mp3libraryController {
     
     //Option 5: display single track
     private void displaySingleMP3() throws mp3libraryDaoException {
-        view.displaySingleMP3TrackBanner();
         String title = view.getTitleChoice();
         mp3 thisMP3 = dao.displayMP3Info(title);
         view.displayMP3(thisMP3);
     }
     
-    //Option 6: load from library file
+    //Load from library file (before menu pops up)
     private void loadLibrary() throws mp3libraryDaoException {
-        view.displayLoadBanner();
         dao.loadMP3Library();
         view.displayLoadSuccessBanner();
     }
     
-    //Option 7: write to library file
+    //Write to library file (afer program completes)
     private void writeLibrary() throws mp3libraryDaoException {
-        view.displayWriteBanner();
         dao.writeMP3Library();
         view.displayWriteSuccessBanner();
     }

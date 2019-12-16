@@ -4,6 +4,9 @@ import gdb.mp3library.dto.mp3;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -59,7 +62,7 @@ public class mp3libraryDaoFileImpl implements mp3libraryDao{
         return mp3Collection.get(title);
     }
 
-    //Part of Option 6: load from library file
+    //Part of loading from library file (before menu pops up)
     private mp3 unmarshallMP3(String mp3AsText){
         // mp3AsText is expecting a line read in from our file.
         String[] mp3Tokens = mp3AsText.split(DELIMITER);
@@ -88,7 +91,7 @@ public class mp3libraryDaoFileImpl implements mp3libraryDao{
         return mp3FromFile;
     }
     
-    //Option 6: load from library file
+    //load from library file (before menu pops up)
     @Override
     public void loadMP3Library() throws mp3libraryDaoException {
         Scanner sc;
@@ -116,14 +119,49 @@ public class mp3libraryDaoFileImpl implements mp3libraryDao{
             //Unmarshall the line into an mp3
             currentMP3 = unmarshallMP3(currentLine);
             
+            //Putting all mp3 objects into the Map in memory
             mp3Collection.put(currentMP3.getTitle(), currentMP3);
         }
     }
 
-    //Option 7: write to library file
+    //Part of writing memory to file (after program completes)
+    private String marshallMP3(mp3 anMP3) {
+        //Turning an mp3 object into a String to be printed into the file
+        //Start with title and then add the rest of the object's info
+        String mp3AsText = anMP3.getTitle() + DELIMITER;
+        
+        //Then add the rest of the object's info
+        mp3AsText += anMP3.getReleaseDate() + DELIMITER;
+        mp3AsText += anMP3.getAlbum() + DELIMITER;
+        mp3AsText += anMP3.getArtistName() + DELIMITER;
+        mp3AsText += anMP3.getGenre() + DELIMITER;
+        mp3AsText += anMP3.getMoreInfo() + DELIMITER;
+
+        return mp3AsText;
+    }
+    
+    //write to library file  (after program completes)
     @Override
     public void writeMP3Library() throws mp3libraryDaoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        PrintWriter out;
+
+        try {
+            out = new PrintWriter(new FileWriter(FILE));
+        } catch (IOException e) {
+            throw new mp3libraryDaoException("Could not save data.", e);
+        }
+
+        //write out mp3 objects to the file
+        String mp3AsText;
+        List<mp3> mp3List = this.showAllMP3(); //getting all mp3 objects from Map in memory
+        for (mp3 currentMP3 : mp3List) {
+            //make an mp3 object into a String using the above method
+            mp3AsText = marshallMP3(currentMP3);
+            out.println(mp3AsText);
+            out.flush(); //making PrintWriter go to the next line
+        }
+       
+        out.close();
     }
     
 }
