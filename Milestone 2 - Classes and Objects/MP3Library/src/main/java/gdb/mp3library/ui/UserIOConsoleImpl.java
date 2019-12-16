@@ -26,6 +26,7 @@ public class UserIOConsoleImpl implements UserIO {
             input = sc.nextDouble();
         } while (input < min || input > max);
         
+        sc.nextLine();
         return input;
     }
 
@@ -42,6 +43,7 @@ public class UserIOConsoleImpl implements UserIO {
             input = sc.nextFloat();
         } while (input < min || input > max);
         
+        sc.nextLine();
         return input;
     }
 
@@ -58,6 +60,7 @@ public class UserIOConsoleImpl implements UserIO {
             input = sc.nextInt();
         } while (input < min || input > max);
         
+        sc.nextLine();
         return input;
     }
 
@@ -74,11 +77,12 @@ public class UserIOConsoleImpl implements UserIO {
             input = sc.nextLong();
         } while (input < min || input > max);
         
+        sc.nextLine();
         return input;
     }
 
     public String readString(String prompt) {
-        sc.nextLine();
+        //sc.nextLine();
         System.out.println(prompt);
         return sc.nextLine();
     }

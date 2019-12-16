@@ -189,7 +189,7 @@ public class mp3libraryController {
         view.showMP3ToEdit(toEditMP3); //shows that track's info to screen
         
         if (toEditMP3 == null) {
-            view.displayErrorBanner(); //if input from user doesn't match any tracks
+            
         } else {
             mp3 editedMP3 = view.editMP3(toEditMP3); //get new details for track from user
             dao.editMP3(editedMP3.getTitle(), editedMP3); //dao puts new track info into collection
@@ -197,10 +197,7 @@ public class mp3libraryController {
             if (!title.equals(editedMP3.getTitle())) {
                 dao.removeMP3(title); //dao removes old track info from memory, only if name changes
             }
-            
-            //view.displayEditSuccessBanner();
         }
-        
     }
     
     //Option 4: display all tracks

@@ -65,13 +65,42 @@ public class mp3libraryView {
     //Ask user for info for creating a new MP3 track and return the new mp3 object
     //Option 1: add
     public mp3 getNewMP3() {
-        String title = io.readString("Enter track title:");
-        String releaseDate = io.readString("Enter release date:");
-        String album = io.readString("Enter album name:");
-        String artistName = io.readString("Enter track's artist:");
-        String genre = io.readString("Enter track's genre:");
-        String moreInfo = io.readString("Enter any personal notes or ratings:");
+        String title = "";
+        String releaseDate = "";
+        String album = "";
+        String artistName = "";
+        String genre = "";
+        String moreInfo = "";
         
+        //Ensuring that these fields are filled in and aren't left blank
+        do {
+            title = io.readString("Enter track title:");
+        } while (title.equals(""));
+        
+        do {
+            releaseDate = io.readString("Enter release date:");
+        } while (releaseDate.equals(""));
+        
+        do {
+            album = io.readString("Enter album name:");
+        } while (album.equals(""));
+        
+        do {
+            artistName = io.readString("Enter track's artist:");
+        } while (artistName.equals(""));
+        
+        do {
+            genre = io.readString("Enter track's genre:");
+        } while (genre.equals(""));
+        
+        //Make it optional to input extra notes
+        //But make sure there's at least a space in moreInfo so that it's not blank
+        moreInfo = io.readString("Enter any personal notes or ratings:");
+        
+        if (moreInfo.equals("")) {
+            moreInfo = " ";
+        }
+                
         mp3 currentMP3 = new mp3(title);
         
         currentMP3.setReleaseDate(releaseDate);
@@ -116,7 +145,7 @@ public class mp3libraryView {
             io.print("Genre: " + currentMP3.getGenre());
             io.print("Your notes: " + currentMP3.getMoreInfo());
         } else {
-            io.print("No MP3 track found! Please press Enter.");
+            io.readString("No MP3 track found! Please press Enter.");
         } 
     }
     
@@ -126,12 +155,23 @@ public class mp3libraryView {
         int selection = 0;
         boolean keepGoing = true;
         
+        //Create copy of the inputted mp3
+        //You're going to return this copy called newMP3
+        //Because the user may not actually edit everything
         mp3 newMP3 = new mp3(currentMP3.getTitle());
         newMP3.setReleaseDate(currentMP3.getReleaseDate());
         newMP3.setAlbum(currentMP3.getAlbum());
         newMP3.setArtistName(currentMP3.getArtistName());
         newMP3.setGenre(currentMP3.getGenre());
         newMP3.setMoreInfo(currentMP3.getMoreInfo());
+        
+        //Initialize the field variables in case the user wants to edit them
+        String title = "";
+        String releaseDate = "";
+        String album = "";
+        String artistName = "";
+        String genre = "";
+        String moreInfo = "";
         
         while (keepGoing) {
             io.print("\nSelect which field you would like to edit:");
@@ -152,27 +192,50 @@ public class mp3libraryView {
             
             switch (selection) {
                 case 1:
-                    String title = io.readString("Enter new track title:");
+                    //Ensure that these fields are not left blank
+                    do {
+                        title = io.readString("Enter new track title:");
+                    } while (title.equals(""));
+                    
                     newMP3.setTitle(title);
                     break;
                 case 2:
-                    String releaseDate = io.readString("Enter new release date:");
+                    do {
+                        releaseDate = io.readString("Enter new release date:");
+                    } while (releaseDate.equals(""));
+                    
                     newMP3.setReleaseDate(releaseDate);
                     break;
                 case 3:
-                    String album = io.readString("Enter new album name:");
+                    do {
+                        album = io.readString("Enter new album name:");
+                    } while (album.equals(""));
+                    
                     newMP3.setAlbum(album);
                     break;
                 case 4:
-                    String artistName = io.readString("Enter new track's artist:");
+                    do {
+                        artistName = io.readString("Enter new track's artist:");
+                    } while (artistName.equals(""));
+                    
                     newMP3.setArtistName(artistName);
                     break;
                 case 5:
-                    String genre = io.readString("Enter new track genre:");
+                    do {
+                        genre = io.readString("Enter new track genre:");
+                    } while (genre.equals(""));
+                    
                     newMP3.setGenre(genre);
                     break;
                 case 6:
-                    String moreInfo = io.readString("Enter any personal notes or ratings:");
+                    //Make it optional to input extra notes
+                    //But make sure there's at least a space in moreInfo so that it's not blank
+                    moreInfo = io.readString("Enter any personal notes or ratings:");
+        
+                    if (moreInfo.equals("")) {
+                        moreInfo = " ";
+                    }
+                    
                     newMP3.setMoreInfo(moreInfo);
                     break;
                 case 7:
@@ -236,7 +299,6 @@ public class mp3libraryView {
             io.print("Genre: " + currentMP3.getGenre());
             io.print("Your notes: " + currentMP3.getMoreInfo());
             io.print("");
-            io.print("Please press Enter.");
         } else {
             io.print("No MP3 track found! Please press Enter.");
         }
