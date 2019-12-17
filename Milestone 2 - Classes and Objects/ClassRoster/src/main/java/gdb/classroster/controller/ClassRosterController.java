@@ -83,8 +83,6 @@ public class ClassRosterController {
                 view.displayErrorMessage(e.getMessage());
             }
         } while (hasErrors);
-        
-        
     }
     
     private void listStudents() throws ClassRosterPersistenceException {

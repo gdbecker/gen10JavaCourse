@@ -17,6 +17,7 @@ public interface ClassRosterServiceLayer {
     
     List<Student> getAllStudents() throws
             ClassRosterPersistenceException;
+    
     Student getStudent(String studentId) throws
             ClassRosterPersistenceException;
     

@@ -1,0 +1,8 @@
+gdb/addressbook/ui/UserIOConsoleImpl.class
+gdb/addressbook/ui/UserIO.class
+gdb/addressbook/dao/AddressBookDao.class
+gdb/addressbook/dto/Address.class
+gdb/addressbook/dao/AddressBookDaoFileImpl.class
+gdb/addressbook/ui/AddressBookView.class
+gdb/addressbook/controller/AddressBookController.class
+gdb/addressbook/App.class
