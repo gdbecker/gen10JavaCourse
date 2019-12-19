@@ -1,7 +1,6 @@
 package gdb.addressbook.controller;
 
 import gdb.addressbook.dao.AddressBookDao;
-import gdb.addressbook.dao.AddressBookDaoException;
 import gdb.addressbook.dao.AddressBookPersistenceException;
 import gdb.addressbook.dto.Address;
 import gdb.addressbook.service.AddressBookDataValidationException;

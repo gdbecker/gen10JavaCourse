@@ -30,7 +30,7 @@ public class AddressBookServiceLayerTest {
     private AddressBookServiceLayer service;
     
     public AddressBookServiceLayerTest() {
-        //u]Use the stub version since we are testing
+        //Use the stub version since we are testing
         AddressBookDao dao = new AddressBookDaoStubImpl(); 
         
         service = new AddressBookServiceLayerImpl(dao);
@@ -114,7 +114,7 @@ public class AddressBookServiceLayerTest {
     public void testRemoveAddress() throws Exception {
         Address address = service.getAddress("Smith");
         assertNotNull(address);
-        address = service.getAddress("Brooks");
+        address = service.removeAddress("Brooks");
         assertNull(address);
     }
 
