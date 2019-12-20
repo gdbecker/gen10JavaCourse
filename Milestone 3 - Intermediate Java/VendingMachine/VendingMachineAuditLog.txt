@@ -1,0 +1,9 @@
+2019-12-20T14:03:37.622167 : Snickers has been vended. Inventory is now 5
+2019-12-20T14:06:38.080886 : Pretzels has been vended. Inventory is now 8
+2019-12-20T14:07:39.466583 : Snickers has been vended. Inventory is now 4
+2019-12-20T14:08:47.439304 : Ritz has been vended. Inventory is now 1
+2019-12-20T14:09:14.999387 : Ritz has been vended. Inventory is now 0
+2019-12-20T15:17:55.745283 : Ritz has been vended. Inventory is now 4
+2019-12-20T15:18:31.155653 : Reese's Cups has been vended. Inventory is now 11
+2019-12-20T15:29:12.770378 : Ritz has been vended. Inventory is now 3
+2019-12-20T15:49:22.570835 : Cheeze-Its has a vending attempt, but unsuccessful. User did not input enough money. Inventory is still 10

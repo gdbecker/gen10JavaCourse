@@ -1,0 +1,2 @@
+-Finish catching bad input for money in (like make the program stop)
+-Unit testing for DAO and Service
