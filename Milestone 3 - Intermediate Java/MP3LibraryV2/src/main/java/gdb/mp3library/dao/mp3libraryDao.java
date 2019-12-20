@@ -2,13 +2,17 @@ package gdb.mp3library.dao;
 
 import gdb.mp3library.dto.mp3;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Milestone 2 Assessment
+ * Also part of M3 exercises 
  * @author garrettbecker
  */
 
 public interface mp3libraryDao {
+    
+    //Version 1.0 Base Features
     /**
      * Main function: create a new MP3 object to add to the collection.
      * 
@@ -75,5 +79,34 @@ public interface mp3libraryDao {
      * New mp3 objects will be written from collection in memory to a file
      */
     void writeMP3Library() throws mp3libraryPersistenceException;
+    
+    //Version 2.0 Additional Features
+    /**
+     * Find all MP3s released in the last N years
+     * Find all the MP3s in a given genre
+     * Find all the MP3s by a given artist
+     * When searching by genre, the MP3s should be sorted into separate data structures by artist.
+     * Find all the MP3s released on a particular album
+     * Find the average age of the MP3s in the collection
+     * Find the newest MP3 in your collection
+     * Find the oldest MP3 in your collection
+     * Find the average number of notes associated with MP3s in your collection
+     */
+    
+    public List<mp3> getAllMP3WithinLastNYears(int n);
+    
+    public Map<String, List<mp3>> getAllMP3ByGenre(String genre);
+    
+    public List<mp3> getAllMP3ByArtistName(String artistName);
+    
+    public List<mp3> getAllMP3ByAlbum(String album);
+    
+    public double getAverageMP3Age();
+    
+    public List<mp3> getNewestMP3();
+    
+    public List<mp3> getOldestMP3();
+    
+    public double getAverageNumOfNotes();
     
 }

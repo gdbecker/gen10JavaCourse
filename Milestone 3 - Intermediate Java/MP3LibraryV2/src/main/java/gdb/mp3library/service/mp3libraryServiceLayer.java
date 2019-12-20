@@ -3,6 +3,7 @@ package gdb.mp3library.service;
 import gdb.mp3library.dao.mp3libraryPersistenceException;
 import gdb.mp3library.dto.mp3;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @date Wednesday December 18, 2019
@@ -34,4 +35,20 @@ public interface mp3libraryServiceLayer {
     
     void writeMP3Library() throws 
             mp3libraryPersistenceException;
+    
+    public List<mp3> getAllMP3WithinLastNYears(int n);
+    
+    public Map<String, List<mp3>> getAllMP3ByGenre(String genre);
+    
+    public List<mp3> getAllMP3ByArtistName(String artistName);
+    
+    public List<mp3> getAllMP3ByAlbum(String album);
+    
+    public double getAverageMP3Age();
+    
+    public List<mp3> getNewestMP3();
+    
+    public List<mp3> getOldestMP3();
+    
+    public double getAverageNumOfNotes();
 }

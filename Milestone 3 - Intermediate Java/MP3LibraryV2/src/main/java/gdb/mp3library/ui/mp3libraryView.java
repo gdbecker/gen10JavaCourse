@@ -34,10 +34,18 @@ public class mp3libraryView {
         io.print("(3) Edit an Existing MP3 Track");
         io.print("(4) Show all MP3 Tracks in the Collection");
         io.print("(5) Display MP3 Track Info (search by title)");
-        io.print("(6) Exit");
+        io.print("(6) Display all MP3 Tracks within last [ ] years");
+        io.print("(7) Search MP3 Tracks by Genre");
+        io.print("(8) Search MP3 Tracks by Artist");
+        io.print("(9) Search MP3 Tracks by Album");
+        io.print("(10) Show Average Age of MP3 Tracks in the Collection");
+        io.print("(11) Show Newest MP3 Track in the Collection");
+        io.print("(12) Show Oldest MP3 Track in the Collection");
+        io.print("(13) Show Average Number of Notes associated with Tracks in Collection");
+        io.print("(14) Exit");
         
         try {
-            selection = io.readInt("Please select from the above choices.", 1, 6);
+            selection = io.readInt("Please select from the above choices.", 1, 14);
         } catch (InputMismatchException e) {
             io.print("Bad input! Exiting program.");
         }
@@ -82,8 +90,7 @@ public class mp3libraryView {
         
         do {
             releaseDate = io.readString("Enter release date (yyyy-MM-dd):");
-            ld = LocalDate.parse(releaseDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-            releaseDate = ld.format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+            ld = LocalDate.parse(releaseDate, DateTimeFormatter.ISO_DATE);
         } while (releaseDate.equals(""));
         
         do {
@@ -108,7 +115,7 @@ public class mp3libraryView {
                 
         mp3 currentMP3 = new mp3(title);
         
-        currentMP3.setReleaseDate(releaseDate);
+        currentMP3.setReleaseDate(ld); //putting the LocalDate obj in
         currentMP3.setAlbum(album);
         currentMP3.setArtistName(artistName);
         currentMP3.setGenre(genre);
@@ -209,10 +216,10 @@ public class mp3libraryView {
                     do {
                         releaseDate = io.readString("Enter new release date (yyyy-MM-dd):");
                         ld = LocalDate.parse(releaseDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                        releaseDate = ld.format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+                        //releaseDate = ld.format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
                     } while (releaseDate.equals(""));
                     
-                    newMP3.setReleaseDate(releaseDate);
+                    newMP3.setReleaseDate(ld);
                     break;
                 case 3:
                     do {
@@ -312,6 +319,33 @@ public class mp3libraryView {
         }
         
         io.readString("Press Enter to go back to the main screen.");    
+    }
+    
+    //Option 6: Display all MP3 Tracks within last [ ] years
+    public int getNumYearsInput() {
+        int selection = 0;
+        try {
+                selection = io.readInt("\nEnter the number of years: ");
+            } catch (InputMismatchException e) {
+                io.print("Bad input!");
+            }
+        
+        return selection;
+    }
+    
+    //Option 7: Search MP3 Tracks by Genre
+    public String getGenreInput() {
+         return io.readString("Enter genre to search for: ");    
+    }
+    
+    //Option 8: Search MP3 Tracks by Artist
+    public String getArtistInput() {
+         return io.readString("Enter artist to search for: ");
+    }
+    
+    //Option 9: Search MP3 Tracks by Album
+    public String getAlbumInput() {
+         return io.readString("Enter genre to search for: ");  
     }
     
     //Load from library file (before menu pops up)

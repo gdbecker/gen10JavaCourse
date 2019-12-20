@@ -4,6 +4,7 @@ import gdb.mp3library.dao.mp3libraryDao;
 import gdb.mp3library.dao.mp3libraryPersistenceException;
 import gdb.mp3library.dto.mp3;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @date Wednesday December 18, 2019
@@ -23,7 +24,7 @@ public class mp3libraryServiceLayerImpl implements mp3libraryServiceLayer {
         if (MP3.getTitle() == null
                 || MP3.getTitle().trim().length() == 0
                 || MP3.getReleaseDate() == null
-                || MP3.getReleaseDate().trim().length() == 0
+                //|| MP3.getReleaseDate().trim().length() == 0
                 || MP3.getAlbum() == null
                 || MP3.getAlbum().trim().length() == 0
                 || MP3.getArtistName() == null
@@ -82,6 +83,46 @@ public class mp3libraryServiceLayerImpl implements mp3libraryServiceLayer {
     @Override
     public void writeMP3Library() throws mp3libraryPersistenceException {
         dao.writeMP3Library();
+    }
+
+    @Override
+    public List<mp3> getAllMP3WithinLastNYears(int n) {
+        return dao.getAllMP3WithinLastNYears(n);
+    }
+
+    @Override
+    public Map<String, List<mp3>> getAllMP3ByGenre(String genre) {
+        return dao.getAllMP3ByGenre(genre);
+    }
+
+    @Override
+    public List<mp3> getAllMP3ByArtistName(String artistName) {
+        return dao.getAllMP3ByArtistName(artistName);
+    }
+
+    @Override
+    public List<mp3> getAllMP3ByAlbum(String album) {
+        return dao.getAllMP3ByAlbum(album);
+    }
+
+    @Override
+    public double getAverageMP3Age() {
+        return dao.getAverageMP3Age();
+    }
+
+    @Override
+    public List<mp3> getNewestMP3() {
+        return dao.getNewestMP3();
+    }
+
+    @Override
+    public List<mp3> getOldestMP3() {
+        return dao.getOldestMP3();
+    }
+
+    @Override
+    public double getAverageNumOfNotes() {
+        return dao.getAverageNumOfNotes();
     }
     
 }

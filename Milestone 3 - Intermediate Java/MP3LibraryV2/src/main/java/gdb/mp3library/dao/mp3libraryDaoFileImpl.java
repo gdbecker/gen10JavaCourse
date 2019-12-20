@@ -7,14 +7,19 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import static java.util.concurrent.TimeUnit.DAYS;
+import java.util.stream.Collectors;
 
 /**
  * Milestone 2 Assessment
+ * Also part of M3 exercises 
  * @author garrettbecker
  */
 
@@ -23,6 +28,7 @@ public class mp3libraryDaoFileImpl implements mp3libraryDao{
     public static final String FILE = "mp3Library.txt";
     public static final String DELIMITER = "::";
 
+    //Version 1.0 Base Features
     //dao will take in title and mp3 object and add them to the Map
     //Option 1: add
     @Override
@@ -73,7 +79,8 @@ public class mp3libraryDaoFileImpl implements mp3libraryDao{
         
         //Get remaining properties to complete mp3 object
         //Index 1 - release date
-        mp3FromFile.setReleaseDate(mp3Tokens[1]);
+        LocalDate releaseDate = LocalDate.parse(mp3Tokens[1], DateTimeFormatter.ISO_DATE);
+        mp3FromFile.setReleaseDate(releaseDate); //Putting a LocalDate object in instead of a String
         
         //Index 2 - album
         mp3FromFile.setAlbum(mp3Tokens[2]);
@@ -163,5 +170,108 @@ public class mp3libraryDaoFileImpl implements mp3libraryDao{
        
         out.close();
     }
-    
+
+    //Version 2.0 Additional Features
+    @Override
+    public List<mp3> getAllMP3WithinLastNYears(int n) {
+        LocalDate now = LocalDate.now();
+        return mp3Collection.values()
+                .stream()
+                .filter(m -> m.getReleaseDate().until(now).getYears() < n)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Map<String, List<mp3>> getAllMP3ByGenre(String genre) {
+        return mp3Collection.values()
+                .stream()
+                .filter(m -> m.getGenre().equalsIgnoreCase(genre))
+                .collect(Collectors.groupingBy(m -> m.getArtistName()));
+    }
+
+    @Override
+    public List<mp3> getAllMP3ByArtistName(String artistName) {
+        return mp3Collection.values()
+                .stream()
+                .filter(m -> m.getArtistName().equalsIgnoreCase(artistName))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<mp3> getAllMP3ByAlbum(String album) {
+        return mp3Collection.values()
+                .stream()
+                .filter(m -> m.getAlbum().equalsIgnoreCase(album))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public double getAverageMP3Age() {
+        LocalDate now = LocalDate.now();
+        return mp3Collection.values()
+                .stream()
+                .mapToLong(m -> m.getReleaseDate().until(now).getDays())
+                .average()
+                .getAsDouble();
+    }
+
+    @Override
+    public List<mp3> getNewestMP3() {
+        LocalDate now = LocalDate.now();
+        long[] listTimeDiff = mp3Collection.values()
+                .stream()
+                .mapToLong(m -> m.getReleaseDate().until(now).getDays())
+                .toArray();
+        
+        long newest = 1000;
+        for (long l : listTimeDiff) {
+            if (l < newest) {
+                newest = l;
+            }
+        }
+        
+        int newestInDays = (int)newest;
+        
+        return mp3Collection.values()
+                .stream()
+                .filter(m -> m.getReleaseDate().until(now).getDays() == newestInDays)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<mp3> getOldestMP3() {
+        LocalDate now = LocalDate.now();
+        long[] listTimeDiff = mp3Collection.values()
+                .stream()
+                .mapToLong(m -> m.getReleaseDate().until(now).getDays())
+                .toArray();
+        
+        long oldest = 0;
+        for (long l : listTimeDiff) {
+            if (l > oldest) {
+                oldest = l;
+            }
+        }
+        
+        int oldestInDays = (int)oldest;
+        
+        return mp3Collection.values()
+                .stream()
+                .filter(m -> m.getReleaseDate().until(now).getDays() == oldestInDays)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public double getAverageNumOfNotes() {
+        double numWithNotes = mp3Collection.values()
+                .stream()
+                .filter(m -> !m.getMoreInfo().equals(""))
+                .count();
+        
+        double numTotal = mp3Collection.values()
+                .stream()
+                .count();
+        
+        return numWithNotes / numTotal;   
+    }
 }

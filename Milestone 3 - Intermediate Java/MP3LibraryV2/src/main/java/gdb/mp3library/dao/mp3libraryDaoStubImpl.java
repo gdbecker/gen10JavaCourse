@@ -1,8 +1,11 @@
 package gdb.mp3library.dao;
 
 import gdb.mp3library.dto.mp3;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @date Wednesday December 18, 2019
@@ -20,7 +23,8 @@ public class mp3libraryDaoStubImpl implements mp3libraryDao {
     //for the service test to use
     public mp3libraryDaoStubImpl() {
         onlyMP3 = new mp3("Tester");
-        onlyMP3.setReleaseDate("2013-12-12");
+        LocalDate releaseDate = LocalDate.parse("2013-12-12", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        onlyMP3.setReleaseDate(releaseDate);
         onlyMP3.setAlbum("Songs of the Air");
         onlyMP3.setArtistName("Frank Castles");
         onlyMP3.setGenre("Rock");
@@ -91,5 +95,46 @@ public class mp3libraryDaoStubImpl implements mp3libraryDao {
     public void writeMP3Library() throws mp3libraryPersistenceException {
         //Do nothing
     }
+
+    @Override
+    public List<mp3> getAllMP3WithinLastNYears(int n) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Map<String, List<mp3>> getAllMP3ByGenre(String genre) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<mp3> getAllMP3ByArtistName(String artistName) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<mp3> getAllMP3ByAlbum(String album) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getAverageMP3Age() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<mp3> getNewestMP3() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<mp3> getOldestMP3() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getAverageNumOfNotes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
 }

@@ -1,7 +1,7 @@
-package gdb.mp3library.ui;
+package gdb.vendingmachine.ui;
 
 /**
- * Milestone 2 Assessment
+ * Milestone 3 Summative
  * @author garrettbecker
  */
 

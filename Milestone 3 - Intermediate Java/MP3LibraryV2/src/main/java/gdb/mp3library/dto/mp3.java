@@ -1,5 +1,6 @@
 package gdb.mp3library.dto;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Objects;
 
 public class mp3 {
     private String title;
-    private String releaseDate;
+    private LocalDate releaseDate;
     private String album;
     private String artistName;
     private String genre;
@@ -29,11 +30,11 @@ public class mp3 {
         this.title = title;
     }
 
-    public String getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(String releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 

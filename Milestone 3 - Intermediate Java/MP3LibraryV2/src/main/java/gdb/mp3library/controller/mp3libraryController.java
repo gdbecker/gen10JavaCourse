@@ -132,6 +132,30 @@ public class mp3libraryController {
                         displaySingleMP3();
                         break;
                     case 6:
+                        displayAllMP3WithinNYears();
+                        break;
+                    case 7:
+                        //displaySingleMP3();
+                        break;
+                    case 8:
+                        //displaySingleMP3();
+                        break;
+                    case 9:
+                        //displaySingleMP3();
+                        break;
+                    case 10:
+                        //displaySingleMP3();
+                        break;
+                    case 11:
+                        //displaySingleMP3();
+                        break;
+                    case 12:
+                        //displaySingleMP3();
+                        break;
+                    case 13:
+                        //displaySingleMP3();
+                        break;
+                    case 14:
                         keepGoing = false;
                         break;
                     default:
@@ -241,6 +265,27 @@ public class mp3libraryController {
         mp3 thisMP3 = service.displayMP3Info(title);
         view.displayMP3(thisMP3);
     }
+    
+    //Option 6: Display all MP3 Tracks within last [ ] years
+    private void displayAllMP3WithinNYears() {
+        int n = view.getNumYearsInput();
+        List<mp3> mp3List = service.getAllMP3WithinLastNYears(n);
+        view.displayMP3List(mp3List);
+    }
+    
+    //Option 7: Search MP3 Tracks by Genre
+    
+    //Option 8: Search MP3 Tracks by Artist
+    
+    //Option 9: Search MP3 Tracks by Album
+    
+    //Option 10: Show Average Age of MP3 Tracks in the Collection
+    
+    //Option 11: Show Newest MP3 Track in the Collection
+    
+    //Option 12: Show Oldest MP3 Track in the Collection
+    
+    //Option 13: Show Average Number of Notes associated with Tracks in Collection
     
     //Load from library file (before menu pops up)
     private void loadLibrary() throws mp3libraryPersistenceException {
