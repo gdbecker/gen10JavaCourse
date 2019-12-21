@@ -41,7 +41,6 @@ public class VendingMachineController {
         int initialSelection = 0;
         int menuSelection = 0;
         int numAvailItems = 0;
-        String change = "";
         
         try {
             while (keepGoing) {
@@ -51,6 +50,14 @@ public class VendingMachineController {
                     case 1:   
                         
                         BigDecimal userMoney = getMoney();
+                        
+                        //Write to the audit log if user input was invalid (should return as 0)
+                        //and then exit the program
+                        BigDecimal blank = new BigDecimal(0); //exists just for comparison
+                        if (userMoney.equals(blank)) {
+                            writeAuditLog(userMoney.toString(), 3); //write to audit log
+                            break;
+                        }
                                                
                         numAvailItems = getAndShowAvailableItems();
                         menuSelection = getSelectionFromItems(numAvailItems);

@@ -61,19 +61,39 @@ public interface VendingMachineDao {
      * @return nothing to return
      */
     void updateInventory(Item item) throws VendingMachinePersistenceException;
+
+    /**
+     * Main function: load Items from the file into system memory
+     * 
+     * @return nothing to return
+     */
+    public void loadVendingMachine()
+            throws VendingMachinePersistenceException;
+
+    /**
+     * Main function: write Items from system memory to the file
+     * 
+     * @return nothing to return
+     */
+    public void writeVendingMachine()
+            throws VendingMachinePersistenceException;
     
     /**
-     * Main function: import file containing vending machine items
+     * Main function: remove an Item completely from memory 
      * 
-     * Memory will be updated with all Items of vending machine
+     * @param itemName: String containing name of item  
+     * 
+     * @return nothing to return
      */
-    void loadVendingMachine() throws VendingMachinePersistenceException;
+    public Item removeItem(String itemName) throws VendingMachinePersistenceException;
     
     /**
-     * Main function: write to file containing vending machine items
+     * Main function: add an Item completely to memory 
      * 
-     * Vending machine Items will be added from memory to file
+     * @param item: Item object to add 
+     * 
+     * @return nothing to return
      */
-    void writeVendingMachine() throws VendingMachinePersistenceException;
-    
+    public Item addItem(Item item) throws VendingMachinePersistenceException;
+
 }

@@ -12,7 +12,7 @@ import java.util.Map;
  * @author garrettbecker
  */
 
-//This is basically a dumbed down version of the AddressBookDaoFileImpl file
+//This is basically a dumbed down version of the mp3librarykDaoFileImpl file
 //This exists for the purpose of testing that these methods work
 public class mp3libraryDaoStubImpl implements mp3libraryDao {
     

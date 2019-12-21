@@ -1,2 +1,3 @@
--Finish catching bad input for money in (like make the program stop)
--Unit testing for DAO and Service
+-Do I need unit testing for the loading and writing file methods in DAO?
+--What about unit testing the audit DAO?
+-Unit testing for Service

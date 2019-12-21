@@ -7,3 +7,8 @@
 2019-12-20T15:18:31.155653 : Reese's Cups has been vended. Inventory is now 11
 2019-12-20T15:29:12.770378 : Ritz has been vended. Inventory is now 3
 2019-12-20T15:49:22.570835 : Cheeze-Its has a vending attempt, but unsuccessful. User did not input enough money. Inventory is still 10
+2019-12-21T15:29:28.035417 : Snickers has a vending attempt, but unsuccessful. User did not input enough money. Inventory is still 4
+2019-12-21T15:42:00.083572 : Snickers has a vending attempt, but unsuccessful. User did not input enough money. Inventory is still 4
+2019-12-21T15:46:35.484999 : Invalid user input for money amount. No transaction. Inventory levels are the same.
+2019-12-21T15:47:55.631223 : Invalid user input for money amount. No transaction. Inventory levels are the same.
+2019-12-21T15:48:09.994662 : Invalid user input for money amount. No transaction. Inventory levels are the same.

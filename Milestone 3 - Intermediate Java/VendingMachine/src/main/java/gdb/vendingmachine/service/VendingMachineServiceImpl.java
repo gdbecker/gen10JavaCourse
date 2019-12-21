@@ -36,6 +36,11 @@ public class VendingMachineServiceImpl implements VendingMachineService {
     public List<Item> getAllVendingMachineItems() throws VendingMachinePersistenceException {
         return mainDao.getAllVendingMachineItems();
     }
+    
+    @Override
+    public Item getItem(String itemName) throws VendingMachinePersistenceException {
+        return mainDao.getItem(itemName);
+    }
 
     @Override
     public Map<Coin, BigDecimal> getChange(BigDecimal userInput, BigDecimal itemPrice) throws VendingMachinePersistenceException {
@@ -47,12 +52,10 @@ public class VendingMachineServiceImpl implements VendingMachineService {
         mainDao.updateInventory(item);
     }
 
-    @Override
     public void loadVendingMachine() throws VendingMachinePersistenceException {
         mainDao.loadVendingMachine();
     }
 
-    @Override
     public void writeVendingMachine() throws VendingMachinePersistenceException {
         mainDao.writeVendingMachine();
     }
@@ -70,8 +73,21 @@ public class VendingMachineServiceImpl implements VendingMachineService {
             case 2: 
                 auditDao.writeAuditEntry(affectedItem.getName() + " has a vending attempt, but unsuccessful. User did not input enough money. Inventory is still " + affectedItem.getInventory());
                 break;
+            case 3:
+                auditDao.writeAuditEntry("Invalid user input for money amount. No transaction. Inventory levels are the same.");
+                break;
             default:
                 break;
         }
+    }
+
+    @Override
+    public Item removeItem(String itemName) throws VendingMachinePersistenceException {
+        return mainDao.removeItem(itemName);
+    }
+    
+    @Override
+    public Item addItem(Item item) throws VendingMachinePersistenceException {
+        return mainDao.addItem(item);
     }
 }

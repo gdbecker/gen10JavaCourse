@@ -170,5 +170,15 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
         
         out.close();
     }
+
+    @Override
+    public Item removeItem(String itemName) throws VendingMachinePersistenceException {
+        return vendingMachine.remove(itemName);
+    }
+
+    @Override
+    public Item addItem(Item item) throws VendingMachinePersistenceException {
+        return vendingMachine.put(item.getName(), item);
+    }
     
 }

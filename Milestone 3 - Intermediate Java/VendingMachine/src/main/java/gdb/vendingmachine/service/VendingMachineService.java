@@ -20,18 +20,27 @@ public interface VendingMachineService {
     List<Item> getAllVendingMachineItems() 
             throws VendingMachinePersistenceException;
     
+    Item getItem(String itemName)
+            throws VendingMachinePersistenceException;
+    
     Map<Coin, BigDecimal> getChange(BigDecimal userInput, BigDecimal itemPrice) 
             throws VendingMachinePersistenceException;
     
     void updateInventory(Item item) 
             throws VendingMachinePersistenceException;
-   
-    void loadVendingMachine() 
-            throws VendingMachinePersistenceException;
-    
-    void writeVendingMachine() 
-            throws VendingMachinePersistenceException;
     
     void writeAuditLog(String entry, int option) 
+            throws VendingMachinePersistenceException;
+
+    public void loadVendingMachine()
+            throws VendingMachinePersistenceException;
+
+    public void writeVendingMachine()
+            throws VendingMachinePersistenceException;
+            
+    public Item removeItem(String itemName) 
+            throws VendingMachinePersistenceException;
+    
+    public Item addItem(Item item) 
             throws VendingMachinePersistenceException;
 }
