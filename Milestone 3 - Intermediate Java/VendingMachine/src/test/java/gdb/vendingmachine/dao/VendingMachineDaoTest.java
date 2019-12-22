@@ -15,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Milestone 3 Summative
  * @author garrettbecker
  */
+
 public class VendingMachineDaoTest {
     
     private VendingMachineDao dao = new VendingMachineDaoFileImpl();
@@ -159,21 +160,5 @@ public class VendingMachineDaoTest {
         
         //Make sure that inventory actually decreased by 1
         assertEquals(9, item1.getInventory());
-    }
-
-    /**
-     * Test of loadVendingMachine method, of class VendingMachineDao.
-     */
-    @Test
-    public void testLoadVendingMachine() throws Exception {
-        //Do nothing
-    }
-
-    /**
-     * Test of writeVendingMachine method, of class VendingMachineDao.
-     */
-    @Test
-    public void testWriteVendingMachine() throws Exception {
-        //Do nothing
     }
 }

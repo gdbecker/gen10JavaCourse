@@ -1,6 +1,7 @@
 package gdb.vendingmachine.dao;
 
 import gdb.vendingmachine.dto.Item;
+import gdb.vendingmachine.service.VendingMachineInsufficientFundsException;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;

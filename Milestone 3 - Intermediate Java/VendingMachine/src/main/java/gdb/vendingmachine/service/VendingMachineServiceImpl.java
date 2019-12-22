@@ -90,4 +90,17 @@ public class VendingMachineServiceImpl implements VendingMachineService {
     public Item addItem(Item item) throws VendingMachinePersistenceException {
         return mainDao.addItem(item);
     }
+
+    @Override
+    public boolean validateItem(Item item) throws VendingMachinePersistenceException, VendingMachineNoItemInventoryException {
+        if (item.getInventory() == 0 || item.getInventory() < 0) {
+            throw new VendingMachineNoItemInventoryException("Inventory is 0, cannot find item.");
+        }
+        
+        else {
+            return true;
+        }
+        
+        
+    }
 }

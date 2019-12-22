@@ -1,6 +1,7 @@
 package gdb.vendingmachine.dao;
 
 import gdb.vendingmachine.dto.Item;
+import gdb.vendingmachine.service.VendingMachineInsufficientFundsException;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -31,9 +32,10 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
 
     @Override
     public List<Item> getAvailableVendingMachineItems() throws VendingMachinePersistenceException {
+        //Example of using a lambda within this project
         return vendingMachine.values()
                 .stream()
-                .filter(v -> v.getInventory() > 0)
+                .filter(i -> i.getInventory() > 0)
                 .collect(Collectors.toList());
     }
     
@@ -49,6 +51,7 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
     
     @Override
     public Map<Coin, BigDecimal> getChange(BigDecimal userInput, BigDecimal itemPrice) throws VendingMachinePersistenceException {
+        
         BigDecimal diff = userInput.subtract(itemPrice);
 
         BigDecimal quarter = new BigDecimal("0.25");

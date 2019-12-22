@@ -145,30 +145,6 @@ public class VendingMachineServiceTest {
         //Change inventory level
         service.updateInventory(item);
     }
-
-    /**
-     * Test of writeAuditLog method, of class VendingMachineService.
-     */
-    @Test
-    public void testWriteAuditLog() throws Exception {
-        //Do nothing
-    }
-
-    /**
-     * Test of loadVendingMachine method, of class VendingMachineService.
-     */
-    @Test
-    public void testLoadVendingMachine() throws Exception {
-        //Do nothing
-    }
-
-    /**
-     * Test of writeVendingMachine method, of class VendingMachineService.
-     */
-    @Test
-    public void testWriteVendingMachine() throws Exception {
-        //Do nothing
-    }
     
     /**
      * Test of removeItem method, of class VendingMachineService.

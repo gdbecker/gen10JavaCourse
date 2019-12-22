@@ -3,6 +3,7 @@ package gdb.vendingmachine.controller;
 import gdb.vendingmachine.dao.Coin;
 import gdb.vendingmachine.dao.VendingMachinePersistenceException;
 import gdb.vendingmachine.dto.Item;
+import gdb.vendingmachine.service.VendingMachineNoItemInventoryException;
 import gdb.vendingmachine.service.VendingMachineService;
 import gdb.vendingmachine.ui.VendingMachineView;
 import java.math.BigDecimal;
@@ -58,37 +59,64 @@ public class VendingMachineController {
                             writeAuditLog(userMoney.toString(), 3); //write to audit log
                             break;
                         }
-                                               
+                          
+                        //Show available items to screen and return the number of
+                        //items available (this makes it customizable to whatever
+                        //number of items are available in the machine
                         numAvailItems = getAndShowAvailableItems();
+                        
+                        //Return the selection made from the user
                         menuSelection = getSelectionFromItems(numAvailItems);
+                        
+                        //Grab the item selected from the menu
                         Item selectedItem = getItemFromSelection(menuSelection);
+                        
+                        //Validate the item slected to make sure that its inventory
+                        //is greater than 0
+                        try {
+                            validateItem(selectedItem);
+                        } catch(VendingMachineNoItemInventoryException e) {
+                            view.displayErrorMessage(e.getMessage());
+                            break;
+                        }
                         
                         BigDecimal itemPrice = selectedItem.getPrice();
                         
                         //Decision tree for getting change
+                        //Case for if userMoney > itemPrice
                         if (userMoney.compareTo(itemPrice) == 1) {
+                            //Show amount of change
+                            getChangeTransactionInfo(userMoney, selectedItem);
                             
-                            getChange(userMoney, itemPrice); //show amount of change
+                            //Update inventory in memory
+                            updateInventory(selectedItem);
                             
-                            
-                            updateInventory(selectedItem); //update inventory in memory
-                            writeAuditLog(selectedItem.getName(), 1); //write to audit log
+                            //Write to audit log
+                            writeAuditLog(selectedItem.getName(), 1);
                         } 
                         
+                        //Case for if userMoney == itemPrice
                         else if (userMoney.compareTo(itemPrice) == 0) {
+                            //Show amount of change
+                            getChangeTransactionInfo(userMoney, selectedItem);
                             
-                            getChange(userMoney, itemPrice); //show amount of change
+                            //Update inventory in memory
+                            updateInventory(selectedItem);
                             
-                            
-                            updateInventory(selectedItem); //update inventory in memory
-                            writeAuditLog(selectedItem.getName(), 1); //write to audit log
+                            //Write to audit log
+                            writeAuditLog(selectedItem.getName(), 1);
                         }
                         
+                        //Case for if userMoney < itemPrice
                         else {
-                            insufficientFundsError(userMoney, itemPrice);
+                            //Show error for insufficient funds
+                            //Essentially catching an exception for not putting
+                            //in enough money
+                            insufficientFundsError(userMoney, selectedItem);
+                            
+                            //Write to audit log
                             writeAuditLog(selectedItem.getName(), 2); //write to audit log
                         }
-                        
                         break;
                     case 2:
                         keepGoing = false;
@@ -132,11 +160,14 @@ public class VendingMachineController {
         return view.getMoney();
     }
     
-    private void getChange(BigDecimal userInput, BigDecimal itemPrice) throws VendingMachinePersistenceException {
-        Map<Coin, BigDecimal> coins = service.getChange(userInput, itemPrice);
-        view.displayChangeAmount(coins);
+    //Takes in amount of money user put in and the Item object for what they bought
+    //Prints out transaction information and change info in coin amounts
+    private void getChangeTransactionInfo(BigDecimal userInput, Item itemBought) throws VendingMachinePersistenceException {
+        Map<Coin, BigDecimal> coins = service.getChange(userInput, itemBought.getPrice());
+        view.displayChangeTransactionInfo(userInput, itemBought, coins);
     }
     
+    //Finds the specific Item that the user selected from number input
     private Item getItemFromSelection(int selection) throws VendingMachinePersistenceException {
         List<Item> itemList = service.getAvailableVendingMachineItems();
         Item selectedItem = new Item();
@@ -160,8 +191,8 @@ public class VendingMachineController {
     
     //Show insufficient funds error
     //inform user how much money they still need to input
-    private void insufficientFundsError(BigDecimal userMoney, BigDecimal itemPrice) {
-        view.displayInsufficientFundsMessage(userMoney, itemPrice);
+    private void insufficientFundsError(BigDecimal userMoney, Item selectedItem) {
+        view.displayInsufficientFundsMessage(userMoney, selectedItem);
     }
     
     //Update inventory amount in DAO memory
@@ -182,6 +213,12 @@ public class VendingMachineController {
     //Write vending machine data from system to file
     private void writeVendingMachine() throws VendingMachinePersistenceException {
         service.writeVendingMachine();
+    }
+    
+    //Validate the Item
+    //Throw exception if the one selected does not have inventory greater than 0
+    private void validateItem(Item item) throws VendingMachinePersistenceException, VendingMachineNoItemInventoryException {
+        boolean isValidated = service.validateItem(item);
     }
     
     //Other messages to print if needed

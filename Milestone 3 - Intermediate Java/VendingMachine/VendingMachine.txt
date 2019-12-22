@@ -1,6 +1,6 @@
-Snickers::2.00::4
-Reese's Cups::2.75::11
-Pretzels::2.50::8
-Ritz::1.75::3
+Snickers::2.00::2
+Reese's Cups::2.75::10
+Pretzels::2.50::7
+Ritz::1.75::0
 Cheeze-Its::2.25::10
 Sour Patch Kids::2.75::8

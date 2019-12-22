@@ -101,17 +101,20 @@ public class VendingMachineView {
     }
     
     //Display message about insufficient funds
-    public void displayInsufficientFundsMessage(BigDecimal userMoney, BigDecimal itemPrice) {
-        io.print("You didn't input enough money for this item!");
-        BigDecimal difference = itemPrice.subtract(userMoney);
-        io.print("Item price is $" + itemPrice + " and you inputted $" + userMoney);
-        io.print("You still need to input $" + difference);
+    public void displayInsufficientFundsMessage(BigDecimal userMoney, Item selectedItem) {
+        io.print("You didn't input enough money for " + selectedItem.getName() + "!");
+        BigDecimal difference = selectedItem.getPrice().subtract(userMoney);
+        io.print("The price for " + selectedItem.getName() + " is $" + selectedItem.getPrice() + " and you inputted $" + userMoney + ".");
+        io.print("You were short by $" + difference + ".");
         io.print("");
     }
     
     //Display message about change given to the user
-    public void displayChangeAmount(Map<Coin, BigDecimal> coins) {
+    public void displayChangeTransactionInfo(BigDecimal userMoney, Item itemBought, Map<Coin, BigDecimal> coins) {
         Coin coinType = Coin.QUARTER;
+        io.print("You bought " + itemBought.getName() + " which cost $" + itemBought.getPrice() + ".");
+        io.print("You put $" + userMoney + " into the machine.");
+        io.print("Your change is $" + userMoney.subtract(itemBought.getPrice()) + ".");
         io.print("");
         io.print("Your change ---");
         io.print("Quarters: " + coins.get(coinType.QUARTER));
@@ -121,6 +124,7 @@ public class VendingMachineView {
         io.print("");
     }
     
+    //Print anything to console
     public void printMessage(String message) {
         io.print(message);
     }
