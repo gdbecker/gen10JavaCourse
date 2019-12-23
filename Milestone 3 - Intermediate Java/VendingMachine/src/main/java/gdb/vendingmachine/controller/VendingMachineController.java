@@ -39,6 +39,7 @@ public class VendingMachineController {
         
         //Instantiate key variables to control staying in program
         boolean keepGoing = true;
+        String isValid = "";
         int initialSelection = 0;
         int menuSelection = 0;
         int numAvailItems = 0;
@@ -57,6 +58,14 @@ public class VendingMachineController {
                         BigDecimal blank = new BigDecimal(0); //exists just for comparison
                         if (userMoney.equals(blank)) {
                             writeAuditLog(userMoney.toString(), 3); //write to audit log
+                            break;
+                        }
+                        
+                        //Validate userMoney to make sure it's not negative or 
+                        //greater than the limit of $50
+                        isValid = catchBadUserInputMoney(userMoney);
+                        if (!isValid.equals("Good")) {
+                            printMessage(isValid);
                             break;
                         }
                           
@@ -160,6 +169,11 @@ public class VendingMachineController {
         return view.getMoney();
     }
     
+    //Validate the money input from the user
+    private String catchBadUserInputMoney(BigDecimal userInput) {
+        return view.catchBadUserInputMoney(userInput);
+    }
+    
     //Takes in amount of money user put in and the Item object for what they bought
     //Prints out transaction information and change info in coin amounts
     private void getChangeTransactionInfo(BigDecimal userInput, Item itemBought) throws VendingMachinePersistenceException {
@@ -219,6 +233,11 @@ public class VendingMachineController {
     //Throw exception if the one selected does not have inventory greater than 0
     private void validateItem(Item item) throws VendingMachinePersistenceException, VendingMachineNoItemInventoryException {
         boolean isValidated = service.validateItem(item);
+    }
+    
+    //Print a message out to the console
+    private void printMessage(String message) {
+        view.printMessage(message);
     }
     
     //Other messages to print if needed

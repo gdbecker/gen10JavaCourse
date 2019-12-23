@@ -24,3 +24,16 @@
 2019-12-22T14:13:53.267768 : Snickers has been vended. Inventory is now 2
 2019-12-22T14:14:01.852276 : Sour Patch Kids has a vending attempt, but unsuccessful. User did not input enough money. Inventory is still 8
 2019-12-22T14:18:38.939683 : Snickers has a vending attempt, but unsuccessful. User did not input enough money. Inventory is still 2
+2019-12-23T13:21:07.300064 : Invalid user input for money amount. No transaction. Inventory levels are the same.
+2019-12-23T13:22:43.868923 : Reese's Cups has a vending attempt, but unsuccessful. User did not input enough money. Inventory is still 10
+2019-12-23T13:24:05.876788 : Reese's Cups has a vending attempt, but unsuccessful. User did not input enough money. Inventory is still 10
+2019-12-23T13:25:37.414352 : Snickers has been vended. Inventory is now 1
+2019-12-23T13:26:11.298978 : Cheeze-Its has been vended. Inventory is now 9
+2019-12-23T13:27:41.051606 : Snickers has been vended. Inventory is now 0
+2019-12-23T13:30:52.438469 : Cheeze-Its has a vending attempt, but unsuccessful. User did not input enough money. Inventory is still 9
+2019-12-23T13:32:33.339347 : Invalid user input for money amount. No transaction. Inventory levels are the same.
+2019-12-23T13:33:24.572684 : Pretzels has been vended. Inventory is now 6
+2019-12-23T13:35:21.957060 : Reese's Cups has been vended. Inventory is now 9
+2019-12-23T13:42:59.682666 : Reese's Cups has been vended. Inventory is now 8
+2019-12-23T14:26:12.956152 : Invalid user input for money amount. No transaction. Inventory levels are the same.
+2019-12-23T14:36:45.061418 : Reese's Cups has a vending attempt, but unsuccessful. User did not input enough money. Inventory is still 8

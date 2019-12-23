@@ -74,16 +74,38 @@ public class VendingMachineView {
     //Ask user to input an amount of money into the machine
     //(Must do before a selection can be made for an item)
     public BigDecimal getMoney() {
-        String userMoney = io.readString("How much money would you like to put in? (format: XX.XX)");
+        String userMoney = io.readString("How much money would you like to put in? Limit: $50 (format: XX.XX)");
         BigDecimal money = new BigDecimal(0);
         
         try {
             money = new BigDecimal(userMoney).setScale(2, RoundingMode.HALF_UP);
         } catch (NumberFormatException e) {
-            io.print("ERROR: Invalid inuput!");
+            io.print("ERROR: Invalid input!");
         }
         
         return money;
+    }
+    
+    //Check for potential errors for user money input:
+    //1: negative input
+    //2: inputting greater than the limit of $50
+    public String catchBadUserInputMoney(BigDecimal userInput) {
+        //BigDecimal values used for comparison
+        BigDecimal zero = new BigDecimal("0");
+        BigDecimal fifty = new BigDecimal("50");
+        String toPrint = "";
+        
+        //If userInput > 50 (greater than the machine limit) ||
+        //If userInput < 0 (negative input)
+        if (userInput.compareTo(fifty) == 1) {
+            toPrint = "Invalid input! You inputted too much money. Machine limit is $50.";
+        } else if (userInput.compareTo(zero) == -1) {
+            toPrint =  "Invalid input! You tried to input a negative amount.";
+        } else {
+            toPrint = "Good";
+        }
+        
+        return toPrint;
     }
     
     //Show the main menu for the vending machine and get initial selection from user
@@ -106,12 +128,13 @@ public class VendingMachineView {
         BigDecimal difference = selectedItem.getPrice().subtract(userMoney);
         io.print("The price for " + selectedItem.getName() + " is $" + selectedItem.getPrice() + " and you inputted $" + userMoney + ".");
         io.print("You were short by $" + difference + ".");
+        io.print("Returning your money back to you.");
         io.print("");
     }
     
     //Display message about change given to the user
     public void displayChangeTransactionInfo(BigDecimal userMoney, Item itemBought, Map<Coin, BigDecimal> coins) {
-        Coin coinType = Coin.QUARTER;
+        Coin coinType = null;
         io.print("You bought " + itemBought.getName() + " which cost $" + itemBought.getPrice() + ".");
         io.print("You put $" + userMoney + " into the machine.");
         io.print("Your change is $" + userMoney.subtract(itemBought.getPrice()) + ".");
