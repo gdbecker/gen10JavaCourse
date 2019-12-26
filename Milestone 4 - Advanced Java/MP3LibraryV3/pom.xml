@@ -14,10 +14,10 @@
             </dependencies>
         </plugin>
     </plugins>
-    </build>
+</build>
     <modelVersion>4.0.0</modelVersion>
     <groupId>gdb</groupId>
-    <artifactId>VendingMachine</artifactId>
+    <artifactId>MP3Library</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <dependencies>
@@ -50,4 +50,5 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
+    <name>MP3LibraryV3</name>
 </project>

@@ -17,6 +17,8 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * Milestone 3 Summative
@@ -28,6 +30,7 @@ public class VendingMachineServiceTest {
     private VendingMachineService service;
     
     public VendingMachineServiceTest() {
+        
         //Use the stub DAO versions for making the dao
         VendingMachineDao mainDao = new VendingMachineDaoStubImpl();
         VendingMachineAuditDao auditDao = new VendingMachineAuditDaoStubImpl();
@@ -35,6 +38,12 @@ public class VendingMachineServiceTest {
         //Create the tester service object for the purposes of testing
         //Needs both DAO stub versions to work
         service = new VendingMachineServiceImpl(mainDao, auditDao);
+        
+        /*
+        //Replacing above code with new code for Spring Dependency
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+        service = ctx.getBean("serviceLayer", VendingMachineService.class);
+        */
     }
     
     @BeforeAll

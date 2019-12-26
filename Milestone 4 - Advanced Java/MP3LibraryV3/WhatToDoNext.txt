@@ -1,0 +1,4 @@
+-Finish working on setting up the Controller to run the new features
+-Need to update all testing scenarios for DAO and Service Layer
+-Update the Stub DAO with new methods
+-Add in the exception handling for the new methods within DAO and Service

@@ -10,6 +10,8 @@ import gdb.vendingmachine.service.VendingMachineServiceImpl;
 import gdb.vendingmachine.ui.UserIO;
 import gdb.vendingmachine.ui.UserIOConsoleImpl;
 import gdb.vendingmachine.ui.VendingMachineView;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * Milestone 3 Summative
@@ -18,6 +20,9 @@ import gdb.vendingmachine.ui.VendingMachineView;
 
 public class App {
     public static void main(String[] args) {
+        //Replacing the code below with Spring Dependency Injection
+        //applicationContext.xml source file contains Spring Dependency connection
+        
         //Instantiate the UserIO
         UserIO myIO = new UserIOConsoleImpl();
         
@@ -36,5 +41,14 @@ public class App {
         
         //Run the program
         myController.run();
+        
+        /*
+        ApplicationContext ctx = 
+           new ClassPathXmlApplicationContext("applicationContext.xml");
+        VendingMachineController controller = 
+           ctx.getBean("controller", VendingMachineController.class);
+        controller.run();
+        */
+        
     }
 }
