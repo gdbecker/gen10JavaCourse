@@ -1,0 +1,9 @@
+gdb/vendingmachine/App.class
+gdb/vendingmachine/dto/Item.class
+gdb/vendingmachine/dao/VendingMachineAuditDao.class
+gdb/vendingmachine/service/VendingMachineService.class
+gdb/vendingmachine/service/VendingMachineServiceImpl.class
+gdb/vendingmachine/dao/VendingMachineDao.class
+gdb/vendingmachine/dao/Coin.class
+gdb/vendingmachine/ui/UserIO.class
+gdb/vendingmachine/dao/VendingMachinePersistenceException.class
