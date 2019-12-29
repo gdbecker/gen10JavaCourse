@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: gdb.vendingmachine.service.VendingMachineServiceTest
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.422 sec - in gdb.vendingmachine.service.VendingMachineServiceTest
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.418 sec - in gdb.vendingmachine.service.VendingMachineServiceTest

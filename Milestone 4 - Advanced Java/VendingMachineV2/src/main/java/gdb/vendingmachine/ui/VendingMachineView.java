@@ -96,11 +96,14 @@ public class VendingMachineView {
         String toPrint = "";
         
         //If userInput > 50 (greater than the machine limit) ||
-        //If userInput < 0 (negative input)
+        //If userInput < 0 (negative input) ||
+        //If userInput = 0 (can't put in nothing to the machine)
         if (userInput.compareTo(fifty) == 1) {
             toPrint = "Invalid input! You inputted too much money. Machine limit is $50.";
         } else if (userInput.compareTo(zero) == -1) {
-            toPrint =  "Invalid input! You tried to input a negative amount.";
+            toPrint =  "Invalid input! You tried to input a negative amount."; 
+        } else if (userInput.compareTo(zero) == 0) {
+            toPrint =  "Invalid input! Input an amount greater than $0 to continue.";
         } else {
             toPrint = "Good";
         }

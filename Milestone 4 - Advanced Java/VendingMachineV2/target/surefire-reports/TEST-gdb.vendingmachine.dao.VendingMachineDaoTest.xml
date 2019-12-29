@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="gdb.vendingmachine.dao.VendingMachineDaoTest" time="0.01" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="gdb.vendingmachine.dao.VendingMachineDaoTest" time="0.013" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="11.0.5+10"/>
@@ -14,6 +14,7 @@
     <property name="sun.os.patch.level" value="unknown"/>
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="test" value="gdb.vendingmachine.dao.VendingMachineDaoTest"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="user.dir" value="/Users/garrettbecker/Google Drive/GitHub/gen10JavaCourse/Milestone 4 - Advanced Java/VendingMachineV2"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
@@ -43,7 +44,7 @@
     <property name="java.class.path" value="/Users/garrettbecker/Documents/netbeans/java/maven/boot/plexus-classworlds-2.5.2.jar"/>
     <property name="java.vm.specification.version" value="11"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dmaven.ext.class.path=/Users/garrettbecker/Documents/netbeans/java/maven-nblib/netbeans-eventspy.jar install"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dtest=gdb.vendingmachine.dao.VendingMachineDaoTest -Dmaven.ext.class.path=/Users/garrettbecker/Documents/netbeans/java/maven-nblib/netbeans-eventspy.jar surefire:test"/>
     <property name="java.home" value="/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
@@ -62,7 +63,7 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="testGetAvailableVendingMachineItems" classname="gdb.vendingmachine.dao.VendingMachineDaoTest" time="0.004"/>
+  <testcase name="testGetAvailableVendingMachineItems" classname="gdb.vendingmachine.dao.VendingMachineDaoTest" time="0.005"/>
   <testcase name="testUpdateInventory" classname="gdb.vendingmachine.dao.VendingMachineDaoTest" time="0"/>
   <testcase name="testGetItem" classname="gdb.vendingmachine.dao.VendingMachineDaoTest" time="0.002"/>
   <testcase name="testGetAllVendingMachineItems" classname="gdb.vendingmachine.dao.VendingMachineDaoTest" time="0"/>
