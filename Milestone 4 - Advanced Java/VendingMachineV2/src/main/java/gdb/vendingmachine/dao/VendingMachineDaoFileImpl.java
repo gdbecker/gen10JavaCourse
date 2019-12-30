@@ -90,7 +90,7 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
 
     //Part of loading from Vending Machine file (before menu pops up)
     private Item unmarshallItem(String itemAsText){
-        // mp3AsText is expecting a line read in from our file.
+        //itemAsText is expecting a line read in from our file.
         String[] itemTokens = itemAsText.split(DELIMITER);
 
         //Create new Item object and add properties to it from the file
