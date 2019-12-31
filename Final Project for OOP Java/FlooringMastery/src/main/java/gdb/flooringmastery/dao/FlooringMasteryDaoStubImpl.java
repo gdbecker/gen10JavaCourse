@@ -39,17 +39,17 @@ public class FlooringMasteryDaoStubImpl implements FlooringMasteryDao {
     }
 
     @Override
-    public Order editOrder(int orderNumber, Order newOrder) throws FlooringMasteryPersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public Order removeOrder(int orderNumber) throws FlooringMasteryPersistenceException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Order getOrder(int orderNumber) throws FlooringMasteryPersistenceException {
+    public Order getOrderByOrderNumber(int orderNumber) throws FlooringMasteryPersistenceException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public Order getOrderByNameAndDate(String customerName, LocalDate orderDate) throws FlooringMasteryPersistenceException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
@@ -57,14 +57,24 @@ public class FlooringMasteryDaoStubImpl implements FlooringMasteryDao {
     public int returnHighestOrderNumber() throws FlooringMasteryPersistenceException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
     @Override
-    public void loadFileData() throws FlooringMasteryPersistenceException {
+    public void assignRemovedOrderNumWasHighest(int removedOrderNumber) throws FlooringMasteryPersistenceException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public int returnRemovedOrderNumWasHighest() throws FlooringMasteryPersistenceException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void writeFileData() throws FlooringMasteryPersistenceException {
+    public void loadFileData(int mode) throws FlooringMasteryPersistenceException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void writeFileData(int mode) throws FlooringMasteryPersistenceException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }   
 }

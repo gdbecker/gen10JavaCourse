@@ -2,6 +2,8 @@ package gdb.flooringmastery.service;
 
 import gdb.flooringmastery.dao.FlooringMasteryPersistenceException;
 import gdb.flooringmastery.dto.Order;
+import gdb.flooringmastery.dto.Product;
+import gdb.flooringmastery.dto.Tax;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -16,28 +18,40 @@ public interface FlooringMasteryService {
     List<Order> getAllOrders() throws FlooringMasteryPersistenceException;
     
     //Matches up with coresponding DAO method
+    List<Product> getAllProducts() throws FlooringMasteryPersistenceException;
+    
+    //Matches up with coresponding DAO method
+    List<Tax> getAllTaxes() throws FlooringMasteryPersistenceException;
+    
+    //Matches up with coresponding DAO method
     List<Order> getOrdersByDate(LocalDate orderDate) throws FlooringMasteryPersistenceException;
     
     //Matches up with coresponding DAO method
     public Order addOrder(Order order) throws FlooringMasteryPersistenceException;
     
     //Matches up with coresponding DAO method
-    Order editOrder(int orderNumber, Order newOrder) throws FlooringMasteryPersistenceException;
-    
-    //Matches up with coresponding DAO method
     public Order removeOrder(int orderNumber) throws FlooringMasteryPersistenceException;
     
     //Matches up with coresponding DAO method
-    Order getOrder(int orderNumber) throws FlooringMasteryPersistenceException;
+    Order getOrderByOrderNumber(int orderNumber) throws FlooringMasteryPersistenceException;
+    
+    //Matches up with coresponding DAO method
+    public Order getOrderByNameAndDate(String customerName, LocalDate orderDate) throws FlooringMasteryPersistenceException;
     
     //Matches up with coresponding DAO method
     int returnHighestOrderNumber() throws FlooringMasteryPersistenceException;
     
+    //Matches up with coresponding DAO method
+    void assignRemovedOrderNumWasHighest(int removedOrderNumber) throws FlooringMasteryPersistenceException;
+    
+    //Matches up with coresponding DAO method
+    int returnRemovedOrderNumWasHighest() throws FlooringMasteryPersistenceException;
+    
     Order fillRemainingOrderDetailsFromAddOrder(Order newOrder) throws FlooringMasteryPersistenceException;
     
     //Matches up with coresponding DAO method
-    public void loadFileData() throws FlooringMasteryPersistenceException;
+    public void loadFileData(int mode) throws FlooringMasteryPersistenceException;
 
     //Matches up with coresponding DAO method
-    public void writeFileData() throws FlooringMasteryPersistenceException;
+    public void writeFileData(int mode) throws FlooringMasteryPersistenceException;
 }

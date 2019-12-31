@@ -30,6 +30,16 @@ public class FlooringMasteryServiceImpl implements FlooringMasteryService {
     }
     
     @Override
+    public List<Product> getAllProducts() throws FlooringMasteryPersistenceException {
+        return dao.getAllProducts();
+    }
+
+    @Override
+    public List<Tax> getAllTaxes() throws FlooringMasteryPersistenceException {
+        return dao.getAllTaxes();
+    }
+    
+    @Override
     public List<Order> getOrdersByDate(LocalDate orderDate) throws FlooringMasteryPersistenceException {
         return dao.getOrdersByDate(orderDate);
     }
@@ -40,23 +50,33 @@ public class FlooringMasteryServiceImpl implements FlooringMasteryService {
     }
 
     @Override
-    public Order editOrder(int orderNumber, Order newOrder) throws FlooringMasteryPersistenceException {
-        return dao.editOrder(orderNumber, newOrder);
-    }
-
-    @Override
     public Order removeOrder(int orderNumber) throws FlooringMasteryPersistenceException {
         return dao.removeOrder(orderNumber);
     }
 
     @Override
-    public Order getOrder(int orderNumber) throws FlooringMasteryPersistenceException {
-        return dao.getOrder(orderNumber);
+    public Order getOrderByOrderNumber(int orderNumber) throws FlooringMasteryPersistenceException {
+        return dao.getOrderByOrderNumber(orderNumber);
+    }
+    
+    @Override
+    public Order getOrderByNameAndDate(String customerName, LocalDate orderDate) throws FlooringMasteryPersistenceException {
+        return dao.getOrderByNameAndDate(customerName, orderDate);
     }
     
     @Override
     public int returnHighestOrderNumber() throws FlooringMasteryPersistenceException {
         return dao.returnHighestOrderNumber();
+    }
+    
+    @Override
+    public void assignRemovedOrderNumWasHighest(int removedOrderNumber) throws FlooringMasteryPersistenceException {
+        dao.assignRemovedOrderNumWasHighest(removedOrderNumber);
+    }
+    
+    @Override
+    public int returnRemovedOrderNumWasHighest() throws FlooringMasteryPersistenceException {
+        return dao.returnRemovedOrderNumWasHighest();
     }
     
     @Override
@@ -120,12 +140,12 @@ public class FlooringMasteryServiceImpl implements FlooringMasteryService {
     }
 
     @Override
-    public void loadFileData() throws FlooringMasteryPersistenceException {
-        dao.loadFileData();
+    public void loadFileData(int mode) throws FlooringMasteryPersistenceException {
+        dao.loadFileData(mode);
     }
 
     @Override
-    public void writeFileData() throws FlooringMasteryPersistenceException {
-        dao.writeFileData();
+    public void writeFileData(int mode) throws FlooringMasteryPersistenceException {
+        dao.writeFileData(mode);
     }
 }
