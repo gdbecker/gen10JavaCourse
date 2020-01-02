@@ -45,6 +45,8 @@ public class FlooringMasteryController {
                     break;
                 default:
                     unknownCommand();
+                    keepGoing = false;
+                    break;
             }
         } catch (FlooringMasteryPersistenceException e) {
             view.displayErrorMessage(e.getMessage());
@@ -54,64 +56,33 @@ public class FlooringMasteryController {
         try {
             while (keepGoing) {
                 menuSelection = displayMainMenuGetSelection(mode);
-                switch(mode) {
-                    case 1:
-                        switch(menuSelection) {
-                            case 1:   
-                                displayAllOrders();
-                                break;
-                            case 2:   
-                                displayOrdersByDate();
-                                break;
-                            case 3:
-                                addNewOrder();
-                                break;
-                            case 4:
-                                editOrder();
-                                break;
-                            case 5:
-                                removeOrder();
-                                break;
-                            case 6:
-                                saveCurrentWork(mode);
-                                break;
-                            case 7:
-                                keepGoing = false;
-                                break;
-                            default:
-                                keepGoing = false;
-                                unknownCommand();
-                        }
+                
+                switch(menuSelection) {
+                    case 1:   
+                        displayAllOrders();
                         break;
-                    case 2:
-                        switch(menuSelection) {
-                            case 1:   
-                                displayAllOrders();
-                                break;
-                            case 2:   
-                                displayOrdersByDate();
-                                break;
-                            case 3:
-                                addNewOrder();
-                                break;
-                            case 4:
-                                editOrder();
-                                break;
-                            case 5:
-                                removeOrder();
-                                break;
-                            case 6:
-                                keepGoing = false;
-                                break;
-                            default:
-                                keepGoing = false;
-                                unknownCommand();
-                        }
+                    case 2:   
+                        displayOrdersByDate();
+                        break;
+                    case 3:
+                        addNewOrder();
+                        break;
+                    case 4:
+                        editOrder();
+                        break;
+                    case 5:
+                        removeOrder();
+                        break;
+                    case 6:
+                        saveCurrentWork(mode);
+                        break;
+                    case 7:
+                        keepGoing = false;
                         break;
                     default:
+                        keepGoing = false;
                         unknownCommand();
-                }
-                
+                }  
             }
         } catch (FlooringMasteryPersistenceException e) {
             view.displayErrorMessage(e.getMessage());
@@ -231,7 +202,7 @@ public class FlooringMasteryController {
     //Option 6: Save current work
     private void saveCurrentWork(int mode) throws FlooringMasteryPersistenceException {
         service.writeFileData(mode);
-        view.savedCurrentWorkMessage();
+        view.savedCurrentWorkMessage(mode);
     }
     
     //Load Order, Product, and Tax info from files

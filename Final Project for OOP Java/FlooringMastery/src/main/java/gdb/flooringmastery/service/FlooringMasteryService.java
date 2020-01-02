@@ -30,7 +30,19 @@ public interface FlooringMasteryService {
     public Order addOrder(Order order) throws FlooringMasteryPersistenceException;
     
     //Matches up with coresponding DAO method
+    public Product addProduct(Product product) throws FlooringMasteryPersistenceException;
+    
+    //Matches up with coresponding DAO method
+    public Tax addTax(Tax tax) throws FlooringMasteryPersistenceException;
+    
+    //Matches up with coresponding DAO method
     public Order removeOrder(int orderNumber) throws FlooringMasteryPersistenceException;
+    
+    //Matches up with coresponding DAO method
+    public Product removeProduct(Product product) throws FlooringMasteryPersistenceException;
+    
+    //Matches up with coresponding DAO method
+    public Tax removeTax(Tax tax) throws FlooringMasteryPersistenceException;
     
     //Matches up with coresponding DAO method
     Order getOrderByOrderNumber(int orderNumber) throws FlooringMasteryPersistenceException;

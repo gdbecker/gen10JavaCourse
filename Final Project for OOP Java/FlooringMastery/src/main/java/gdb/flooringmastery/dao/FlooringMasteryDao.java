@@ -54,15 +54,33 @@ public interface FlooringMasteryDao {
     List<Order> getOrdersByDate(LocalDate orderDate) throws FlooringMasteryPersistenceException;
     
     /**
-     * Main function: add an Order to memory 
+     * Main function: add an Order object to memory 
      * 
-     * @param: Order: Order object to add 
+     * @param: order: Order object to add 
      * 
      * @return: return the added Order
      * 
      * Option 3 on main screen
      */
     public Order addOrder(Order order) throws FlooringMasteryPersistenceException;
+    
+    /**
+     * Main function: add a Product object to memory 
+     * 
+     * @param: product: Product object to add 
+     * 
+     * @return: return the added Product
+     */
+    public Product addProduct(Product product) throws FlooringMasteryPersistenceException;
+    
+    /**
+     * Main function: add a Tax object to memory 
+     * 
+     * @param: tax: Tax object to add 
+     * 
+     * @return: return the added Tax
+     */
+    public Tax addTax(Tax tax) throws FlooringMasteryPersistenceException;
     
     /**
      * Main function: remove an Order from memory 
@@ -74,6 +92,24 @@ public interface FlooringMasteryDao {
      * Option 5 on main screen
      */
     public Order removeOrder(int orderNumber) throws FlooringMasteryPersistenceException;
+    
+    /**
+     * Main function: remove a Product from memory 
+     * 
+     * @param product: Product to remove  
+     * 
+     * @return: return the removed Product
+     */
+    public Product removeProduct(Product product) throws FlooringMasteryPersistenceException;
+    
+    /**
+     * Main function: remove a Tax from memory 
+     * 
+     * @param tax: Tax to remove  
+     * 
+     * @return: return the removed Tax
+     */
+    public Tax removeTax(Tax tax) throws FlooringMasteryPersistenceException;
     
     /**
      * Main function: get specific Order from memory

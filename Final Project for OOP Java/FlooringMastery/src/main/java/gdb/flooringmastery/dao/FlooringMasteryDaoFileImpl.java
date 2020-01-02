@@ -67,10 +67,30 @@ public class FlooringMasteryDaoFileImpl implements FlooringMasteryDao {
     public Order addOrder(Order order) throws FlooringMasteryPersistenceException {
         return orderData.put(order.getOrderNumber(), order);
     }
+    
+    @Override
+    public Product addProduct(Product product) throws FlooringMasteryPersistenceException {
+        return productData.put(product.getProductType(), product);
+    }
+
+    @Override
+    public Tax addTax(Tax tax) throws FlooringMasteryPersistenceException {
+        return taxData.put(tax.getState(), tax);
+    }
 
     @Override
     public Order removeOrder(int orderNumber) throws FlooringMasteryPersistenceException {
         return orderData.remove(orderNumber);
+    }
+    
+    @Override
+    public Product removeProduct(Product product) throws FlooringMasteryPersistenceException {
+        return productData.remove(product.getProductType());
+    }
+
+    @Override
+    public Tax removeTax(Tax tax) throws FlooringMasteryPersistenceException {
+        return taxData.remove(tax.getState());
     }
 
     @Override
@@ -298,32 +318,35 @@ public class FlooringMasteryDaoFileImpl implements FlooringMasteryDao {
 
     @Override
     public void writeFileData(int mode) throws FlooringMasteryPersistenceException {
-        //Only writing the Order objects from memory to the file
-        //Product and Tax info only need to be read in
-        PrintWriter out;
-        String fileName = null;
-        if (mode == 1) {
-            fileName = FILE_ORDER;
-        } else if (mode == 2) {
-            fileName = FILE_ORDER_TRAINING;
-        }
-
-        try {
-            out = new PrintWriter(new FileWriter(fileName));
-        } catch (IOException e) {
-            throw new FlooringMasteryPersistenceException("Could not save data.", e);
-        }
-
-        //Write out Items objects to the file
-        String orderAsText;
-        List<Order> orderList = this.getAllOrders(); //getting all Order objects from Map in memory
-        for (Order currentOrder : orderList) {
-            //Make an Order object into a String using the above method
-            orderAsText = marshallOrder(currentOrder);
-            out.println(orderAsText);
-            out.flush(); //Making PrintWriter go to the next line
-        }
         
-        out.close();
+        //Only write Order data to the file in Production mode
+        if (mode == 1) {
+            //Only writing the Order objects from memory to the file
+            //Product and Tax info only need to be read in
+            PrintWriter out;
+            String fileName = null;
+            fileName = FILE_ORDER;
+            
+            try {
+                out = new PrintWriter(new FileWriter(fileName));
+            } catch (IOException e) {
+                throw new FlooringMasteryPersistenceException("Could not save data.", e);
+            }
+            
+            //Write out Order objects to the file
+            String orderAsText;
+            List<Order> orderList = this.getAllOrders(); //getting all Order objects from Map in memory
+            for (Order currentOrder : orderList) {
+                //Make an Order object into a String using the above method
+                orderAsText = marshallOrder(currentOrder);
+                out.println(orderAsText);
+                out.flush(); //Making PrintWriter go to the next line
+            }
+        
+            out.close();
+            
+        } else if (mode == 2) {
+            //Do nothing since this is Training Mode
+        }
     }
 }

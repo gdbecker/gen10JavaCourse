@@ -8,6 +8,8 @@ import gdb.flooringmastery.service.FlooringMasteryServiceImpl;
 import gdb.flooringmastery.ui.FlooringMasteryView;
 import gdb.flooringmastery.ui.UserIO;
 import gdb.flooringmastery.ui.UserIOConsoleImpl;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * Final Project OOP
@@ -16,6 +18,10 @@ import gdb.flooringmastery.ui.UserIOConsoleImpl;
 
 public class App {
     public static void main(String[] args) {
+        //Replacing the code below with Spring Dependency Injection
+        //applicationContext.xml source file contains Spring Dependency connection
+        
+        /*
         //Instantiate the UserIO
         UserIO myIO = new UserIOConsoleImpl();
         
@@ -32,6 +38,12 @@ public class App {
         FlooringMasteryController myController = new FlooringMasteryController(myService, myView);
         
         //Run the program
+        myController.run();
+        */
+        
+        //New code for Spring DI
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+        FlooringMasteryController myController = ctx.getBean("controller", FlooringMasteryController.class);
         myController.run();
     } 
 }

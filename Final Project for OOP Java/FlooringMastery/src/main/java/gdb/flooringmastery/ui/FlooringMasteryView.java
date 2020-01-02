@@ -5,6 +5,7 @@ import gdb.flooringmastery.dto.Product;
 import gdb.flooringmastery.dto.Tax;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
 import java.util.List;
 
@@ -56,28 +57,15 @@ public class FlooringMasteryView {
         io.print("* 3. Add an Order");
         io.print("* 4. Edit an Order");
         io.print("* 5. Remove an Order");
-        
-        if (mode == 1) {
-            io.print("* 6. Save Current Work");
-            io.print("* 7. Exit");
-            io.print("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
-            io.print("");
+        io.print("* 6. Save Current Work");
+        io.print("* 7. Exit");
+        io.print("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
+        io.print("");
             
-            try {
-                selection = io.readInt("Please enter a number option from the menu above.", 1, 7);
-            } catch (InputMismatchException e) {
-                io.print("Bad input! Exiting program.");
-            }
-        } else if (mode == 2) {
-            io.print("* 6. Exit");
-            io.print("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
-            io.print("");
-            
-            try {
-                selection = io.readInt("Please enter a number option from the menu above.", 1, 6);
-            } catch (InputMismatchException e) {
-                io.print("Bad input! Exiting program.");
-            }
+        try {
+            selection = io.readInt("Please enter a number option from the menu above.", 1, 7);
+        } catch (InputMismatchException e) {
+            io.print("Bad input! Exiting program.");
         }
     
         return selection; 
@@ -131,9 +119,11 @@ public class FlooringMasteryView {
         String customerName = null;
         String orderDateString = null;
         LocalDate orderDateLD = LocalDate.now();
+        boolean dateValid = false;
         String state = null;
         String productType = null;
-        double area = 0;
+        String areaAsString = null;
+        double areaAsDouble = 0;
         boolean areaValid = false;
         String confirm = "";
         
@@ -150,9 +140,14 @@ public class FlooringMasteryView {
         //Get order date
         do {
             io.print("");
-            orderDateString = io.readString("Enter order date (yyyy-MM-dd):");
-            orderDateLD = LocalDate.parse(orderDateString, DateTimeFormatter.ISO_DATE);
-        } while (orderDateString.equals(""));
+            try {
+                orderDateString = io.readString("Enter order date (yyyy-MM-dd):");
+                orderDateLD = LocalDate.parse(orderDateString, DateTimeFormatter.ISO_DATE);
+                dateValid = true;
+            } catch (DateTimeParseException e) {
+                io.print("Bad input! Try again.");
+            }
+        } while (!dateValid);
         
         //Get state of order (for tax purposes)
         do {
@@ -165,7 +160,7 @@ public class FlooringMasteryView {
             }
             
             state = io.readString("Enter US state of order location (XX):");
-        } while (state.equals("") || state.length() != 2);
+        } while (state.equals("") || state.length() != 2 || (!state.equalsIgnoreCase("OH") && !state.equalsIgnoreCase("PA") && !state.equalsIgnoreCase("MI") && !state.equalsIgnoreCase("IN")));
         
         //Get material type for product
         do {
@@ -178,18 +173,23 @@ public class FlooringMasteryView {
             }
             
             productType = io.readString("Enter material type:");
-        } while (productType.equals(""));
+        } while (productType.equals("") || (!productType.equalsIgnoreCase("Carpet") && !productType.equalsIgnoreCase("Laminate") && !productType.equalsIgnoreCase("Tile") && !productType.equalsIgnoreCase("Wood")));
         
         //Get product area
         do {
             io.print("");
             try {
-                area = io.readDouble("Enter product area in sq ft:");
+                areaAsString = io.readString("Enter product area in sq ft:");
+                areaAsDouble = Double.valueOf(areaAsString);
                 areaValid = true;
-            } catch (InputMismatchException e) {
+                
+                if (areaAsDouble < 0) {
+                    io.print("Bad input! Try again.");
+                }
+            } catch (NumberFormatException e) {
                 io.print("Bad input! Try again.");
             }
-        } while (!areaValid);
+        } while (!areaValid || areaAsDouble < 0);
          
         //Confirm with user to make commitment to add order
         //Show what the user put in and have user input y/n/yes/no
@@ -199,7 +199,7 @@ public class FlooringMasteryView {
         io.print("Order Date: " + orderDateLD);
         io.print("State Location: " + state);
         io.print("Product Material: " + productType);
-        io.print("Area: " + area + " sq ft");
+        io.print("Area: " + areaAsDouble + " sq ft");
         
         do {
             io.print("");
@@ -208,7 +208,7 @@ public class FlooringMasteryView {
         
         Order currentOrder;
         
-        if (confirm.equals("y") || confirm.equals("yes")) {
+        if (confirm.equalsIgnoreCase("y") || confirm.equalsIgnoreCase("yes")) {
             //Make the new order with all fields put in
             currentOrder = new Order(orderNumber);
         
@@ -216,7 +216,7 @@ public class FlooringMasteryView {
             currentOrder.setOrderDate(orderDateLD);
             currentOrder.setState(state);
             currentOrder.setProductType(productType);
-            currentOrder.setArea(area);
+            currentOrder.setArea(areaAsDouble);
         } else {
             //Create an empty version of currentOrder to return
             //if "n" or "no" was inputted
@@ -229,8 +229,22 @@ public class FlooringMasteryView {
     //Option 4: Edit an order
     public LocalDate getOrderDateInputOption4() {
         io.print("*** Edit an Order ***");
-        String dateString = io.readString("Enter date for the order you would like to edit (yyyy-MM-dd): "); 
-        return LocalDate.parse(dateString, DateTimeFormatter.ISO_DATE);
+        String orderDateString = null;
+        LocalDate orderDateLD = LocalDate.now();
+        boolean dateValid = false;
+        
+        do {
+            io.print("");
+            try {
+                orderDateString = io.readString("Enter date for the order you would like to edit (yyyy-MM-dd): ");
+                orderDateLD = LocalDate.parse(orderDateString, DateTimeFormatter.ISO_DATE);
+                dateValid = true;
+            } catch (DateTimeParseException e) {
+                io.print("Bad input! Try again.");
+            }
+        } while (!dateValid);
+        
+        return orderDateLD;
     }
     
     public String getCustomerNameInputOption4() {
@@ -253,10 +267,16 @@ public class FlooringMasteryView {
         String customerName = "";
         String orderDateString = "";
         LocalDate orderDateLD = LocalDate.now();
+        boolean dateValid = false;
         String state = "";
         String productType = "";
-        double area = 0;
+        String areaAsString = null;
+        double areaAsDouble = 0;
         boolean areaValid = false;
+        
+        io.print("");
+        io.print("** Instructions:");
+        io.print("** Press Enter to keep existing data or enter in new values.");
         
         //Customer Name
         io.print("");
@@ -269,7 +289,21 @@ public class FlooringMasteryView {
         io.print("");
         orderDateString = io.readString("Enter order date (" + orderToEdit.getOrderDate() + "): ");
         if (!orderDateString.equals("")) {
-            editedOrder.setOrderDate(LocalDate.parse(orderDateString, DateTimeFormatter.ISO_DATE));
+            //Catch for bad input for the date (if user edits it)
+            do {
+                try {
+                    orderDateLD = LocalDate.parse(orderDateString, DateTimeFormatter.ISO_DATE);
+                    editedOrder.setOrderDate(orderDateLD);
+                    dateValid = true;
+                } catch (DateTimeParseException e) {
+                    io.print("Bad input! Try again.");
+                    io.print("");
+                    orderDateString = io.readString("Enter order date (" + orderToEdit.getOrderDate() + "): ");
+                    if (orderDateString.equals("")) {
+                        break;
+                    }
+                }
+            } while(!dateValid);
         }
         
         //US State (for tax purposes)
@@ -280,6 +314,10 @@ public class FlooringMasteryView {
         }
         state = io.readString("Enter state location (" + orderToEdit.getState() + "): ");
         if (!state.equals("")) {
+            //Catch for bad input for the state (if user edits it)
+            while(state.length() != 2 || (!state.equalsIgnoreCase("OH") && !state.equalsIgnoreCase("PA") && !state.equalsIgnoreCase("MI") && !state.equalsIgnoreCase("IN"))) {
+                state = io.readString("Enter state location (" + orderToEdit.getState() + "): ");
+            }
             editedOrder.setState(state);
         }
         
@@ -291,6 +329,10 @@ public class FlooringMasteryView {
         }
         productType = io.readString("Enter material type (" + orderToEdit.getProductType() + "): ");
         if (!productType.equals("")) {
+            //Catch for bad input for the product type (if user edits it)
+            while ((!productType.equalsIgnoreCase("Carpet") && !productType.equalsIgnoreCase("Laminate") && !productType.equalsIgnoreCase("Tile") && !productType.equalsIgnoreCase("Wood"))) {
+                productType = io.readString("Enter material type (" + orderToEdit.getProductType() + "): ");
+            }
             editedOrder.setProductType(productType);
         }
         
@@ -298,15 +340,22 @@ public class FlooringMasteryView {
         do {
             io.print("");
             try {
-                area = io.readDouble("Enter product area in sq ft (" + orderToEdit.getArea() + "): ");
+                areaAsString = io.readString("Enter product area in sq ft (" + orderToEdit.getArea() + "): ");
+                
+                if (areaAsString.equals("")) {
+                    break;
+                }
+                
+                areaAsDouble = Double.valueOf(areaAsString);
                 areaValid = true;
-            } catch (InputMismatchException e) {
+                
+                if (areaAsDouble < 0) {
+                    io.print("Bad input! Try again.");
+                }
+            } catch (NumberFormatException e) {
                 io.print("Bad input! Try again.");
             }
-        } while (!areaValid);
-        if (area != 0) {
-            editedOrder.setArea(area);
-        }
+        } while (!areaValid || areaAsDouble < 0);
         
         io.print("");
         io.print("Order successfully edited.");
@@ -317,8 +366,22 @@ public class FlooringMasteryView {
     //Option 5: Remove an order
     public LocalDate getOrderDateInputOption5() {
         io.print("*** Remove an Order ***");
-        String dateString = io.readString("Enter date for the order you would like to remove (yyyy-MM-dd): "); 
-        return LocalDate.parse(dateString, DateTimeFormatter.ISO_DATE);
+        String orderDateString = null;
+        LocalDate orderDateLD = LocalDate.now();
+        boolean dateValid = false;
+        
+        do {
+            io.print("");
+            try {
+                orderDateString = io.readString("Enter date for the order you would like to remove (yyyy-MM-dd): ");
+                orderDateLD = LocalDate.parse(orderDateString, DateTimeFormatter.ISO_DATE);
+                dateValid = true;
+            } catch (DateTimeParseException e) {
+                io.print("Bad input! Try again.");
+            }
+        } while (!dateValid);
+        
+        return orderDateLD;
     }
     
     public String getCustomerNameInputOption5() {
@@ -355,10 +418,16 @@ public class FlooringMasteryView {
         return confirm;
     }
     
-    public void savedCurrentWorkMessage() {
-        io.print("");
-        io.print("Data successfully saved to the file.");
-        io.print("");
+    public void savedCurrentWorkMessage(int mode) {
+        if (mode == 1) {
+            io.print("");
+            io.print("Data successfully saved to the file.");
+            io.print("");
+        } else if (mode == 2) {
+            io.print("");
+            io.print("In Production Mode, data will be saved to file. In Training Mode, data is not saved.");
+            io.print("");
+        }
     }
     
     public void noOrderExistsMessage() {

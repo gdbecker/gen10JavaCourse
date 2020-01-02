@@ -48,10 +48,30 @@ public class FlooringMasteryServiceImpl implements FlooringMasteryService {
     public Order addOrder(Order order) throws FlooringMasteryPersistenceException {
         return dao.addOrder(order);
     }
+    
+    @Override
+    public Product addProduct(Product product) throws FlooringMasteryPersistenceException {
+        return dao.addProduct(product);
+    }
+
+    @Override
+    public Tax addTax(Tax tax) throws FlooringMasteryPersistenceException {
+        return dao.addTax(tax);
+    }
 
     @Override
     public Order removeOrder(int orderNumber) throws FlooringMasteryPersistenceException {
         return dao.removeOrder(orderNumber);
+    }
+    
+    @Override
+    public Product removeProduct(Product product) throws FlooringMasteryPersistenceException {
+        return dao.removeProduct(product);
+    }
+
+    @Override
+    public Tax removeTax(Tax tax) throws FlooringMasteryPersistenceException {
+        return dao.removeTax(tax);
     }
 
     @Override
@@ -125,7 +145,7 @@ public class FlooringMasteryServiceImpl implements FlooringMasteryService {
         String taxString = String.valueOf(tax);
         BigDecimal taxBD = new BigDecimal(taxString);
         taxBD = taxBD.setScale(2, RoundingMode.HALF_UP);
-        tax = laborCostBD.doubleValue();
+        tax = taxBD.doubleValue();
         newOrder.setTax(tax);
         
         //Total Cost
