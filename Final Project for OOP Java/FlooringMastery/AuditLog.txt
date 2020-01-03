@@ -1,0 +1,19 @@
+2020-01-03T11:59:05.861441 : (Production Mode) User viewed all orders within the system.
+2020-01-03T11:59:26.431617 : (Production Mode) User viewed all orders with 2020-01-01 date.
+2020-01-03T12:00:11.046388 : (Production Mode) User viewed all orders within the system.
+2020-01-03T12:00:43.847773 : (Production Mode) Order for Frederickson and date 2020-01-03 was added to the system.
+2020-01-03T12:01:07.304023 : (Production Mode) Order for Frederickson and date 2020-01-03 was edited.
+2020-01-03T12:01:22.276357 : (Production Mode) Order for Frederickson and date 2020-01-03 was deleted from the system.
+2020-01-03T13:11:15.488673 : (Training Mode) User viewed all orders within the system.
+2020-01-03T13:11:26.007158 : (Training Mode) No data manually saved, only practice for training
+2020-01-03T13:11:52.736389 : (Production Mode) User viewed all orders within the system.
+2020-01-03T13:11:58.066921 : (Production Mode) Data manually saved to the file 'OrderData.txt'
+2020-01-03T14:57:25.506878 : (Training Mode) User viewed all orders within the system.
+2020-01-03T14:57:45.961452 : (Training Mode) User viewed all orders with 2013-09-08 date.
+2020-01-03T14:57:51.505470 : (Training Mode) User viewed all orders with 2019-01-01 date.
+2020-01-03T14:58:27.729569 : (Training Mode) Order for Webb and date 2020-01-04 was added to the system.
+2020-01-03T14:59:12.448909 : (Training Mode) Order for Webb and date 2020-01-04 was edited.
+2020-01-03T14:59:23.809407 : (Training Mode) User viewed all orders within the system.
+2020-01-03T14:59:24.852220 : (Training Mode) No data manually saved, only practice for training
+2020-01-03T14:59:51.653341 : (Training Mode) Order for Webb and date 2020-01-04 was deleted from the system.
+2020-01-03T14:59:59.703476 : (Training Mode) User viewed all orders within the system.

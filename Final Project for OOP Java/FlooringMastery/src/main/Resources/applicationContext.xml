@@ -24,10 +24,14 @@
    
     <bean id="flooringMasteryDao"
          class="gdb.flooringmastery.dao.FlooringMasteryDaoFileImpl"/>
+    
+    <bean id="flooringMasteryAuditDao"
+         class="gdb.flooringmastery.dao.FlooringMasteryAuditDaoFileImpl"/>
    
     <bean id="serviceLayer" 
          class="gdb.flooringmastery.service.FlooringMasteryServiceImpl">
         <constructor-arg ref="flooringMasteryDao"/>
+        <constructor-arg ref="flooringMasteryAuditDao"/>
     </bean>
    
     <bean id="controller" 

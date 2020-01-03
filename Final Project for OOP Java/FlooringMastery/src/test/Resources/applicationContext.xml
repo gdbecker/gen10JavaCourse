@@ -21,10 +21,14 @@
    
     <bean id="flooringMasteryDaoStub" 
        class="gdb.flooringmastery.dao.FlooringMasteryDaoStubImpl"/>
+    
+    <bean id="flooringMasteryAuditDaoStub" 
+       class="gdb.flooringmastery.dao.FlooringMasteryAuditDaoStubImpl"/>
    
     <bean id="serviceLayer" 
        class="gdb.flooringmastery.service.FlooringMasteryServiceImpl">
         <constructor-arg ref="flooringMasteryDaoStub"/>
+        <constructor-arg ref="flooringMasteryAuditDaoStub"/>
     </bean>
    
 </beans>

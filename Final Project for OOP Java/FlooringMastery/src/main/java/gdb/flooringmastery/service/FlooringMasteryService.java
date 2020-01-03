@@ -66,4 +66,11 @@ public interface FlooringMasteryService {
 
     //Matches up with coresponding DAO method
     public void writeFileData(int mode) throws FlooringMasteryPersistenceException;
+    
+    public void writeAuditLog(int option, int mode) throws FlooringMasteryPersistenceException;
+    
+    public void writeAuditLog(LocalDate date, int mode) throws FlooringMasteryPersistenceException;
+            
+    //Matches up with corresponding Audit DAO method
+    public void writeAuditLog(Order order, int option, int mode) throws FlooringMasteryPersistenceException;
 }

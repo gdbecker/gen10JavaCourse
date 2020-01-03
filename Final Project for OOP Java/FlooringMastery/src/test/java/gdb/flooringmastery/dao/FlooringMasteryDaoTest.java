@@ -130,7 +130,7 @@ public class FlooringMasteryDaoTest {
         //Make two Order objects and put into test memory
         Order order1 = new Order(1);
         order1.setCustomerName("Smith");
-        order1.setOrderDate(LocalDate.now());
+        order1.setOrderDate(LocalDate.parse("2020-01-02"));
         order1.setState("OH");
         order1.setProductType("Wood");
         order1.setArea(12);

@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  * @author garrettbecker
  */
 
-//This is basically a dumbed down version of the VendingMachineDaoFileImpl file
+//This is basically a dumbed down version of the FlooringMasteryDaoFileImpl file
 //This exists for the purpose of testing that these methods work
 public class FlooringMasteryDaoStubImpl implements FlooringMasteryDao {
     
@@ -29,7 +29,6 @@ public class FlooringMasteryDaoStubImpl implements FlooringMasteryDao {
     
     //Create a default constructor with info filled in so that there's data
     //for the service test to use
-
     public FlooringMasteryDaoStubImpl() {
         onlyOrder = new Order(1);
         onlyOrder.setCustomerName("Smith");

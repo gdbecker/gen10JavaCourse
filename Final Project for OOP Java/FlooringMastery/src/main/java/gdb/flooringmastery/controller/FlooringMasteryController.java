@@ -34,14 +34,20 @@ public class FlooringMasteryController {
         //Import either Production order data or Training order data
         //Both options will import Product and Tax information
         try {
-            mode = displayModeMenuGetSelection();
-                
+            do {
+                mode = displayModeMenuGetSelection();
+            } while (mode != 1 && mode != 2 && mode != 3);    
+            
             switch(mode) {
                 case 1: //Production Mode
                     loadFileData(mode);
                     break;
                 case 2: //Training Mode
                     loadFileData(mode);
+                    break;
+                case 3: //Exit early
+                    exitMessage();
+                    keepGoing = false;
                     break;
                 default:
                     unknownCommand();
@@ -59,24 +65,25 @@ public class FlooringMasteryController {
                 
                 switch(menuSelection) {
                     case 1:   
-                        displayAllOrders();
+                        displayAllOrders(mode);
                         break;
                     case 2:   
-                        displayOrdersByDate();
+                        displayOrdersByDate(mode);
                         break;
                     case 3:
-                        addNewOrder();
+                        addNewOrder(mode);
                         break;
                     case 4:
-                        editOrder();
+                        editOrder(mode);
                         break;
                     case 5:
-                        removeOrder();
+                        removeOrder(mode);
                         break;
                     case 6:
                         saveCurrentWork(mode);
                         break;
                     case 7:
+                        exitMessage();
                         keepGoing = false;
                         break;
                     default:
@@ -97,15 +104,17 @@ public class FlooringMasteryController {
                 case 2: //Training Mode
                     //Do nothing
                     break;
+                case 3: //Exit early
+                    //Do nothing
+                    break;
                 default:
                     unknownCommand();
             }
         } catch (FlooringMasteryPersistenceException e) {
             view.displayErrorMessage(e.getMessage());
         }
-        
-        exitMessage();
     }
+    
     public int displayModeMenuGetSelection() {
         return view.displayModeMenuGetSelection();
     }
@@ -115,20 +124,22 @@ public class FlooringMasteryController {
     }
     
     //Option 1: Display all orders
-    private void displayAllOrders() throws FlooringMasteryPersistenceException {
+    private void displayAllOrders(int mode) throws FlooringMasteryPersistenceException {
         List<Order> orderList = service.getAllOrders();
         view.displayOrders(orderList);
+        writeAuditLog(1, mode);
     }
     
     //Option 2: Display orders by date input
-    private void displayOrdersByDate() throws FlooringMasteryPersistenceException {
+    private void displayOrdersByDate(int mode) throws FlooringMasteryPersistenceException {
         LocalDate dateInput = view.getOrderDateInputOption2();
         List<Order> orderList = service.getOrdersByDate(dateInput);
         view.displayOrders(orderList);
+        writeAuditLog(dateInput, mode);
     }
     
     //Option 3: Add an order
-    private void addNewOrder() throws FlooringMasteryPersistenceException {
+    private void addNewOrder(int mode) throws FlooringMasteryPersistenceException {
         int highestOrderNum = service.returnHighestOrderNumber();
         int removedOrderNumWasHighest = service.returnRemovedOrderNumWasHighest();
         List<Product> productList = service.getAllProducts();
@@ -141,13 +152,14 @@ public class FlooringMasteryController {
         if (newOrder.getOrderNumber() != -1) {
             Order updatedNewOrder = service.fillRemainingOrderDetailsFromAddOrder(newOrder);
             service.addOrder(updatedNewOrder);
+            writeAuditLog(updatedNewOrder, 3, mode);
         } else {
             //Don't do anything with this uncommited order
-        }
+        }        
     }
     
     //Option 4: Edit an order
-    private void editOrder() throws FlooringMasteryPersistenceException {
+    private void editOrder(int mode) throws FlooringMasteryPersistenceException {
         LocalDate dateInput = view.getOrderDateInputOption4();
         String customerNameInput = view.getCustomerNameInputOption4();
         List<Product> productList = service.getAllProducts();
@@ -162,13 +174,14 @@ public class FlooringMasteryController {
             Order updatedEditedOrder = service.fillRemainingOrderDetailsFromAddOrder(editedOrder);
             service.removeOrder(orderToEdit.getOrderNumber());
             service.addOrder(updatedEditedOrder);
+            writeAuditLog(updatedEditedOrder, 4, mode);
         } else {
             noOrderExistsMessage();
         }
     }
     
     //Option 5: Remove an order
-    private void removeOrder() throws FlooringMasteryPersistenceException {
+    private void removeOrder(int mode) throws FlooringMasteryPersistenceException {
         LocalDate dateInput = view.getOrderDateInputOption5();
         String customerNameInput = view.getCustomerNameInputOption5();
         Order orderToRemove = service.getOrderByNameAndDate(customerNameInput, dateInput);
@@ -187,6 +200,7 @@ public class FlooringMasteryController {
             confirm = view.removeOrder(orderToRemove);
             if (confirm.equalsIgnoreCase("y") || confirm.equalsIgnoreCase("yes")) {
                 service.removeOrder(orderToRemove.getOrderNumber());
+                writeAuditLog(orderToRemove, 5, mode);
                 
                 //Assign "removedOrderNumWasHighest" in DAO only if the removed
                 //Order was the highest in the system
@@ -203,6 +217,23 @@ public class FlooringMasteryController {
     private void saveCurrentWork(int mode) throws FlooringMasteryPersistenceException {
         service.writeFileData(mode);
         view.savedCurrentWorkMessage(mode);
+        service.writeAuditLog(6, mode);
+    }
+    
+    //Audit Log methods
+    //For option 1: View all Orders
+    private void writeAuditLog(int option, int mode) throws FlooringMasteryPersistenceException {
+        service.writeAuditLog(option, mode);
+    }
+    
+    //For option 2: Display Orders by date input
+    private void writeAuditLog(LocalDate date, int mode) throws FlooringMasteryPersistenceException {
+        service.writeAuditLog(date, mode);
+    }
+    
+    //For options 3-5: adding, editing, and removing Orders
+    private void writeAuditLog(Order order, int option, int mode) throws FlooringMasteryPersistenceException {
+        service.writeAuditLog(order, option, mode);
     }
     
     //Load Order, Product, and Tax info from files
