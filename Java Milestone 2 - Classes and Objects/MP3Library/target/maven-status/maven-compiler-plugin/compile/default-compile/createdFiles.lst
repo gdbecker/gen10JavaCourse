@@ -1,0 +1,9 @@
+gdb/mp3library/ui/UserIOConsoleImpl.class
+gdb/mp3library/App.class
+gdb/mp3library/dao/mp3libraryDaoFileImpl.class
+gdb/mp3library/dao/mp3libraryDaoException.class
+gdb/mp3library/ui/UserIO.class
+gdb/mp3library/controller/mp3libraryController.class
+gdb/mp3library/dto/mp3.class
+gdb/mp3library/ui/mp3libraryView.class
+gdb/mp3library/dao/mp3libraryDao.class

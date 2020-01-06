@@ -1,0 +1,31 @@
+-------------------------------------------------------------------------------
+Test set: gdb.milestone4functionalunittestexercises.RotateLeftTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 0.013 sec <<< FAILURE!
+gdb.milestone4functionalunittestexercises.RotateLeftTest.test123()  Time elapsed: 0.012 sec  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: [I@215be6bb<[2, 3, 1]> but was: [I@4439f31e<[2, 3, 1]>
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:54)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:195)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:184)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:179)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:508)
+	at gdb.milestone4functionalunittestexercises.RotateLeftTest.test123(RotateLeftTest.java:45)
+
+gdb.milestone4functionalunittestexercises.RotateLeftTest.test700()  Time elapsed: 0 sec  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: [I@1e88b3c<[0, 0, 7]> but was: [I@42d80b78<[0, 0, 7]>
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:54)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:195)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:184)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:179)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:508)
+	at gdb.milestone4functionalunittestexercises.RotateLeftTest.test700(RotateLeftTest.java:59)
+
+gdb.milestone4functionalunittestexercises.RotateLeftTest.test5119()  Time elapsed: 0.001 sec  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: [I@1bce4f0a<[11, 9, 5]> but was: [I@5e3a8624<[11, 9, 5]>
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:54)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:195)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:184)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:179)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:508)
+	at gdb.milestone4functionalunittestexercises.RotateLeftTest.test5119(RotateLeftTest.java:52)
+

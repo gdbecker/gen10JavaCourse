@@ -1,0 +1,4 @@
+gdb/serverinventorycodealong/dao/ServerDao.class
+gdb/serverinventorycodealong/dto/Server.class
+gdb/serverinventorycodealong/app/App.class
+gdb/serverinventorycodealong/dao/ServerDaoInMemImpl.class
