@@ -17,3 +17,32 @@
 2020-01-03T14:59:24.852220 : (Training Mode) No data manually saved, only practice for training
 2020-01-03T14:59:51.653341 : (Training Mode) Order for Webb and date 2020-01-04 was deleted from the system.
 2020-01-03T14:59:59.703476 : (Training Mode) User viewed all orders within the system.
+2020-01-07T09:13:18.028604 : (Training Mode) User viewed all orders within the system.
+2020-01-07T09:13:36.611057 : (Training Mode) User viewed all orders with 2020-01-01 date.
+2020-01-07T09:13:40.075501 : (Training Mode) No data manually saved, only practice for training
+2020-01-07T09:17:03.355116 : (Training Mode) User viewed all orders within the system.
+2020-01-07T10:38:14.415936 : (Training Mode) No data manually saved, only practice for training
+2020-01-07T10:39:34.826186 : (Training Mode) User viewed all orders within the system.
+2020-01-07T10:42:25.776794 : (Training Mode) User viewed all orders with 2020-01-06 date.
+2020-01-07T10:43:09.359618 : (Training Mode) User viewed all orders with 2020-01-01 date.
+2020-01-07T10:44:14.137877 : (Training Mode) Order for David and date 2020-01-07 was added to the system.
+2020-01-07T10:44:18.471756 : (Training Mode) No data manually saved, only practice for training
+2020-01-07T10:48:57.628786 : (Production Mode) User viewed all orders within the system.
+2020-01-07T10:49:28.279451 : (Production Mode) User viewed all orders with 2020-01-01 date.
+2020-01-07T10:50:06.046689 : (Production Mode) Order for David and date 2020-01-07 was added to the system.
+2020-01-07T10:50:26.277631 : (Production Mode) Data manually saved to the file 'OrderData.txt'
+2020-01-07T10:51:18.666558 : (Production Mode) Order for Joe and date 2020-10-07 was added to the system.
+2020-01-07T10:51:21.045237 : (Production Mode) Data manually saved to the file 'OrderData.txt'
+2020-01-07T10:52:10.412211 : (Production Mode) Order for Joe and date 2020-01-07 was edited.
+2020-01-07T10:52:14.632908 : (Production Mode) Data manually saved to the file 'OrderData.txt'
+2020-01-07T10:53:23.711666 : (Production Mode) Order for Dave and date 2020-01-08 was edited.
+2020-01-07T10:53:27.542021 : (Production Mode) Data manually saved to the file 'OrderData.txt'
+2020-01-07T11:00:02.994689 : (Production Mode) Order for Joe and date 2020-10-07 was deleted from the system.
+2020-01-07T11:00:07.055980 : (Production Mode) Data manually saved to the file 'OrderData.txt'
+2020-01-07T11:01:29.466798 : (Production Mode) Order for Dave and date 2020-01-07 was added to the system.
+2020-01-07T11:01:30.810964 : (Production Mode) Data manually saved to the file 'OrderData.txt'
+2020-01-07T11:16:06.174905 : (Training Mode) User viewed all orders within the system.
+2020-01-07T11:19:06.932785 : (Training Mode) User viewed all orders within the system.
+2020-01-07T11:41:13.926831 : (Training Mode) Order for Adams and date 2020-01-01 was edited.
+2020-01-07T11:41:23.833548 : (Training Mode) User viewed all orders within the system.
+2020-01-07T11:43:12.594996 : (Training Mode) Order for Adams and date 2013-09-08 was edited.

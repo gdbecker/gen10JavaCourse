@@ -58,10 +58,13 @@ public class FlooringMasteryView {
     
     public int displayMainMenuGetSelection(int mode) {
         String modeLabel = "";
+        String modeDescription = "";
         if (mode == 1) {
             modeLabel = "PRODUCTION MODE";
+            modeDescription = "You are able to modify real time order data in Production Mode.";
         } else if (mode == 2) {
             modeLabel = "TRAINING MODE";
+            modeDescription = "You are not able to modify real time order data in Training Mode.";
         }
         
         //Working variables
@@ -71,6 +74,7 @@ public class FlooringMasteryView {
         io.print("");
         io.print("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
         io.print("* --- " + modeLabel + " ---");
+        io.print("* Mode Description: " + modeDescription);
         io.print("* <<Flooring Program>>");
         io.print("* 1. Show all Orders");
         io.print("* 2. Search for Orders by Date");
@@ -285,6 +289,31 @@ public class FlooringMasteryView {
     }
     
     //Option 4: Edit an order
+    public int getOrderNumberInputOption4() {
+        io.print("*** Edit an Order ***");
+        int orderNum = 0;
+        boolean numValid = false;
+        
+        try {
+            orderNum = io.readInt("Enter order number for the order you would like to edit: ");
+            numValid = true;
+        } catch (InputMismatchException e) {
+            io.print("Bad input! Please try again.");
+        }
+        
+        while (!numValid) {
+            try {
+                String string = io.readString("");
+                orderNum = io.readInt("Enter order number for the order you would like to edit: ");
+                numValid = true;
+            } catch (InputMismatchException e) {
+                io.print("Bad input! Please enter a valid integer value.");
+            }
+        }
+        
+        return orderNum;
+    }
+    
     public LocalDate getOrderDateInputOption4() {
         io.print("*** Edit an Order ***");
         String orderDateString = null;
@@ -333,7 +362,6 @@ public class FlooringMasteryView {
         //Working variables
         String customerName = "";
         String orderDateString = "";
-        LocalDate todayDate = LocalDate.now();
         LocalDate orderDateLD = LocalDate.now();
         boolean dateValid = false;
         String state = "";
@@ -348,6 +376,7 @@ public class FlooringMasteryView {
         
         //Customer Name
         io.print("");
+        String string = io.readString("");
         customerName = io.readString("Enter customer name (" + orderToEdit.getCustomerName() + "): ");
         if (!customerName.equals("")) {
             editedOrder.setCustomerName(customerName);
@@ -362,16 +391,7 @@ public class FlooringMasteryView {
                 try {
                     orderDateLD = LocalDate.parse(orderDateString, DateTimeFormatter.ISO_DATE);
                     editedOrder.setOrderDate(orderDateLD);
-                    
-                    //Make sure that date input is either today or in the future
-                    Period timeDiff = Period.between(todayDate, orderDateLD);
-                    int dayTimeDiff = timeDiff.getDays();
-                
-                    if (dayTimeDiff >= 0) {
-                        dateValid = true;
-                    } else {
-                        io.print("Bad input! Invalid date - must be either today or in the future.");
-                    }
+                    dateValid = true;
                     
                 } catch (DateTimeParseException e) {
                     io.print("Bad input! Try again.");
@@ -442,6 +462,31 @@ public class FlooringMasteryView {
     }
     
     //Option 5: Remove an order
+    public int getOrderNumberInputOption5() {
+        io.print("*** Remove an Order ***");
+        int orderNum = 0;
+        boolean numValid = false;
+        
+        try {
+            orderNum = io.readInt("Enter order number for the order you would like to remove: ");
+            numValid = true;
+        } catch (InputMismatchException e) {
+            io.print("Bad input! Please try again.");
+        }
+        
+        while (!numValid) {
+            try {
+                String string = io.readString("");
+                orderNum = io.readInt("Enter order number for the order you would like to remove: ");
+                numValid = true;
+            } catch (InputMismatchException e) {
+                io.print("Bad input! Please enter a valid integer value.");
+            }
+        }
+        
+        return orderNum;
+    }
+    
     public LocalDate getOrderDateInputOption5() {
         io.print("*** Remove an Order ***");
         String orderDateString = null;
@@ -518,7 +563,7 @@ public class FlooringMasteryView {
     
     public void noOrderExistsMessage() {
         io.print("");
-        io.print("No order exists with that criteria!");
+        io.print("No order exists for that order number!");
         io.print("");
     }
     

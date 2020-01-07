@@ -160,31 +160,29 @@ public class FlooringMasteryController {
     
     //Option 4: Edit an order
     private void editOrder(int mode) throws FlooringMasteryPersistenceException {
-        LocalDate dateInput = view.getOrderDateInputOption4();
-        String customerNameInput = view.getCustomerNameInputOption4();
+        int orderNumInput = view.getOrderNumberInputOption4();
         List<Product> productList = service.getAllProducts();
         List<Tax> taxList = service.getAllTaxes();
-        Order orderToEdit = service.getOrderByNameAndDate(customerNameInput, dateInput);
+        Order orderToEdit = service.getOrderByOrderNumber(orderNumInput);
         
         //Make sure that orderToEdit is a real order from memory
         //If so, go ahead and edit it
         //If not, don't do anything with it
-        if (orderToEdit.getOrderNumber() != -1) {
+        try {
             Order editedOrder = view.editOrder(orderToEdit, productList, taxList);
             Order updatedEditedOrder = service.fillRemainingOrderDetailsFromAddOrder(editedOrder);
             service.removeOrder(orderToEdit.getOrderNumber());
             service.addOrder(updatedEditedOrder);
             writeAuditLog(updatedEditedOrder, 4, mode);
-        } else {
+        } catch (NullPointerException e) {
             noOrderExistsMessage();
         }
     }
     
     //Option 5: Remove an order
     private void removeOrder(int mode) throws FlooringMasteryPersistenceException {
-        LocalDate dateInput = view.getOrderDateInputOption5();
-        String customerNameInput = view.getCustomerNameInputOption5();
-        Order orderToRemove = service.getOrderByNameAndDate(customerNameInput, dateInput);
+        int orderNumInput = view.getOrderNumberInputOption5();
+        Order orderToRemove = service.getOrderByOrderNumber(orderNumInput);
         String confirm = "";
         
         //Get highest order number from memory
@@ -196,7 +194,7 @@ public class FlooringMasteryController {
             //If so, remove it
             //If not, don't
         //If not, don't do anything with it
-        if (orderToRemove.getOrderNumber() != -1) {
+        try {
             confirm = view.removeOrder(orderToRemove);
             if (confirm.equalsIgnoreCase("y") || confirm.equalsIgnoreCase("yes")) {
                 service.removeOrder(orderToRemove.getOrderNumber());
@@ -208,7 +206,7 @@ public class FlooringMasteryController {
                     service.assignRemovedOrderNumWasHighest(highestOrderNum);
                 }
             }
-        } else {
+        } catch (NullPointerException e) {
             noOrderExistsMessage();
         }
     }

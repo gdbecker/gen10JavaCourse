@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="gdb.flooringmastery.service.FlooringMasteryServiceTest" time="0.483" tests="12" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="gdb.flooringmastery.service.FlooringMasteryServiceTest" time="0.488" tests="12" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="11.0.5+10"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home/lib"/>
     <property name="gopherProxySet" value="false"/>
-    <property name="maven.multiModuleProjectDirectory" value="/Users/garrettbecker/Google Drive/GitHub/gen10JavaCourse/Final Project for OOP Java/FlooringMastery"/>
+    <property name="maven.multiModuleProjectDirectory" value="/Users/garrettbecker/Google Drive/GitHub/gen10JavaCourse/Java OOP Final Project/FlooringMastery"/>
     <property name="java.vm.vendor" value="AdoptOpenJDK"/>
     <property name="java.vendor.url" value="https://adoptopenjdk.net/"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -15,7 +15,7 @@
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="/Users/garrettbecker/Google Drive/GitHub/gen10JavaCourse/Final Project for OOP Java/FlooringMastery"/>
+    <property name="user.dir" value="/Users/garrettbecker/Google Drive/GitHub/gen10JavaCourse/Java OOP Final Project/FlooringMastery"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="java.runtime.version" value="11.0.5+10"/>
     <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
@@ -62,13 +62,13 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="testGetAllTaxes" classname="gdb.flooringmastery.service.FlooringMasteryServiceTest" time="0.001"/>
-  <testcase name="testAssignRemovedOrderNumWasHighest" classname="gdb.flooringmastery.service.FlooringMasteryServiceTest" time="0.001"/>
+  <testcase name="testGetAllTaxes" classname="gdb.flooringmastery.service.FlooringMasteryServiceTest" time="0"/>
+  <testcase name="testAssignRemovedOrderNumWasHighest" classname="gdb.flooringmastery.service.FlooringMasteryServiceTest" time="0"/>
   <testcase name="testGetOrderByNameAndDate" classname="gdb.flooringmastery.service.FlooringMasteryServiceTest" time="0"/>
   <testcase name="testRemoveOrder" classname="gdb.flooringmastery.service.FlooringMasteryServiceTest" time="0"/>
   <testcase name="testReturnHighestOrderNumber" classname="gdb.flooringmastery.service.FlooringMasteryServiceTest" time="0"/>
-  <testcase name="testAddOrder" classname="gdb.flooringmastery.service.FlooringMasteryServiceTest" time="0.001"/>
-  <testcase name="testFillRemainingOrderDetailsFromAddOrder" classname="gdb.flooringmastery.service.FlooringMasteryServiceTest" time="0.004"/>
+  <testcase name="testAddOrder" classname="gdb.flooringmastery.service.FlooringMasteryServiceTest" time="0"/>
+  <testcase name="testFillRemainingOrderDetailsFromAddOrder" classname="gdb.flooringmastery.service.FlooringMasteryServiceTest" time="0.003"/>
   <testcase name="testReturnRemovedOrderNumWasHighest" classname="gdb.flooringmastery.service.FlooringMasteryServiceTest" time="0"/>
   <testcase name="testGetAllOrders" classname="gdb.flooringmastery.service.FlooringMasteryServiceTest" time="0"/>
   <testcase name="testGetOrderByOrderNumber" classname="gdb.flooringmastery.service.FlooringMasteryServiceTest" time="0"/>
