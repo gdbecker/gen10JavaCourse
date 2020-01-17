@@ -1,4 +1,3 @@
-
 package com.sg.jdbctcomplexexample.dao;
 
 import com.sg.jdbctcomplexexample.entity.Room;

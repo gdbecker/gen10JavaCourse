@@ -1,9 +1,9 @@
 -- Delete database if already exists
-drop database if exists GuessTheNumberGame;
+drop database if exists GuessTheNumberGameTest;
 
-create database GuessTheNumberGame;
+create database GuessTheNumberGameTest;
 
-use GuessTheNumberGame;
+use GuessTheNumberGameTest;
 
 create table if not exists Game (
 	GameID int primary key auto_increment,
