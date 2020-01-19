@@ -43,7 +43,7 @@ public class GameDaoDB implements GameDao {
         //Won't actually change the data in DB
         for (Game g : gameList) {
             if (g.getStatus().equals("In Progress")) {
-                g.setAnswer("Hidden until guessed!");
+                g.setAnswer("Answer hidden until guessed!");
             }
         }
         
@@ -66,7 +66,7 @@ public class GameDaoDB implements GameDao {
         //ONLY if displaying this information as opposed to using it
         if (forDisplay) {
             if (g.getStatus().equals("In Progress")) {
-                g.setAnswer("Hidden until guessed!");
+                g.setAnswer("Answer hidden until guessed!");
             }
         } 
         

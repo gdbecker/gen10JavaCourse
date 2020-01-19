@@ -17,7 +17,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 @RestController
 public class GameControllerExceptionHandler extends ResponseEntityExceptionHandler {
-    private static final String CONSTRAINT_MESSAGE = "Coule not save your item. "
+    private static final String CONSTRAINT_MESSAGE = "Could not save your item. "
             + "Please ensure that it is valid and try again.";
     
     @ExceptionHandler(SQLIntegrityConstraintViolationException.class)

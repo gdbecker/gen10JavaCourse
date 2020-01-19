@@ -8,6 +8,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Random;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -18,13 +19,18 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class GameServiceImpl implements GameService {
 
-    private final GameDaoDB gameDao;
-    private final RoundDaoDB roundDao;
+    @Autowired
+    GameDaoDB gameDao;
+    
+    @Autowired
+    RoundDaoDB roundDao;
 
+    /*
     public GameServiceImpl(GameDaoDB gameDao, RoundDaoDB roundDao) {
         this.gameDao = gameDao;
         this.roundDao = roundDao;
     }
+    */
    
     @Override
     public List<Game> getAllGames() {
@@ -49,6 +55,11 @@ public class GameServiceImpl implements GameService {
     @Override
     public boolean deleteGameByID(int id) {
         return gameDao.deleteGameByID(id);
+    }
+    
+    @Override
+    public boolean deleteAllGames() {
+        return gameDao.deleteAllGames();
     }
 
     @Override
@@ -79,6 +90,11 @@ public class GameServiceImpl implements GameService {
     @Override
     public boolean deleteRoundByID(int id) {
         return roundDao.deleteRoundByID(id);
+    }
+    
+    @Override
+    public boolean deleteAllRounds() {
+        return roundDao.deleteAllRounds();
     }
 
     @Override
@@ -166,6 +182,7 @@ public class GameServiceImpl implements GameService {
         //Create new Round to contain the details 
         //Won't include RoundID, the addRound method will do that
         Round r = new Round();
+        
         r.setGameID(GameID);
         r.setGuessValue(guessValue);
         r.setGuessTime(guessTime);

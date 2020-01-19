@@ -17,6 +17,7 @@ public interface GameService {
     Game addGame(Game game);
     boolean updateGame(Game game);
     boolean deleteGameByID(int id);
+    boolean deleteAllGames();
     
     //Corresponding with "RoundDao" methods
     //Pass through methods
@@ -26,6 +27,7 @@ public interface GameService {
     Round addRound(Round round);
     boolean updateRound(Round round);
     boolean deleteRoundByID(int id);
+    boolean deleteAllRounds();
     
     //Unique to "GameService"
     Game generateNewGame();
