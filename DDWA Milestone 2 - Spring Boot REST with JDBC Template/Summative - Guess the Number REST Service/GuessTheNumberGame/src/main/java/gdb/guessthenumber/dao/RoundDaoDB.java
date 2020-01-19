@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -22,16 +23,19 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class RoundDaoDB implements RoundDao {
 
-    private final JdbcTemplate jdbcTemplate;
+    @Autowired
+    JdbcTemplate jdbcTemplate;
 
+    /*
     @Autowired
     public RoundDaoDB(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
+    */
     
     @Override
     public List<Round> getAllRounds() {
-        final String sql = "SELECT GameID, Answer, `Status` FROM Game;";
+        final String sql = "SELECT RoundID, GameID, GuessValue, GuessTime, GuessResult FROM Round;";
         return jdbcTemplate.query(sql, new RoundMapper());
     }
 
@@ -46,8 +50,12 @@ public class RoundDaoDB implements RoundDao {
 
     @Override
     public Round getRoundByRoundID(int id) {
-        final String sql = "SELECT RoundID, GameID, GuessValue, GuessTime, GuessResult FROM Round WHERE RoundID = ?;";
-        return jdbcTemplate.queryForObject(sql, new RoundMapper(), id);
+        try {
+            final String sql = "SELECT RoundID, GameID, GuessValue, GuessTime, GuessResult FROM Round WHERE RoundID = ?;";
+            return jdbcTemplate.queryForObject(sql, new RoundMapper(), id);
+        } catch (DataAccessException ex) {
+            return null;
+        }
     }
 
     @Override
@@ -81,13 +89,20 @@ public class RoundDaoDB implements RoundDao {
                 round.getGameID(),
                 round.getGuessValue(),
                 round.getGuessTime(),
-                round.getGuessResult()) > 0;
+                round.getGuessResult(),
+                round.getRoundID()) > 0;
     }
 
     @Override
     public boolean deleteRoundByID(int id) {
         final String sql = "DELETE FROM Round WHERE RoundID = ?;";
         return jdbcTemplate.update(sql, id) > 0;
+    }
+    
+    @Override
+    public boolean deleteAllRounds() {
+        final String sql = "DELETE FROM Round;";
+        return jdbcTemplate.update(sql) > 0;
     }
     
     private static final class RoundMapper implements RowMapper<Round> {

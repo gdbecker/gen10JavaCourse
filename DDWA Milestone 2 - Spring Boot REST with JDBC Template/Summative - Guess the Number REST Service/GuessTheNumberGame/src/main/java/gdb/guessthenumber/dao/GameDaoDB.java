@@ -9,10 +9,12 @@ import java.sql.Statement;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * M2 Summative
@@ -22,12 +24,15 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class GameDaoDB implements GameDao {
 
-    private final JdbcTemplate jdbcTemplate;
+    @Autowired
+    JdbcTemplate jdbcTemplate;
 
+    /*
     @Autowired
     public GameDaoDB(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
+    */
     
     @Override
     public List<Game> getAllGames() {
@@ -47,8 +52,14 @@ public class GameDaoDB implements GameDao {
 
     @Override
     public Game getGameByID(int id, boolean forDisplay) {
-        final String sql = "SELECT GameID, Answer, `Status` FROM Game WHERE GameID = ?;";
-        Game g = jdbcTemplate.queryForObject(sql, new GameMapper(), id);
+        Game g = new Game();
+        
+        try {
+            final String sql = "SELECT GameID, Answer, `Status` FROM Game WHERE GameID = ?;";
+            g = jdbcTemplate.queryForObject(sql, new GameMapper(), id);
+        } catch (DataAccessException ex) {
+            return null;
+        }
         
         //Hide the Answer value of the game if "In Progress"
         //Won't actually change the data in DB
@@ -91,12 +102,19 @@ public class GameDaoDB implements GameDao {
     }
 
     @Override
+    @Transactional
     public boolean deleteGameByID(int id) {
         final String sqlDelete1 = "DELETE FROM Round WHERE GameID = ?;";
         jdbcTemplate.update(sqlDelete1, id);
         
         final String sqlDelete2 = "DELETE FROM Game WHERE GameID = ?;";
         return jdbcTemplate.update(sqlDelete2, id) > 0;
+    }
+    
+    @Override
+    public boolean deleteAllGames() {
+        final String sqlDelete = "DELETE FROM Game;";
+        return jdbcTemplate.update(sqlDelete) > 0;
     }
     
     private static final class GameMapper implements RowMapper<Game> {

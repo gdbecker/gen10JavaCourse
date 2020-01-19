@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="4" failures="0" name="com.sg.jdbctcomplexexample.dao.RoomDaoDBTest" time="0.477" errors="0" skipped="0">
+<testsuite tests="4" failures="0" name="com.sg.jdbctcomplexexample.dao.RoomDaoDBTest" time="0.028" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="11.0.5+10"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home/lib"/>
     <property name="gopherProxySet" value="false"/>
-    <property name="maven.multiModuleProjectDirectory" value="/Users/garrettbecker/Google Drive/GitHub/gen10JavaCourse/DDWA Milestone 2 - Spring Boot REST with JDBC Template/Lesson - JDBC Template - MVC and Testing/JDBCTComplexExampleStarter"/>
+    <property name="maven.multiModuleProjectDirectory" value="/Users/garrettbecker/Google Drive/GitHub/gen10JavaCourse/DDWA Milestone 2 - Spring Boot REST with JDBC Template/03 - Lesson - JDBC Template - MVC and Testing/JDBCTComplexExampleStarter"/>
     <property name="java.vm.vendor" value="AdoptOpenJDK"/>
     <property name="java.vendor.url" value="https://adoptopenjdk.net/"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -14,9 +14,8 @@
     <property name="sun.os.patch.level" value="unknown"/>
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
-    <property name="test" value="com.sg.jdbctcomplexexample.dao.RoomDaoDBTest"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="/Users/garrettbecker/Google Drive/GitHub/gen10JavaCourse/DDWA Milestone 2 - Spring Boot REST with JDBC Template/Lesson - JDBC Template - MVC and Testing/JDBCTComplexExampleStarter"/>
+    <property name="user.dir" value="/Users/garrettbecker/Google Drive/GitHub/gen10JavaCourse/DDWA Milestone 2 - Spring Boot REST with JDBC Template/03 - Lesson - JDBC Template - MVC and Testing/JDBCTComplexExampleStarter"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="java.runtime.version" value="11.0.5+10"/>
     <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
@@ -45,7 +44,7 @@
     <property name="java.class.path" value="/Users/garrettbecker/Documents/netbeans/java/maven/boot/plexus-classworlds-2.5.2.jar"/>
     <property name="java.vm.specification.version" value="11"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dtest=com.sg.jdbctcomplexexample.dao.RoomDaoDBTest -Dmaven.ext.class.path=/Users/garrettbecker/Documents/netbeans/java/maven-nblib/netbeans-eventspy.jar surefire:test"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dmaven.ext.class.path=/Users/garrettbecker/Documents/netbeans/java/maven-nblib/netbeans-eventspy.jar clean install"/>
     <property name="java.home" value="/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
@@ -64,8 +63,8 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="com.sg.jdbctcomplexexample.dao.RoomDaoDBTest" name="testGetAllRooms" time="0.377"/>
-  <testcase classname="com.sg.jdbctcomplexexample.dao.RoomDaoDBTest" name="testUpdateRoom" time="0.019"/>
-  <testcase classname="com.sg.jdbctcomplexexample.dao.RoomDaoDBTest" name="testDeleteRoomById" time="0.078"/>
-  <testcase classname="com.sg.jdbctcomplexexample.dao.RoomDaoDBTest" name="testAddGetRoom" time="0.003"/>
+  <testcase classname="com.sg.jdbctcomplexexample.dao.RoomDaoDBTest" name="testGetAllRooms" time="0.006"/>
+  <testcase classname="com.sg.jdbctcomplexexample.dao.RoomDaoDBTest" name="testUpdateRoom" time="0.006"/>
+  <testcase classname="com.sg.jdbctcomplexexample.dao.RoomDaoDBTest" name="testDeleteRoomById" time="0.012"/>
+  <testcase classname="com.sg.jdbctcomplexexample.dao.RoomDaoDBTest" name="testAddGetRoom" time="0.004"/>
 </testsuite>

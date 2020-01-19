@@ -3,6 +3,7 @@ com/sg/jdbctcomplexexample/dao/EmployeeDaoDB.class
 com/sg/jdbctcomplexexample/entity/Meeting.class
 com/sg/jdbctcomplexexample/dao/RoomDaoDB.class
 com/sg/jdbctcomplexexample/view/UserIO.class
+com/sg/jdbctcomplexexample/TestApplicationConfiguration.class
 com/sg/jdbctcomplexexample/view/UserIOConsoleImpl.class
 com/sg/jdbctcomplexexample/view/MeetingView.class
 com/sg/jdbctcomplexexample/dao/RoomDao.class

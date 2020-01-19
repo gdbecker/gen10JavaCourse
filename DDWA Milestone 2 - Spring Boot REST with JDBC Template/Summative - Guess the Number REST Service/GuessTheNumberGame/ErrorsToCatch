@@ -1,0 +1,3 @@
+POST - guess: inputting GameID that doesn't exist
+POST - guess: inputting GuessValue that's too long
+POST - guess: inputting GuessValue that's too short

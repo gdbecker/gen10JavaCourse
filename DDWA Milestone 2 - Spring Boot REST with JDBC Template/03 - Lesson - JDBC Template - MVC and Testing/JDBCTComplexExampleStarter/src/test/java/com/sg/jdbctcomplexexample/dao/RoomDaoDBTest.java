@@ -90,7 +90,7 @@ public class RoomDaoDBTest {
         
         List<Room> rooms = roomDao.getAllRooms();
         
-        assertEquals(2, rooms.size());
+        assertEquals(3, rooms.size());
         assertTrue(rooms.contains(room));
         assertTrue(rooms.contains(room2));
     }

@@ -15,4 +15,5 @@ public interface RoundDao {
     Round addRound(Round round);
     boolean updateRound(Round round);
     boolean deleteRoundByID(int id);
+    boolean deleteAllRounds();
 }

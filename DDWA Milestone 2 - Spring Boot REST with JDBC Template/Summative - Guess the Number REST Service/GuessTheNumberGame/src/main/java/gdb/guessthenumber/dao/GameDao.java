@@ -13,4 +13,5 @@ public interface GameDao {
     Game addGame(Game game);
     boolean updateGame(Game game);
     boolean deleteGameByID(int id);
+    boolean deleteAllGames();
 }
