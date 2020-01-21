@@ -11,6 +11,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * M2 Summative
+ * @date Monday January 20, 2020
  * @author garrettbecker
  */
 
@@ -32,7 +34,7 @@ public class GameDaoDBTest {
     @Autowired
     RoundDao rDao;
     
-    @Before
+    @BeforeEach
     public void setUp() {
         List<Round> rounds = rDao.getAllRounds();
         for (Round r : rounds) {
@@ -46,7 +48,7 @@ public class GameDaoDBTest {
      * Test of getAllGames method, of class GameDaoDB.
      */
     @Test
-    public void testGetAllGames() {
+    public void testGetAllGames() {        
         //Add two Games to testing DB
         Game g1 = new Game();
         g1.setAnswer("1234");
@@ -62,8 +64,6 @@ public class GameDaoDBTest {
         List<Game> games = gDao.getAllGames();
         
         assertEquals(2, games.size());
-        
-        gDao.deleteAllGames();
     }
 
     /**
@@ -79,8 +79,6 @@ public class GameDaoDBTest {
         Game fromDao = gDao.getGameByID(g1.getGameID(), true);
         
         assertEquals(g1, fromDao);
-        
-        gDao.deleteAllGames();
     }
 
     /**
@@ -96,8 +94,6 @@ public class GameDaoDBTest {
         Game fromDao = gDao.getGameByID(g1.getGameID(), true);
         
         assertEquals(g1, fromDao);
-        
-        gDao.deleteAllGames();
     }
 
     /**
@@ -121,15 +117,13 @@ public class GameDaoDBTest {
         fromDao = gDao.getGameByID(g1.getGameID(), true);
         
         assertEquals(g1, fromDao);
-        
-        gDao.deleteAllGames();
     }
 
     /**
      * Test of deleteGameByID method, of class GameDaoDB.
      */
     @Test
-    public void testDeleteGameByID() {
+    public void testDeleteGameByID() {        
         Game g1 = new Game();
         g1.setAnswer("9076");
         g1.setStatus("Finished");
@@ -139,8 +133,6 @@ public class GameDaoDBTest {
         Game fromDao = gDao.getGameByID(g1.getGameID(), true);
 
         assertNull(fromDao);
-        
-        gDao.deleteAllGames();
     }
     
 }

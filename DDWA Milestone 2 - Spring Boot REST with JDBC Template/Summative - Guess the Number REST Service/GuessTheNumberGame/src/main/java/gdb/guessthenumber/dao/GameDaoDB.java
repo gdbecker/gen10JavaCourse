@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * M2 Summative
+ * @date Monday January 20, 2020
  * @author garrettbecker
  */
 
@@ -26,13 +27,6 @@ public class GameDaoDB implements GameDao {
 
     @Autowired
     JdbcTemplate jdbcTemplate;
-
-    /*
-    @Autowired
-    public GameDaoDB(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
-    */
     
     @Override
     public List<Game> getAllGames() {

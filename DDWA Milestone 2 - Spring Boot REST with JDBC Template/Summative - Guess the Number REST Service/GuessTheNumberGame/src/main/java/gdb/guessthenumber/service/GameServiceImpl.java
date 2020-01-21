@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 /**
  * M2 Summative
+ * @date Monday January 20, 2020
  * @author garrettbecker
  */
 
@@ -24,13 +25,6 @@ public class GameServiceImpl implements GameService {
     
     @Autowired
     RoundDaoDB roundDao;
-
-    /*
-    public GameServiceImpl(GameDaoDB gameDao, RoundDaoDB roundDao) {
-        this.gameDao = gameDao;
-        this.roundDao = roundDao;
-    }
-    */
    
     @Override
     public List<Game> getAllGames() {

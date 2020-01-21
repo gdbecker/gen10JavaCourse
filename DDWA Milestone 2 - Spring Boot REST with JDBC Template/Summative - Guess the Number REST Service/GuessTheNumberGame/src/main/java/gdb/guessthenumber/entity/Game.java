@@ -4,8 +4,10 @@ import java.util.Objects;
 
 /**
  * M2 Summative
+ * @date Monday January 20, 2020
  * @author garrettbecker
  */
+
 public class Game {
     int GameID;
     String answer;

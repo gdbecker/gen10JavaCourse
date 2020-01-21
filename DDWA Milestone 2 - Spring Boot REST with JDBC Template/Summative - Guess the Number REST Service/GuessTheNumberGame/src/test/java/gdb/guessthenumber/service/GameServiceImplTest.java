@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.jupiter.api.Test;
 import static org.junit.Assert.*;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * M2 Summative
+ * @date Monday January 20, 2020
  * @author garrettbecker
  */
 
@@ -26,7 +28,7 @@ public class GameServiceImplTest {
     @Autowired
     GameService service;
     
-    @Before
+    @BeforeEach
     public void setUp() {
         service.deleteAllRounds();
         service.deleteAllGames();
@@ -37,9 +39,6 @@ public class GameServiceImplTest {
      */
     @Test
     public void testGetAllGames() {
-        service.deleteAllRounds();
-        service.deleteAllGames();
-        
         //Add two Games to testing DB
         Game g1 = new Game();
         g1.setAnswer("1234");
@@ -62,9 +61,6 @@ public class GameServiceImplTest {
      */
     @Test
     public void testGetGameByID() {
-        service.deleteAllRounds();
-        service.deleteAllGames();
-        
         Game g1 = new Game();
         g1.setAnswer("1234");
         g1.setStatus("Finished");
@@ -80,9 +76,6 @@ public class GameServiceImplTest {
      */
     @Test
     public void testAddGame() {
-        service.deleteAllRounds();
-        service.deleteAllGames();
-        
         Game g1 = new Game();
         g1.setAnswer("1234");
         g1.setStatus("Finished");
@@ -98,9 +91,6 @@ public class GameServiceImplTest {
      */
     @Test
     public void testUpdateGame() {
-        service.deleteAllRounds();
-        service.deleteAllGames();
-        
         Game g1 = new Game();
         g1.setAnswer("1234");
         g1.setStatus("Finished");
@@ -124,9 +114,6 @@ public class GameServiceImplTest {
      */
     @Test
     public void testDeleteGameByID() {
-        service.deleteAllRounds();
-        service.deleteAllGames();
-        
         Game g1 = new Game();
         g1.setAnswer("9076");
         g1.setStatus("Finished");
@@ -143,9 +130,6 @@ public class GameServiceImplTest {
      */
     @Test
     public void testGetAllRounds() {
-        service.deleteAllRounds();
-        service.deleteAllGames();
-        
         Game g1 = new Game();
         g1.setAnswer("6789");
         g1.setStatus("Finished");
@@ -174,9 +158,6 @@ public class GameServiceImplTest {
      */
     @Test
     public void testGetRoundsByGameID() {
-        service.deleteAllRounds();
-        service.deleteAllGames();
-        
         Game g1 = new Game();
         g1.setAnswer("6789");
         g1.setStatus("Finished");
@@ -220,9 +201,6 @@ public class GameServiceImplTest {
      */
     @Test
     public void testGetRoundByRoundID() {
-        service.deleteAllRounds();
-        service.deleteAllGames();
-        
         Game g1 = new Game();
         g1.setAnswer("6789");
         g1.setStatus("Finished");
@@ -244,9 +222,6 @@ public class GameServiceImplTest {
      */
     @Test
     public void testAddRound() {
-        service.deleteAllRounds();
-        service.deleteAllGames();
-        
         Game g1 = new Game();
         g1.setAnswer("6789");
         g1.setStatus("Finished");
@@ -268,9 +243,6 @@ public class GameServiceImplTest {
      */
     @Test
     public void testUpdateRound() {
-        service.deleteAllRounds();
-        service.deleteAllGames();
-        
         Game g1 = new Game();
         g1.setAnswer("6789");
         g1.setStatus("Finished");
@@ -301,9 +273,6 @@ public class GameServiceImplTest {
      */
     @Test
     public void testDeleteRoundByID() {
-        service.deleteAllRounds();
-        service.deleteAllGames();
-        
         Game g1 = new Game();
         g1.setAnswer("6789");
         g1.setStatus("Finished");
@@ -326,10 +295,7 @@ public class GameServiceImplTest {
      * Test of generateNewGame method, of class GameServiceImpl.
      */
     @Test
-    public void testGenerateNewGame() {
-        service.deleteAllRounds();
-        service.deleteAllGames();
-        
+    public void testGenerateNewGame() {   
         Game newGame = service.generateNewGame();
         
         boolean validAnswer = false;
@@ -364,9 +330,6 @@ public class GameServiceImplTest {
      */
     @Test
     public void testGenerateNewRound() {
-        service.deleteAllRounds();
-        service.deleteAllGames();
-        
         Game g = new Game();
         g.setAnswer("1234");
         g.setStatus("In Progress");

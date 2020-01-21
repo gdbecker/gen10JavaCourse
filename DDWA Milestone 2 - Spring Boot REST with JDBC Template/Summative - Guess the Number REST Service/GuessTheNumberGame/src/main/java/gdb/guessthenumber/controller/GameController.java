@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * M2 Summative
+ * @date Monday January 20, 2020
  * @author garrettbecker
  */
 
@@ -39,29 +40,6 @@ public class GameController {
         return newGame.getGameID();
     }
     
-    /*
-    @PostMapping("/guess")
-    public Round makeGuess(int GameID, String guessValue) {
-        //Create new Round and add it to DB
-        Round newRound = gameService.generateNewRound(GameID, guessValue);
-        newRound = gameService.addRound(newRound);
-        
-        //Get Answer from the current Game being played
-        Game currentGame = new Game();
-        currentGame = gameService.getGameByID(GameID, false);
-        String gameAnswer = currentGame.getAnswer();
-        
-        //Check and see if the guess is same as the Answer
-        //If so, update Game status
-        if (gameAnswer.equals(guessValue)) {
-            currentGame.setStatus("Finished");
-            gameService.updateGame(currentGame);
-        }
-        
-        return newRound;
-    }
-    */
-    
     @PostMapping("/guess")
     public ResponseEntity<Round> makeGuess(@RequestBody Round r) {
         int id = r.getGameID();
@@ -78,6 +56,13 @@ public class GameController {
         //Create new Round and add it to DB
         Round newRound = new Round();
         try {
+            Game exists = gameService.getGameByID(id, false);
+            //Send error if user tries to create new guess with game that is Finished
+                if (exists.getStatus().equals("Finished")) {
+                    Error err = new Error();
+                    err.setMessage("Invalid GameID input: Game is already finished! No new guesses allowed.");
+                    return new ResponseEntity(err, HttpStatus.BAD_REQUEST);
+                }
             newRound = gameService.generateNewRound(r.getGameID(), r.getGuessValue());
             newRound = gameService.addRound(newRound);
         } catch (NullPointerException e) {

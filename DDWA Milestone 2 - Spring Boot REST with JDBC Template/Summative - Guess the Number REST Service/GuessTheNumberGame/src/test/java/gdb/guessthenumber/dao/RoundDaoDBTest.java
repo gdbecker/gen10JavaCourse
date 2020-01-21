@@ -7,6 +7,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNull;
 import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * M2 Summative
+ * @date Monday January 20, 2020
  * @author garrettbecker
  */
 
@@ -28,7 +30,7 @@ public class RoundDaoDBTest {
     @Autowired
     GameDao gDao;
     
-    @Before
+    @BeforeEach
     public void setUp() {
         rDao.deleteAllRounds();
         gDao.deleteAllGames();
@@ -39,9 +41,6 @@ public class RoundDaoDBTest {
      */
     @Test
     public void testGetAllRounds() {
-        rDao.deleteAllRounds();
-        gDao.deleteAllGames();
-        
         Game g1 = new Game();
         g1.setAnswer("6789");
         g1.setStatus("Finished");
@@ -70,9 +69,6 @@ public class RoundDaoDBTest {
      */
     @Test
     public void testGetRoundsByGameID() {
-        rDao.deleteAllRounds();
-        gDao.deleteAllGames();
-        
         Game g1 = new Game();
         g1.setAnswer("6789");
         g1.setStatus("Finished");
@@ -116,9 +112,6 @@ public class RoundDaoDBTest {
      */
     @Test
     public void testGetRoundByRoundID() {
-        rDao.deleteAllRounds();
-        gDao.deleteAllGames();
-        
         Game g1 = new Game();
         g1.setAnswer("6789");
         g1.setStatus("Finished");
@@ -140,9 +133,6 @@ public class RoundDaoDBTest {
      */
     @Test
     public void testAddRound() {
-        rDao.deleteAllRounds();
-        gDao.deleteAllGames();
-        
         Game g1 = new Game();
         g1.setAnswer("6789");
         g1.setStatus("Finished");
@@ -164,9 +154,6 @@ public class RoundDaoDBTest {
      */
     @Test
     public void testUpdateRound() {
-        rDao.deleteAllRounds();
-        gDao.deleteAllGames();
-        
         Game g1 = new Game();
         g1.setAnswer("6789");
         g1.setStatus("Finished");
@@ -197,9 +184,6 @@ public class RoundDaoDBTest {
      */
     @Test
     public void testDeleteRoundByID() {
-        rDao.deleteAllRounds();
-        gDao.deleteAllGames();
-        
         Game g1 = new Game();
         g1.setAnswer("6789");
         g1.setStatus("Finished");

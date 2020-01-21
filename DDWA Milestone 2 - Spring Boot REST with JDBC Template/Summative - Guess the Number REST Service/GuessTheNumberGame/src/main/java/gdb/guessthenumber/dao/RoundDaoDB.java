@@ -17,6 +17,7 @@ import org.springframework.stereotype.Repository;
 
 /**
  * M2 Summative
+ * @date Monday January 20, 2020
  * @author garrettbecker
  */
 
@@ -25,13 +26,6 @@ public class RoundDaoDB implements RoundDao {
 
     @Autowired
     JdbcTemplate jdbcTemplate;
-
-    /*
-    @Autowired
-    public RoundDaoDB(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
-    */
     
     @Override
     public List<Round> getAllRounds() {
