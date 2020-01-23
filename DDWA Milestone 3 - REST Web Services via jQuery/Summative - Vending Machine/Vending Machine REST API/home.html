@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Vending Machine</title>
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/home.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Vending Machine</h1>
+            <hr/>
+            <ul class="list-group" id="errorMessages"></ul>
+            <!-- Add main row to page for main content-->
+            <div class="row">
+                <!-- Dynnamically load vending machine items here at the start-->
+                <div class="col-md-9">
+                    <div class="container" id="itemsDiv"></div>
+                </div>
+                <!-- Forms for running the machine-->
+                <div class="col-md-3">
+                    <h3>Total $ In</h3>
+
+                    <form class="form-horizontal" role="form" id="totalMoneyInForm">
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-8">
+                                <input type="text"
+                                    class="form-control"
+                                    id="totalMoneyInBox" readonly/>
+                            </div>
+                            <!-- Dollar and Quarter buttons-->
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-4">
+                                    <button type="button"
+                                        id="dollar-button"
+                                        class="btn btn-default">
+                                        Add Dollar
+                                    </button>
+                                </div>
+                                <div class="col-md-offset-1 col-md-4">
+                                    <button type="button"
+                                        id="quarter-button"
+                                        class="btn btn-default">
+                                        Add Quarter
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Dime and Nickel buttons-->
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-4">
+                                    <button type="button"
+                                        id="dime-button"
+                                        class="btn btn-default">
+                                        Add Dime
+                                    </button>
+                                </div>
+                                <div class="col-md-offset-1 col-md-4">
+                                    <button type="button"
+                                        id="nickel-button"
+                                        class="btn btn-default">
+                                        Add Nickel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    
+                    <hr/>
+                    
+                    <form class="form-horizontal" role="form" id="messagesForm">
+                        <h3>Messages</h3>
+                        <div class="form-group">
+                            <input type="text"
+                                class="form-control"
+                                id="messagesBox" readonly/>
+                            <div class="row">
+                                <div class="col-md-offset-1 col-sm-2">
+                                    <label for="itemBox" class="control-label">
+                                        Item:
+                                    </label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text"
+                                        class="form-control"
+                                        id="itemBox" readonly/>
+                                </div>
+                            </div>
+                            <div class="col-md-offset-3 col-md-8">
+                                <button type="button"
+                                    id="makePurchase-button"
+                                    class="btn btn-default">
+                                    Make Purchase
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    
+                    <hr/>
+                    
+                    <form class="form-horizontal" role="form" id="changeForm">
+                        <h3>Change</h3>
+                        <form class="form-horizontal" role="form" id="changeForm">
+                            <div class="form-group">
+                                <input type="text"
+                                    class="form-control"
+                                    id="changeBox" readonly/>
+                                <div class="col-md-offset-3 col-md-8">
+                                <button type="button"
+                                    id="change-button"
+                                    class="btn btn-default">
+                                    Change Return
+                                </button>
+                            </div>
+                            </div>
+                        </form>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="js/jquery-2.2.4.min.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/home.js"></script>
+    </body>
+</html>
