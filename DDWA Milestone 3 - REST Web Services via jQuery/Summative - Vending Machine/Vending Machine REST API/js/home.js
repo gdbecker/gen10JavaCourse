@@ -63,6 +63,10 @@ $(document).ready(function () {
                     changeString += response.pennies + " pennies ";
                 }
                 
+                if (response.quarters == 0 && response.dimes == 0 && response.nickels == 0 && response.pennies == 0) {
+                    changeString = "No change";
+                }
+                
                 $('#changeBox').val(changeString);
                 $('#messagesBox').val("Thank You!!!");
                 $('#totalMoneyInBox').val("");
@@ -84,6 +88,7 @@ $(document).ready(function () {
         $('#messagesBox').val("");
         $('#totalMoneyInBox').val("");
         $('#changeBox').val("");
+        loadItems();
     });
     
 });
@@ -114,7 +119,6 @@ function loadItems() {
                     toAdd += '<p style="text-align: center">' + name + '<br/>';
                     toAdd += '<p style="text-align: center">$' + price + '<br/>';
                     toAdd += '<p style="text-align: center">Quantity Left: ' + quantity + '</p>';
-                    //toAdd += '<a href="#" id="item' + id + '" class="btn btn-default stretched-link" style="text-align: center">Select</a>';
                     toAdd += '</div>';
                 var rowIndexToAdd = rowNum - 1;
                 var rowToAdd = '#row'+ rowIndexToAdd;
@@ -137,36 +141,4 @@ function showItemIdInForm(id) {
 
 function clearItemsTable() {
     $('#itemsDiv').empty();
-}
-
-// processes validation errors for the given input.  returns true if there
-// are validation errors, false otherwise
-function checkAndDisplayValidationErrors(input) {
-    // clear displayed error message if there are any
-    $('#errorMessages').empty();
-    // check for HTML5 validation errors and process/display appropriately
-    // a place to hold error messages
-    var errorMessages = [];
-
-    // loop through each input and check for validation errors
-    input.each(function() {
-        // Use the HTML5 validation API to find the validation errors
-        if(!this.validity.valid)
-        {
-            var errorField = $('label[for='+this.id+']').text();
-            errorMessages.push(errorField + ' ' + this.validationMessage);
-        }
-    });
-
-    // put any error messages in the errorMessages div
-    if (errorMessages.length > 0){
-        $.each(errorMessages,function(index,message){
-            $('#errorMessages').append($('<li>').attr({class: 'list-group-item list-group-item-danger'}).text(message));
-        });
-        // return true, indicating that there were errors
-        return true;
-    } else {
-        // return false, indicating that there were no errors
-        return false;
-    }
 }
