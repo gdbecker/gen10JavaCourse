@@ -27,11 +27,10 @@ create table if not exists Equipment (
 
 create table if not exists Trip (
 	TripID int primary key auto_increment,
+    TripName varchar(50) not null,
     TripCostPerTraveler double not null,
     StartDate date not null,
-    EndDate date not null,
-    StartTime varchar(10),
-    EndTime varchar(10)
+    EndDate date not null
 );
 
 create table if not exists Trip_Traveler (
