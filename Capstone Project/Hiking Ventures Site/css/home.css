@@ -1,0 +1,15 @@
+h1, h3 {
+    text-align: center;
+}
+
+#totalMoneyInBox, #dollar-button, #quarter-button, #messagesBox, #itemBox, #changeBox {
+    margin-bottom: 10px;
+}
+
+.col-md-2 {
+    border-style: solid;
+    border-color: black;
+    border-width: medium;
+    padding: 5px;
+    margin: 20px;
+}

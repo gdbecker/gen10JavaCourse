@@ -4,8 +4,13 @@ import com.sg.classroster.dao.CourseDao;
 import com.sg.classroster.dao.StudentDao;
 import com.sg.classroster.dao.TeacherDao;
 import com.sg.classroster.entities.Teacher;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +24,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class TeacherController {
-    @Autowired
+   @Autowired
    TeacherDao teacherDao;
 
    @Autowired
@@ -28,10 +33,15 @@ public class TeacherController {
    @Autowired
    CourseDao courseDao;
    
+   Set<ConstraintViolation<Teacher>> violations = new HashSet<>();
+   
    @GetMapping("teachers")
     public String displayTeachers(Model model) {
         List<Teacher> teachers = teacherDao.getAllTeachers();
         model.addAttribute("teachers", teachers);
+        
+        model.addAttribute("errors", violations);
+        
         return "teachers";
     }
     
@@ -46,7 +56,14 @@ public class TeacherController {
         teacher.setLastName(lastName);
         teacher.setSpecialty(specialty);
         
-        teacherDao.addTeacher(teacher);
+        //teacherDao.addTeacher(teacher);
+        //Replace what's above with validation code below
+        Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
+        violations = validate.validate(teacher);
+
+        if(violations.isEmpty()) {
+            teacherDao.addTeacher(teacher);
+        }
         
         return "redirect:/teachers";
     }

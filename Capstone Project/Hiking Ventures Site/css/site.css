@@ -1,0 +1,24 @@
+.col-md-1 {
+    border-right: medium solid black;
+}
+
+.navigation {
+    width: 60px;
+    height: 60px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bg-image {
+    background-image: url("../images/PageBackground.jpeg");
+    
+  /* Creates the blur effect */
+  /*filter: blur(8px);
+    
+  height: 100%; 
+    
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
