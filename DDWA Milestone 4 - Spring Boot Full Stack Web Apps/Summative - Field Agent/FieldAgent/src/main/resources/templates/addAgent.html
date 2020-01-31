@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>Field Agent</title>
+  </head>
+  <body>
+    <!-- Main Body of Page -->
+    <div class="container">
+        <!-- Top header of page-->
+        <div class="row">
+            <div class="col-md-10">
+                <h2>Add a Field Agent</h2>
+            </div>
+        </div>
+        <form action="addAgent" method="POST">
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label for="firstName">First Name</label>
+                    <input type="text" name="firstName" id="firstName" class="form-control" 
+                    th:value="${agent.firstName}" />
+                        <div th:if="${#fields.hasErrors('agent.firstName')}">
+                            <p th:each="error : ${#fields.errors('agent.firstName')}" 
+                             class="alert alert-danger" th:text="${error}">
+                             Bad first name </p>
+                        </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="middleName">Middle Name</label>
+                        <input type="text" name="middleName" id="firmiddleNamestName" class="form-control" 
+                        th:value="${agent.middleName}" />
+                </div>
+                <div class="col-md-4">
+                    <label for="lastName">First Name</label>
+                    <input type="text" name="lastName" id="lastName" class="form-control" 
+                    th:value="${agent.lastName}" />
+                        <div th:if="${#fields.hasErrors('agent.lastName')}">
+                            <p th:each="error : ${#fields.errors('agent.lastName')}" 
+                            class="alert alert-danger" th:text="${error}">
+                            Bad last name </p>
+                        </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <label for="birthDate">Birth Date</label>
+                        <input type="text" name="birthDate" id="birthDate" class="form-control" 
+                        th:value="${agent.birthDate}" />
+                            <div th:if="${#fields.hasErrors('agent.birthDate')}">
+                                <p th:each="error : ${#fields.errors('agent.birthDate')}" 
+                                 class="alert alert-danger" th:text="${error}">
+                                 Bad birth date</p>
+                            </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="height">Height</label>
+                        <input type="text" name="height" id="height" class="form-control" 
+                        th:value="${agent.height}" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-10">
+                    <h3>Agency</h3>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label for="identifier">Identifier</label>
+                        <input type="text" name="identifier" id="identifier" class="form-control" 
+                        th:value="${agent.identifier}" />
+                        <div th:if="${#fields.hasErrors('agent.identifier')}">
+                            <p th:each="error : ${#fields.errors('agent.identifier')}" 
+                             class="alert alert-danger" th:text="${error}">
+                             Bad identifier</p>
+                        </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="agency">Agency</label>
+                        <select id="agency" name="agency" class="form-control" >
+                            <option th:each="agency : ${agencies}" 
+                             th:value="${agency.agencyId}" 
+                             th:text="${agency.name}">
+                             Agency Name</option>
+                         </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="clearance">Security Clearance</label>
+                        <select id="clearance" name="clearance" class="form-control" >
+                            <option th:each="clearance : ${clearances}" 
+                                 th:value="${SecurityClearance.securityClearanceId}" 
+                                 th:text="${SecurityClearance.name}">
+                                 Security Clearance</option>
+                        </select>
+                </div>
+            </div>   
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <label for="activationDate">Activation Date</label>
+                    <input type="text" name="activationDate" id="activationDate" class="form-control" 
+                        th:value="${agent.activationDate}" />
+                        <div th:if="${#fields.hasErrors('agent.activationDate')}">
+                            <p th:each="error : ${#fields.errors('agent.activationDate')}" 
+                             class="alert alert-danger" th:text="${error}">
+                             Bad activation date</p>
+                        </div>
+                </div>
+                <div class="col-md-3">
+                    <input type="checkbox" name="isActive" class="form-control" id="exampleCheck1" 
+                           th:value="${agent.isActive}" >
+                    <label for="isActive">Is Active</label>
+                </div>
+            </div>
+            <div class="form-group-row">
+                <label for="pictureUrl">Picture URL</label>
+                <input type="text" name="pictureUrl" id="pictureUrl" class="form-control" 
+                        th:value="${agent.pictureUrl}" />
+            </div>
+            <div class="form-group-row">
+                <a id="buttonSaveAddAgent" class="btn btn-primary btn-md">Save</a>
+                <a id="buttonCancelAddAgent" class="btn btn-warning btn-md">Cancel</a>
+            </div>
+        </form>
+    </div>
+    <!-- End main body -->
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>;
