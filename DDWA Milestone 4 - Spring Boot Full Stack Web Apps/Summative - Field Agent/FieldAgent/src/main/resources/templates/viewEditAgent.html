@@ -15,53 +15,48 @@
     <div class="container">
         <!-- Top header of page-->
         <div class="row">
+            <p></p>
+        </div>
+        <div class="row">
             <div class="col-md-10">
-                <h2>Add a Field Agent</h2>
+                <h2>Field Agent</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 m-1 text-left" 
+                th:if="${!errors.isEmpty()}">
+                <p class="alert alert-danger" th:each="error : ${errors}" 
+                th:text="${error.message}">Error message</p>
             </div>
         </div>
         <form action="editAgent" method="POST">
             <div class="form-group row">
                 <div class="col-md-4">
                     <label for="firstName">First Name</label>
-                    <input type="text" name="firstName" id="firstName" class="form-control" 
-                    th:value="${agent.firstName}" th:text="${agent.firstName}"/>
-                        <div th:if="${#fields.hasErrors('agent.firstName')}">
-                            <p th:each="error : ${#fields.errors('agent.firstName')}" 
-                             class="alert alert-danger" th:text="${error}">
-                             Bad first name </p>
-                        </div>
+                    <input type="text" name="firstName" class="form-control" 
+                           th:value="${agent.firstName}"/>
                 </div>
                 <div class="col-md-4">
                     <label for="middleName">Middle Name</label>
-                        <input type="text" name="middleName" id="firmiddleNamestName" class="form-control" 
-                        th:value="${agent.middleName}" th:text="${agent.middleName}"/>
+                        <input type="text" name="middleName" class="form-control" 
+                        th:value="${agent.middleName}"/>
                 </div>
                 <div class="col-md-4">
                     <label for="lastName">First Name</label>
-                    <input type="text" name="lastName" id="lastName" class="form-control" 
-                    th:value="${agent.lastName}" th:text="${agent.lastName}"/>
-                        <div th:if="${#fields.hasErrors('agent.lastName')}">
-                            <p th:each="error : ${#fields.errors('agent.lastName')}" 
-                            class="alert alert-danger" th:text="${error}">
-                            Bad last name </p>
-                        </div>
+                    <input type="text" name="lastName" class="form-control" 
+                    th:value="${agent.lastName}"/>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-md-6">
                     <label for="birthDate">Birth Date</label>
-                        <input type="text" name="birthDate" id="birthDate" class="form-control" 
-                        th:value="${agent.birthDate}" th:text="${agent.birthDate}"/>
-                            <div th:if="${#fields.hasErrors('agent.birthDate')}">
-                                <p th:each="error : ${#fields.errors('agent.birthDate')}" 
-                                 class="alert alert-danger" th:text="${error}">
-                                 Bad birth date</p>
-                            </div>
+                        <input type="text" name="birthDate" class="form-control" 
+                        th:value="${agent.birthDate}"/>
                 </div>
                 <div class="col-md-6">
                     <label for="height">Height</label>
-                        <input type="text" name="height" id="height" class="form-control" 
-                        th:value="${agent.height}" th:text="${agent.height}"/>
+                        <input type="text" name="height" class="form-control" 
+                        th:value="${agent.height}"/>
                 </div>
             </div>
             <div class="form-group row">
@@ -72,29 +67,26 @@
             <div class="form-group row">
                 <div class="col-md-4">
                     <label for="identifier">Identifier</label>
-                        <input type="text" name="identifier" id="identifier" class="form-control" 
-                        th:value="${agent.identifier}" th:text="${agent.identifier}"/>
-                        <div th:if="${#fields.hasErrors('agent.identifier')}">
-                            <p th:each="error : ${#fields.errors('agent.identifier')}" 
-                             class="alert alert-danger" th:text="${error}">
-                             Bad identifier</p>
-                        </div>
+                        <input type="text" name="identifier" class="form-control" 
+                        th:value="${agent.identifier}"/>
                 </div>
                 <div class="col-md-4">
                     <label for="agency">Agency</label>
-                        <select id="agency" name="agency" class="form-control" >
+                        <select name="agencyId" class="form-control" >
                             <option th:each="agency : ${agencies}" 
                              th:value="${agency.agencyId}" 
-                             th:text="${agent.agency.name}">
+                             th:text="${agency.name}"
+                             th:selected="${agency.name == agent.agency.name}">
                              Agency Name</option>
                          </select>
                 </div>
                 <div class="col-md-4">
                     <label for="clearance">Security Clearance</label>
-                        <select id="clearance" name="clearance" class="form-control" >
+                        <select name="clearanceId" class="form-control" >
                             <option th:each="clearance : ${clearances}" 
-                                 th:value="${SecurityClearance.securityClearanceId}" 
-                                 th:text="${agent.SecurityClearance.name}">
+                                 th:value="${clearance.securityClearanceId}" 
+                                 th:text="${clearance.name}"
+                                 th:selected="${clearance.name == agent.securityClearance.name}">
                                  Security Clearance</option>
                         </select>
                 </div>
@@ -102,32 +94,28 @@
             <div class="form-group row">
                 <div class="col-md-6">
                     <label for="activationDate">Activation Date</label>
-                    <input type="text" name="activationDate" id="activationDate" class="form-control" 
-                        th:value="${agent.activationDate}" th:text="${agent.activationDate}"/>
-                        <div th:if="${#fields.hasErrors('agent.activationDate')}">
-                            <p th:each="error : ${#fields.errors('agent.activationDate')}" 
-                             class="alert alert-danger" th:text="${error}">
-                             Bad activation date</p>
-                        </div>
+                    <input type="text" name="activationDate" class="form-control" 
+                        th:value="${agent.activationDate}"/>
                 </div>
                 <div class="col-md-3">
-                    <input type="checkbox" name="isActive" class="form-control" id="exampleCheck1" 
-                           th:value="${agent.isActive}" >
                     <label for="isActive">Is Active</label>
+                    <input type="checkbox" name="isActive" 
+                           th:checked="1">
                 </div>
             </div>
             <div class="form-group-row">
-                <img th:src="${agent.pictureUrl}" alt="Agent Picture">
+                <img src="agent.pictureUrl" alt="Agent Picture">
             </div>
             <div class="form-group-row">
                 <label for="pictureUrl">Picture URL</label>
-                <input type="text" name="pictureUrl" id="pictureUrl" class="form-control" 
-                        th:value="${agent.pictureUrl}" th:text="${agent.pictureUrl}"/>
+                <input type="text" name="pictureUrl" class="form-control" 
+                        th:value="${agent.pictureUrl}"/>
             </div>
             <div class="form-group-row">
-                <a id="buttonSaveAddAgent" class="btn btn-primary btn-md">Save</a>
-                <a id="buttonCancelAddAgent" class="btn btn-warning btn-md">Cancel</a>
+                <p></p>
             </div>
+            <button type="submit" class="btn btn-primary btn-md">Save</button>
+            <a href="/" class="btn btn-warning btn-md">Cancel</a>
         </form>
         <hr>
         <div class="row">
@@ -135,7 +123,7 @@
                 <h2>Assignments</h2>
             </div>
             <div class="col-md-2">
-                <a id="buttonAddAssignment" class="btn btn-primary btn-md">Add An Assignment</a>
+                <a th:href="@{/addAssignment(id=${agent.identifier})}" class="btn btn-primary btn-md">Add An Assignment</a>
             </div>
         </div>
         <div class="row">
@@ -155,8 +143,8 @@
                             <td th:text="${assignment.country.name}">Country</td>
                             <td th:text='${assignment.startDate}'>Start</td>
                             <td th:text='${assignment.projectedEndDate}'>Start</td>
-                            <td><a href="#" th:href="@{/deleteAssignment(id=${assignment.assignmentId})}" class="btn btn-danger btn-md">Delete</a></td>
-                            <td><a href="#" th:href="@{/editAssignment(id=${assignment.assignmentId})}" class="btn btn-warning btn-md">View/Edit</a></td>
+                            <td><a href="#" th:href="@{/deleteAssignmentPage(id=${assignment.assignmentId})}" class="btn btn-danger btn-md">Delete</a></td>
+                            <td><a href="#" th:href="@{/viewEditAssignment(id=${assignment.assignmentId})}" class="btn btn-warning btn-md">View/Edit</a></td>
                         </tr>
                     </tbody>
                 </table>

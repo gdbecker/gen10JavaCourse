@@ -85,6 +85,7 @@ public class CourseController {
         model.addAttribute("teachers", teachers);
         return "editCourse";
     }
+    
     /*
     @PostMapping("editCourse")
     public String performEditCourse(Course course, HttpServletRequest request) {

@@ -7,6 +7,7 @@ import corbos.fieldagent.data.CountryRepository;
 import corbos.fieldagent.data.SecurityClearanceRepository;
 import corbos.fieldagent.entities.Agency;
 import corbos.fieldagent.entities.Agent;
+import corbos.fieldagent.entities.Assignment;
 import corbos.fieldagent.entities.Country;
 import corbos.fieldagent.entities.SecurityClearance;
 import java.util.List;
@@ -38,18 +39,45 @@ public class LookupService {
         return agentRepo.findAll();
     }
     
-    public Agent findAgentById(int agentId) {
+    public Agent findAgentById(String agentId) {
         return agentRepo.findById(agentId).orElse(null);
     }
     
+    public Agent addUpdateAgent(Agent a) {
+        return agentRepo.save(a);
+    }
+    
+    public void deleteAgentById(String agentId) {
+        agentRepo.deleteById(agentId);
+    }
+    
     //Methods for Assignment
+    public List<Assignment> findAllAssignments() {
+        return assignmentRepo.findAll();
+    }
+    
+    public List<Assignment> findAssignmentByAgentIdentifier(String agentIdentifier) {
+        return assignmentRepo.findByAgentIdentifier(agentIdentifier);
+    }
+    
+    public Assignment findAssignmentById(int id) {
+        return assignmentRepo.findById(id).orElse(null);
+    }
+    
+    public Assignment addUpdateAssignement(Assignment a) {
+        return assignmentRepo.save(a);
+    }
+    
+    public void deleteAssignment(Assignment a) {
+        assignmentRepo.delete(a);
+    }
     
     //Methods for Agency
     public List<Agency> findAllAgencies() {
         return agencyRepo.findAll();
     }
 
-    public Agency findAgencyById(int agencyId) {
+    public Agency findAgencyByAgencyId(int agencyId) {
         return agencyRepo.findById(agencyId)
                 .orElse(null);
     }

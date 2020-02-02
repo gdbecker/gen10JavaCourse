@@ -344,6 +344,15 @@ insert into agent(
 	'2015-03-15',
 	6,
 	3
+), (
+	'XW-902-43GJ',
+	'Chuck',
+	'Bartowski',
+	'1992-07-15',
+	69,
+	'2018-06-21',
+	1,
+	1
 );
 
 insert into assignment (

@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Entity
@@ -16,8 +17,13 @@ public class Assignment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int assignmentId;   
+    
+    @NotBlank(message = "Start Date must not be blank")
     private LocalDate startDate;
+    
+    @NotBlank(message = "Projected End Date must not be blank")
     private LocalDate projectedEndDate;
+    
     private LocalDate actualEndDate;
     private String notes;
 
@@ -27,6 +33,7 @@ public class Assignment {
 
     @ManyToOne
     @JoinColumn(name = "identifier")
+    @NotBlank(message = "Agent Name must not be blank")
     private Agent agent;
 
 }
