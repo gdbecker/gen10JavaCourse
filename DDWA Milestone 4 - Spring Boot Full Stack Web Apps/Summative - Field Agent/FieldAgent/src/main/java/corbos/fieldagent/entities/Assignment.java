@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 @Entity
@@ -18,10 +19,12 @@ public class Assignment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int assignmentId;   
     
-    @NotBlank(message = "Start Date must not be blank")
+    @NotNull(message = "Invalid Start Date. Value required. Must be before Projected and Actual End dates. "
+            + "Agent's Assignment dates must not overlap.")
     private LocalDate startDate;
     
-    @NotBlank(message = "Projected End Date must not be blank")
+    @NotNull(message = "Invalid Projected End Date. Value required. Must be after Start Date. Agent's Assignment dates must"
+            + "not overlap.")
     private LocalDate projectedEndDate;
     
     private LocalDate actualEndDate;
@@ -33,7 +36,6 @@ public class Assignment {
 
     @ManyToOne
     @JoinColumn(name = "identifier")
-    @NotBlank(message = "Agent Name must not be blank")
     private Agent agent;
 
 }

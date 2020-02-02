@@ -17,12 +17,23 @@
         <div class="row">
             <p></p>
         </div>
-        <div class="row">
-            <div class="col-md-10">
-                <h2>Assignment</h2>
-            </div>
-        </div>
         <form action="editAssignment" method="post">
+            <div class="row">
+                <div class="col-md-2">
+                    <h2>Assignment</h2>
+                </div>
+                <div class="col-md-1">
+                    <input type="text" name="assignmentId" class="form-control" 
+                        th:value="${assignment.assignmentId}" readonly>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 m-1 text-left" 
+                    th:if="${!errors.isEmpty()}">
+                    <p class="alert alert-danger" th:each="error : ${errors}" 
+                    th:text="${error.message}">Error message</p>
+                </div>
+            </div>
             <div class="form-group row">
                 <div class="col-md-6">
                     <label for="agent">Field Agent</label>
@@ -44,37 +55,22 @@
                                  Country</option>
                     </select>
                 </div>
-            </div>            
+            </div>
             <div class="form-group row">
                 <div class="col-md-4">
                     <label for="startDate">Start</label>
                         <input type="text" name="startDate" class="form-control" 
                         th:value="${assignment.startDate}" />
-                        <div th:if="${#fields.hasErrors('assignment.startDate')}">
-                            <p th:each="error : ${#fields.errors('assignment.startDate')}" 
-                             class="alert alert-danger" th:text="${error}">
-                             Bad start</p>
-                        </div>
                 </div>
                 <div class="col-md-4">
                     <label for="projectedEndDate">Projected End</label>
                         <input type="text" name="projectedEndDate" class="form-control" 
                         th:value="${assignment.projectedEndDate}" />
-                        <div th:if="${#fields.hasErrors('assignment.projectedEndDate')}">
-                            <p th:each="error : ${#fields.errors('assignment.projectedEndDate')}" 
-                             class="alert alert-danger" th:text="${error}">
-                             Bad projected end</p>
-                        </div>
                 </div>
                 <div class="col-md-4">
                     <label for="actualEndDate">Actual End</label>
                         <input type="text" name="actualEndDate" class="form-control" 
                         th:value="${assignment.actualEndDate}" />
-                        <div th:if="${#fields.hasErrors('assignment.actualEndDate')}">
-                            <p th:each="error : ${#fields.errors('assignment.actualEndDate')}" 
-                             class="alert alert-danger" th:text="${error}">
-                             Bad actual end</p>
-                        </div>
                 </div>
             </div>   
             <div class="form-group row">
@@ -86,8 +82,10 @@
             </div>
             <div class="form-group row">
             </div>
-            <button type="submit" class="btn btn-primary btn-md">Save</button>
-            <a href="/" class="btn btn-warning btn-md">Cancel</a>
+            <div class="form-grou-row">
+                <button type="submit" class="btn btn-primary btn-md">Save</button>
+                <a href="/" class="btn btn-warning btn-md">Cancel</a>
+            </div>
         </form>
     </div>
     <!-- End main body -->

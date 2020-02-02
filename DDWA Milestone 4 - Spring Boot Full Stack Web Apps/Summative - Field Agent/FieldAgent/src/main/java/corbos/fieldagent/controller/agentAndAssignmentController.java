@@ -7,6 +7,7 @@ import corbos.fieldagent.entities.Country;
 import corbos.fieldagent.entities.SecurityClearance;
 import corbos.fieldagent.service.LookupService;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -32,7 +33,10 @@ public class agentAndAssignmentController {
     @Autowired
     LookupService service;
     
-    Set<ConstraintViolation<Agent>> violations = new HashSet<>();
+    Set<ConstraintViolation<Agent>> agentAddViolations = new HashSet<>();
+    Set<ConstraintViolation<Agent>> agentEditViolations = new HashSet<>();
+    Set<ConstraintViolation<Assignment>> assignmentAddViolations = new HashSet<>();
+    Set<ConstraintViolation<Assignment>> assignmentEditViolations = new HashSet<>();
     
     @GetMapping
     public String displayAgents(Model model) {
@@ -50,13 +54,13 @@ public class agentAndAssignmentController {
         List<SecurityClearance> clearances = service.findAllSecurityClearances();
         model.addAttribute("clearances", clearances);
         
-        model.addAttribute("errors", violations);
+        model.addAttribute("errors", agentAddViolations);
         
         return "addAgent";
     }
     
     @PostMapping("addNewAgent")
-    public String addNewAgent(HttpServletRequest request) {
+    public String addNewAgent(HttpServletRequest request, Model model) {
         Agent agent = new Agent();
         String firstName = request.getParameter("firstName");
         String middleName = request.getParameter("middleName");
@@ -73,19 +77,51 @@ public class agentAndAssignmentController {
         agent.setFirstName(firstName);
         agent.setMiddleName(middleName);
         agent.setLastName(lastName);
-        agent.setBirthDate(LocalDate.parse(birthDate));
-        agent.setHeight(Integer.parseInt(height));
+        
+        try {
+            agent.setBirthDate(LocalDate.parse(birthDate));
+            
+            LocalDate dayOfBirth = LocalDate.parse(birthDate);
+            LocalDate afterDate = LocalDate.parse("1900-01-01");
+            LocalDate beforeDate = LocalDate.now().minusYears(10);
+            
+            if (dayOfBirth.isAfter(afterDate) && dayOfBirth.isBefore(beforeDate)) {
+                agent.setBirthDate(LocalDate.parse(birthDate));
+            } else {
+                agent.setBirthDate(null);
+            }
+        } catch (DateTimeParseException e) {
+            agent.setBirthDate(null);
+        }
+        
+        if (height.equals("")) {
+            agent.setHeight(0);
+        } else {
+            try {
+                agent.setHeight(Integer.parseInt(height));
+            } catch (NumberFormatException e) {
+                agent.setHeight(0);
+            }
+        }
+        
         agent.setIdentifier(identifier);
         agent.setAgency(service.findAgencyByAgencyId(Integer.parseInt(agencyId)));
         agent.setSecurityClearance(service.findSecurityClearanceById(Integer.parseInt(clearanceId)));
-        agent.setActivationDate(LocalDate.parse(activationDate));
+        
+        try {
+            agent.setActivationDate(LocalDate.parse(activationDate));
+        } catch (DateTimeParseException e) {
+            agent.setActivationDate(null);
+        }
+        
         agent.setActive(Boolean.getBoolean(isActive));
         agent.setPictureUrl(pictureUrl);
         
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
-        violations = validate.validate(agent);
-
-        if(violations.isEmpty()) {
+        agentAddViolations = validate.validate(agent);
+        
+        //Go back to Home only if there were no errors with the form
+        if(agentAddViolations.isEmpty()) {
             service.addUpdateAgent(agent);
             return "redirect:/";
         }
@@ -111,19 +147,51 @@ public class agentAndAssignmentController {
         agent.setFirstName(firstName);
         agent.setMiddleName(middleName);
         agent.setLastName(lastName);
-        agent.setBirthDate(LocalDate.parse(birthDate));
-        agent.setHeight(Integer.parseInt(height));
+        
+        try {
+            agent.setBirthDate(LocalDate.parse(birthDate));
+            
+            LocalDate dayOfBirth = LocalDate.parse(birthDate);
+            LocalDate afterDate = LocalDate.parse("1900-01-01");
+            LocalDate beforeDate = LocalDate.now().minusYears(10);
+            
+            if (dayOfBirth.isAfter(afterDate) && dayOfBirth.isBefore(beforeDate)) {
+                agent.setBirthDate(LocalDate.parse(birthDate));
+            } else {
+                agent.setBirthDate(null);
+            }
+        } catch (DateTimeParseException e) {
+            agent.setBirthDate(null);
+        }
+        
+        if (height.equals("")) {
+            agent.setHeight(0);
+        } else {
+            try {
+                agent.setHeight(Integer.parseInt(height));
+            } catch (NumberFormatException e) {
+                agent.setHeight(0);
+            }
+        }
+        
         agent.setIdentifier(identifier);
         agent.setAgency(service.findAgencyByAgencyId(Integer.parseInt(agencyId)));
         agent.setSecurityClearance(service.findSecurityClearanceById(Integer.parseInt(clearanceId)));
-        agent.setActivationDate(LocalDate.parse(activationDate));
-        agent.setActive(Boolean.valueOf(isActive));
+        
+        try {
+            agent.setActivationDate(LocalDate.parse(activationDate));
+        } catch (DateTimeParseException e) {
+            agent.setActivationDate(null);
+        }
+        
+        agent.setActive(Boolean.getBoolean(isActive));
         agent.setPictureUrl(pictureUrl);
         
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
-        violations = validate.validate(agent);
-
-        if(violations.isEmpty()) {
+        agentEditViolations = validate.validate(agent);
+        
+        //Go back to Home only if there were no errors with the form
+        if(agentEditViolations.isEmpty()) {
             service.addUpdateAgent(agent);
             return "redirect:/";
         }
@@ -145,7 +213,7 @@ public class agentAndAssignmentController {
         List<Assignment> assignments = service.findAssignmentByAgentIdentifier(id);
         model.addAttribute("assignments", assignments);
         
-        model.addAttribute("errors", violations);
+        model.addAttribute("errors", agentEditViolations);
         
         return "viewEditAgent";
     }
@@ -185,6 +253,8 @@ public class agentAndAssignmentController {
         List<Country> countries = service.findAllCountries();
         model.addAttribute("countries", countries);
         
+        model.addAttribute("errors", assignmentAddViolations);
+        
         return "addAssignment";
     }
     
@@ -200,27 +270,93 @@ public class agentAndAssignmentController {
         
         a.setAgent(service.findAgentById(agentId));
         a.setCountry(service.findCountryByCode(countryId));
-        a.setStartDate(LocalDate.parse(startDate));
-        a.setProjectedEndDate(LocalDate.parse(projectedEndDate));
         
-        if (actualEndDate.equals(null)) {
+        LocalDate dateStart;
+        try {
+            dateStart = LocalDate.parse(startDate);            
+        } catch (DateTimeParseException e) {
+            dateStart = null;
+            a.setStartDate(dateStart);
+        }
+        
+        LocalDate dateProjectedEnd;
+        try {
+            dateProjectedEnd = LocalDate.parse(projectedEndDate);
+            
+        } catch (DateTimeParseException e) {
+            dateProjectedEnd = null;
+            a.setProjectedEndDate(dateProjectedEnd);
+        }
+        
+        LocalDate dateActualEnd;
+        try {
+            dateActualEnd = LocalDate.parse(actualEndDate);
+            
+        } catch (DateTimeParseException e) {
+            dateActualEnd = null;
+            a.setActualEndDate(dateActualEnd);
+        }
+        
+        if (dateStart != null && dateProjectedEnd != null && dateStart.isAfter(dateProjectedEnd)) {
+            dateStart = null;
+            dateProjectedEnd = null;
+            a.setStartDate(null);
+            a.setProjectedEndDate(null);
+        }
+        
+        if (dateStart != null && dateActualEnd != null && dateStart.isAfter(dateActualEnd)) {
+            dateStart = null;
+            dateActualEnd = null;
+            a.setStartDate(null);
             a.setActualEndDate(null);
         }
         
-        if (!actualEndDate.equals("")) {
-            a.setActualEndDate(LocalDate.parse(actualEndDate));
+        //Check if start/end dates fall inside an already existing assignment
+        //Make sure assignment dates don't overlap
+        List<Assignment> aList = service.findAssignmentByAgentIdentifier(agentId);
+        if (aList.size() > 0 && dateStart != null && dateProjectedEnd != null) {
+            for (Assignment assignment : aList) {
+                LocalDate start = assignment.getStartDate();
+                LocalDate end = assignment.getProjectedEndDate();
+                if (dateStart.isAfter(start) && dateStart.isBefore(end)) {
+                    dateStart = null;
+                    break;
+                }
+                if (dateProjectedEnd.isAfter(start) && dateProjectedEnd.isBefore(end)) {
+                    dateProjectedEnd = null;
+                    break;
+                }
+                if (dateStart.isBefore(start) && dateProjectedEnd.isAfter(end)) {
+                    dateStart = null;
+                    dateProjectedEnd = null;
+                    break;
+                }
+                if (dateStart.isAfter(start) && dateProjectedEnd.isBefore(end)) {
+                    dateStart = null;
+                    dateProjectedEnd = null;
+                    break;
+                }
+            }
         }
            
         a.setNotes(notes);
-        service.addUpdateAssignement(a);
         
-        return "redirect:/";
+        Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
+        assignmentAddViolations = validate.validate(a);
+        
+        //Go back to Home only if there were no errors with the form
+        if(assignmentAddViolations.isEmpty()) {
+            service.addUpdateAssignement(a);
+            return "redirect:/viewEditAgent?id=" + agentId;
+        }
+        
+        return "redirect:/addAssignment?id=" + agentId;
     }
     
     @PostMapping("editAssignment")
     public String editAssignment(HttpServletRequest request) {
         Assignment a = new Assignment();
-        //String assignmentId = request.getParameter("assignmentId");
+        String assignmentId = request.getParameter("assignmentId");
         String agentId = request.getParameter("agentId");
         String countryId = request.getParameter("countryId");
         String startDate = request.getParameter("startDate");
@@ -228,24 +364,89 @@ public class agentAndAssignmentController {
         String actualEndDate = request.getParameter("actualEndDate");
         String notes = request.getParameter("notes");
         
-        //a.setAssignmentId(Integer.parseInt(assignmentId));
         a.setAgent(service.findAgentById(agentId));
         a.setCountry(service.findCountryByCode(countryId));
-        a.setStartDate(LocalDate.parse(startDate));
-        a.setProjectedEndDate(LocalDate.parse(projectedEndDate));
         
-        if (actualEndDate.equals("")) {
+        LocalDate dateStart;
+        try {
+            dateStart = LocalDate.parse(startDate);            
+        } catch (DateTimeParseException e) {
+            dateStart = null;
+            a.setStartDate(dateStart);
+        }
+        
+        LocalDate dateProjectedEnd;
+        try {
+            dateProjectedEnd = LocalDate.parse(projectedEndDate);
+            
+        } catch (DateTimeParseException e) {
+            dateProjectedEnd = null;
+            a.setProjectedEndDate(dateProjectedEnd);
+        }
+        
+        LocalDate dateActualEnd;
+        try {
+            dateActualEnd = LocalDate.parse(actualEndDate);
+            
+        } catch (DateTimeParseException e) {
+            dateActualEnd = null;
+            a.setActualEndDate(dateActualEnd);
+        }
+        
+        if (dateStart != null && dateProjectedEnd != null && dateStart.isAfter(dateProjectedEnd)) {
+            dateStart = null;
+            dateProjectedEnd = null;
+            a.setStartDate(null);
+            a.setProjectedEndDate(null);
+        }
+        
+        if (dateStart != null && dateActualEnd != null && dateStart.isAfter(dateActualEnd)) {
+            dateStart = null;
+            dateActualEnd = null;
+            a.setStartDate(null);
             a.setActualEndDate(null);
         }
         
-        if (!actualEndDate.equals("")) {
-            a.setActualEndDate(LocalDate.parse(actualEndDate));
+        //Check if start/end dates fall inside an already existing assignment
+        //Make sure assignment dates don't overlap
+        List<Assignment> aList = service.findAssignmentByAgentIdentifier(agentId);
+        if (aList.size() > 0 && dateStart != null && dateProjectedEnd != null) {
+            for (Assignment assignment : aList) {
+                LocalDate start = assignment.getStartDate();
+                LocalDate end = assignment.getProjectedEndDate();
+                if (dateStart.isAfter(start) && dateStart.isBefore(end)) {
+                    dateStart = null;
+                    break;
+                }
+                if (dateProjectedEnd.isAfter(start) && dateProjectedEnd.isBefore(end)) {
+                    dateProjectedEnd = null;
+                    break;
+                }
+                if (dateStart.isBefore(start) && dateProjectedEnd.isAfter(end)) {
+                    dateStart = null;
+                    dateProjectedEnd = null;
+                    break;
+                }
+                if (dateStart.isAfter(start) && dateProjectedEnd.isBefore(end)) {
+                    dateStart = null;
+                    dateProjectedEnd = null;
+                    break;
+                }
+            }
         }
            
         a.setNotes(notes);
-        service.addUpdateAssignement(a);
         
-        return "redirect:/viewEditAgent?id=" + agentId;
+        Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
+        assignmentEditViolations = validate.validate(a);
+        
+        //Go back to Home only if there were no errors with the form
+        if(assignmentEditViolations.isEmpty()) {
+            service.addUpdateAssignement(a);
+            return "redirect:/viewEditAgent?id=" + agentId;
+        }
+        
+        return "redirect:/viewEditAssignment?id=" + assignmentId;
     }
     
     @GetMapping("viewEditAssignment")
@@ -261,6 +462,8 @@ public class agentAndAssignmentController {
         
         List<Country> countries=service.findAllCountries();
         model.addAttribute("countries", countries);
+        
+        model.addAttribute("errors", assignmentEditViolations);
         
         return "viewEditAssignment";
     }

@@ -22,10 +22,17 @@
                 <h2>Add Assignment</h2>
             </div>
         </div>
-        <form action="addNewAssignment" method="post">
+        <div class="row">
+            <div class="col-12 m-1 text-left" 
+                th:if="${!errors.isEmpty()}">
+                <p class="alert alert-danger" th:each="error : ${errors}" 
+                th:text="${error.message}">Error message</p>
+            </div>
+        </div>
+        <form action="addNewAssignment" method="POST">
             <div class="form-group row">
                 <div class="col-md-6">
-                    <label for="agent">Field Agent</label>
+                    <label for="agentId">Field Agent</label>
                     <select name="agentId" class="form-control" >
                             <option th:each="agent : ${agents}" 
                                  th:value="${agent.identifier}" 
