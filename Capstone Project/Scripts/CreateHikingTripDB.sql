@@ -1,9 +1,9 @@
 -- Delete database if already exists
-drop database if exists HikingTrips;
+drop database if exists HikingVentures;
 
-create database HikingTrips;
+create database HikingVentures;
 
-use HikingTrips;
+use HikingVentures;
 
 create table if not exists Traveler (
 	TravelerID int primary key auto_increment,

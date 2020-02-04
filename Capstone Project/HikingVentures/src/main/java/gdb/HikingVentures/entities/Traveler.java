@@ -1,0 +1,39 @@
+package gdb.HikingVentures.entities;
+
+import java.time.LocalDate;
+import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import lombok.Data;
+
+/**
+ * Capstone Project
+ * @author garrettbecker
+ */
+
+@Entity
+@Data
+public class Traveler {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int travelerID;
+    
+    String firstName;
+    String lastName;
+    String address;
+    String city;
+    String state;
+    String zip;
+    LocalDate birthDate;
+    
+    @ManyToMany
+    @JoinTable(name = "Trip_Traveler",
+    joinColumns = {@JoinColumn(name = "TravelerID")},
+    inverseJoinColumns = {@JoinColumn(name = "TripID")})
+    List<Trip> trips;
+}
