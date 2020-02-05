@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Hiking Ventures</title>
+        <title>Hiking Ventures: Trips</title>
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/site.css" rel="stylesheet">
@@ -9,34 +9,53 @@
     
     <style>
         #tripsButton {
-            border: medium solid white;
+            border: medium solid #87A330;
         }
     </style>
     
     <body>
         <div class="bg-image"></div>
+        
         <div class="container">
             <!-- Space for any error messages to pop up-->
             <ul class="list-group" id="errorMessages"></ul>
             
             <!-- Add main row to page for main content-->
             <div class="row">
+                
                 <!-- Left side panel for site navigation-->
                 <div class="col-lg-2">
+                    <div class="bg-navigation"></div>
                     <form class="form-horizontal" role="form" id="navigationForm">
-                        <input type="image" src="images/Trips.png" alt="Trips" title="Hiking Trips" class="navigation" id="tripsButton">
-                        <input type="image" src="images/Trails.png" alt="Trails" title="Trails" class="navigation" id="trailsButton">
-                        <input type="image" src="images/Travelers.png" alt="Travelers" title="Travelers" class="navigation" id="travelersButton">
-                        <input type="image" src="images/Equipment.png" alt="Equipment" title="Equipment" class="navigation" id="equipmentButton">
-                        <input type="image" src="images/Locations.png" alt="Locations" title="Locations" class="navigation" id="locationsButton">
-                        <input type="image" src="images/About.png" alt="About" title="About Us" class="navigation" id="aboutButton">
+                        
+                        <input type="image" src="img/Trips.png" alt="Trips" title="Hiking Trips" class="navigationButtons" id="tripsButton">
+                        <h5 class="navigationTitles" id="tripsTitle">Hiking Trips</h5>
+                        <input type="image" src="img/Trails.png" alt="Trails" title="Trails" class="navigationButtons" id="trailsButton">
+                        <h5 class="navigationTitles" id="trailsTitle">Trails</h5>
+                        <input type="image" src="img/Travelers.png" alt="Travelers" title="Travelers" class="navigationButtons" id="travelersButton">
+                        <h5 class="navigationTitles" id="travelersTitle">Travelers</h5>
+                        <input type="image" src="img/Equipment.png" alt="Equipment" title="Equipment" class="navigationButtons" id="equipmentButton">
+                        <h5 class="navigationTitles" id="equipmentTitle">Equipment</h5>
+                        <input type="image" src="img/Locations.png" alt="Locations" title="Locations" class="navigationButtons" id="locationsButton">
+                        <h5 class="navigationTitles" id="locationsTitle">Locations</h5>
+                        <input type="image" src="img/About.png" alt="About" title="About Us" class="navigationButtons" id="aboutButton">
+                        <h5 class="navigationTitles" id="aboutTitle">About</h5>
                     </form>
                     <p id="copyright">&copy Copyright <br/>2020<br/>Garrett Becker</p>
+                    
                 </div>
                 
                 <!-- Main Page Content-->
                 <div class="col-lg-10">
-                    <h2>Your Hiking Trips</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h2>Hiking Trips Overview</h2>
+                        </div>
+                        <div class="col-md-4">
+                            <hr>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>

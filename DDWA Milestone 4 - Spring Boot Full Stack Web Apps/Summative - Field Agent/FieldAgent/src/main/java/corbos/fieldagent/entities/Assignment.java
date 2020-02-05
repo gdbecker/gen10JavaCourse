@@ -23,8 +23,9 @@ public class Assignment {
             + "Agent's Assignment dates must not overlap.")
     private LocalDate startDate;
     
-    @NotNull(message = "Invalid Projected End Date. Value required. Must be after Start Date. Agent's Assignment dates must"
-            + "not overlap.")
+    @NotNull(message = "Invalid Projected End Date. Value required. Must be after "
+            + "Start Date & before Actual End Date. Agent's Assignment dates must"
+            + "not overlap. ")
     private LocalDate projectedEndDate;
     
     private LocalDate actualEndDate;

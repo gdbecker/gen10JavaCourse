@@ -6,7 +6,7 @@ body {
     position: fixed;
     left: 0;
     right: 0;
-    background-image: url("../images/BackgroundVideo2.mov");
+    background: url("../img/BackgroundVideo2.mov");
     
     filter: blur(2px);
     

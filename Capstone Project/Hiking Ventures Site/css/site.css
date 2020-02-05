@@ -1,12 +1,46 @@
+/*
+Color Palette:
+Hansa Yellow: #E9D758
+Myrtle Green: #297373
+Coral: #FF8552
+Platinum: #E6E6E6
+Onyx: #39393A
+Old Moss Green: #87A330
+*/
+
 body {
     height: 100%;
 }
 
+/*Background image on all pages*/
 .bg-image {
     position: fixed;
     left: 0;
     right: 0;
-    background-image: url("../images/BackgroundVideo2.mov");
+    background-image: url("../img/PageBackground.jpeg");
+    
+    filter: blur(2px);
+    -webkit-filter: blur(4px);
+    
+    left: -15px;
+    right: -15px;
+    top: -15px;
+    bottom: -15px;
+    
+    height: 100%; 
+    
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    transform: scale(1.5);
+}
+
+.bg-image-index {
+    position: fixed;
+    left: 0;
+    right: 0;
+    background-image: url("../img/BackgroundVideo2.mov");
     
     filter: blur(2px);
     -webkit-filter: blur(4px);
@@ -33,11 +67,55 @@ body {
     height: 100%;
 }
 
+/*
 .col-lg-2 {
-    border-right: medium solid snow;
+    border-right: medium solid #FF8552;
+}
+*/
+
+hr {
+    height: 5px;
+    margin-bottom: 10px;
+    
 }
 
-.navigation {
+.bg-navigation {
+    position:absolute;
+    left: -5px;
+    right: 0px;
+    height: 100%;
+    background: #39393A;
+    opacity: 0.7;
+    z-index: -3;
+}
+
+/*HOME PAGE*/
+.mainMenuButtons {
+    width: 130px;
+    height: 130px;
+    display: block;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    filter: none;
+}
+
+.mainMenuTitles {
+    color: white;
+    font-family: "Gill Sans";
+    text-transform:uppercase;
+    padding-bottom: 5px;
+    opacity: 0;
+    transition: 0.25s;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.navigationButtons {
     width: 53px;
     height: 53px;
     display: block;
@@ -47,13 +125,24 @@ body {
     padding-right: 5px;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 60px;
+    margin-top: 15px;
     filter: none;
+}
+
+.navigationTitles {
+    color: white;
+    font-family: "Gill Sans";
+    text-transform:uppercase;
+    padding-bottom: 5px;
+    opacity: 0;
+    transition: 0.25s;
+    text-align: center;
+    margin-bottom: 40px;
 }
 
 #copyright {
     color: white;
-    font: Geneva;
+    font-family: "Gill Sans";
     text-align: center;
     padding: 8px;
     margin-left: auto;
@@ -63,20 +152,22 @@ body {
 
 h2 {
     color: white;
-    font: Geneva;
+    font-family: "Gill Sans";
+    font-weight: bold;
+    text-transform: uppercase;
     padding-bottom: 25px;
     border-bottom: medium solid snow; 
 }
 
 h3 {
     color: white;
-    font: Geneva;
+    font-family: "Gill Sans";
     padding-bottom: 5px;
 }
 
 p {
     color: white;
-    font: Geneva;
+    font-family: "Gill Sans";
     padding-bottom: 15px;
 }
 
