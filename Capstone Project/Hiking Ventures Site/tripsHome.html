@@ -8,9 +8,100 @@
     </head>
     
     <style>
+        /*
+        Color Palette:
+        Hansa Yellow: #E9D758
+        Myrtle Green: #297373
+        Coral: #FF8552
+        Platinum: #E6E6E6
+        Onyx: #39393A
+        Old Moss Green: #87A330
+        */
+        
         #tripsButton {
             border: medium solid #87A330;
         }
+        
+        .card-img-top {
+            width: 350px;
+            height: 200px;
+            display: block;
+            position: static;
+            margin-right: auto;
+            margin-left: auto;
+        }
+        
+        .tripCardHeader {
+            color: #E6E6E6;
+            font-family: "Gill Sans";
+            font-weight: bold;
+            text-decoration: underline;
+            font-size: 20px;
+            padding-top: 10px;
+            text-align: center;
+        }
+        
+        .tripCardText {
+            color: #E6E6E6;
+            font-family: "Gill Sans";
+            font-size: 16px;
+            padding-left: 10px;
+        }
+        
+        .tripCard {
+            width: 350px; 
+            border-left: medium solid #39393A;
+            border-right: medium solid #39393A;
+            border-bottom: medium solid #39393A;
+            background: #297373;
+            opacity: 0.9;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            margin-bottom: 50px;
+        }
+        
+        /* Dropdown Button */
+        .dropbtn {
+            background-color: #39393A;
+            color: #E6E6E6;
+            padding: 13px;
+            font-size: 16px;
+            border: none;
+            margin-left: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* The container <div> - needed to position the dropdown content */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Dropdown Content (Hidden by Default) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #E6E6E6;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 10000;
+        }
+
+        /* Links inside the dropdown */
+        .dropdown-content a {
+            color: #39393A;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {background-color: #ddd;}
+
+        /* Show the dropdown menu on hover */
+        .dropdown:hover .dropdown-content {display: block;}
+
+        /* Change the background color of the dropdown button when the dropdown content is shown */
+        .dropdown:hover .dropbtn {background-color: #FF8552;}
     </style>
     
     <body>
@@ -24,10 +115,10 @@
             <div class="row">
                 
                 <!-- Left side panel for site navigation-->
-                <div class="col-lg-2">
+                <div class="col-lg-2" id="leftBar">
                     <div class="bg-navigation"></div>
                     <form class="form-horizontal" role="form" id="navigationForm">
-                        
+                        <img src="img/PageBackground.jpeg" alt="HikingVentures" id="logoPage">
                         <input type="image" src="img/Trips.png" alt="Trips" title="Hiking Trips" class="navigationButtons" id="tripsButton">
                         <h5 class="navigationTitles" id="tripsTitle">Hiking Trips</h5>
                         <input type="image" src="img/Trails.png" alt="Trails" title="Trails" class="navigationButtons" id="trailsButton">
@@ -48,14 +139,136 @@
                 <!-- Main Page Content-->
                 <div class="col-lg-10">
                     <div class="row">
-                        <div class="col-md-6">
-                            <h2>Hiking Trips Overview</h2>
-                        </div>
-                        <div class="col-md-4">
-                            <hr>
+                        <div class="col-lg-10">
+                            <div class="pageHeader">
+                                <div class="pageTitle">
+                                    <h2>Hiking Trips Overview</h2>
+                                </div>
+                                <div class="divider"></div>
+                            </div>
                         </div>
                     </div>
                     
+                    <div class="row">
+                        <div class="col-md-offset-1 col-md-4">
+                            <div class="tripCard">
+                                <div class="row">
+                                    <img src="img/PageBackground.jpeg" class="card-img-top" alt="...">
+                                </div>
+                                <div class="tripCardHeader">Trip Name</div>
+                                <div class="tripCardBody">
+                                    <p class="tripCardText">Location: </p>
+                                    <p class="tripCardText">Start Date: </p>
+                                    <p class="tripCardText">End Date: </p>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p class="tripCardText">Cost Per Traveler: </p>
+                                        </div>
+                                        <div class="col-md-offset-3 col-md-1">
+                                            <div class="dropdown">
+                                                <button class="dropbtn">+</button>
+                                                <div class="dropdown-content">
+                                                    <a href="#">View More Details</a>
+                                                    <a href="#">Edit</a>
+                                                    <a href="#">Delete</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-offset-1 col-md-4">
+                            <div class="tripCard">
+                                <div class="row">
+                                    <img src="img/PageBackground.jpeg" class="card-img-top" alt="...">
+                                </div>
+                                <div class="tripCardHeader">Trip Name</div>
+                                <div class="tripCardBody">
+                                    <p class="tripCardText">Location: </p>
+                                    <p class="tripCardText">Start Date: </p>
+                                    <p class="tripCardText">End Date: </p>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p class="tripCardText">Cost Per Traveler: </p>
+                                        </div>
+                                        <div class="col-md-offset-3 col-md-1">
+                                            <div class="dropdown">
+                                                <button class="dropbtn">+</button>
+                                                <div class="dropdown-content">
+                                                    <a href="#">View More Details</a>
+                                                    <a href="#">Edit</a>
+                                                    <a href="#">Delete</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-offset-1 col-md-4">
+                            <div class="tripCard">
+                                <div class="row">
+                                    <img src="img/PageBackground.jpeg" class="card-img-top" alt="...">
+                                </div>
+                                <div class="tripCardHeader">Trip Name</div>
+                                <div class="tripCardBody">
+                                    <p class="tripCardText">Location: </p>
+                                    <p class="tripCardText">Start Date: </p>
+                                    <p class="tripCardText">End Date: </p>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p class="tripCardText">Cost Per Traveler: </p>
+                                        </div>
+                                        <div class="col-md-offset-3 col-md-1">
+                                            <div class="dropdown">
+                                                <button class="dropbtn">+</button>
+                                                <div class="dropdown-content">
+                                                    <a href="#">View More Details</a>
+                                                    <a href="#">Edit</a>
+                                                    <a href="#">Delete</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-offset-1 col-md-4">
+                            <div class="tripCard">
+                                <div class="row">
+                                    <img src="img/PageBackground.jpeg" class="card-img-top" alt="...">
+                                </div>
+                                <div class="tripCardHeader">Trip Name</div>
+                                <div class="tripCardBody">
+                                    <p class="tripCardText">Location: </p>
+                                    <p class="tripCardText">Start Date: </p>
+                                    <p class="tripCardText">End Date: </p>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p class="tripCardText">Cost Per Traveler: </p>
+                                        </div>
+                                        <div class="col-md-offset-3 col-md-1">
+                                            <div class="dropdown">
+                                                <button class="dropbtn">+</button>
+                                                <div class="dropdown-content">
+                                                    <a href="#">View More Details</a>
+                                                    <a href="#">Edit</a>
+                                                    <a href="#">Delete</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

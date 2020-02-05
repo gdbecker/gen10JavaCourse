@@ -23,7 +23,7 @@ $(document).ready(function () {
     });
     
     $("#aboutButton").on("click", function() {
-        window.open("tripsHome.html");
+        window.open("about.html");
     });
     
     //Hovering over each menu button
@@ -32,7 +32,7 @@ $(document).ready(function () {
             $(this).css("border", "thin solid #87A330");
             $("#tripsTitle").css("opacity", "1");
         } else if ($(this).attr("id") == "trailsButton") {
-            $(this).css("border", "thin solid #87A330");
+            $(this).css("border", "medium solid #87A330");
             $("#trailsTitle").css("opacity", "1");
         } else if ($(this).attr("id") == "travelersButton") {
             $(this).css("border", "thin solid #87A330");
@@ -44,7 +44,7 @@ $(document).ready(function () {
             $(this).css("border", "thin solid #87A330");
             $("#locationsTitle").css("opacity", "1");
         } else if ($(this).attr("id") == "aboutButton") {
-            $(this).css("border", "medium solid #87A330");
+            $(this).css("border", "thin solid #87A330");
             $("#aboutTitle").css("opacity", "1");
         }
         
@@ -53,7 +53,7 @@ $(document).ready(function () {
             $(this).css("border", "none");
             $("#tripsTitle").css("opacity", "0");
         } else if ($(this).attr("id") == "trailsButton") {
-            $(this).css("border", "none");
+            $(this).css("border", "medium solid #87A330");
             $("#trailsTitle").css("opacity", "0");
         } else if ($(this).attr("id") == "travelersButton") {
             $(this).css("border", "none");
@@ -65,7 +65,7 @@ $(document).ready(function () {
             $(this).css("border", "none");
             $("#locationsTitle").css("opacity", "0");
         } else if ($(this).attr("id") == "aboutButton") {
-            $(this).css("border", "medium solid #87A330");
+            $(this).css("border", "none");
             $("#aboutTitle").css("opacity", "0");
         }
     });

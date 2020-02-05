@@ -21,4 +21,5 @@ public class Location {
     String parkName;
     String nearbyCity;
     String state;
+    String photoLink;
 }

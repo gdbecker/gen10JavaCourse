@@ -37,6 +37,7 @@ public class Trail {
     double distance;
     double elevationGain;
     String mapLink;
+    String photoLink;
     
     @ManyToMany
     @JoinTable(name = "Trip_Trail",

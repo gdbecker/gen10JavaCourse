@@ -8,34 +8,33 @@ Onyx: #39393A
 Old Moss Green: #87A330
 */
 
+
+/**********************************/
+/*ALL PAGES*/
 body {
     height: 100%;
 }
 
-/*Background image on all pages*/
-.bg-image {
+.container {
     position: fixed;
     left: 0;
     right: 0;
-    background-image: url("../img/PageBackground.jpeg");
-    
-    filter: blur(2px);
-    -webkit-filter: blur(4px);
-    
-    left: -15px;
-    right: -15px;
-    top: -15px;
-    bottom: -15px;
-    
-    height: 100%; 
-    
-    background-position: top;
-    background-repeat: no-repeat;
-    background-size: cover;
-    
-    transform: scale(1.5);
+    overflow: auto;
+    height: 100%;
 }
 
+#copyright {
+    color: #E6E6E6;
+    font-family: "Gill Sans";
+    text-align: center;
+    padding: 8px;
+    margin-left: auto;
+    margin-right: auto;
+    border: thin solid #E6E6E6; 
+}
+
+/**********************************/
+/*LOGIN PAGE*/
 .bg-image-index {
     position: fixed;
     left: 0;
@@ -59,37 +58,73 @@ body {
     transform: scale(1.5);
 }
 
-.container {
-    position: fixed;
-    left: 0;
-    right: 0;
-    overflow: auto;
-    height: 100%;
+#loginPageContent {
+    animation: fadeIn 3s;
+    border: medium solid #E6E6E6;
+    display: block;
 }
 
-/*
-.col-lg-2 {
-    border-right: medium solid #FF8552;
-}
-*/
-
-hr {
-    height: 5px;
-    margin-bottom: 10px;
-    
+#logoLogin {
+    width: 200px;
+    height: 200px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 40px;
+    margin-top: 40px;
 }
 
-.bg-navigation {
-    position:absolute;
-    left: -5px;
-    right: 0px;
-    height: 100%;
-    background: #39393A;
-    opacity: 0.7;
-    z-index: -3;
+#subtitleLogin {
+    color: #E6E6E6;
+    font-family: "Gill Sans";
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 5px;
+    margin-bottom: 14px;
 }
 
-/*HOME PAGE*/
+.loginSignIn {
+    color: #E6E6E6;
+    font-family: "Gill Sans";
+    text-align: center;
+    font-weight: bold;
+}
+
+.loginFormLabels {
+    color: #E6E6E6;
+    font-family: "Gill Sans";
+    text-align: center;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+#loginButton {
+    color: #E6E6E6;
+    font-family: "Gill Sans";
+    text-align: center;
+    font-weight: bold;
+    background: #297373;
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+
+/**********************************/
+/*HOME PAGE (MAIN MENU)*/
+.hrMenuBorder {
+    background: #E6E6E6;
+    height: 3px;
+    margin-bottom: 45px;
+}
+
+#logoMenu {
+    width: 170px;
+    height: 170px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 40px;
+}
+
 .mainMenuButtons {
     width: 130px;
     height: 130px;
@@ -105,7 +140,7 @@ hr {
 }
 
 .mainMenuTitles {
-    color: white;
+    color: #E6E6E6;
     font-family: "Gill Sans";
     text-transform:uppercase;
     padding-bottom: 5px;
@@ -113,6 +148,51 @@ hr {
     transition: 0.25s;
     text-align: center;
     margin-bottom: 40px;
+}
+
+/**********************************/
+/*CONTENT PAGES*/
+.bg-image {
+    position: fixed;
+    left: 0;
+    right: 0;
+    background-image: url("../img/BackgroundVideo3.mov");
+    
+    filter: blur(2px);
+    -webkit-filter: blur(4px);
+    
+    left: -15px;
+    right: -15px;
+    top: -15px;
+    bottom: -15px;
+    
+    height: 100%; 
+    
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    transform: scale(1.5);
+}
+
+#logoPage {
+    width: 150px;
+    height: 150px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 40px;
+    margin-top: 25px;
+}
+
+.bg-navigation {
+    position:absolute;
+    left: -5px;
+    right: 0px;
+    height: 100%;
+    background: #39393A;
+    opacity: 0.7;
+    z-index: -3;
 }
 
 .navigationButtons {
@@ -130,7 +210,7 @@ hr {
 }
 
 .navigationTitles {
-    color: white;
+    color: #E6E6E6;
     font-family: "Gill Sans";
     text-transform:uppercase;
     padding-bottom: 5px;
@@ -140,33 +220,41 @@ hr {
     margin-bottom: 40px;
 }
 
-#copyright {
-    color: white;
-    font-family: "Gill Sans";
-    text-align: center;
-    padding: 8px;
-    margin-left: auto;
-    margin-right: auto;
-    border: thin solid snow; 
+.pageHeader {
+    animation: fadeInLeft 1.5s;
+    display:flex;
+    flex-direction:row;
+    align-items: center;
+}
+
+.pageTitle {
+    flex-grow:0;
+}
+
+.divider {
+    flex-grow: 1;
+    height: 3px;
+    background-color: #39393A;
+    margin-left: 15px;
+    margin-bottom: 15px;
 }
 
 h2 {
-    color: white;
+    color: #39393A;
     font-family: "Gill Sans";
     font-weight: bold;
     text-transform: uppercase;
     padding-bottom: 25px;
-    border-bottom: medium solid snow; 
 }
 
 h3 {
-    color: white;
+    color: #E6E6E6;
     font-family: "Gill Sans";
     padding-bottom: 5px;
 }
 
 p {
-    color: white;
+    color: #E6E6E6;
     font-family: "Gill Sans";
     padding-bottom: 15px;
 }
@@ -177,3 +265,42 @@ p {
     display: block;
     margin-left: 18px;
 }
+
+/**********************************/
+/*ANIMATION EFFECTS*/
+@keyframes bounceIn {
+  0% {
+      transform: scale(0.1);
+      opacity: 0;
+    }
+    60% {
+      transform: scale(1.2);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+    }
+}
+
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
+    }
+    60% {
+        opacity: 0.6;
+    }
+    100% {
+      opacity: 1;
+    } 
+}
+
+@keyframes fadeInLeft {
+   0% {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+} 

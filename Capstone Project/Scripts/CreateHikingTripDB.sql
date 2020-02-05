@@ -55,7 +55,8 @@ create table if not exists Location (
 	LocationID int primary key auto_increment,
     ParkName varchar(30) not null,
     NearbyCity varchar(20) not null,
-    State varchar(2) not null
+    State varchar(2) not null,
+    PhotoLink varchar(100) not null
 );
 
 create table if not exists RouteType (
@@ -76,7 +77,8 @@ create table if not exists Trail (
 		references RouteType(RouteTypeID),
 	Distance double not null,
     ElevationGain double not null,
-    MapLink varchar(200) not null
+    MapLink varchar(200) not null,
+    PhotoLink varchar(100) not null
 );
 
 create table if not exists Trip_Trail (
