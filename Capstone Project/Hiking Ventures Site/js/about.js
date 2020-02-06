@@ -7,19 +7,19 @@ $(document).ready(function () {
     });
     
     $("#trailsButton").on("click", function() {
-        window.open("about.html");
+        window.open("trailsHome.html");
     });
     
     $("#travelersButton").on("click", function() {
-        window.open("about.html");
+        window.open("travelersHome.html");
     });
     
     $("#equipmentButton").on("click", function() {
-        window.open("about.html");
+        window.open("equipmentHome.html");
     });
     
     $("#locationsButton").on("click", function() {
-        window.open("about.html");
+        window.open("locationshome.html");
     });
     
     $("#aboutButton").on("click", function() {

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Hiking Ventures: Trails</title>
+        <title>Hiking Ventures: Locations</title>
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/site.css" rel="stylesheet">
@@ -18,15 +18,15 @@
         Old Moss Green: #87A330
         */
         
-        #trailsButton {
+        #locationsButton {
             border: medium solid #87A330;
         }
         
-        #trailsTitle {
+        #locationsTitle {
             opacity: 1;
         }
         
-        .trailCard {
+        .locationCard {
             background-image: url(img/PageBackground.jpeg);
             position: relative;
             width: 800px;
@@ -37,21 +37,20 @@
             margin-bottom: 50px;
         }
         
-        .trailCardText {
+        .locationCardText {
             color: #E6E6E6;
             font-family: "Gill Sans";
             font-weight: bold;
             text-transform: uppercase;
             font-size: 20px;
             margin-top: 30px;
-            margin-right: 25px;
-            text-align: right;
+            margin-left: 25px;
+            text-align: left;
         }
         
-        .trailCardButtons {
+        .locationCardButtons {
             width: 40px;
             height: 25px;
-            display: block;
             margin-left: 20px;
             margin-top: 60px;
         }
@@ -66,7 +65,6 @@
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
             margin-top: 9px;
-            margin-left: auto;
             margin-right: auto;
         }
 
@@ -100,13 +98,13 @@
                         <img src="img/PageBackground.jpeg" alt="HikingVentures" id="logoPage">
                         <input type="image" src="img/Trips.png" alt="Trips" title="Hiking Trips" class="navigationButtons" id="tripsButton">
                         <h5 class="navigationTitles" id="tripsTitle">Hiking Trips</h5>
-                        <input type="image" src="img/TrailsSelected.png" alt="Trails" title="Trails" class="navigationButtons" id="trailsButton">
+                        <input type="image" src="img/Trails.png" alt="Trails" title="Trails" class="navigationButtons" id="trailsButton">
                         <h5 class="navigationTitles" id="trailsTitle">Trails</h5>
                         <input type="image" src="img/Travelers.png" alt="Travelers" title="Travelers" class="navigationButtons" id="travelersButton">
                         <h5 class="navigationTitles" id="travelersTitle">Travelers</h5>
                         <input type="image" src="img/Equipment.png" alt="Equipment" title="Equipment" class="navigationButtons" id="equipmentButton">
                         <h5 class="navigationTitles" id="equipmentTitle">Equipment</h5>
-                        <input type="image" src="img/Locations.png" alt="Locations" title="Locations" class="navigationButtons" id="locationsButton">
+                        <input type="image" src="img/LocationsSelected.png" alt="Locations" title="Locations" class="navigationButtons" id="locationsButton">
                         <h5 class="navigationTitles" id="locationsTitle">Locations</h5>
                         <input type="image" src="img/About.png" alt="About" title="About Us" class="navigationButtons" id="aboutButton">
                         <h5 class="navigationTitles" id="aboutTitle">About</h5>
@@ -122,68 +120,66 @@
                             <div class="col-md-11">
                                 <div class="pageHeader">
                                     <div class="pageTitle">
-                                        <h2>Trails Information</h2>
+                                        <h2>Locations Information</h2>
                                     </div>
                                 <div class="divider"></div>
                                 </div>
                             </div>
                             <div class="col-md-1">
                                 <div class="pageHeader">
-                                    <input type="image" src="img/PlusBlack.png" alt="Create" title="Create New Trip" class="pageHeaderButtons" id="createNewTrailButton">
-                                    <h5 class="pageHeaderTitles" id="createNewTrailTitle">Add a Trail</h5>
+                                    <input type="image" src="img/PlusBlack.png" alt="Create" title="Create New Trip" class="pageHeaderButtons" id="createNewLocationButton">
+                                    <h5 class="pageHeaderTitles" id="createNewLocationTitle">Add a Location</h5>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
                     <div class="row">
-                        <div class="trailCard">
-                            <div class="row" id="trailCardInfo">
-                                <div class="col-md-1">
-                                    <input type="image" src="img/MenuBar.png" alt="View More Options" title="View More Options" class="trailCardButtons" id="TrailID1" onclick="showMoreOptionsMenu(id)">
+                        <div class="locationCard">
+                            <div class="row" id="locationCardInfo">
+                                <div class="col-md-8">
+                                    <div class="locationCardText">Trail Name</div>
+                                    <div class="locationCardText">Location</div>
                                 </div>
                                 
-                                <div class="col-md-3">
-                                    <div class="dropDownMenu" id="dropDownMenuTrailID1">
+                                <div class="col-md-2">
+                                    <div class="dropDownMenu" id="dropDownMenuLocationID1">
                                         <a href="#">View More Details</a>
                                         <a href="#">Edit</a>
                                         <a href="#">Delete</a>
                                     </div>
                                 </div>
                                 
-                                <div class="col-md-11">
-                                    <div class="trailCardText">Trail Name</div>
-                                    <div class="trailCardText">Location</div>
+                                <div class="col-md-2">
+                                    <input type="image" src="img/MenuBar.png" alt="View More Options" title="View More Options" class="locationCardButtons" id="LocationID1" onclick="showMoreOptionsMenu(id)">
                                 </div>
-                                
-                                
                             </div> 
                         </div>
                     </div>
+                    
                     <div class="row">
-                        <div class="trailCard">
-                            <div class="row" id="trailCardInfo">
-                                <div class="col-md-1">
-                                    <input type="image" src="img/MenuBar.png" alt="View More Options" title="View More Options" class="trailCardButtons" id="TrailID2" onclick="showMoreOptionsMenu(id)">
+                        <div class="locationCard">
+                            <div class="row" id="locationCardInfo">
+                                <div class="col-md-8">
+                                    <div class="locationCardText">Trail Name</div>
+                                    <div class="locationCardText">Location</div>
                                 </div>
                                 
-                                <div class="col-md-3">
-                                    <div class="dropDownMenu" id="dropDownMenuTrailID2">
+                                <div class="col-md-2">
+                                    <div class="dropDownMenu" id="dropDownMenuLocationID2">
                                         <a href="#">View More Details</a>
                                         <a href="#">Edit</a>
                                         <a href="#">Delete</a>
                                     </div>
                                 </div>
                                 
-                                <div class="col-md-11">
-                                    <div class="trailCardText">Trail Name</div>
-                                    <div class="trailCardText">Location</div>
+                                <div class="col-md-2">
+                                    <input type="image" src="img/MenuBar.png" alt="View More Options" title="View More Options" class="locationCardButtons" id="LocationID2" onclick="showMoreOptionsMenu(id)">
                                 </div>
-                                
-                                
                             </div> 
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -191,6 +187,6 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="js/jquery-2.2.4.min.js"></script>
         <script src="js/bootstrap.js"></script>
-        <script src="js/trailsHome.js"></script>
+        <script src="js/locationsHome.js"></script>
     </body>
 </html>

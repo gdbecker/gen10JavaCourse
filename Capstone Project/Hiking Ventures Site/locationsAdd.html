@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Hiking Ventures: Trails</title>
+        <title>Add Location</title>
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/site.css" rel="stylesheet">
@@ -18,42 +18,44 @@
         Old Moss Green: #87A330
         */
         
-        #trailsButton {
+        #locationsButton {
             border: medium solid #87A330;
         }
         
-        #trailsTitle {
-            opacity: 1;
+        #formArea {
+            background: #E9D758;
+            opacity: 0.7;
+            margin-left: 10px;
+            padding: 10px;
         }
         
-        .trailCard {
-            background-image: url(img/PageBackground.jpeg);
-            position: relative;
-            width: 800px;
-            height: 150px;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 50px;
-        }
-        
-        .trailCardText {
-            color: #E6E6E6;
+        .formLabels {
+            color: #39393A;
             font-family: "Gill Sans";
             font-weight: bold;
             text-transform: uppercase;
-            font-size: 20px;
-            margin-top: 30px;
-            margin-right: 25px;
-            text-align: right;
+            padding-left: 10px;
+            font-size: 16px;
         }
         
-        .trailCardButtons {
-            width: 40px;
-            height: 25px;
-            display: block;
-            margin-left: 20px;
-            margin-top: 60px;
+        #parkNameBox {
+            width: 500px;
+            margin-left: 10px;
+        }
+        
+        #nearbyCityBox {
+            width: 250px;
+            margin-left: 10px;
+        }
+        
+        #stateBox {
+            width: 50px;
+            margin-left: 10px;
+        }
+        
+        #addLocationButton {
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
 
         .dropDownMenu {
@@ -66,7 +68,6 @@
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
             margin-top: 9px;
-            margin-left: auto;
             margin-right: auto;
         }
 
@@ -100,13 +101,13 @@
                         <img src="img/PageBackground.jpeg" alt="HikingVentures" id="logoPage">
                         <input type="image" src="img/Trips.png" alt="Trips" title="Hiking Trips" class="navigationButtons" id="tripsButton">
                         <h5 class="navigationTitles" id="tripsTitle">Hiking Trips</h5>
-                        <input type="image" src="img/TrailsSelected.png" alt="Trails" title="Trails" class="navigationButtons" id="trailsButton">
+                        <input type="image" src="img/Trails.png" alt="Trails" title="Trails" class="navigationButtons" id="trailsButton">
                         <h5 class="navigationTitles" id="trailsTitle">Trails</h5>
                         <input type="image" src="img/Travelers.png" alt="Travelers" title="Travelers" class="navigationButtons" id="travelersButton">
                         <h5 class="navigationTitles" id="travelersTitle">Travelers</h5>
                         <input type="image" src="img/Equipment.png" alt="Equipment" title="Equipment" class="navigationButtons" id="equipmentButton">
                         <h5 class="navigationTitles" id="equipmentTitle">Equipment</h5>
-                        <input type="image" src="img/Locations.png" alt="Locations" title="Locations" class="navigationButtons" id="locationsButton">
+                        <input type="image" src="img/LocationsSelected.png" alt="Locations" title="Locations" class="navigationButtons" id="locationsButton">
                         <h5 class="navigationTitles" id="locationsTitle">Locations</h5>
                         <input type="image" src="img/About.png" alt="About" title="About Us" class="navigationButtons" id="aboutButton">
                         <h5 class="navigationTitles" id="aboutTitle">About</h5>
@@ -122,66 +123,41 @@
                             <div class="col-md-11">
                                 <div class="pageHeader">
                                     <div class="pageTitle">
-                                        <h2>Trails Information</h2>
+                                        <h2>Add a Location</h2>
                                     </div>
                                 <div class="divider"></div>
                                 </div>
                             </div>
                             <div class="col-md-1">
                                 <div class="pageHeader">
-                                    <input type="image" src="img/PlusBlack.png" alt="Create" title="Create New Trip" class="pageHeaderButtons" id="createNewTrailButton">
-                                    <h5 class="pageHeaderTitles" id="createNewTrailTitle">Add a Trail</h5>
+                                    <input type="image" src="img/Back.png" alt="Create" title="Go Back" class="pageHeaderButtons" id="backButton">
+                                    <h5 class="pageHeaderTitles" id="backTitle">Go Back</h5>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="row">
-                        <div class="trailCard">
-                            <div class="row" id="trailCardInfo">
-                                <div class="col-md-1">
-                                    <input type="image" src="img/MenuBar.png" alt="View More Options" title="View More Options" class="trailCardButtons" id="TrailID1" onclick="showMoreOptionsMenu(id)">
+                    <div class="row" id="formArea">
+                        <div class="col-md-10">
+                            <div class="form-group">
+                            <form class="form-horizontal" role="form" id="addLocationForm">
+                                <div class="form-group row">
+                                    <h3 class="formLabels">Park Name</h3>
+                                    <input type="text" class="form-control" id="parkNameBox" />
                                 </div>
-                                
-                                <div class="col-md-3">
-                                    <div class="dropDownMenu" id="dropDownMenuTrailID1">
-                                        <a href="#">View More Details</a>
-                                        <a href="#">Edit</a>
-                                        <a href="#">Delete</a>
-                                    </div>
+                                <div class="form-group row">
+                                    <h3 class="formLabels">Nearby City</h3>
+                                    <input type="text" class="form-control" id="nearbyCityBox" />
                                 </div>
-                                
-                                <div class="col-md-11">
-                                    <div class="trailCardText">Trail Name</div>
-                                    <div class="trailCardText">Location</div>
+                                <div class="form-group row">
+                                    <h3 class="formLabels">State</h3>
+                                    <input type="text" class="form-control" id="stateBox" />
                                 </div>
-                                
-                                
-                            </div> 
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="trailCard">
-                            <div class="row" id="trailCardInfo">
-                                <div class="col-md-1">
-                                    <input type="image" src="img/MenuBar.png" alt="View More Options" title="View More Options" class="trailCardButtons" id="TrailID2" onclick="showMoreOptionsMenu(id)">
+                                <div class="col-md-8">
+                                    <button type="button" id="addLocationButton" class="btn">Add Location</button>
                                 </div>
-                                
-                                <div class="col-md-3">
-                                    <div class="dropDownMenu" id="dropDownMenuTrailID2">
-                                        <a href="#">View More Details</a>
-                                        <a href="#">Edit</a>
-                                        <a href="#">Delete</a>
-                                    </div>
-                                </div>
-                                
-                                <div class="col-md-11">
-                                    <div class="trailCardText">Trail Name</div>
-                                    <div class="trailCardText">Location</div>
-                                </div>
-                                
-                                
-                            </div> 
+                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -191,6 +167,6 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="js/jquery-2.2.4.min.js"></script>
         <script src="js/bootstrap.js"></script>
-        <script src="js/trailsHome.js"></script>
+        <script src="js/locationsAdd.js"></script>
     </body>
 </html>

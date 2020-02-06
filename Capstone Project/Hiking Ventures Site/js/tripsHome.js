@@ -3,15 +3,15 @@ $(document).ready(function () {
     
     //Add functionality for each menu button - be able to access each page
     $("#tripsButton").on("click", function() {
-        window.open("about.html");
+        window.open("tripsHome.html");
     });
     
     $("#trailsButton").on("click", function() {
-        window.open("about.html");
+        window.open("trailsHome.html");
     });
     
     $("#travelersButton").on("click", function() {
-        window.open("about.html");
+        window.open("travelersHome.html");
     });
     
     $("#equipmentButton").on("click", function() {
@@ -25,6 +25,13 @@ $(document).ready(function () {
     $("#aboutButton").on("click", function() {
         window.open("about.html");
     });
+    
+    //Add functionality for page header buttons
+    $("#createNewTripButton").on("click", function() {
+        window.open("about.html");
+    });
+    
+    $(".dropDownMenu").hide();
     
     //Hovering over each menu button
     $(".navigationButtons").hover(function() {
@@ -51,7 +58,7 @@ $(document).ready(function () {
     }, function() {
         if($(this).attr("id") == "tripsButton") {
             $(this).css("border", "medium solid #87A330");
-            $("#tripsTitle").css("opacity", "0");
+            $("#tripsTitle").css("opacity", "1");
         } else if ($(this).attr("id") == "trailsButton") {
             $(this).css("border", "none");
             $("#trailsTitle").css("opacity", "0");
@@ -69,4 +76,22 @@ $(document).ready(function () {
             $("#aboutTitle").css("opacity", "0");
         }
     });
+    
+    //Hovering over buttons at top of page
+    $(".pageHeaderButtons").hover(function() {
+        if($(this).attr("id") == "createNewTripButton") {
+            $(this).css("border", "medium solid #87A330");
+            $("#createNewTripTitle").css("opacity", "1");
+        }
+        
+    }, function() {
+        if($(this).attr("id") == "createNewTripButton") {
+            $(this).css("border", "none");
+            $("#createNewTripTitle").css("opacity", "0"); 
+        }
+    });
 });
+
+function showMoreOptionsMenu(id) {
+    $("#dropDownMenu" + id).toggle();
+}
