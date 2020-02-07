@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Add Location</title>
+        <title>View Location Details</title>
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/site.css" rel="stylesheet">
@@ -57,25 +57,50 @@
             margin-left: 10px;
         }
         
-        #filePath {
-            color: #39393A;
+        #trailTable {
             font-family: "Gill Sans";
-            margin-left: 10px;
         }
         
-        #parkImageHelp {
-            color: #39393A;
+        #tripTable {
             font-family: "Gill Sans";
-            font-size: 14px;
-            margin-right: 20px;
         }
         
-        #addLocationButton {
+        #editButton {
             color: #39393A;
             font-family: "Gill Sans";
             margin-top: 10px;
             margin-bottom: 10px;
-            margin-left: -7px;
+            margin-left: -10px;
+        }
+        
+        #deleteButton {
+            color: #E6E6E6;
+            font-family: "Gill Sans";
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: 10px;
+        }
+        
+        .locationCard {
+            background-image: url(img/PageBackground.jpeg);
+            position: relative;
+            width: 800px;
+            height: 150px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 50px;
+        }
+        
+        .locationCardText {
+            color: #E6E6E6;
+            font-family: "Gill Sans";
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 20px;
+            margin-top: 60px;
+            margin-left: 25px;
+            text-align: center;
         }
     </style>
     
@@ -118,7 +143,7 @@
                             <div class="col-md-11">
                                 <div class="pageHeader">
                                     <div class="pageTitle">
-                                        <h2>Add a Location</h2>
+                                        <h2>View Location Details</h2>
                                     </div>
                                 <div class="divider"></div>
                                 </div>
@@ -132,36 +157,95 @@
                         </div>
                     </div>
                     
+                    <div class="row">
+                        <div class="locationCard">
+                            <div class="row" id="locationCardInfo">
+                                <div class="col-md-12">
+                                    <div class="locationCardText" th:value="${location.parkName}">Park Name</div>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                    
                     <div class="row" id="formArea">
                         <div class="col-md-10">
                             <div class="form-group">
-                            <form class="form-horizontal" role="form" id="addLocationForm">
+                            <form class="form-horizontal" role="form" id="viewLocationForm">
                                 <div class="form-group row">
                                     <div class="col-sm-12">
                                         <h3 class="formLabels">Park Name</h3>
-                                        <input type="text" class="form-control" id="parkNameBox" />
+                                        <input type="text" class="form-control" id="parkNameBox" th:value="${location.parkName}" readonly/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-12">
                                         <h3 class="formLabels">Nearby City</h3>
-                                        <input type="text" class="form-control" id="nearbyCityBox" />
-                                    </div>
+                                        <input type="text" class="form-control" id="nearbyCityBox" th:value="${location.nearbyCity}" readonly/>
+                                    </div> 
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-12">
                                         <h3 class="formLabels">State</h3>
-                                        <input type="text" class="form-control" id="stateBox" />
+                                        <input type="text" class="form-control" id="stateBox" th:value="${location.state}" readonly/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-sm-5">
-                                        <h3 class="formLabels">Park Image (.png or .jpg)</h3>
-                                        <input type="file" id="filePath" accept=".jpg, .png">
+                                    <div class="col-sm-12">
+                                        <h3 class="formLabels">Trails in this Location</h3>
+                                        <div class="col text-left">
+                                            <table class="table table-striped" id="trailTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Trail Name</th>
+                                                        <th>Distance (ft)</th>
+                                                        <th>Elevation Gain (ft)</th>
+                                                        <th>Route Type</th>
+                                                        <th>Difficulty Rating</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Name</td>
+                                                        <td>Distance</td>
+                                                        <td>Gain</td>
+                                                        <td>Type</td>
+                                                        <td>Rating</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
+                                
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <h3 class="formLabels">Hiking Trips in this Location</h3>
+                                        <div class="col text-left">
+                                            <table class="table table-striped" id="tripTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Trip Name</th>
+                                                        <th>Cost Per Person</th>
+                                                        <th>Start Date</th>
+                                                        <th>End Date</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Name</td>
+                                                        <td>Cost</td>
+                                                        <td>Start</td>
+                                                        <td>End</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                                 <div class="col-md-8">
-                                    <button type="submit" id="addLocationButton" class="btn btn-default">Add Location</button>
+                                    <button id="editButton" class="btn btn-default">Edit</button>
+                                    <button id="deleteButton" class="btn btn-danger">Delete</button>
                                 </div>
                             </form>
                             </div>
@@ -174,6 +258,6 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="js/jquery-2.2.4.min.js"></script>
         <script src="js/bootstrap.js"></script>
-        <script src="js/locationsAdd.js"></script>
+        <script src="js/locationsViewDetails.js"></script>
     </body>
 </html>

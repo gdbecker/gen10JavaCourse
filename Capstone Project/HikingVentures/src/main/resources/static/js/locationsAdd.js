@@ -26,7 +26,7 @@ $(document).ready(function () {
     
     //Add functionality for page header buttons
     $("#backButton").on("click", function() {
-        window.open("locationsHome.html");
+        window.open("/locationsHome");
     });
         
     //Hovering over each menu button

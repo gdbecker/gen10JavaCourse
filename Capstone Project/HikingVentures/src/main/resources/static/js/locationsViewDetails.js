@@ -1,4 +1,6 @@
 $(document).ready(function () {    
+    getLocationDetails();
+    
     //Add functionality for each menu button - be able to access each page
     $("#tripsButton").on("click", function() {
         window.open("tripsHome.html");
@@ -26,7 +28,7 @@ $(document).ready(function () {
     
     //Add functionality for page header buttons
     $("#backButton").on("click", function() {
-        window.open("locationsHome.html");
+        window.open("/locationsHome");
     });
         
     //Hovering over each menu button
@@ -87,3 +89,49 @@ $(document).ready(function () {
         }
     });
 });
+
+function getLocationDetails() {
+    //Get location details
+    $.ajax ({
+        type: 'GET',
+        url: '/getAllLocations',
+        success: function (data, status) {
+            $.each(data, function (index, Location) {
+                var id = Location.locationID;
+                var name = Location.parkName;
+                var city = Location.nearbyCity;
+                var state = Location.state;
+                var pic = Location.photoLink;
+                
+                var toAdd = '<div class="row">';
+                    toAdd += '<div class="locationCard" style="background-image: url(img/' + pic + ');">';
+                    toAdd += '<div class="row" id="locationCardInfo">';
+                    toAdd += '<div class="col-md-8">';
+                    toAdd += '<div class="locationCardText">' + name + '</div>';
+                    toAdd += '</div>';
+                    toAdd += '<div class="col-md-2">';
+                    toAdd += '<div class="dropDownMenu" id="dropDownMenu' + id + '">';
+                    toAdd += '<a onclick=window.open("/locationsViewDetails/' + id + ')">View More Details</a>';
+                    toAdd += '<a href="#">Edit</a>';
+                    toAdd += '<a href="#">Delete</a>';
+                    toAdd += '</div>';
+                    toAdd += '</div>';
+                    toAdd += '<div class="col-md-2">';
+                    toAdd += '<input type="image" src="img/MenuBar.png" alt="View More Options"';
+                    toAdd += 'title="View More Options" class="locationCardButtons"';
+                    toAdd += 'id="' + id + '" onclick="showMoreOptionsMenu(id)">';
+                    toAdd += '</div>';
+                    toAdd += '</div>';
+                    toAdd += '</div>';
+                    toAdd += '</div>';
+                $("#locationsDiv").append(toAdd);
+            });
+        },
+        error: function() {
+            $('#errorMessages')
+                .append($('<li>')
+                .attr({class: 'list-group-item list-group-item-danger'})
+                .text('Error calling web service.  Please try again later.'));
+        }
+    });
+}

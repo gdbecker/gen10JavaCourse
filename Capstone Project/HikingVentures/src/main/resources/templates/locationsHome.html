@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Hiking Ventures: Locations</title>
         <!-- Bootstrap core CSS -->
@@ -28,6 +28,8 @@
         
         .locationCard {
             position: relative;
+            background-position: center;
+            background-size: cover;
             width: 800px;
             height: 150px;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -56,7 +58,6 @@
 
         .dropDownMenu {
             font-family: "Gill Sans";
-            position: fixed;
             background-color: #E6E6E6;
             opacity: 0.9;
             min-width: 100px;
@@ -138,6 +139,7 @@
                     
                     </div>
                     
+                    <!-- Example of Location Card
                     <div class="row">
                         <div class="locationCard" style="background-image: url(img/PageBackground.jpeg);">
                             <div class="row" id="locationCardInfo">
@@ -158,29 +160,7 @@
                                 </div>
                             </div> 
                         </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="locationCard">
-                            <div class="row" id="locationCardInfo">
-                                <div class="col-md-8">
-                                    <div class="locationCardText">Park Name</div>
-                                </div>
-                                
-                                <div class="col-md-2">
-                                    <div class="dropDownMenu" id="dropDownMenuLocationID2">
-                                        <a href="#">View More Details</a>
-                                        <a href="#">Edit</a>
-                                        <a href="#">Delete</a>
-                                    </div>
-                                </div>
-                                
-                                <div class="col-md-2">
-                                    <input type="image" src="img/MenuBar.png" alt="View More Options" title="View More Options" class="locationCardButtons" id="LocationID2" onclick="showMoreOptionsMenu(id)">
-                                </div>
-                            </div> 
-                        </div>
-                    </div>
+                    </div> -->
                     
                 </div>
             </div>

@@ -53,10 +53,10 @@ create table if not exists Trip_Equipment (
 
 create table if not exists Location (
 	LocationID int primary key auto_increment,
-    ParkName varchar(30) not null,
-    NearbyCity varchar(20) not null,
+    park_name varchar(100) not null,
+    nearby_city varchar(20) not null,
     State varchar(2) not null,
-    PhotoLink varchar(100) not null
+    photo_link varchar(100) not null
 );
 
 create table if not exists RouteType (
@@ -90,3 +90,8 @@ create table if not exists Trip_Trail (
 	foreign key pk_Trip_Trail_Trail (TrailID)
 		references Trail(TrailID)
 );
+
+insert into Location(park_name, nearby_city, State, photo_link) values
+('Great Smoky Mountains National Park', 'Cherokee', 'NC', 'GreatSmokyMountains.jpg'),
+('Cherokee National Forest', 'Boone', 'NC', 'CherokeeNationalForest.jpg'),
+('Uwharrie National Forest', 'Albemarle', 'NC', 'UwharrieNationalForest.jpg');

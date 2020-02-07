@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Hiking Ventures: Locations</title>
+        <title>Add Location</title>
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/site.css" rel="stylesheet">
@@ -26,58 +26,57 @@
             opacity: 1;
         }
         
-        .locationCard {
-            position: relative;
-            width: 800px;
-            height: 150px;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 50px;
+        #formArea {
+            background: #E9D758;
+            opacity: 0.9;
+            margin-left: 10px;
+            padding: 10px;
         }
         
-        .locationCardText {
-            color: #E6E6E6;
+        .formLabels {
+            color: #39393A;
             font-family: "Gill Sans";
             font-weight: bold;
             text-transform: uppercase;
-            font-size: 20px;
-            margin-top: 60px;
-            margin-left: 25px;
-            text-align: left;
+            padding-left: 10px;
+            font-size: 16px;
         }
         
-        .locationCardButtons {
-            width: 40px;
-            height: 25px;
-            margin-left: 20px;
-            margin-top: 60px;
+        #parkNameBox {
+            width: 500px;
+            margin-left: 10px;
         }
-
-        .dropDownMenu {
-            font-family: "Gill Sans";
-            position: fixed;
-            background-color: #E6E6E6;
-            opacity: 0.9;
-            min-width: 100px;
-            max-width: 150px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-            margin-top: 9px;
-            margin-right: auto;
+        
+        #nearbyCityBox {
+            width: 250px;
+            margin-left: 10px;
         }
-
-        .dropDownMenu a {
+        
+        #stateBox {
+            width: 50px;
+            margin-left: 10px;
+        }
+        
+        #filePath {
             color: #39393A;
-            padding: 12px 16px;
-            text-decoration: none;
-            text-align: left;
-            display: block;
+            font-family: "Gill Sans";
+            margin-left: 10px;
         }
         
-        /* Change color of dropdown links on hover */
-        .dropDownMenu a:hover {background-color: #ddd;}
+        #parkImageHelp {
+            color: #39393A;
+            font-family: "Gill Sans";
+            font-size: 14px;
+            margin-right: 20px;
+        }
         
+        #addLocationButton {
+            color: #39393A;
+            font-family: "Gill Sans";
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: -7px;
+        }
     </style>
     
     <body>
@@ -119,69 +118,55 @@
                             <div class="col-md-11">
                                 <div class="pageHeader">
                                     <div class="pageTitle">
-                                        <h2>Locations Information</h2>
+                                        <h2>Add a Location</h2>
                                     </div>
                                 <div class="divider"></div>
                                 </div>
                             </div>
                             <div class="col-md-1">
                                 <div class="pageHeader">
-                                    <input type="image" src="img/PlusBlack.png" alt="Create" title="Create New Trip" class="pageHeaderButtons" id="createNewLocationButton">
-                                    <h5 class="pageHeaderTitles" id="createNewLocationTitle">Add a Location</h5>
+                                    <input type="image" src="img/Back.png" alt="Create" title="Go Back" class="pageHeaderButtons" id="backButton">
+                                    <h5 class="pageHeaderTitles" id="backTitle">Go Back</h5>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Place to import all locations into the page -->
-                    <div id="locationsDiv">
-                    
-                    </div>
-                    
-                    <div class="row">
-                        <div class="locationCard" style="background-image: url(img/PageBackground.jpeg);">
-                            <div class="row" id="locationCardInfo">
-                                <div class="col-md-8">
-                                    <div class="locationCardText">Park Name</div>
-                                </div>
-                                
-                                <div class="col-md-2">
-                                    <div class="dropDownMenu" id="dropDownMenuLocationID1">
-                                        <a href="#">View More Details</a>
-                                        <a href="#">Edit</a>
-                                        <a href="#">Delete</a>
+                    <div class="row" id="formArea">
+                        <div class="col-md-10">
+                            <div class="form-group">
+                            <form class="form-horizontal" role="form" id="addLocationForm">
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <h3 class="formLabels">Park Name</h3>
+                                        <input type="text" class="form-control" id="parkNameBox" />
                                     </div>
                                 </div>
-                                
-                                <div class="col-md-2">
-                                    <input type="image" src="img/MenuBar.png" alt="View More Options" title="View More Options" class="locationCardButtons" id="LocationID1" onclick="showMoreOptionsMenu(id)">
-                                </div>
-                            </div> 
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="locationCard">
-                            <div class="row" id="locationCardInfo">
-                                <div class="col-md-8">
-                                    <div class="locationCardText">Park Name</div>
-                                </div>
-                                
-                                <div class="col-md-2">
-                                    <div class="dropDownMenu" id="dropDownMenuLocationID2">
-                                        <a href="#">View More Details</a>
-                                        <a href="#">Edit</a>
-                                        <a href="#">Delete</a>
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <h3 class="formLabels">Nearby City</h3>
+                                        <input type="text" class="form-control" id="nearbyCityBox" />
                                     </div>
                                 </div>
-                                
-                                <div class="col-md-2">
-                                    <input type="image" src="img/MenuBar.png" alt="View More Options" title="View More Options" class="locationCardButtons" id="LocationID2" onclick="showMoreOptionsMenu(id)">
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <h3 class="formLabels">State</h3>
+                                        <input type="text" class="form-control" id="stateBox" />
+                                    </div>
                                 </div>
-                            </div> 
+                                <div class="form-group row">
+                                    <div class="col-sm-5">
+                                        <h3 class="formLabels">Park Image (.png or .jpg)</h3>
+                                        <input type="file" id="filePath" accept=".jpg, .png">
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <button type="submit" id="addLocationButton" class="btn btn-default">Add Location</button>
+                                </div>
+                            </form>
+                            </div>
                         </div>
                     </div>
-                    
                 </div>
             </div>
         </div>
@@ -189,6 +174,6 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="js/jquery-2.2.4.min.js"></script>
         <script src="js/bootstrap.js"></script>
-        <script src="js/locationsHome.js"></script>
+        <script src="js/locationsAdd.js"></script>
     </body>
 </html>
