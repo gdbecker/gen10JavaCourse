@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hiking Ventures: About</title>
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/site.css" rel="stylesheet">
+    </head>
+    
+    <style>
+        /*
+        Color Palette:
+        Hansa Yellow: #E9D758
+        Myrtle Green: #297373
+        Coral: #FF8552
+        Platinum: #E6E6E6
+        Onyx: #39393A
+        Old Moss Green: #87A330
+        */
+        
+        #aboutButton {
+            border: medium solid #87A330;
+        }
+        
+        #aboutTitle {
+            opacity: 1;
+        }
+        
+        #aboutContentBody {
+            background: #87A330;
+            opacity: 0.9;
+            margin-left: 7px;
+        }
+        
+        .aboutContent {
+            padding-top: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        
+        .aboutIcons {
+            width: 35px;
+            height: 35px;
+            display: block;
+            margin-left: 18px;
+        }
+    </style>
+    
+    <body>
+        <div class="bg-image"></div>
+        <div class="container">
+            <!-- Space for any error messages to pop up-->
+            <ul class="list-group" id="errorMessages"></ul>
+            
+            <!-- Add main row to page for main content-->
+            <div class="row">
+                <!-- Left side panel for site navigation-->
+                <div class="col-lg-2">
+                    <div class="bg-navigation"></div>
+                    <form class="form-horizontal" role="form" id="navigationForm">
+                        <img src="img/PageBackground.jpeg" alt="HikingVentures" id="logoPage">
+                        <input type="image" src="img/Trips.png" alt="Trips" title="Hiking Trips" class="navigationButtons" id="tripsButton">
+                        <h5 class="navigationTitles" id="tripsTitle">Hiking Trips</h5>
+                        <input type="image" src="img/Trails.png" alt="Trails" title="Trails" class="navigationButtons" id="trailsButton">
+                        <h5 class="navigationTitles" id="trailsTitle">Trails</h5>
+                        <input type="image" src="img/Travelers.png" alt="Travelers" title="Travelers" class="navigationButtons" id="travelersButton">
+                        <h5 class="navigationTitles" id="travelersTitle">Travelers</h5>
+                        <input type="image" src="img/Equipment.png" alt="Equipment" title="Equipment" class="navigationButtons" id="equipmentButton">
+                        <h5 class="navigationTitles" id="equipmentTitle">Equipment</h5>
+                        <input type="image" src="img/Locations.png" alt="Locations" title="Locations" class="navigationButtons" id="locationsButton">
+                        <h5 class="navigationTitles" id="locationsTitle">Locations</h5>
+                        <input type="image" src="img/About.png" alt="About" title="About Us" class="navigationButtons" id="aboutButton">
+                        <h5 class="navigationTitles" id="aboutTitle">About</h5>
+                    </form>
+                    <p id="copyright">&copy Copyright <br/>2020<br/>Garrett Becker</p>
+                    
+                </div>
+                
+                <!-- Main Page Content-->
+                <div class="col-lg-10">
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <div class="pageHeader">
+                                <div class="pageTitle">
+                                    <h2>About Hiking Ventures</h2>
+                                </div>
+                                <div class="divider"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="aboutContentBody">
+                        <h3 class="aboutContent">Who We Are</h3>
+                        <p class="aboutContent">Hiking Ventures is a robust, data-drive web application designed to make your life as simple as possible when it comes to planning your hiking trips. Take the stress and hassle out of planning by using our sophisticated system and data. We get it - you're out there wanting to make memories, have fun, and not worry about the little details. Using Hiking Ventures will streamline your planning so that you can escape the everyday and go on the trip of your dreams.</p>
+                    
+                        <h3 class="aboutContent">How To Use This Site</h3>
+                        <p class="aboutContent">Take a look at the snapshot descriptions below to learn what Hiking Ventures is capable of to aid in your trip planning.</p>
+                    
+                        <div class="row">
+                            <div class="col-md-1">
+                                <img src="img/Trips.png" alt="Trips" class="aboutIcons">
+                            </div>
+                            <div class="col-md-10">
+                                <p>Go the <b>Hiking Trips</b> page to manage all of your trips. Create, view, edit, and delete your trips. You will be able to look at lists of travelers and equipment for each trip plus take a look at the map of the trip route.</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                <img src="img/Trails.png" alt="Trails" class="aboutIcons">
+                            </div>
+                            <div class="col-md-10">
+                                <p>The <b>Trails</b> page is the place to manage trails within the system, so add, view, edit, and delete trail information. Also take a look at location information for each trail and trips associated with each one.</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                <img src="img/Travelers.png" alt="Travelers" class="aboutIcons">
+                            </div>
+                            <div class="col-md-10">
+                                <p>Here on the <b>Travelers</b> page you will be able to add, view, edit, and delete information for each traveler in the system. Take a look at the all the trips the traveler has been on as well as future trips.</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                <img src="img/Equipment.png" alt="Equipment" class="aboutIcons">
+                            </div>
+                            <div class="col-md-10">
+                                <p>Go to the <b>Equipment</b> page to add, view, edit, and delete equipment information. Check out photos for each equipment available in the storeroom and trips associated with each equipment type.</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                <img src="img/Locations.png" alt="Locations" class="aboutIcons">
+                            </div>
+                            <div class="col-md-10">
+                                <p>The <b>Locations</b> page is the place to check out more detailed information regarding location specifics. Add, view, edit, and delete its information here. You will be able to see what trails and trips are happening in each location as well.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="js/jquery-2.2.4.min.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/about.js"></script>
+    </body>
+</html>

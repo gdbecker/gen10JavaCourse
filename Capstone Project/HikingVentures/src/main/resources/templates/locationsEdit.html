@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Edit Location</title>
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/site.css" rel="stylesheet">
+    </head>
+    
+    <style>
+        /*
+        Color Palette:
+        Hansa Yellow: #E9D758
+        Myrtle Green: #297373
+        Coral: #FF8552
+        Platinum: #E6E6E6
+        Onyx: #39393A
+        Old Moss Green: #87A330
+        */
+        
+        #locationsButton {
+            border: medium solid #87A330;
+        }
+        
+        #locationsTitle {
+            opacity: 1;
+        }
+        
+        #formArea {
+            background: #E9D758;
+            opacity: 0.9;
+            margin-left: 10px;
+            padding: 10px;
+        }
+        
+        .formLabels {
+            color: #39393A;
+            font-family: "Gill Sans";
+            font-weight: bold;
+            text-transform: uppercase;
+            padding-left: 10px;
+            font-size: 16px;
+        }
+        
+        #parkNameBox {
+            width: 500px;
+            margin-left: 10px;
+        }
+        
+        #nearbyCityBox {
+            width: 250px;
+            margin-left: 10px;
+        }
+        
+        #stateBox {
+            width: 50px;
+            margin-left: 10px;
+        }
+        
+        #filePath {
+            color: #39393A;
+            font-family: "Gill Sans";
+            margin-left: 10px;
+        }
+        
+        #parkImageHelp {
+            color: #39393A;
+            font-family: "Gill Sans";
+            font-size: 14px;
+            margin-right: 20px;
+        }
+        
+        #editLocationButton {
+            color: #39393A;
+            font-family: "Gill Sans";
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: -7px;
+        }
+        
+        .locationCard {
+            position: relative;
+            background-position: center;
+            background-size: cover;
+            width: 800px;
+            height: 150px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 50px;
+        }
+        
+        .locationCardText {
+            color: #E6E6E6;
+            font-family: "Gill Sans";
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 20px;
+            margin-top: 60px;
+            margin-left: 25px;
+            text-align: center;
+            text-shadow: 1px 3px 0 #969696, 1px 0px 5px #aba8a8;
+        }
+    </style>
+    
+    <body>
+        <div class="bg-image"></div>
+        
+        <div class="container">
+            <!-- Space for any error messages to pop up-->
+            <ul class="list-group" id="errorMessages"></ul>
+            
+            <!-- Add main row to page for main content-->
+            <div class="row">
+                
+                <!-- Left side panel for site navigation-->
+                <div class="col-lg-2" id="leftBar">
+                    <div class="bg-navigation"></div>
+                    <form class="form-horizontal" role="form" id="navigationForm">
+                        <img src="img/PageBackground.jpeg" alt="HikingVentures" id="logoPage">
+                        <input type="image" src="img/Trips.png" alt="Trips" title="Hiking Trips" class="navigationButtons" id="tripsButton">
+                        <h5 class="navigationTitles" id="tripsTitle">Hiking Trips</h5>
+                        <input type="image" src="img/Trails.png" alt="Trails" title="Trails" class="navigationButtons" id="trailsButton">
+                        <h5 class="navigationTitles" id="trailsTitle">Trails</h5>
+                        <input type="image" src="img/Travelers.png" alt="Travelers" title="Travelers" class="navigationButtons" id="travelersButton">
+                        <h5 class="navigationTitles" id="travelersTitle">Travelers</h5>
+                        <input type="image" src="img/Equipment.png" alt="Equipment" title="Equipment" class="navigationButtons" id="equipmentButton">
+                        <h5 class="navigationTitles" id="equipmentTitle">Equipment</h5>
+                        <input type="image" src="img/LocationsSelected.png" alt="Locations" title="Locations" class="navigationButtons" id="locationsButton">
+                        <h5 class="navigationTitles" id="locationsTitle">Locations</h5>
+                        <input type="image" src="img/About.png" alt="About" title="About Us" class="navigationButtons" id="aboutButton">
+                        <h5 class="navigationTitles" id="aboutTitle">About</h5>
+                    </form>
+                    <p id="copyright">&copy Copyright <br/>2020<br/>Garrett Becker</p>
+                    
+                </div>
+                
+                <!-- Main Page Content-->
+                <div class="col-lg-10">
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <div class="col-md-11">
+                                <div class="pageHeader">
+                                    <div class="pageTitle">
+                                        <h2>Edit Location</h2>
+                                    </div>
+                                <div class="divider"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="pageHeader">
+                                    <input type="image" src="img/Back.png" alt="Create" title="Go Back" class="pageHeaderButtons" id="backButton">
+                                    <h5 class="pageHeaderTitles" id="backTitle">Go Back</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="locationCard" th:style="'background-image: url(img/' + ${location.photoLink} + ');'">
+                            <div class="row" id="locationCardInfo">
+                                <div class="col-md-12">
+                                    <div class="locationCardText" th:text="${location.parkName}">Park Name</div>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                    
+                    <div class="row" id="formArea">
+                        <div class="col-md-10">
+                            <div class="form-group">
+                            <form class="form-horizontal" role="form" id="editLocationForm">
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <h3 class="formLabels">Park Name</h3>
+                                        <input type="text" class="form-control" id="parkNameBox" th:value="${location.parkName}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <h3 class="formLabels">Nearby City</h3>
+                                        <input type="text" class="form-control" id="nearbyCityBox" th:value="${location.nearbyCity}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <h3 class="formLabels">State</h3>
+                                        <input type="text" class="form-control" id="stateBox" th:value="${location.state}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-5">
+                                        <h3 class="formLabels">Park Image (.png or .jpg)</h3>
+                                        <input type="file" id="filePath" accept=".jpg, .png">
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <button type="submit" id="editLocationButton" class="btn btn-default">Edit Location</button>
+                                </div>
+                            </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="js/jquery-2.2.4.min.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/locationsEdit.js"></script>
+    </body>
+</html>

@@ -94,4 +94,6 @@ create table if not exists Trip_Trail (
 insert into Location(park_name, nearby_city, State, photo_link) values
 ('Great Smoky Mountains National Park', 'Cherokee', 'NC', 'GreatSmokyMountains.jpg'),
 ('Cherokee National Forest', 'Boone', 'NC', 'CherokeeNationalForest.jpg'),
-('Uwharrie National Forest', 'Albemarle', 'NC', 'UwharrieNationalForest.jpg');
+('Uwharrie National Forest', 'Albemarle', 'NC', 'UwharrieNationalForest.jpg'),
+('Crowders Mountain State Park', 'Kings Mountain', 'NC', 'CrowdersMountainStatePark.jpg'),
+('Lake Norman State Park', 'Troutman', 'NC', 'LakeNormanStatePark.jpg');

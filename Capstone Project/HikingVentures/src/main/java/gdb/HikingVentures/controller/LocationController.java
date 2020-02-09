@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -26,20 +27,48 @@ public class LocationController {
     //Open locationsHome.html
     @RequestMapping("/locationsHome")
     public String openLocationsHome() {
-        return "/locationsHome.html";
+        return "/locationsHome";
     }
     
     //Open locationsAdd.html
     @RequestMapping("/locationsAdd")
     public String openLocationsAdd() {
-        return "/locationsAdd.html";
+        return "/locationsAdd";
     }
     
-    @GetMapping("locationsViewDetails")
-    public String openLocationsViewDetails(int id, Model model) {
+    //Open locationsViewDetails.html
+    @GetMapping("/locationsViewDetails")
+    public String openLocationsViewDetails(@RequestParam Integer id, Model model) {
         Location l = service.findLocationByID(id);
         model.addAttribute("location", l);
+        return "locationsViewDetails";
+    }
+    
+    //Open locationsEdit.html
+    @GetMapping("/locationsEdit")
+    public String openLocationsEditDetails(@RequestParam Integer id, Model model) {
+        Location l = service.findLocationByID(id);
+        model.addAttribute("location", l);
+        return "locationsEdit";
+    }
+    
+    //Open about.html
+    @RequestMapping("/about")
+    public String openAbout() {
+        return "/about";
+    }
+    
+    @GetMapping("/locationsDelete")
+    public String deleteLocation(@RequestParam Integer id) {
+        service.deleteLocationByID(id);
+        return "redirect:/locationsHome";
+    }
+    
+    @GetMapping("/locationsDeleteFromView")
+    public String deleteLocationFromView(@RequestParam Integer id) {
+        //Delete trails and trips here
         
-        return "locationsViewDetails.html";
+        service.deleteLocationByID(id);
+        return "redirect:/locationsHome";
     }
 }

@@ -24,12 +24,12 @@ $(document).ready(function () {
     });
     
     $("#aboutButton").on("click", function() {
-        window.open("about.html");
+        window.open("/about", "_blank");
     });
     
     //Add functionality for page header buttons
     $("#createNewLocationButton").on("click", function() {
-        window.open("/locationsAdd");
+        window.open("/locationsAdd", "_self");
     });
     
     $(".dropDownMenu").hide();
@@ -117,9 +117,9 @@ function loadLocations() {
                     toAdd += '</div>';
                     toAdd += '<div class="col-md-2">';
                     toAdd += '<div class="dropDownMenu" id="dropDownMenu' + id + '">';
-                    toAdd += '<a href="#" th:href="@{/locationsViewDetails(id=id)}">View More Details</a>';
-                    toAdd += '<a href="#">Edit</a>';
-                    toAdd += '<a href="#">Delete</a>';
+                    toAdd += '<a href="locationsViewDetails?id=' + id + '">View More Details</a>';
+                    toAdd += '<a href="locationsEdit?id=' + id + '">Edit</a>';
+                    toAdd += '<a href="" onclick="deleteLocation(' + id + ')" >Delete</a>';
                     toAdd += '</div>';
                     toAdd += '</div>';
                     toAdd += '<div class="col-md-2">';
@@ -144,6 +144,37 @@ function loadLocations() {
 
 function clearLocations() {
     $('#locationsDiv').empty();
+}
+
+function openViewDetails(id) {
+    $("#viewDetailsButton" + id).on("click", function() {
+        window.open("/locationsViewDetails/" + id);
+    });
+}
+
+function deleteLocation(id) {
+    //Confirm that user wants to delete
+    var r = confirm("Are you sure you want to delete this location and all trips and trails associated with it?");
+    
+    //Delete if true
+    if (r == true) {
+        var url = "locationsDelete?id=" + id;
+        $.ajax ({
+        type: 'GET',
+        url: url,
+        success: function (data, status) {
+            //Do nothing
+        }, 
+        error: function() {
+            $('#errorMessages')
+                .append($('<li>')
+                .attr({class: 'list-group-item list-group-item-danger'})
+                .text('Error calling web service.  Please try again later.'));
+        }
+    });
+    } else {
+        //Do nothing
+    }
 }
 
 function showMoreOptionsMenu(id) {

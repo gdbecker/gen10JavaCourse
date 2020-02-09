@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
         <title>View Location Details</title>
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.css" rel="stylesheet">
@@ -82,8 +86,9 @@
         }
         
         .locationCard {
-            background-image: url(img/PageBackground.jpeg);
             position: relative;
+            background-position: center;
+            background-size: cover;
             width: 800px;
             height: 150px;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -101,6 +106,7 @@
             margin-top: 60px;
             margin-left: 25px;
             text-align: center;
+            text-shadow: 1px 3px 0 #969696, 1px 0px 5px #aba8a8;
         }
     </style>
     
@@ -158,10 +164,10 @@
                     </div>
                     
                     <div class="row">
-                        <div class="locationCard">
+                        <div class="locationCard" th:style="'background-image: url(img/' + ${location.photoLink} + ');'">
                             <div class="row" id="locationCardInfo">
                                 <div class="col-md-12">
-                                    <div class="locationCardText" th:value="${location.parkName}">Park Name</div>
+                                    <div class="locationCardText" th:text="${location.parkName}">Park Name</div>
                                 </div>
                             </div> 
                         </div>
@@ -243,11 +249,12 @@
                                     </div>
                                 </div>
                                 
-                                <div class="col-md-8">
-                                    <button id="editButton" class="btn btn-default">Edit</button>
-                                    <button id="deleteButton" class="btn btn-danger">Delete</button>
-                                </div>
+                                
                             </form>
+                            </div>
+                            <div class="col-md-8">
+                                <a id="editButton" class="btn btn-default" href="#" th:href="@{/locationsEdit(id=${location.locationID})}">Edit</a>
+                                <a id="deleteButton" class="btn btn-danger" href="#"  th:onclick="|deleteLocation('${location.locationID}');|">Delete</a>
                             </div>
                         </div>
                     </div>

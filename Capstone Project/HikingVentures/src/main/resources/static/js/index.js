@@ -17,11 +17,11 @@ $(document).ready(function () {
     });
     
     $("#locationsButton").on("click", function() {
-        window.open("/locationsHome"); //LocationController, opens up locationsHome.html
+        window.open("/locationsHome", "_self"); //LocationController, opens up locationsHome.html
     });
     
     $("#aboutButton").on("click", function() {
-        window.open("about.html");
+        window.open("/about", "_self");
     });
     
     //Hovering over each menu button

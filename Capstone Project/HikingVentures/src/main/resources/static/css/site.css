@@ -34,14 +34,15 @@ body {
 
 /**********************************/
 /*LOGIN PAGE*/
+/*Background also for main menu page*/
 .bg-image-index {
     position: fixed;
     left: 0;
     right: 0;
-    background-image: url("../img/BackgroundVideo2.mov");
+    background-image: url("../img/BackgroundVideo3.mp4");
     
     filter: blur(2px);
-    -webkit-filter: blur(4px);
+    -webkit-filter: blur(3px);
     
     left: -15px;
     right: -15px;
@@ -142,6 +143,7 @@ body {
     color: #E6E6E6;
     font-family: "Gill Sans";
     text-transform:uppercase;
+    font-weight: bold;
     padding-bottom: 5px;
     opacity: 0;
     transition: 0.25s;
@@ -155,7 +157,7 @@ body {
     position: fixed;
     left: 0;
     right: 0;
-    background-image: url("../img/BackgroundVideo3.mov");
+    background-image: url("../img/BackgroundVideo4.mp4");
     
     filter: blur(2px);
     -webkit-filter: blur(4px);

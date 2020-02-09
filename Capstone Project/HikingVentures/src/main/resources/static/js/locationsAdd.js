@@ -21,12 +21,12 @@ $(document).ready(function () {
     });
     
     $("#aboutButton").on("click", function() {
-        window.open("about.html");
+        window.open("/about", "_blank");
     });
     
     //Add functionality for page header buttons
     $("#backButton").on("click", function() {
-        window.open("/locationsHome");
+        window.open("/locationsHome", "_self");
     });
         
     //Hovering over each menu button
