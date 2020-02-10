@@ -26,6 +26,7 @@ public class Trip {
     LocalDate startDate;
     LocalDate endDate;
     
+    /*
     @ManyToMany(mappedBy = "trips")
     List<Traveler> travelers;
     
@@ -34,4 +35,5 @@ public class Trip {
     
     @ManyToMany(mappedBy = "trips")
     List<Trail> trails;
+*/
 }

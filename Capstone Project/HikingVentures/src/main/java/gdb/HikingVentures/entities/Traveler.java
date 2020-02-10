@@ -30,10 +30,11 @@ public class Traveler {
     String state;
     String zip;
     LocalDate birthDate;
+    String photoLink;
     
     @ManyToMany
     @JoinTable(name = "Trip_Traveler",
-    joinColumns = {@JoinColumn(name = "traveler_oid")},
+    joinColumns = {@JoinColumn(name = "traveler_id")},
     inverseJoinColumns = {@JoinColumn(name = "trip_id")})
     List<Trip> trips;
 }

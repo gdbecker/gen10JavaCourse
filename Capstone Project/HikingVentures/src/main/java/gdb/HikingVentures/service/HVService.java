@@ -69,8 +69,20 @@ public class HVService {
     }
     
     public List<Equipment> findAllEquipmentByTripID(int id) {
-        Trip t = trip.findById(id).orElse(null);
-        return t.getEquipment();
+        List<Equipment> allEquipment = equipment.findAll();
+        List<Equipment> equipmentOnTrip = new ArrayList<Equipment>();
+        
+        for (Equipment e : allEquipment) {
+            List<Trip> trips = e.getTrips();
+            
+            for (Trip t : trips) {
+                if (t.getTripId() == id) {
+                    equipmentOnTrip.add(e);
+                }
+            }
+        }
+        
+        return equipmentOnTrip;
     }
     
     //Methods for Location
@@ -140,8 +152,20 @@ public class HVService {
     }
     
     public List<Trail> findAllTrailsByTripID(int id) {
-        Trip t = trip.findById(id).orElse(null);
-        return t.getTrails();
+        List<Trail> allTrails = trail.findAll();
+        List<Trail> trailsOnTrip = new ArrayList<Trail>();
+        
+        for (Trail tr : allTrails) {
+            List<Trip> trips = tr.getTrips();
+            
+            for (Trip t : trips) {
+                if (t.getTripId() == id) {
+                    trailsOnTrip.add(tr);
+                }
+            }
+        }
+        
+        return trailsOnTrip;
     }
     
     //Methods for Traveler
@@ -162,8 +186,20 @@ public class HVService {
     }
     
     public List<Traveler> findAllTravelersByTripID(int id) {
-        Trip t = trip.findById(id).orElse(null);
-        return t.getTravelers();
+        List<Traveler> allTravelers = traveler.findAll();
+        List<Traveler> travelersOnTrip = new ArrayList<Traveler>();
+        
+        for (Traveler tr : allTravelers) {
+            List<Trip> trips = tr.getTrips();
+            
+            for (Trip t : trips) {
+                if (t.getTripId() == id) {
+                    travelersOnTrip.add(tr);
+                }
+            }
+        }
+        
+        return travelersOnTrip;
     }
     
     //Methods for Trip

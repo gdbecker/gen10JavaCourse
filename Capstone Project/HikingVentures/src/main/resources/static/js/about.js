@@ -7,15 +7,15 @@ $(document).ready(function () {
     });
     
     $("#trailsButton").on("click", function() {
-        window.open("trailsHome.html");
+        window.open("/trailsHome", "_blank");
     });
     
     $("#travelersButton").on("click", function() {
-        window.open("travelersHome.html");
+        window.open("/travelersHome", "_blank");
     });
     
     $("#equipmentButton").on("click", function() {
-        window.open("equipmentHome.html");
+        window.open("/equipmentHome", "_blank");
     });
     
     $("#locationsButton").on("click", function() {

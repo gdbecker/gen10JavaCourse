@@ -1,5 +1,6 @@
 package gdb.HikingVentures.controller;
 
+import gdb.HikingVentures.entities.Trail;
 import gdb.HikingVentures.entities.Trip;
 import gdb.HikingVentures.service.HVService;
 import java.util.List;
@@ -29,5 +30,10 @@ public class TripRestController {
     @GetMapping("/getTrip")
     public Trip getTrip(@RequestParam int id) {
         return service.findTripByID(id);
+    }
+    
+    @GetMapping("/getTrailsForTrip")
+    public List<Trail> getTrailsForTrip(@RequestParam int id) {
+        return service.findAllTrailsByTripID(id);
     }
 }

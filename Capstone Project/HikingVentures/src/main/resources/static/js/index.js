@@ -1,19 +1,19 @@
 $(document).ready(function () {
     //Add functionality for each menu button - be able to access each page
     $("#tripsButton").on("click", function() {
-        window.open("/");
+        window.open("/tripsHome", "_self");
     });
     
     $("#trailsButton").on("click", function() {
-        window.open("about.html");
+        window.open("/trailsHome", "_self"); //TrailController, opens up trailsHome.html
     });
     
     $("#travelersButton").on("click", function() {
-        window.open("about.html");
+        window.open("/travelersHome", "_self"); //TravelerController, opens up travelersHome.html
     });
     
     $("#equipmentButton").on("click", function() {
-        window.open("about.html");
+        window.open("/equipmentHome", "_self"); //EquipmentController, opens up equipmentHome.html
     });
     
     $("#locationsButton").on("click", function() {

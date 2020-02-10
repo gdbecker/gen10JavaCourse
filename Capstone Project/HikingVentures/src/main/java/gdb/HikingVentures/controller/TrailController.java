@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  * For opening Trail web pages
  */
 
-@RestController
+@Controller
 public class TrailController {
     @Autowired
     HVService service;

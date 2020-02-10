@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  * For opening Trip web pages
  */
 
-@RestController
+@Controller
 public class TripController {
     @Autowired
     HVService service;

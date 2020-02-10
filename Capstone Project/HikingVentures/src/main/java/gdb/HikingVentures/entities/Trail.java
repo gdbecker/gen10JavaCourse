@@ -26,6 +26,7 @@ public class Trail {
     @ManyToOne
     @JoinColumn(name = "location_id")
     Location location;
+    //String locationName = location.parkName;
     
     String trailName;
     
