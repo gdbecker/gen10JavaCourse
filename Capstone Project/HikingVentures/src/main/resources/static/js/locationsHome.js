@@ -103,7 +103,7 @@ function loadLocations() {
         url: '/getAllLocations',
         success: function (data, status) {
             $.each(data, function (index, Location) {
-                var id = Location.locationID;
+                var id = Location.locationId;
                 var name = Location.parkName;
                 var city = Location.nearbyCity;
                 var state = Location.state;

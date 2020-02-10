@@ -19,7 +19,7 @@ import lombok.Data;
 public class Trip {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int tripID;
+    int tripId;
     
     String tripName;
     double tripCostPerTraveler;

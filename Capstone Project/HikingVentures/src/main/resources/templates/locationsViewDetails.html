@@ -199,7 +199,7 @@
                                     <div class="col-sm-12">
                                         <h3 class="formLabels">Trails in this Location</h3>
                                         <div class="col text-left">
-                                            <table class="table table-striped" id="trailTable">
+                                            <table class="table table-striped table-hover" id="trailTable">
                                                 <thead>
                                                     <tr>
                                                         <th>Trail Name</th>
@@ -210,12 +210,12 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>Name</td>
-                                                        <td>Distance</td>
-                                                        <td>Gain</td>
-                                                        <td>Type</td>
-                                                        <td>Rating</td>
+                                                    <tr th:each="trail : ${trails}">
+                                                        <td th:text="${trail.trailName}">Name</td>
+                                                        <td th:text="${trail.distance}">Distance</td>
+                                                        <td th:text="${trail.elevationGain}">Gain</td>
+                                                        <td th:text="${trail.routeType.type}">Type</td>
+                                                        <td th:text="${trail.difficultyRating.type}">Rating</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -227,7 +227,7 @@
                                     <div class="col-sm-12">
                                         <h3 class="formLabels">Hiking Trips in this Location</h3>
                                         <div class="col text-left">
-                                            <table class="table table-striped" id="tripTable">
+                                            <table class="table table-striped table-hover" id="tripTable">
                                                 <thead>
                                                     <tr>
                                                         <th>Trip Name</th>
@@ -237,11 +237,11 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>Name</td>
-                                                        <td>Cost</td>
-                                                        <td>Start</td>
-                                                        <td>End</td>
+                                                    <tr th:each="trip : ${trips}">
+                                                        <td th:text="${trip.tripName}">Name</td>
+                                                        <td th:text="${trip.tripCostPerTraveler}">Cost</td>
+                                                        <td th:text="${trip.startDate}">Start</td>
+                                                        <td th:text="${trip.endDate}">End</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -253,8 +253,8 @@
                             </form>
                             </div>
                             <div class="col-md-8">
-                                <a id="editButton" class="btn btn-default" href="#" th:href="@{/locationsEdit(id=${location.locationID})}">Edit</a>
-                                <a id="deleteButton" class="btn btn-danger" href="#"  th:onclick="|deleteLocation('${location.locationID}');|">Delete</a>
+                                <a id="editButton" class="btn btn-default" href="#" th:href="@{/locationsEdit(id=${location.locationId})}">Edit</a>
+                                <a id="deleteButton" class="btn btn-danger" href="#"  th:onclick="|deleteLocation('${location.locationId}');|">Delete</a>
                             </div>
                         </div>
                     </div>

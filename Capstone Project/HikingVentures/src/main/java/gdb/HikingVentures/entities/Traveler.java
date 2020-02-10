@@ -21,7 +21,7 @@ import lombok.Data;
 public class Traveler {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int travelerID;
+    int travelerId;
     
     String firstName;
     String lastName;
@@ -33,7 +33,7 @@ public class Traveler {
     
     @ManyToMany
     @JoinTable(name = "Trip_Traveler",
-    joinColumns = {@JoinColumn(name = "TravelerID")},
-    inverseJoinColumns = {@JoinColumn(name = "TripID")})
+    joinColumns = {@JoinColumn(name = "traveler_oid")},
+    inverseJoinColumns = {@JoinColumn(name = "trip_id")})
     List<Trip> trips;
 }

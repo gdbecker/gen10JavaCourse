@@ -1,6 +1,8 @@
 package gdb.HikingVentures.controller;
 
 import gdb.HikingVentures.entities.Location;
+import gdb.HikingVentures.entities.Trail;
+import gdb.HikingVentures.entities.Trip;
 import gdb.HikingVentures.service.HVService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +43,13 @@ public class LocationController {
     public String openLocationsViewDetails(@RequestParam Integer id, Model model) {
         Location l = service.findLocationByID(id);
         model.addAttribute("location", l);
+        
+        List<Trail> trails = service.findAllTrailsByLocationID(id);
+        model.addAttribute("trails", trails);
+        
+        List<Trip> trips = service.findAllTripsByLocationID(id);
+        model.addAttribute("trips", trips);
+        
         return "locationsViewDetails";
     }
     

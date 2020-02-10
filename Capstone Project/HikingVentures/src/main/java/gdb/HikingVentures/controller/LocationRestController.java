@@ -22,9 +22,6 @@ public class LocationRestController {
     @Autowired
     HVService service;
     
-    @Autowired
-    LocationController locationController;
-    
     //Get all locations
     //Use to load into locationsHome.html
     @GetMapping("/getAllLocations")

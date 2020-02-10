@@ -20,7 +20,7 @@ import lombok.Data;
 public class Equipment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int equipmentID;
+    int equipmentId;
     
     String name;
     String description;
@@ -28,7 +28,7 @@ public class Equipment {
     
     @ManyToMany
     @JoinTable(name = "Trip_Equipment",
-    joinColumns = {@JoinColumn(name = "EquipmentID")},
-    inverseJoinColumns = {@JoinColumn(name = "TripID")})
+    joinColumns = {@JoinColumn(name = "equipment_id")},
+    inverseJoinColumns = {@JoinColumn(name = "trip_id")})
     List<Trip> trips;
 }

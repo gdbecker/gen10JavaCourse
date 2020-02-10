@@ -16,7 +16,7 @@ import lombok.Data;
 public class RouteType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int RouteTypeID;
+    int routeTypeId;
     
     String type;
     String description;

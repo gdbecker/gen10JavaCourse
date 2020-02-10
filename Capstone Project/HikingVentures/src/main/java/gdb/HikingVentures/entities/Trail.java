@@ -21,17 +21,20 @@ import lombok.Data;
 public class Trail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int trailID;
+    int trailId;
     
     @ManyToOne
-    @JoinColumn(name = "LocationID")
+    @JoinColumn(name = "location_id")
     Location location;
     
     String trailName;
-    String difficultyRating;
     
     @ManyToOne
-    @JoinColumn(name = "RouteTypeID")
+    @JoinColumn(name = "difficulty_rating_id")
+    DifficultyRating difficultyRating;
+    
+    @ManyToOne
+    @JoinColumn(name = "route_type_id")
     RouteType routeType;
     
     double distance;
@@ -41,7 +44,7 @@ public class Trail {
     
     @ManyToMany
     @JoinTable(name = "Trip_Trail",
-    joinColumns = {@JoinColumn(name = "TrailID")},
-    inverseJoinColumns = {@JoinColumn(name = "TripID")})
+    joinColumns = {@JoinColumn(name = "trail_id")},
+    inverseJoinColumns = {@JoinColumn(name = "trip_id")})
     List<Trip> trips;
 }

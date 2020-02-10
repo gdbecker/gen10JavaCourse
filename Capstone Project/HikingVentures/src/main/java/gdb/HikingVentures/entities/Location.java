@@ -17,7 +17,7 @@ import lombok.Data;
 public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int locationID;
+    int locationId;
     
     String parkName;
     String nearbyCity;
