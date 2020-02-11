@@ -39,6 +39,7 @@
         
         .formLabels {
             color: #39393A;
+            font-size: 16px;
             font-family: "Gill Sans";
             font-weight: bold;
             text-transform: uppercase;
@@ -47,29 +48,46 @@
         }
         
         #parkNameBox {
+            font-size: 16px;
+            font-family: "Gill Sans";
             width: 500px;
             margin-left: 10px;
         }
         
         #nearbyCityBox {
+            font-size: 16px;
+            font-family: "Gill Sans";
             width: 250px;
             margin-left: 10px;
         }
         
         #stateBox {
+            font-size: 16px;
+            font-family: "Gill Sans";
             width: 50px;
             margin-left: 10px;
         }
         
+        #filePath {
+            color: #39393A;
+            font-size: 16px;
+            font-family: "Gill Sans";
+            margin-left: 10px;
+            width: 600px;
+        }
+        
         #trailTable {
+            font-size: 16px;
             font-family: "Gill Sans";
         }
         
         #tripTable {
+            font-size: 16px;
             font-family: "Gill Sans";
         }
         
         #editButton {
+            font-size: 16px;
             color: #39393A;
             font-family: "Gill Sans";
             margin-top: 10px;
@@ -78,6 +96,7 @@
         }
         
         #deleteButton {
+            font-size: 16px;
             color: #E6E6E6;
             font-family: "Gill Sans";
             margin-top: 10px;
@@ -172,7 +191,7 @@
                     </div>
                     
                     <div class="row">
-                        <div class="locationCard" th:style="'background-image: url(img/' + ${location.photoLink} + ');'">
+                        <div class="locationCard" th:style="'background-image: url(img/' + ${location.photoFilePath} + ');'">
                             <div class="layer"></div>
                             <div class="row" id="locationCardInfo">
                                 <div class="col-md-12">
@@ -202,6 +221,12 @@
                                     <div class="col-sm-12">
                                         <h3 class="formLabels">State</h3>
                                         <input type="text" class="form-control" id="stateBox" th:value="${location.state}" readonly/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <h3 class="formLabels">Park Image URL</h3>
+                                        <input type="text" class="form-control" name="filePath" id="filePath" th:value="${location.photoLink}" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group row">

@@ -23,4 +23,5 @@ public class Location {
     String nearbyCity;
     String state;
     String photoLink;
+    String photoFilePath;
 }

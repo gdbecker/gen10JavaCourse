@@ -65,17 +65,16 @@ public class LocationController {
         String urlFromForm = request.getParameter("filePath");
         URL url = new URL(urlFromForm);
         String fileName = parkName + ".jpg";
-        //Part filePart = request.getPart("filePath");
-        //String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
         
         newL.setParkName(parkName);
         newL.setNearbyCity(nearbyCity);
         newL.setState(state);
+        newL.setPhotoLink(urlFromForm);
         
         //Remove spaces from the fileName and replace with '-'
         fileName = fileName.replace(' ', '-');
                 
-        newL.setPhotoLink(fileName);
+        newL.setPhotoFilePath(fileName);
         
         service.addUpdateLocation(newL);
         
@@ -84,11 +83,11 @@ public class LocationController {
         OutputStream os = new FileOutputStream("src/main/resources/static/img/" + fileName);
         
         byte[] b = new byte[2048];
-            int length;
+        int length;
 
-            while ((length = is.read(b)) != -1) {
-		os.write(b, 0, length);
-            }
+        while ((length = is.read(b)) != -1) {
+            os.write(b, 0, length);
+        }
         
         //Go back to locationsHome
         return "redirect:/locationsHome";
@@ -109,12 +108,59 @@ public class LocationController {
         return "locationsViewDetails";
     }
     
-    //Edit a specific location
+    //Open page for editing a specific location
     @GetMapping("/locationsEdit")
     public String openLocationsEditDetails(@RequestParam Integer id, Model model) {
         Location l = service.findLocationByID(id);
         model.addAttribute("location", l);
         return "locationsEdit";
+    }
+    
+    //Actually editing a location
+    @PostMapping("/editLocation")
+    public String editLocation(HttpServletRequest request, HttpServletResponse response, Model model) throws ServletException, IOException{
+        Location l = new Location();
+        String id = request.getParameter("id");
+        String parkName = request.getParameter("parkNameBox");
+        String nearbyCity = request.getParameter("nearbyCityBox");
+        String state = request.getParameter("stateBox");
+        String urlFromForm = request.getParameter("filePath");
+        URL url = null;
+        String fileName = null;
+        
+        if (!urlFromForm.equals("")) {
+            url = new URL(urlFromForm);
+            fileName = parkName + ".jpg";
+            
+            //Remove spaces from the fileName and replace with '-'
+            fileName = fileName.replace(' ', '-');
+        }
+
+        l.setLocationId(Integer.parseInt(id));
+        l.setParkName(parkName);
+        l.setNearbyCity(nearbyCity);
+        l.setState(state);
+        l.setPhotoLink(urlFromForm);
+        l.setPhotoFilePath(fileName);
+        
+        service.addUpdateLocation(l);
+        
+        //Save the image from url as a file in directory
+        //Only if there actually was a URL inputted
+        if (!urlFromForm.equals("")) {
+            InputStream is = url.openStream();
+            OutputStream os = new FileOutputStream("src/main/resources/static/img/" + fileName);
+        
+            byte[] b = new byte[2048];
+            int length;
+
+            while ((length = is.read(b)) != -1) {
+                os.write(b, 0, length);
+            }
+        }
+ 
+        //Go back to locationsHome
+        return "redirect:/locationsHome";
     }
     
     //Delete methods

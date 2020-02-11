@@ -57,7 +57,8 @@ create table if not exists Location (
     park_name varchar(100) not null,
     nearby_city varchar(20) not null,
     State varchar(2) not null,
-    photo_link varchar(100) not null
+    photo_link varchar(300),
+    photo_file_path varchar(100)
 );
 
 create table if not exists route_type (
@@ -131,7 +132,7 @@ insert into route_type(`Type`, `Description`) values
 ('Out-and-Back', 'Starts and ends at the same location and follows a single trail or multiple trails to an end point and then returns along the same route.'),
 ('Point-to-Point', 'Starts and ends in different locations. These routes are often part of a multi-day hiking or backpacking trip or segments of a long distance trail such as the Appalachian Trail or Pacific Crest Trail.');
 
-insert into Location(park_name, nearby_city, State, photo_link) values
+insert into Location(park_name, nearby_city, State, photo_file_path) values
 ('Great Smoky Mountains National Park', 'Cherokee', 'NC', 'GreatSmokyMountains.jpg'),
 ('Cherokee National Forest', 'Boone', 'NC', 'CherokeeNationalForest.jpg'),
 ('Uwharrie National Forest', 'Albemarle', 'NC', 'UwharrieNationalForest.jpg'),

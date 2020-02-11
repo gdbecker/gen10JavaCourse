@@ -107,7 +107,7 @@ function loadLocations() {
                 var name = Location.parkName;
                 var city = Location.nearbyCity;
                 var state = Location.state;
-                var pic = Location.photoLink;
+                var pic = Location.photoFilePath;
                 
                 var toAdd = '<div class="row">';
                     toAdd += '<div class="locationCard" style="background-image: url(img/' + pic + ');">';
