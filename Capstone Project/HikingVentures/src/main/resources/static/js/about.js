@@ -3,7 +3,7 @@ $(document).ready(function () {
     
     //Add functionality for each menu button - be able to access each page
     $("#tripsButton").on("click", function() {
-        window.open("tripsHome.html");
+        window.open("/tripsHome", "_blank");
     });
     
     $("#trailsButton").on("click", function() {

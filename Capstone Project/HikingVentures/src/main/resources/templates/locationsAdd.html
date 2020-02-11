@@ -64,6 +64,7 @@
         #filePath {
             color: #39393A;
             font-family: "Gill Sans";
+            width: 600px;
             margin-left: 10px;
         }
         
@@ -139,29 +140,29 @@
                     <div class="row" id="formArea">
                         <div class="col-md-10">
                             <div class="form-group">
-                            <form class="form-horizontal" role="form" id="addLocationForm">
+                            <form action="addNewLocation" method="post" enctype="multipart/form-data" class="form-horizontal" role="form" id="addLocationForm">
                                 <div class="form-group row">
                                     <div class="col-sm-12">
                                         <h3 class="formLabels">Park Name</h3>
-                                        <input type="text" class="form-control" id="parkNameBox" />
+                                        <input type="text" class="form-control" name="parkNameBox" id="parkNameBox" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-12">
                                         <h3 class="formLabels">Nearby City</h3>
-                                        <input type="text" class="form-control" id="nearbyCityBox" />
+                                        <input type="text" class="form-control" name="nearbyCityBox" id="nearbyCityBox" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-12">
                                         <h3 class="formLabels">State</h3>
-                                        <input type="text" class="form-control" id="stateBox" />
+                                        <input type="text" class="form-control" name="stateBox" id="stateBox" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-5">
-                                        <h3 class="formLabels">Park Image (.png or .jpg)</h3>
-                                        <input type="file" id="filePath" accept=".jpg, .png">
+                                        <h3 class="formLabels">Park Image URL</h3>
+                                        <input type="text" class="form-control" name="filePath" id="filePath">
                                     </div>
                                 </div>
                                 <div class="col-md-8">

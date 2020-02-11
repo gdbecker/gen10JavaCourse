@@ -4,32 +4,32 @@ $(document).ready(function () {
     
     //Add functionality for each menu button - be able to access each page
     $("#tripsButton").on("click", function() {
-        window.open("tripsHome.html");
+        window.open("/tripsHome", "_self");
     });
     
     $("#trailsButton").on("click", function() {
-        window.open("trailsHome.html");
+        window.open("/trailsHome", "_blank");
     });
     
     $("#travelersButton").on("click", function() {
-        window.open("travelersHome.html");
+        window.open("/travelersHome", "_blank");
     });
     
     $("#equipmentButton").on("click", function() {
-        window.open("about.html");
+        window.open("/equipmentHome", "_blank");
     });
     
     $("#locationsButton").on("click", function() {
-        window.open("about.html");
+        window.open("/locationsHome", "_blank");
     });
     
     $("#aboutButton").on("click", function() {
-        window.open("about.html");
+        window.open("/about", "_blank");
     });
     
     //Add functionality for page header buttons
     $("#createNewTripButton").on("click", function() {
-        window.open("about.html");
+        window.open("/tripsAdd", "_self");
     });
     
     $(".dropDownMenu").hide();

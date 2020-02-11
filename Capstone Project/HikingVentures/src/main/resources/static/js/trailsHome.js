@@ -4,32 +4,32 @@ $(document).ready(function () {
     
     //Add functionality for each menu button - be able to access each page
     $("#tripsButton").on("click", function() {
-        window.open("tripsHome.html");
+        window.open("/tripsHome", "_blank");
     });
     
     $("#trailsButton").on("click", function() {
-        window.open("trailsHome.html");
+        window.open("/trailsHome", "_self");
     });
     
     $("#travelersButton").on("click", function() {
-        window.open("travelersHome.html");
+        window.open("/travelersHome", "_blank");
     });
     
     $("#equipmentButton").on("click", function() {
-        window.open("equipmentHome.html");
+        window.open("/equipmentHome", "_blank");
     });
     
     $("#locationsButton").on("click", function() {
-        window.open("locationsHome.html");
+        window.open("/locationsHome", "_blank");
     });
     
     $("#aboutButton").on("click", function() {
-        window.open("about.html");
+        window.open("/about", "_blank");
     });
     
     //Add functionality for page header buttons
     $("#createNewTrailButton").on("click", function() {
-        window.open("about.html");
+        window.open("/trailsAdd", "_self");
     });
     
     $(".dropDownMenu").hide();
@@ -111,6 +111,7 @@ function loadTrails() {
                 
                 var toAdd = '<div class="row">';
                     toAdd += '<div class="trailCard" style="background-image: url(img/' + pic + ');">';
+                    toAdd += '<div class="layer"><div>';
                     toAdd += '<div class="row" id="trailCardInfo">';
                     toAdd += '<div class="col-md-1">';
                     toAdd += '<input type="image" src="img/MenuBar.png" alt="View More Options" title="View More Options" class="trailCardButtons" id="' + id + '" onclick="showMoreOptionsMenu(id)">';

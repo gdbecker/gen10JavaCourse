@@ -4,23 +4,23 @@ $(document).ready(function () {
     
     //Add functionality for each menu button - be able to access each page
     $("#tripsButton").on("click", function() {
-        href="tripsHome.html";
+        window.open("/tripsHome", "_blank");
     });
     
     $("#trailsButton").on("click", function() {
-        window.open("trailsHome.html");
+        window.open("/trailsHome", "_blank");
     });
     
     $("#travelersButton").on("click", function() {
-        window.open("travelersHome.html");
+        window.open("/travelersHome", "_blank");
     });
     
     $("#equipmentButton").on("click", function() {
-        window.open("equipmentHome.html");
+        window.open("/equipmentHome", "_blank");
     });
     
     $("#locationsButton").on("click", function() {
-        window.open("locationsHome.html");
+        window.open("/locationsHome", "_self");
     });
     
     $("#aboutButton").on("click", function() {
@@ -111,6 +111,7 @@ function loadLocations() {
                 
                 var toAdd = '<div class="row">';
                     toAdd += '<div class="locationCard" style="background-image: url(img/' + pic + ');">';
+                    toAdd += '<div class="layer"><div>';
                     toAdd += '<div class="row" id="locationCardInfo">';
                     toAdd += '<div class="col-md-8">';
                     toAdd += '<div class="locationCardText">' + name + '</div>';

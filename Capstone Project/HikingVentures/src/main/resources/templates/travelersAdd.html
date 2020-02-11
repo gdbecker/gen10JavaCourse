@@ -1,7 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Edit Location</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <title>Add Traveler</title>
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/site.css" rel="stylesheet">
@@ -18,23 +22,23 @@
         Old Moss Green: #87A330
         */
         
-        #locationsButton {
+        #travelersButton {
             border: medium solid #87A330;
         }
         
-        #locationsTitle {
+        #travelersTitle {
             opacity: 1;
         }
         
         #formArea {
-            background: #E9D758;
+            background: #39393A;
             opacity: 0.9;
             margin-left: 10px;
             padding: 10px;
         }
         
         .formLabels {
-            color: #39393A;
+            color: #E6E6E6;
             font-family: "Gill Sans";
             font-weight: bold;
             text-transform: uppercase;
@@ -42,19 +46,42 @@
             font-size: 16px;
         }
         
-        #parkNameBox {
-            width: 500px;
+        #firstNameBox {
+            width: 300px;
             margin-left: 10px;
         }
         
-        #nearbyCityBox {
-            width: 250px;
+        #lastNameBox {
+            width: 300px;
+            margin-left: 10px;
+        }
+        
+        #addressBox {
+            width: 600px;
+            margin-left: 10px;
+        }
+        
+        #cityBox {
+            width: 350px;
             margin-left: 10px;
         }
         
         #stateBox {
-            width: 50px;
+            width: 80px;
             margin-left: 10px;
+        }
+        
+        #birthDateBox {
+            width: 135px;
+            margin-left: 10px;
+        }
+        
+        #tripsBox {
+            width: 450px;
+            margin-left: 10px;
+            color: #39393A;
+            font-family: "Gill Sans";
+            font-size: 16px;
         }
         
         #filePath {
@@ -63,51 +90,12 @@
             margin-left: 10px;
         }
         
-        #parkImageHelp {
-            color: #39393A;
-            font-family: "Gill Sans";
-            font-size: 14px;
-            margin-right: 20px;
-        }
-        
-        #editLocationButton {
+        #addTravelerButton {
             color: #39393A;
             font-family: "Gill Sans";
             margin-top: 10px;
             margin-bottom: 10px;
             margin-left: -7px;
-        }
-        
-        .locationCard {
-            position: relative;
-            background-position: center;
-            background-size: cover;
-            width: 800px;
-            height: 150px;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 50px;
-        }
-        
-        .layer {
-            background-color: rgba(0, 0, 0, 0.17);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .locationCardText {
-            color: #E6E6E6;
-            font-family: "Gill Sans";
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 20px;
-            margin-top: 60px;
-            margin-left: 25px;
-            text-align: center;
         }
     </style>
     
@@ -130,11 +118,11 @@
                         <h5 class="navigationTitles" id="tripsTitle">Hiking Trips</h5>
                         <input type="image" src="img/Trails.png" alt="Trails" title="Trails" class="navigationButtons" id="trailsButton">
                         <h5 class="navigationTitles" id="trailsTitle">Trails</h5>
-                        <input type="image" src="img/Travelers.png" alt="Travelers" title="Travelers" class="navigationButtons" id="travelersButton">
+                        <input type="image" src="img/TravelersSelected.png" alt="Travelers" title="Travelers" class="navigationButtons" id="travelersButton">
                         <h5 class="navigationTitles" id="travelersTitle">Travelers</h5>
                         <input type="image" src="img/Equipment.png" alt="Equipment" title="Equipment" class="navigationButtons" id="equipmentButton">
                         <h5 class="navigationTitles" id="equipmentTitle">Equipment</h5>
-                        <input type="image" src="img/LocationsSelected.png" alt="Locations" title="Locations" class="navigationButtons" id="locationsButton">
+                        <input type="image" src="img/Locations.png" alt="Locations" title="Locations" class="navigationButtons" id="locationsButton">
                         <h5 class="navigationTitles" id="locationsTitle">Locations</h5>
                         <input type="image" src="img/About.png" alt="About" title="About Us" class="navigationButtons" id="aboutButton">
                         <h5 class="navigationTitles" id="aboutTitle">About</h5>
@@ -150,7 +138,7 @@
                             <div class="col-md-11">
                                 <div class="pageHeader">
                                     <div class="pageTitle">
-                                        <h2>Edit Location</h2>
+                                        <h2>Add New Traveler</h2>
                                     </div>
                                 <div class="divider"></div>
                                 </div>
@@ -164,47 +152,63 @@
                         </div>
                     </div>
                     
-                    <div class="row">
-                        <div class="locationCard" th:style="'background-image: url(img/' + ${location.photoLink} + ');'">
-                            <div class="layer"></div>
-                            <div class="row" id="locationCardInfo">
-                                <div class="col-md-12">
-                                    <div class="locationCardText" th:text="${location.parkName}">Park Name</div>
-                                </div>
-                            </div> 
-                        </div>
-                    </div>
-                    
                     <div class="row" id="formArea">
                         <div class="col-md-10">
                             <div class="form-group">
-                            <form class="form-horizontal" role="form" id="editLocationForm">
+                            <form class="form-horizontal" role="form" id="addTravelerForm">
                                 <div class="form-group row">
-                                    <div class="col-sm-12">
-                                        <h3 class="formLabels">Park Name</h3>
-                                        <input type="text" class="form-control" id="parkNameBox" th:value="${location.parkName}"/>
+                                    <div class="col-sm-6">
+                                        <h3 class="formLabels">First Name</h3>
+                                        <input type="text" class="form-control" id="firstNameBox" />
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h3 class="formLabels">Last Name</h3>
+                                        <input type="text" class="form-control" id="lastNameBox" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-12">
-                                        <h3 class="formLabels">Nearby City</h3>
-                                        <input type="text" class="form-control" id="nearbyCityBox" th:value="${location.nearbyCity}"/>
+                                        <h3 class="formLabels">Address</h3>
+                                        <input type="text" class="form-control" id="addressBox"/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-6">
+                                        <h3 class="formLabels">City</h3>
+                                        <input type="text" class="form-control" id="cityBox" />
+                                    </div>
+                                    <div class="col-sm-2">
                                         <h3 class="formLabels">State</h3>
-                                        <input type="text" class="form-control" id="stateBox" th:value="${location.state}"/>
+                                        <input type="text" class="form-control" id="stateBox" />
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <h3 class="formLabels">Zip Code</h3>
+                                        <input type="text" class="form-control" id="zipCodeBox" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-sm-5">
-                                        <h3 class="formLabels">Park Image (.png or .jpg)</h3>
+                                    <div class="col-sm-3">
+                                        <h3 class="formLabels">Birth Date</h3>
+                                        <input type="date" class="form-control" id="birthDateBox" min="1900-01-01">
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <h3 class="formLabels">Select Trip(s)</h3>
+                                        <select id="tripsBox" class="form-control" multiple>
+                                            <option value="volvo">Volvo</option>
+                                            <option value="saab">Saab</option>
+                                            <option value="fiat">Fiat</option>
+                                            <option value="audi">Audi</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <h3 class="formLabels">Traveler Image (.png or .jpg)</h3>
                                         <input type="file" id="filePath" accept=".jpg, .png">
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <button type="submit" id="editLocationButton" class="btn btn-default">Edit Location</button>
+                                    <button type="submit" id="addTravelerButton" class="btn btn-default">Add Traveler</button>
                                 </div>
                             </form>
                             </div>
@@ -217,6 +221,6 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="js/jquery-2.2.4.min.js"></script>
         <script src="js/bootstrap.js"></script>
-        <script src="js/locationsEdit.js"></script>
+        <script src="js/travelersAdd.js"></script>
     </body>
 </html>

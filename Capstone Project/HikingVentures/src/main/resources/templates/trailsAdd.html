@@ -1,7 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Edit Location</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <title>Add Trail</title>
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/site.css" rel="stylesheet">
@@ -18,16 +22,16 @@
         Old Moss Green: #87A330
         */
         
-        #locationsButton {
+        #trailsButton {
             border: medium solid #87A330;
         }
         
-        #locationsTitle {
+        #trailsTitle {
             opacity: 1;
         }
         
         #formArea {
-            background: #E9D758;
+            background: #E6E6E6;
             opacity: 0.9;
             margin-left: 10px;
             padding: 10px;
@@ -42,18 +46,37 @@
             font-size: 16px;
         }
         
-        #parkNameBox {
+        #trailNameBox {
             width: 500px;
             margin-left: 10px;
         }
         
-        #nearbyCityBox {
-            width: 250px;
+        #locationBox {
+            color: #39393A;
+            font-family: "Gill Sans";
+            font-size: 16px;
             margin-left: 10px;
         }
         
-        #stateBox {
-            width: 50px;
+        #routeTypeBox {
+            color: #39393A;
+            font-family: "Gill Sans";
+            font-size: 16px;
+            margin-left: 10px;
+        }
+        
+        #difficultyRatingBox {
+            color: #39393A;
+            font-family: "Gill Sans";
+            font-size: 16px;
+            margin-left: 10px;
+        }
+        
+        #distanceBox {
+            margin-left: 10px;
+        }
+        
+        #elevationGainBox {
             margin-left: 10px;
         }
         
@@ -63,51 +86,12 @@
             margin-left: 10px;
         }
         
-        #parkImageHelp {
-            color: #39393A;
-            font-family: "Gill Sans";
-            font-size: 14px;
-            margin-right: 20px;
-        }
-        
-        #editLocationButton {
+        #addTrailButton {
             color: #39393A;
             font-family: "Gill Sans";
             margin-top: 10px;
             margin-bottom: 10px;
             margin-left: -7px;
-        }
-        
-        .locationCard {
-            position: relative;
-            background-position: center;
-            background-size: cover;
-            width: 800px;
-            height: 150px;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 50px;
-        }
-        
-        .layer {
-            background-color: rgba(0, 0, 0, 0.17);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .locationCardText {
-            color: #E6E6E6;
-            font-family: "Gill Sans";
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 20px;
-            margin-top: 60px;
-            margin-left: 25px;
-            text-align: center;
         }
     </style>
     
@@ -128,13 +112,13 @@
                         <img src="img/PageBackground.jpeg" alt="HikingVentures" id="logoPage">
                         <input type="image" src="img/Trips.png" alt="Trips" title="Hiking Trips" class="navigationButtons" id="tripsButton">
                         <h5 class="navigationTitles" id="tripsTitle">Hiking Trips</h5>
-                        <input type="image" src="img/Trails.png" alt="Trails" title="Trails" class="navigationButtons" id="trailsButton">
+                        <input type="image" src="img/TrailsSelected.png" alt="Trails" title="Trails" class="navigationButtons" id="trailsButton">
                         <h5 class="navigationTitles" id="trailsTitle">Trails</h5>
                         <input type="image" src="img/Travelers.png" alt="Travelers" title="Travelers" class="navigationButtons" id="travelersButton">
                         <h5 class="navigationTitles" id="travelersTitle">Travelers</h5>
                         <input type="image" src="img/Equipment.png" alt="Equipment" title="Equipment" class="navigationButtons" id="equipmentButton">
                         <h5 class="navigationTitles" id="equipmentTitle">Equipment</h5>
-                        <input type="image" src="img/LocationsSelected.png" alt="Locations" title="Locations" class="navigationButtons" id="locationsButton">
+                        <input type="image" src="img/Locations.png" alt="Locations" title="Locations" class="navigationButtons" id="locationsButton">
                         <h5 class="navigationTitles" id="locationsTitle">Locations</h5>
                         <input type="image" src="img/About.png" alt="About" title="About Us" class="navigationButtons" id="aboutButton">
                         <h5 class="navigationTitles" id="aboutTitle">About</h5>
@@ -150,7 +134,7 @@
                             <div class="col-md-11">
                                 <div class="pageHeader">
                                     <div class="pageTitle">
-                                        <h2>Edit Location</h2>
+                                        <h2>Add New Trail</h2>
                                     </div>
                                 <div class="divider"></div>
                                 </div>
@@ -164,47 +148,60 @@
                         </div>
                     </div>
                     
-                    <div class="row">
-                        <div class="locationCard" th:style="'background-image: url(img/' + ${location.photoLink} + ');'">
-                            <div class="layer"></div>
-                            <div class="row" id="locationCardInfo">
-                                <div class="col-md-12">
-                                    <div class="locationCardText" th:text="${location.parkName}">Park Name</div>
-                                </div>
-                            </div> 
-                        </div>
-                    </div>
-                    
                     <div class="row" id="formArea">
                         <div class="col-md-10">
                             <div class="form-group">
-                            <form class="form-horizontal" role="form" id="editLocationForm">
+                            <form class="form-horizontal" role="form" id="addTrailForm">
                                 <div class="form-group row">
                                     <div class="col-sm-12">
-                                        <h3 class="formLabels">Park Name</h3>
-                                        <input type="text" class="form-control" id="parkNameBox" th:value="${location.parkName}"/>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-12">
-                                        <h3 class="formLabels">Nearby City</h3>
-                                        <input type="text" class="form-control" id="nearbyCityBox" th:value="${location.nearbyCity}"/>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-12">
-                                        <h3 class="formLabels">State</h3>
-                                        <input type="text" class="form-control" id="stateBox" th:value="${location.state}"/>
+                                        <h3 class="formLabels">Trail Name</h3>
+                                        <input type="text" class="form-control" id="trailNameBox" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-5">
-                                        <h3 class="formLabels">Park Image (.png or .jpg)</h3>
+                                        <h3 class="formLabels">Location</h3>
+                                        <select id="locationBox" class="form-control" multiple>
+                                            <option value="">Option</option>
+                                            <option value="">Option</option>
+                                            <option value="">Option</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <h3 class="formLabels">Route Type</h3>
+                                        <select id="routeTypeBox" class="form-control" multiple>
+                                            <option value="volvo">Option</option>
+                                            <option value="saab">Option</option>
+                                            <option value="fiat">Option</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <h3 class="formLabels">Difficulty Rating</h3>
+                                        <select id="difficultyRatingBox" class="form-control" multiple>
+                                            <option value="">Option</option>
+                                            <option value="">Option</option>
+                                            <option value="">Option</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        <h3 class="formLabels">Distance (ft)</h3>
+                                        <input type="text" class="form-control" id="distanceBox" />
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <h3 class="formLabels">Elevation Gain (ft)</h3>
+                                        <input type="text" class="form-control" id="elevationGainBox" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <h3 class="formLabels">Trail Image (.png or .jpg)</h3>
                                         <input type="file" id="filePath" accept=".jpg, .png">
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <button type="submit" id="editLocationButton" class="btn btn-default">Edit Location</button>
+                                    <button type="submit" id="addTrailButton" class="btn btn-default">Add Trail</button>
                                 </div>
                             </form>
                             </div>
@@ -217,6 +214,6 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="js/jquery-2.2.4.min.js"></script>
         <script src="js/bootstrap.js"></script>
-        <script src="js/locationsEdit.js"></script>
+        <script src="js/trailsAdd.js"></script>
     </body>
 </html>

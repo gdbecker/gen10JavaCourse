@@ -17,6 +17,7 @@ import gdb.HikingVentures.entities.Trip;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -27,6 +28,28 @@ import org.springframework.stereotype.Service;
 @Service
 public class HVService {
     
+    @Autowired
+    TripRepository trip;
+    
+    @Autowired
+    TrailRepository trail;
+    
+    @Autowired
+    TravelerRepository traveler;
+    
+    @Autowired
+    EquipmentRepository equipment;
+    
+    @Autowired
+    LocationRepository location;
+    
+    @Autowired
+    RouteTypeRepository routeType;
+    
+    @Autowired
+    DifficultyRatingRepository difficultyRating;
+    
+    /*
     private final EquipmentRepository equipment;
     private final LocationRepository location;
     private final RouteTypeRepository routeType;
@@ -50,7 +73,8 @@ public class HVService {
         this.traveler = traveler;
         this.trip = trip;
     }
-    
+    */    
+
     //Methods for Equipment
     public List<Equipment> findAllEquipment() {
         return equipment.findAll();
