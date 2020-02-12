@@ -108,7 +108,7 @@ function loadTravelers() {
                 var firstName = Traveler.firstName;
                 var lastName = Traveler.lastName;
                 var birthDate = Traveler.birthDate;
-                var pic = Traveler.photoLink;
+                var pic = Traveler.photoFilePath;
 
                 if(counter == 0 || counter % 2 == 0) {
                     $('#travelersDiv').append('<div class="row" id="row'+ rowNum + '"></div>')
@@ -133,7 +133,7 @@ function loadTravelers() {
                     toAdd += '<div class="row">';
                     toAdd += '<div class="dropDownMenu" id="dropDownMenu' + id + '">';
                     toAdd += '<a href="#">View More Details</a>';
-                    toAdd += '<a href="#">Edit</a>';
+                    toAdd += '<a href="travelersEdit?id=' + id + '">Edit</a>';
                     toAdd += '<a href="#">Delete</a>';
                     toAdd += '</div>';
                     toAdd += '</div>';

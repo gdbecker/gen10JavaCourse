@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         
-        <title>Add Trail</title>
+        <title>Edit Trail</title>
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/site.css" rel="stylesheet">
@@ -109,13 +109,45 @@
             margin-left: 10px;
         }
         
-        #addTrailButton {
+        #editTrailButton {
             color: #39393A;
             font-family: "Gill Sans";
             font-size: 16px;
             margin-top: 10px;
             margin-bottom: 10px;
             margin-left: -7px;
+        }
+        
+        .trailCard {
+            position: relative;
+            background-position: center;
+            background-size: cover;
+            width: 800px;
+            height: 150px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 50px;
+        }
+        
+        .layer {
+            background-color: rgba(0, 0, 0, 0.17);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .trailCardText {
+            color: #E6E6E6;
+            font-family: "Gill Sans";
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 20px;
+            margin-top: 60px;
+            margin-left: 25px;
+            text-align: center;
         }
     </style>
     
@@ -158,7 +190,7 @@
                             <div class="col-md-11">
                                 <div class="pageHeader">
                                     <div class="pageTitle">
-                                        <h2>Add New Trail</h2>
+                                        <h2>Edit Trail</h2>
                                     </div>
                                 <div class="divider"></div>
                                 </div>
@@ -172,23 +204,38 @@
                         </div>
                     </div>
                     
+                    <div class="row">
+                        <div class="trailCard" th:style="'background-image: url(img/' + ${trail.photoFilePath} + ');'">
+                            <div class="layer"></div>
+                            <div class="row" id="trailCardInfo">
+                                <div class="col-md-12">
+                                    <div class="trailCardText" th:text="${trail.trailName}">Trail Name</div>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                    
                     <div class="row" id="formArea">
                         <div class="col-md-10">
                             <div class="form-group">
-                            <form action="addNewTrail" method="post" enctype="multipart/form-data" class="form-horizontal" role="form" id="addTrailForm">
+                            <form action="editTrail" method="post" enctype="multipart/form-data" class="form-horizontal" role="form" id="editTrailForm">
                                 <div class="form-group row">
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-11">
                                         <h3 class="formLabels">Trail Name</h3>
-                                        <input type="text" class="form-control" name="trailNameBox" id="trailNameBox" >
+                                        <input type="text" class="form-control" name="trailNameBox" id="trailNameBox" th:value="${trail.trailName}">
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <input type="text" class="form-control" name="id" id="id" th:value="${trail.trailId}" style="display: none">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-5">
                                         <h3 class="formLabels">Location</h3>
                                         <select name="locationBox" id="locationBox" class="form-control">
-                                            <option th:each="location : ${locations}" 
-                                                    th:value="${location.locationId}" 
-                                                    th:text="${location.parkName}">Location</option>
+                                            <option th:each="l : ${locations}" 
+                                                    th:value="${l.locationId}" 
+                                                    th:text="${l.parkName}"
+                                                    th:selected="${trail.location.parkName == l.parkName}">Location</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-3">
@@ -196,7 +243,8 @@
                                         <select name="routeTypeBox" id="routeTypeBox" class="form-control">
                                             <option th:each="type : ${routeTypes}" 
                                                     th:value="${type.routeTypeId}" 
-                                                    th:text="${type.type}">Route Type</option>
+                                                    th:text="${type.type}"
+                                                    th:selected="${trail.routeType.type = type.type}">Route Type</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-4">
@@ -204,18 +252,19 @@
                                         <select  name="difficultyRatingBox" id="difficultyRatingBox" class="form-control">
                                             <option th:each="rating : ${ratings}" 
                                                     th:value="${rating.difficultyRatingId}" 
-                                                    th:text="${rating.type}">Difficulty Rating</option>
+                                                    th:text="${rating.type}"
+                                                    th:selected="${trail.difficultyRating.type == rating.type}">Difficulty Rating</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-3">
                                         <h3 class="formLabels">Distance (ft)</h3>
-                                        <input type="text" class="form-control" name="distanceBox" id="distanceBox">
+                                        <input type="text" class="form-control" name="distanceBox" id="distanceBox" th:value="${trail.distance}">
                                     </div>
                                     <div class="col-sm-4">
                                         <h3 class="formLabels">Elevation Gain (ft)</h3>
-                                        <input type="text" class="form-control" name="elevationGainBox" id="elevationGainBox" >
+                                        <input type="text" class="form-control" name="elevationGainBox" id="elevationGainBox" th:value="${trail.elevationGain}">
                                     </div>
                                     <div class="col-sm-5">
                                         <h3 class="formLabels">Select Trip(s)</h3>
@@ -229,17 +278,17 @@
                                 <div class="form-group row">
                                     <div class="col-sm-12">
                                         <h3 class="formLabels">Map Link URL</h3>
-                                        <input type="text" class="form-control" name="filePathMap" id="filePathMap">
+                                        <input type="text" class="form-control" name="filePathMap" id="filePathMap" th:value="${trail.mapLink}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-12">
                                         <h3 class="formLabels">Trail Image URL</h3>
-                                        <input type="text" class="form-control" name="filePath" id="filePath">
+                                        <input type="text" class="form-control" name="filePath" id="filePath" th:value="${trail.photoLink}">
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <button type="submit" id="addTrailButton" class="btn btn-default">Add Trail</button>
+                                    <button type="submit" id="editTrailButton" class="btn btn-default">Edit Trail</button>
                                 </div>
                             </form>
                             </div>

@@ -121,7 +121,7 @@ function loadTrips() {
                     async: false,
                     success: function (data, status) {
                         $.each(data, function (index, Trail) {
-                            pic = Trail.photoLink;
+                            pic = Trail.photoFilePath;
                             location = Trail.location;
                             locationName = location.parkName;
                             
@@ -154,7 +154,7 @@ function loadTrips() {
                     toAdd += '<input type="image" src="img/MenuBar.png" alt="View More Options" title="View More Options" class="tripCardButtons" id="' + id + '" onclick="showMoreOptionsMenu(id)">';
                     toAdd += '<div class="dropDownMenu" id="dropDownMenu' + id + '">';
                     toAdd += '<a href="#">View More Details</a>';
-                    toAdd += '<a href="#">Edit</a>';
+                    toAdd += '<a href="tripsEdit?id=' + id + '">Edit</a>';
                     toAdd += '<a href="#">Delete</a>';
                     toAdd += '</div>';
                     toAdd += '</div>';

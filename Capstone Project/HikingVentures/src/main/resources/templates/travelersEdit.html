@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         
-        <title>Add Trail</title>
+        <title>Edit Traveler</title>
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/site.css" rel="stylesheet">
@@ -22,23 +22,23 @@
         Old Moss Green: #87A330
         */
         
-        #trailsButton {
+        #travelersButton {
             border: medium solid #87A330;
         }
         
-        #trailsTitle {
+        #travelersTitle {
             opacity: 1;
         }
         
         #formArea {
-            background: #E6E6E6;
+            background: #39393A;
             opacity: 0.9;
             margin-left: 10px;
             padding: 10px;
         }
         
         .formLabels {
-            color: #39393A;
+            color: #E6E6E6;
             font-family: "Gill Sans";
             font-weight: bold;
             text-transform: uppercase;
@@ -46,70 +46,80 @@
             font-size: 16px;
         }
         
-        #trailNameBox {
+        #firstNameBox {
             font-size: 16px;
             font-family: "Gill Sans";
-            width: 500px;
+            width: 300px;
             margin-left: 10px;
         }
         
-        #locationBox {
-            color: #39393A;
-            font-family: "Gill Sans";
+        #lastNameBox {
             font-size: 16px;
+            font-family: "Gill Sans";
+            width: 300px;
             margin-left: 10px;
         }
         
-        #routeTypeBox {
-            color: #39393A;
-            font-family: "Gill Sans";
+        #addressBox {
             font-size: 16px;
+            font-family: "Gill Sans";
+            width: 600px;
             margin-left: 10px;
         }
         
-        #difficultyRatingBox {
-            color: #39393A;
-            font-family: "Gill Sans";
+        #cityBox {
             font-size: 16px;
+            font-family: "Gill Sans";
+            width: 350px;
             margin-left: 10px;
         }
         
-        #distanceBox {
+        #stateBox {
             font-size: 16px;
             font-family: "Gill Sans";
+            width: 80px;
             margin-left: 10px;
         }
         
-        #elevationGainBox {
+        #zipCodeBox {
             font-size: 16px;
             font-family: "Gill Sans";
+            width: 120px;
+            margin-left: 10px;
+        }
+        
+        #birthDateBox {
+            font-size: 16px;
+            font-family: "Gill Sans";
+            width: 135px;
             margin-left: 10px;
         }
         
         #tripsBox {
+            width: 450px;
+            margin-left: 10px;
             color: #39393A;
             font-family: "Gill Sans";
             font-size: 16px;
-            margin-left: 10px;
         }
         
         #filePath {
             color: #39393A;
             font-size: 16px;
             font-family: "Gill Sans";
-            width: 600px;
+            width: 500px;
             margin-left: 10px;
         }
         
-        #filePathMap {
-            color: #39393A;
-            font-size: 16px;
-            font-family: "Gill Sans";
-            width: 600px;
-            margin-left: 10px;
+        #pic {
+            width: 90%;
+            height: auto;
+            margin-left: 40px;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         }
         
-        #addTrailButton {
+        #editTravelerButton {
             color: #39393A;
             font-family: "Gill Sans";
             font-size: 16px;
@@ -136,9 +146,9 @@
                         <img src="img/PageBackground.jpeg" alt="HikingVentures" id="logoPage">
                         <input type="image" src="img/Trips.png" alt="Trips" title="Hiking Trips" class="navigationButtons" id="tripsButton">
                         <h5 class="navigationTitles" id="tripsTitle">Hiking Trips</h5>
-                        <input type="image" src="img/TrailsSelected.png" alt="Trails" title="Trails" class="navigationButtons" id="trailsButton">
+                        <input type="image" src="img/Trails.png" alt="Trails" title="Trails" class="navigationButtons" id="trailsButton">
                         <h5 class="navigationTitles" id="trailsTitle">Trails</h5>
-                        <input type="image" src="img/Travelers.png" alt="Travelers" title="Travelers" class="navigationButtons" id="travelersButton">
+                        <input type="image" src="img/TravelersSelected.png" alt="Travelers" title="Travelers" class="navigationButtons" id="travelersButton">
                         <h5 class="navigationTitles" id="travelersTitle">Travelers</h5>
                         <input type="image" src="img/Equipment.png" alt="Equipment" title="Equipment" class="navigationButtons" id="equipmentButton">
                         <h5 class="navigationTitles" id="equipmentTitle">Equipment</h5>
@@ -158,7 +168,7 @@
                             <div class="col-md-11">
                                 <div class="pageHeader">
                                     <div class="pageTitle">
-                                        <h2>Add New Trail</h2>
+                                        <h2>Edit Traveler</h2>
                                     </div>
                                 <div class="divider"></div>
                                 </div>
@@ -175,71 +185,66 @@
                     <div class="row" id="formArea">
                         <div class="col-md-10">
                             <div class="form-group">
-                            <form action="addNewTrail" method="post" enctype="multipart/form-data" class="form-horizontal" role="form" id="addTrailForm">
+                            <form action="editTraveler" method="post" enctype="multipart/form-data" class="form-horizontal" role="form" id="editTravelerForm">
                                 <div class="form-group row">
-                                    <div class="col-sm-12">
-                                        <h3 class="formLabels">Trail Name</h3>
-                                        <input type="text" class="form-control" name="trailNameBox" id="trailNameBox" >
+                                    <div class="col-sm-6">
+                                        <h3 class="formLabels">First Name</h3>
+                                        <input type="text" class="form-control" name="firstNameBox" id="firstNameBox" th:value="${traveler.firstName}">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h3 class="formLabels">Last Name</h3>
+                                        <input type="text" class="form-control" name="lastNameBox" id="lastNameBox" th:value="${traveler.lastName}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-sm-5">
-                                        <h3 class="formLabels">Location</h3>
-                                        <select name="locationBox" id="locationBox" class="form-control">
-                                            <option th:each="location : ${locations}" 
-                                                    th:value="${location.locationId}" 
-                                                    th:text="${location.parkName}">Location</option>
-                                        </select>
+                                    <div class="col-sm-11">
+                                        <h3 class="formLabels">Address</h3>
+                                        <input type="text" class="form-control" name="addressBox" id="addressBox" th:value="${traveler.address}">
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <input type="text" class="form-control" name="id" id="id" th:value="${traveler.travelerId}" style="display: none">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <h3 class="formLabels">City</h3>
+                                        <input type="text" class="form-control" name="cityBox" id="cityBox" th:value="${traveler.city}">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <h3 class="formLabels">State</h3>
+                                        <input type="text" class="form-control" name="stateBox" id="stateBox" th:value="${traveler.state}">
                                     </div>
                                     <div class="col-sm-3">
-                                        <h3 class="formLabels">Route Type</h3>
-                                        <select name="routeTypeBox" id="routeTypeBox" class="form-control">
-                                            <option th:each="type : ${routeTypes}" 
-                                                    th:value="${type.routeTypeId}" 
-                                                    th:text="${type.type}">Route Type</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <h3 class="formLabels">Difficulty Rating</h3>
-                                        <select  name="difficultyRatingBox" id="difficultyRatingBox" class="form-control">
-                                            <option th:each="rating : ${ratings}" 
-                                                    th:value="${rating.difficultyRatingId}" 
-                                                    th:text="${rating.type}">Difficulty Rating</option>
-                                        </select>
+                                        <h3 class="formLabels">Zip Code</h3>
+                                        <input type="text" class="form-control" name="zipCodeBox" id="zipCodeBox" th:value="${traveler.zip}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-3">
-                                        <h3 class="formLabels">Distance (ft)</h3>
-                                        <input type="text" class="form-control" name="distanceBox" id="distanceBox">
+                                        <h3 class="formLabels">Birth Date</h3>
+                                        <input type="date" class="form-control" name="birthDateBox" id="birthDateBox" min="1900-01-01" th:value="${traveler.birthDate}">
                                     </div>
-                                    <div class="col-sm-4">
-                                        <h3 class="formLabels">Elevation Gain (ft)</h3>
-                                        <input type="text" class="form-control" name="elevationGainBox" id="elevationGainBox" >
-                                    </div>
-                                    <div class="col-sm-5">
+                                    <div class="col-sm-9">
                                         <h3 class="formLabels">Select Trip(s)</h3>
                                         <select name="tripsBox" id="tripsBox" class="form-control" multiple>
                                             <option th:each="trip : ${trips}" 
                                                     th:value="${trip.tripId}" 
-                                                    th:text="${trip.tripName}">Trip Name</option>
+                                                    th:text="${trip.tripName}"
+                                                    th:selected="${traveler.trips.contains(trip)}">Trip Name</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-sm-12">
-                                        <h3 class="formLabels">Map Link URL</h3>
-                                        <input type="text" class="form-control" name="filePathMap" id="filePathMap">
+                                    <div class="col-sm-9">
+                                        <h3 class="formLabels">Traveler Image URL</h3>
+                                        <input type="text" class="form-control" name="filePath" id="filePath" th:value="${traveler.photoLink}">
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-12">
-                                        <h3 class="formLabels">Trail Image URL</h3>
-                                        <input type="text" class="form-control" name="filePath" id="filePath">
+                                    <div class="col-sm-3">
+                                        <img id="pic" th:src="'img/' + ${traveler.photoFilePath}">
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <button type="submit" id="addTrailButton" class="btn btn-default">Add Trail</button>
+                                    <button type="submit" id="editTravelerButton" class="btn btn-default">Edit Traveler</button>
                                 </div>
                             </form>
                             </div>
@@ -252,6 +257,6 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="js/jquery-2.2.4.min.js"></script>
         <script src="js/bootstrap.js"></script>
-        <script src="js/trailsAdd.js"></script>
+        <script src="js/travelersAdd.js"></script>
     </body>
 </html>

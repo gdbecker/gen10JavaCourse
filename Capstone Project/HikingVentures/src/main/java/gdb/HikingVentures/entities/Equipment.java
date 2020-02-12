@@ -2,6 +2,7 @@ package gdb.HikingVentures.entities;
 
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,10 +26,12 @@ public class Equipment {
     String name;
     String description;
     String photoLink;
+    String photoFilePath;
     
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "Trip_Equipment",
     joinColumns = {@JoinColumn(name = "equipment_id")},
     inverseJoinColumns = {@JoinColumn(name = "trip_id")})
+    //@JsonIgnore     
     List<Trip> trips;
 }

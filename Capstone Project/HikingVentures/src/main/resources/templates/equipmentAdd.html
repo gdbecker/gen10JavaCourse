@@ -47,29 +47,38 @@
         }
         
         #itemNameBox {
+            font-family: "Gill Sans";
+            font-size: 16px;
             width: 300px;
             margin-left: 10px;
         }
         
         #descriptionBox {
-            width: 500px;
+            font-family: "Gill Sans";
+            font-size: 16px;
             margin-left: 10px;
         }
         
-        #stateBox {
-            width: 50px;
+        #tripsBox {
+            width: 450px;
             margin-left: 10px;
+            color: #39393A;
+            font-family: "Gill Sans";
+            font-size: 16px;
         }
         
         #filePath {
             color: #39393A;
+            font-size: 16px;
             font-family: "Gill Sans";
+            width: 600px;
             margin-left: 10px;
         }
         
         #addEquipmentButton {
             color: #39393A;
             font-family: "Gill Sans";
+            font-size: 16px;
             margin-top: 10px;
             margin-bottom: 10px;
             margin-left: -7px;
@@ -132,23 +141,31 @@
                     <div class="row" id="formArea">
                         <div class="col-md-10">
                             <div class="form-group">
-                            <form class="form-horizontal" role="form" id="addEquipmentForm">
+                            <form action="addNewEquipment" method="post" enctype="multipart/form-data" class="form-horizontal" role="form" id="addEquipmentForm">
                                 <div class="form-group row">
                                     <div class="col-sm-12">
                                         <h3 class="formLabels">Item Name</h3>
-                                        <input type="text" class="form-control" id="itemNameBox" />
+                                        <input type="text" class="form-control" name="itemNameBox" id="itemNameBox" >
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <h3 class="formLabels">Description</h3>
+                                        <textarea class="form-control" name="descriptionBox" id="descriptionBox" rows="4"></textarea>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h3 class="formLabels">Select Trip(s)</h3>
+                                        <select name="tripsBox" id="tripsBox" class="form-control" multiple>
+                                            <option th:each="trip : ${trips}" 
+                                                    th:value="${trip.tripId}" 
+                                                    th:text="${trip.tripName}">Trip Name</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-12">
-                                        <h3 class="formLabels">Description</h3>
-                                        <textarea class="form-control" id="descriptionBox" rows="4"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-5">
-                                        <h3 class="formLabels">Item Image (.png or .jpg)</h3>
-                                        <input type="file" id="filePath" accept=".jpg, .png">
+                                        <h3 class="formLabels">Equipment Item Image URL</h3>
+                                        <input type="text" class="form-control" name="filePath" id="filePath">
                                     </div>
                                 </div>
                                 <div class="col-md-8">

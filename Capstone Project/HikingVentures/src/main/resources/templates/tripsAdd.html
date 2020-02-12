@@ -49,6 +49,7 @@
         #tripNameBox {
             color: #39393A;
             font-family: "Gill Sans";
+            font-size: 16px;
             width: 500px;
             margin-left: 10px;
         }
@@ -74,7 +75,7 @@
             margin-left: 10px;
         }
         
-        #locationBox {
+        #trailBox {
             color: #39393A;
             font-family: "Gill Sans";
             font-size: 16px;
@@ -98,6 +99,7 @@
         #addTripButton {
             color: #39393A;
             font-family: "Gill Sans";
+            font-size: 16px;
             margin-top: 10px;
             margin-bottom: 10px;
             margin-left: -7px;
@@ -160,50 +162,50 @@
                     <div class="row" id="formArea">
                         <div class="col-md-10">
                             <div class="form-group">
-                            <form class="form-horizontal" role="form" id="addTripForm">
+                            <form action="addNewTrip" method="post" enctype="multipart/form-data" class="form-horizontal" role="form" id="addTripForm">
                                 <div class="form-group row">
                                     <div class="col-sm-12">
                                         <h3 class="formLabels">Trip Name</h3>
-                                        <input type="text" class="form-control" id="tripNameBox" />
+                                        <input type="text" class="form-control" name="tripNameBox" id="tripNameBox">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-3">
                                         <h3 class="formLabels">Start Date</h3>
-                                        <input type="date" class="form-control" id="startDateBox" min="1900-01-01">
+                                        <input type="date" class="form-control" name="startDateBox" id="startDateBox" min="1900-01-01">
                                     </div>
                                     <div class="col-sm-3">
                                         <h3 class="formLabels">End Date</h3>
-                                        <input type="date" class="form-control" id="endDateBox" min="1900-01-01">
+                                        <input type="date" class="form-control" name="endDateBox" id="endDateBox" min="1900-01-01">
                                     </div>
                                     <div class="col-sm-4">
                                         <h3 class="formLabels">Cost Per Traveler ($)</h3>
-                                        <input type="text" class="form-control" id="costBox" />
+                                        <input type="text" class="form-control" name="costBox" id="costBox">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-4">
-                                        <h3 class="formLabels">Location</h3>
-                                        <select id="locationBox" class="form-control" multiple>
-                                            <option value="">Option</option>
-                                            <option value="">Option</option>
-                                            <option value="">Option</option>
+                                        <h3 class="formLabels">Select Trail(s)</h3>
+                                        <select name="trailBox" id="trailBox" class="form-control" multiple>
+                                            <option th:each="t : ${trails}" 
+                                                    th:value="${t.trailId}" 
+                                                    th:text="${t.trailName}">Trail Name</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-4">
-                                        <h3 class="formLabels">Equipment</h3>
-                                        <select id="equipmentBox" class="form-control" multiple>
-                                            <option value="">Option</option>
-                                            <option value="">Option</option>
-                                            <option value="">Option</option>
+                                        <h3 class="formLabels">Select Equipment</h3>
+                                        <select name="equipmentBox" id="equipmentBox" class="form-control" multiple>
+                                            <option th:each="e : ${equipment}" 
+                                                    th:value="${e.equipmentId}" 
+                                                    th:text="${e.name}">Equipment Name</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-4">
-                                        <h3 class="formLabels">Travelers</h3>
-                                        <select id="travelerBox" class="form-control" multiple>
-                                            <option value="">Option</option>
-                                            <option value="">Option</option>
-                                            <option value="">Option</option>
+                                        <h3 class="formLabels">Select Travelers</h3>
+                                        <select name="travelerBox" id="travelerBox" class="form-control" multiple>
+                                            <option th:each="t : ${travelers}" 
+                                                    th:value="${t.travelerId}" 
+                                                    th:text="${t.firstName} + ' ' + ${t.lastName}">Traveler Name</option>
                                         </select>
                                     </div>
                                 </div>

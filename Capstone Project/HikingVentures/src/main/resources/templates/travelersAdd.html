@@ -47,31 +47,50 @@
         }
         
         #firstNameBox {
+            font-size: 16px;
+            font-family: "Gill Sans";
             width: 300px;
             margin-left: 10px;
         }
         
         #lastNameBox {
+            font-size: 16px;
+            font-family: "Gill Sans";
             width: 300px;
             margin-left: 10px;
         }
         
         #addressBox {
+            font-size: 16px;
+            font-family: "Gill Sans";
             width: 600px;
             margin-left: 10px;
         }
         
         #cityBox {
+            font-size: 16px;
+            font-family: "Gill Sans";
             width: 350px;
             margin-left: 10px;
         }
         
         #stateBox {
+            font-size: 16px;
+            font-family: "Gill Sans";
             width: 80px;
             margin-left: 10px;
         }
         
+        #zipCodeBox {
+            font-size: 16px;
+            font-family: "Gill Sans";
+            width: 120px;
+            margin-left: 10px;
+        }
+        
         #birthDateBox {
+            font-size: 16px;
+            font-family: "Gill Sans";
             width: 135px;
             margin-left: 10px;
         }
@@ -86,13 +105,16 @@
         
         #filePath {
             color: #39393A;
+            font-size: 16px;
             font-family: "Gill Sans";
+            width: 600px;
             margin-left: 10px;
         }
         
         #addTravelerButton {
             color: #39393A;
             font-family: "Gill Sans";
+            font-size: 16px;
             margin-top: 10px;
             margin-bottom: 10px;
             margin-left: -7px;
@@ -155,56 +177,55 @@
                     <div class="row" id="formArea">
                         <div class="col-md-10">
                             <div class="form-group">
-                            <form class="form-horizontal" role="form" id="addTravelerForm">
+                            <form action="addNewTraveler" method="post" enctype="multipart/form-data" class="form-horizontal" role="form" id="addTravelerForm">
                                 <div class="form-group row">
                                     <div class="col-sm-6">
                                         <h3 class="formLabels">First Name</h3>
-                                        <input type="text" class="form-control" id="firstNameBox" />
+                                        <input type="text" class="form-control" name="firstNameBox" id="firstNameBox">
                                     </div>
                                     <div class="col-sm-6">
                                         <h3 class="formLabels">Last Name</h3>
-                                        <input type="text" class="form-control" id="lastNameBox" />
+                                        <input type="text" class="form-control" name="lastNameBox" id="lastNameBox">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-12">
                                         <h3 class="formLabels">Address</h3>
-                                        <input type="text" class="form-control" id="addressBox"/>
+                                        <input type="text" class="form-control" name="addressBox" id="addressBox">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6">
                                         <h3 class="formLabels">City</h3>
-                                        <input type="text" class="form-control" id="cityBox" />
+                                        <input type="text" class="form-control" name="cityBox" id="cityBox">
                                     </div>
                                     <div class="col-sm-2">
                                         <h3 class="formLabels">State</h3>
-                                        <input type="text" class="form-control" id="stateBox" />
+                                        <input type="text" class="form-control" name="stateBox" id="stateBox">
                                     </div>
                                     <div class="col-sm-3">
                                         <h3 class="formLabels">Zip Code</h3>
-                                        <input type="text" class="form-control" id="zipCodeBox" />
+                                        <input type="text" class="form-control" name="zipCodeBox" id="zipCodeBox">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-3">
                                         <h3 class="formLabels">Birth Date</h3>
-                                        <input type="date" class="form-control" id="birthDateBox" min="1900-01-01">
+                                        <input type="date" class="form-control" name="birthDateBox" id="birthDateBox" min="1900-01-01">
                                     </div>
                                     <div class="col-sm-9">
                                         <h3 class="formLabels">Select Trip(s)</h3>
-                                        <select id="tripsBox" class="form-control" multiple>
-                                            <option value="volvo">Volvo</option>
-                                            <option value="saab">Saab</option>
-                                            <option value="fiat">Fiat</option>
-                                            <option value="audi">Audi</option>
+                                        <select name="tripsBox" id="tripsBox" class="form-control" multiple>
+                                            <option th:each="trip : ${trips}" 
+                                                    th:value="${trip.tripId}" 
+                                                    th:text="${trip.tripName}">Trip Name</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-sm-6">
-                                        <h3 class="formLabels">Traveler Image (.png or .jpg)</h3>
-                                        <input type="file" id="filePath" accept=".jpg, .png">
+                                    <div class="col-sm-12">
+                                        <h3 class="formLabels">Traveler Image URL</h3>
+                                        <input type="text" class="form-control" name="filePath" id="filePath">
                                     </div>
                                 </div>
                                 <div class="col-md-8">

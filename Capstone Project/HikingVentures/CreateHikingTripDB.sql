@@ -14,14 +14,16 @@ create table if not exists Traveler (
     State varchar(2),
     Zip varchar(5),
     birth_date date,
-    photo_link varchar(100)
+    photo_link varchar(300),
+    photo_file_path varchar(100)
 );
 
 create table if not exists Equipment (
 	equipment_id int primary key auto_increment,
     `Name` varchar(30) not null,
     `Description` varchar(100) not null,
-    photo_link varchar(100) not null
+    photo_link varchar(300),
+    photo_file_path varchar(100)
 );
 
 create table if not exists Trip (
@@ -86,8 +88,9 @@ create table if not exists Trail (
 		references route_type(route_type_id),
 	Distance double not null,
     elevation_gain double not null,
-    map_link varchar(500) not null,
-    photo_link varchar(100) not null
+    map_link varchar(500),
+    photo_link varchar(300),
+    photo_file_path varchar(100)
 );
 
 create table if not exists Trip_Trail (
@@ -100,7 +103,7 @@ create table if not exists Trip_Trail (
 		references Trail(trail_id)
 );
 
-insert into Traveler(first_name, last_name, Address, City, State, Zip, birth_date, photo_link) values
+insert into Traveler(first_name, last_name, Address, City, State, Zip, birth_date, photo_file_path) values
 ('Mark', 'Watney', '2987 Hickory Lane', 'Charlotte', 'NC', '28971', '1981-01-02', 'MarkWatney.jpg'),
 ('Sarah', 'Walker', '67 Fox Avenue', 'Matthews', 'NC', '20862', '1993-08-22', 'SarahWalker.jpg'),
 ('Bethany', 'Callahan', '281 Mint Row', 'Gastonia', 'NC', '22881', '1989-12-04', 'BethanyCallahan.jpg'),
@@ -110,7 +113,7 @@ insert into Traveler(first_name, last_name, Address, City, State, Zip, birth_dat
 ('Kate', 'Cowell', '5327 Trojan Horse Lane', 'Mint Hill', 'NC', '22374', '1990-01-24', 'KateCowell.jpg'),
 ('Spencer', 'Burt', '671 Waterfall St', 'Charlotte', 'NC', '28971', '1995-03-29', 'SpencerBurt.jpg');
 
-insert Equipment(`Name`, `Description`, photo_link) values
+insert Equipment(`Name`, `Description`, photo_file_path) values
 ('Sleeping Bag', 'Used for sleeping comfortably at night', 'SleepingBag.jpg'),
 ('Water Bottle', 'Hydrate!', 'WaterBottle.jpg'),
 ('Backpack', 'Carry everything you need', 'Backpack.jpg'),
@@ -133,13 +136,13 @@ insert into route_type(`Type`, `Description`) values
 ('Point-to-Point', 'Starts and ends in different locations. These routes are often part of a multi-day hiking or backpacking trip or segments of a long distance trail such as the Appalachian Trail or Pacific Crest Trail.');
 
 insert into Location(park_name, nearby_city, State, photo_file_path) values
-('Great Smoky Mountains National Park', 'Cherokee', 'NC', 'GreatSmokyMountains.jpg'),
+('Great Smoky Mountains National Park', 'Cherokee', 'NC', 'GreatSmokyMountainsNationalPark.jpg'),
 ('Cherokee National Forest', 'Boone', 'NC', 'CherokeeNationalForest.jpg'),
 ('Uwharrie National Forest', 'Albemarle', 'NC', 'UwharrieNationalForest.jpg'),
 ('Crowders Mountain State Park', 'Kings Mountain', 'NC', 'CrowdersMountainStatePark.jpg'),
 ('Lake Norman State Park', 'Troutman', 'NC', 'LakeNormanStatePark.jpg');
 
-insert into Trail(location_id, trail_name, difficulty_rating_id, route_type_id, Distance, elevation_gain, map_link, photo_link) values
+insert into Trail(location_id, trail_name, difficulty_rating_id, route_type_id, Distance, elevation_gain, map_link, photo_file_path) values
 (1, 'Chimney Tops Trail', 3, 2, '3.6', '1289', 'https://www.alltrails.com/trail/us/tennessee/chimney-tops-trail/print?title=Chimney%2BTops%2BTrail&at_map_id=22388256&map_center_lat=35.629762033890714&map_center_lon=-83.47392797470093&map_type=alltrailsOutdoorsV2&timestamp=1581274271&paper_size=letter&paper_orientation=portrait&grid_format=decimal&map_zoom=15&map_datum=wgs84', 'ChimneyTopsTrail.jpg'),
 (1, 'Rainbow Falls Trail', 3, 2, '5.5', '1653', 'https://www.alltrails.com/trail/us/tennessee/rainbow-falls-trail/print', 'RainbowFallsTrail.jpg'),
 (2, 'Blue Hole Falls', 1, 1, '0.5', '137', 'https://www.alltrails.com/trail/us/tennessee/blue-hole-falls/print?map_center_lat=36.43250132616073&map_center_lon=-82.07253999999999&map_zoom=17&map_type=alltrailsOutdoorsV2', 'BlueHoleFalls.jpg'),

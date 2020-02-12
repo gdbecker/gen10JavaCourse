@@ -107,7 +107,7 @@ function loadTrails() {
                 var trailName = Trail.trailName;
                 var location = Trail.location;
                 var locationName = location.parkName
-                var pic = Trail.photoLink;
+                var pic = Trail.photoFilePath;
                 
                 var toAdd = '<div class="row">';
                     toAdd += '<div class="trailCard" style="background-image: url(img/' + pic + ');">';
@@ -119,7 +119,7 @@ function loadTrails() {
                     toAdd += '<div class="col-md-3">';
                     toAdd += '<div class="dropDownMenu" id="dropDownMenu' + id + '">';
                     toAdd += '<a href="#">View More Details</a>';
-                    toAdd += '<a href="#">Edit</a>';
+                    toAdd += '<a href="trailsEdit?id=' + id + '">Edit</a>';
                     toAdd += '<a href="#">Delete</a>';
                     toAdd += '</div>';
                     toAdd += '</div>';

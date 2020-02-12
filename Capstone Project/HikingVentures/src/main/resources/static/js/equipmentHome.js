@@ -107,7 +107,7 @@ function loadEquipment() {
                 var id = Equipment.equipmentId;
                 var name = Equipment.name;
                 var description = Equipment.description;
-                var pic = Equipment.photoLink;
+                var pic = Equipment.photoFilePath;
 
                 if(counter == 0 || counter % 3 == 0) {
                     $('#equipmentDiv').append('<div class="row" id="row'+ rowNum + '"></div>')
@@ -128,8 +128,8 @@ function loadEquipment() {
                     toAdd += 'onclick="showMoreOptionsMenu(id)">';
                     toAdd += '<div class="dropDownMenu" id="dropDownMenu' + id + '">';
                     toAdd += '<a href="#">View More Details</a>';
-                    toAdd += '<a href="#">Edit</a>';
-                    toAdd += '<a href="#">Delete</a>';
+                    toAdd += '<a href="equipmentEdit?id=' + id + '">Edit</a>';
+                    toAdd += '<a href="" onclick="deleteEquipment(' + id + ')">Delete</a>';
                     toAdd += '</div>';
                     toAdd += '</div>';
                     toAdd += '</div>';
@@ -160,8 +160,29 @@ function clearEquipment() {
     $('#equipmentDiv').empty();
 }
 
-function showItemIdInForm(id) {
-    $('#itemBox').val(id);
+function deleteEquipment(id) {
+    //Confirm that user wants to delete
+    var r = confirm("Are you sure you want to delete this equipment item?");
+    
+    //Delete if true
+    if (r == true) {
+        var url = "equipmentDelete?id=" + id;
+        $.ajax ({
+        type: 'GET',
+        url: url,
+        success: function (data, status) {
+            //Do nothing
+        }, 
+        error: function() {
+            $('#errorMessages')
+                .append($('<li>')
+                .attr({class: 'list-group-item list-group-item-danger'})
+                .text('Error calling web service.  Please try again later.'));
+        }
+    });
+    } else {
+        //Do nothing
+    }
 }
 
 function showMoreOptionsMenu(id) {
