@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <title>View Traveler Details</title>
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/site.css" rel="stylesheet">
+    </head>
+    
+    <style>
+        /*
+        Color Palette:
+        Hansa Yellow: #E9D758
+        Myrtle Green: #297373
+        Coral: #FF8552
+        Platinum: #E6E6E6
+        Onyx: #39393A
+        Old Moss Green: #87A330
+        */
+        
+        #travelersButton {
+            border: medium solid #87A330;
+        }
+        
+        #travelersTitle {
+            opacity: 1;
+        }
+        
+        #formArea {
+            background: #39393A;
+            opacity: 0.9;
+            margin-left: 10px;
+            padding: 10px;
+        }
+        
+        .formLabels {
+            color: #E6E6E6;
+            font-family: "Gill Sans";
+            font-weight: bold;
+            text-transform: uppercase;
+            padding-left: 10px;
+            font-size: 16px;
+        }
+        
+        #firstNameBox {
+            font-size: 16px;
+            font-family: "Gill Sans";
+            width: 300px;
+            margin-left: 25px;
+        }
+        
+        #lastNameBox {
+            font-size: 16px;
+            font-family: "Gill Sans";
+            width: 300px;
+            margin-left: 25px;
+        }
+        
+        #firstNameLabel {
+            margin-left: 15px;
+        }
+        
+        #lastNameLabel {
+            margin-left: 15px;
+        }
+        
+        #addressBox {
+            font-size: 16px;
+            font-family: "Gill Sans";
+            width: 600px;
+            margin-left: 10px;
+        }
+        
+        #cityBox {
+            font-size: 16px;
+            font-family: "Gill Sans";
+            width: 350px;
+            margin-left: 10px;
+        }
+        
+        #stateBox {
+            font-size: 16px;
+            font-family: "Gill Sans";
+            width: 80px;
+            margin-left: 10px;
+        }
+        
+        #zipCodeBox {
+            font-size: 16px;
+            font-family: "Gill Sans";
+            width: 120px;
+            margin-left: 10px;
+        }
+        
+        #birthDateBox {
+            font-size: 16px;
+            font-family: "Gill Sans";
+            width: 135px;
+            margin-left: 10px;
+        }
+        
+        #tripsBox {
+            width: 450px;
+            margin-left: 10px;
+            color: #39393A;
+            font-family: "Gill Sans";
+            font-size: 16px;
+        }
+        
+        #tripTable {
+            font-size: 16px;
+            font-family: "Gill Sans";
+        }
+        
+        th {
+            color: #E6E6E6;
+        }
+        
+        .table > tbody > tr > td {
+            vertical-align: middle;
+        }
+        
+        
+        #filePath {
+            color: #39393A;
+            font-size: 16px;
+            font-family: "Gill Sans";
+            width: 500px;
+            margin-left: 10px;
+        }
+        
+        #pic {
+            width: 90%;
+            height: auto;
+            margin-left: 40px;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        
+        #editButton {
+            font-size: 16px;
+            color: #39393A;
+            font-family: "Gill Sans";
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: -10px;
+        }
+        
+        #deleteButton {
+            font-size: 16px;
+            color: #E6E6E6;
+            font-family: "Gill Sans";
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: 10px;
+        }
+    </style>
+    
+    <body>
+        <div class="bg-image"></div>
+        
+        <div class="container">
+            <!-- Space for any error messages to pop up-->
+            <ul class="list-group" id="errorMessages"></ul>
+            
+            <!-- Add main row to page for main content-->
+            <div class="row">
+                
+                <!-- Left side panel for site navigation-->
+                <div class="col-lg-2" id="leftBar">
+                    <div class="bg-navigation"></div>
+                    <form class="form-horizontal" role="form" id="navigationForm">
+                        <img src="img/PageBackground.jpeg" alt="HikingVentures" id="logoPage">
+                        <input type="image" src="img/Trips.png" alt="Trips" title="Hiking Trips" class="navigationButtons" id="tripsButton">
+                        <h5 class="navigationTitles" id="tripsTitle">Hiking Trips</h5>
+                        <input type="image" src="img/Trails.png" alt="Trails" title="Trails" class="navigationButtons" id="trailsButton">
+                        <h5 class="navigationTitles" id="trailsTitle">Trails</h5>
+                        <input type="image" src="img/TravelersSelected.png" alt="Travelers" title="Travelers" class="navigationButtons" id="travelersButton">
+                        <h5 class="navigationTitles" id="travelersTitle">Travelers</h5>
+                        <input type="image" src="img/Equipment.png" alt="Equipment" title="Equipment" class="navigationButtons" id="equipmentButton">
+                        <h5 class="navigationTitles" id="equipmentTitle">Equipment</h5>
+                        <input type="image" src="img/Locations.png" alt="Locations" title="Locations" class="navigationButtons" id="locationsButton">
+                        <h5 class="navigationTitles" id="locationsTitle">Locations</h5>
+                        <input type="image" src="img/About.png" alt="About" title="About Us" class="navigationButtons" id="aboutButton">
+                        <h5 class="navigationTitles" id="aboutTitle">About</h5>
+                    </form>
+                    <p id="copyright">&copy Copyright <br/>2020<br/>Garrett Becker</p>
+                    
+                </div>
+                
+                <!-- Main Page Content-->
+                <div class="col-lg-10">
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <div class="col-md-11">
+                                <div class="pageHeader">
+                                    <div class="pageTitle">
+                                        <h2>View Traveler Details</h2>
+                                    </div>
+                                <div class="divider"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="pageHeader">
+                                    <input type="image" src="img/Back.png" alt="Create" title="Go Back" class="pageHeaderButtons" id="backButton">
+                                    <h5 class="pageHeaderTitles" id="backTitle">Go Back</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row" id="formArea">
+                        <div class="col-md-10">
+                            <div class="form-group">
+                            <form class="form-horizontal" role="form" id="viewTravelerForm">
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group row">
+                                            <h3 class="formLabels"
+                                                id="firstNameLabel">First Name</h3>
+                                            <input type="text" 
+                                               class="form-control" 
+                                               name="firstNameBox" 
+                                               id="firstNameBox" 
+                                               th:value="${traveler.firstName}" readonly>
+                                        </div>
+                                        <div class="form-group row">
+                                            <h3 class="formLabels"
+                                                id="lastNameLabel">Last Name</h3>
+                                            <input type="text" 
+                                               class="form-control" 
+                                               name="lastNameBox" 
+                                               id="lastNameBox" 
+                                               th:value="${traveler.lastName}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <img id="pic" th:src="'img/' + ${traveler.photoFilePath}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-11">
+                                        <h3 class="formLabels">Address</h3>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="addressBox" 
+                                               id="addressBox" 
+                                               th:value="${traveler.address}" readonly>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="id" id="id" 
+                                               th:value="${traveler.travelerId}" 
+                                               style="display: none">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <h3 class="formLabels">City</h3>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="cityBox" 
+                                               id="cityBox" 
+                                               th:value="${traveler.city}" readonly>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <h3 class="formLabels">State</h3>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="stateBox" 
+                                               id="stateBox" 
+                                               th:value="${traveler.state}" readonly>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <h3 class="formLabels">Zip Code</h3>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="zipCodeBox" 
+                                               id="zipCodeBox" 
+                                               th:value="${traveler.zip}" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3">
+                                        <h3 class="formLabels">Birth Date</h3>
+                                        <input type="date" 
+                                               class="form-control" 
+                                               name="birthDateBox" 
+                                               id="birthDateBox" 
+                                               min="1900-01-01" 
+                                               th:value="${traveler.birthDate}" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <h3 class="formLabels">Trips this Traveler is On</h3>
+                                        <div class="col text-left">
+                                            <table class="table table-hover" id="tripTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Trip Name</th>
+                                                        <th>Cost Per Person</th>
+                                                        <th>Start Date</th>
+                                                        <th>End Date</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="active" th:each="trip : ${trips}">
+                                                        <td class="active" th:text="${trip.tripName}">Name</td>
+                                                        <td class="active" th:text="'$' + ${trip.tripCostPerTraveler}">Cost</td>
+                                                        <td class="active" th:text="${trip.startDate}">Start</td>
+                                                        <td class="active" th:text="${trip.endDate}">End</td>
+                                                        <td><a class="btn btn-default" 
+                                                               th:href="@{/tripsViewDetails(id=${trip.tripId})}">View Trip</a></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-9">
+                                        <h3 class="formLabels">Traveler Image URL</h3>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="filePath" 
+                                               id="filePath" 
+                                               th:value="${traveler.photoLink}" readonly>
+                                    </div>
+                                </div>
+                            </form>
+                            </div>
+                            <div class="col-md-8">
+                                <a id="editButton" class="btn btn-default" href="#" th:href="@{/travelersEdit(id=${traveler.travelerId})}">Edit</a>
+                                <a id="deleteButton" class="btn btn-danger" href="#"  th:onclick="|deleteTraveler('${traveler.travelerId}');|">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="js/jquery-2.2.4.min.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/travelersViewDetails.js"></script>
+    </body>
+</html>

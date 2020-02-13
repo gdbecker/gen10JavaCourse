@@ -173,6 +173,31 @@ public class TrailController {
         return "redirect:/trailsHome";
     }
     
+    //View specific details for a trail
+    @GetMapping("/trailsViewDetails")
+    public String openTrailViewDetails(@RequestParam Integer id, Model model) {
+        Trail thisTrail = service.findTrailByID(id);
+        model.addAttribute("trail", thisTrail);
+        
+        //Only get location that contains the trail
+        Location loc = thisTrail.getLocation();
+        model.addAttribute("location", loc);
+        
+        //Get route type for the trail
+        RouteType rt = thisTrail.getRouteType();
+        model.addAttribute("routeType", rt);
+        
+        //Get difficulty rating for the trail
+        DifficultyRating dr = thisTrail.getDifficultyRating();
+        model.addAttribute("difficultyRating", dr);
+        
+        //Only get trips that contain the trail
+        List<Trip> tripsWithTrail = thisTrail.getTrips();
+        model.addAttribute("trips", tripsWithTrail);
+        
+        return "trailsViewDetails";
+    }
+    
     //Open page for editing a specific trail
     @GetMapping("/trailsEdit")
     public String openTrailsEditDetails(@RequestParam Integer id, Model model) {
@@ -306,6 +331,13 @@ public class TrailController {
         }
         
         //Go back to travelersHome
+        return "redirect:/trailsHome";
+    }
+    
+    //Delete methods
+    @GetMapping("/trailsDelete")
+    public String deleteTrail(@RequestParam Integer id) {
+        service.deleteTrailByID(id);
         return "redirect:/trailsHome";
     }
 }

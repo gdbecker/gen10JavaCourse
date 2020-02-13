@@ -127,7 +127,7 @@ function loadEquipment() {
                     toAdd += 'class="equipmentCardButtons" id="' + id + '" ';
                     toAdd += 'onclick="showMoreOptionsMenu(id)">';
                     toAdd += '<div class="dropDownMenu" id="dropDownMenu' + id + '">';
-                    toAdd += '<a href="#">View More Details</a>';
+                    toAdd += '<a href="equipmentViewDetails?id=' + id + '">View More Details</a>';
                     toAdd += '<a href="equipmentEdit?id=' + id + '">Edit</a>';
                     toAdd += '<a href="" onclick="deleteEquipment(' + id + ')">Delete</a>';
                     toAdd += '</div>';

@@ -153,9 +153,9 @@ function loadTrips() {
                     toAdd += '<div class="col-md-2">';
                     toAdd += '<input type="image" src="img/MenuBar.png" alt="View More Options" title="View More Options" class="tripCardButtons" id="' + id + '" onclick="showMoreOptionsMenu(id)">';
                     toAdd += '<div class="dropDownMenu" id="dropDownMenu' + id + '">';
-                    toAdd += '<a href="#">View More Details</a>';
+                    toAdd += '<a href="tripsViewDetails?id=' + id + '">View More Details</a>';
                     toAdd += '<a href="tripsEdit?id=' + id + '">Edit</a>';
-                    toAdd += '<a href="#">Delete</a>';
+                    toAdd += '<a href="" onclick="deleteTrip(' + id + ')">Delete</a>';
                     toAdd += '</div>';
                     toAdd += '</div>';
                     toAdd += '</div>';
@@ -185,6 +185,31 @@ function loadTrips() {
 
 function clearTrips() {
     $('#tripsDiv').empty();
+}
+
+function deleteTrip(id) {
+    //Confirm that user wants to delete
+    var r = confirm("Are you sure you want to delete this trip?");
+    
+    //Delete if true
+    if (r == true) {
+        var url = "tripsDelete?id=" + id;
+        $.ajax ({
+        type: 'GET',
+        url: url,
+        success: function (data, status) {
+            //Do nothing
+        }, 
+        error: function() {
+            $('#errorMessages')
+                .append($('<li>')
+                .attr({class: 'list-group-item list-group-item-danger'})
+                .text('Error calling web service.  Please try again later.'));
+        }
+    });
+    } else {
+        //Do nothing
+    }
 }
 
 function showMoreOptionsMenu(id) {

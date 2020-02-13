@@ -132,9 +132,9 @@ function loadTravelers() {
                     toAdd += '</div>';
                     toAdd += '<div class="row">';
                     toAdd += '<div class="dropDownMenu" id="dropDownMenu' + id + '">';
-                    toAdd += '<a href="#">View More Details</a>';
+                    toAdd += '<a href="travelersViewDetails?id=' + id + '">View More Details</a>';
                     toAdd += '<a href="travelersEdit?id=' + id + '">Edit</a>';
-                    toAdd += '<a href="#">Delete</a>';
+                    toAdd += '<a href="" onclick="deleteTraveler(' + id + ')">Delete</a>';
                     toAdd += '</div>';
                     toAdd += '</div>';
                     toAdd += '</div>';
@@ -159,6 +159,31 @@ function loadTravelers() {
 
 function clearTravelers() {
     $('#travelersDiv').empty();
+}
+
+function deleteTraveler(id) {
+    //Confirm that user wants to delete
+    var r = confirm("Are you sure you want to delete this traveler?");
+    
+    //Delete if true
+    if (r == true) {
+        var url = "travelersDelete?id=" + id;
+        $.ajax ({
+        type: 'GET',
+        url: url,
+        success: function (data, status) {
+            //Do nothing
+        }, 
+        error: function() {
+            $('#errorMessages')
+                .append($('<li>')
+                .attr({class: 'list-group-item list-group-item-danger'})
+                .text('Error calling web service.  Please try again later.'));
+        }
+    });
+    } else {
+        //Do nothing
+    }
 }
 
 function showMoreOptionsMenu(id) {

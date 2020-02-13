@@ -117,13 +117,34 @@ public class TravelerController {
         return "redirect:/travelersHome";
     }
     
+    //View specific details for a traveler
+    @GetMapping("/travelersViewDetails")
+    public String openTravelerViewDetails(@RequestParam Integer id, Model model) {
+        Traveler tr = service.findTravelerByID(id);
+        model.addAttribute("traveler", tr);
+        
+        //Only get trips that contain the traveler
+        List<Trip> allTrips = service.findAllTrips();
+        List<Trip> tripsWithTraveler = new ArrayList<>();
+        for (Trip t : allTrips) {
+            List<Traveler> travelers = t.getTravelers();
+            for (Traveler trav : travelers) {
+                if (trav.getTravelerId() == id) {
+                    tripsWithTraveler.add(t);
+                }
+            }
+        }
+        model.addAttribute("trips", tripsWithTraveler);
+        
+        return "travelersViewDetails";
+    }
+    
     //Open page for editing a specific traveler
     @GetMapping("/travelersEdit")
     public String openTravelersEditDetails(@RequestParam Integer id, Model model) {
         Traveler t = service.findTravelerByID(id);
         model.addAttribute("traveler", t);
        
-        
         List<Trip> trips = service.findAllTrips();
         model.addAttribute("trips", trips);
         
@@ -197,6 +218,13 @@ public class TravelerController {
         }
         
         //Go back to travelersHome
+        return "redirect:/travelersHome";
+    }
+    
+    //Delete methods
+    @GetMapping("/travelersDelete")
+    public String deleteTraveler(@RequestParam Integer id) {
+        service.deleteTravelerByID(id);
         return "redirect:/travelersHome";
     }
 }

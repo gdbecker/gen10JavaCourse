@@ -32,7 +32,6 @@ public class Trip {
     LocalDate startDate;
     LocalDate endDate;
     
-    
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "Trip_Traveler",
     joinColumns = {@JoinColumn(name = "trip_id")},

@@ -86,6 +86,10 @@
             font-family: "Gill Sans";
         }
         
+        .table > tbody > tr > td {
+            vertical-align: middle;
+        }
+        
         #editButton {
             font-size: 16px;
             color: #39393A;
@@ -233,7 +237,7 @@
                                     <div class="col-sm-12">
                                         <h3 class="formLabels">Trails in this Location</h3>
                                         <div class="col text-left">
-                                            <table class="table table-striped table-hover" id="trailTable">
+                                            <table class="table table-hover" id="trailTable">
                                                 <thead>
                                                     <tr>
                                                         <th>Trail Name</th>
@@ -241,15 +245,18 @@
                                                         <th>Elevation Gain (ft)</th>
                                                         <th>Route Type</th>
                                                         <th>Difficulty Rating</th>
+                                                        <th></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr th:each="trail : ${trails}">
+                                                    <tr class="active" th:each="trail : ${trails}">
                                                         <td th:text="${trail.trailName}">Name</td>
                                                         <td th:text="${trail.distance}">Distance</td>
                                                         <td th:text="${trail.elevationGain}">Gain</td>
                                                         <td th:text="${trail.routeType.type}">Type</td>
                                                         <td th:text="${trail.difficultyRating.type}">Rating</td>
+                                                        <td><a class="btn btn-default" 
+                                                               th:href="@{/trailsViewDetails(id=${trail.trailId})}">View Trail</a></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -268,14 +275,17 @@
                                                         <th>Cost Per Person</th>
                                                         <th>Start Date</th>
                                                         <th>End Date</th>
+                                                        <th></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr th:each="trip : ${trips}">
+                                                    <tr class="active" th:each="trip : ${trips}">
                                                         <td th:text="${trip.tripName}">Name</td>
                                                         <td th:text="${trip.tripCostPerTraveler}">Cost</td>
                                                         <td th:text="${trip.startDate}">Start</td>
                                                         <td th:text="${trip.endDate}">End</td>
+                                                        <td><a class="btn btn-default" 
+                                                               th:href="@{/tripsViewDetails(id=${trip.tripId})}">View Trip</a></td>
                                                     </tr>
                                                 </tbody>
                                             </table>

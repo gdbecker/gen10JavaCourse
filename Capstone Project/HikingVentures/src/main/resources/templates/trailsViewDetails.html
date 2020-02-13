@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        
+        <title>View Trail Details</title>
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/site.css" rel="stylesheet">
+        
+    </head>
+    
+    <style>
+        /*
+        Color Palette:
+        Hansa Yellow: #E9D758
+        Myrtle Green: #297373
+        Coral: #FF8552
+        Platinum: #E6E6E6
+        Onyx: #39393A
+        Old Moss Green: #87A330
+        */
+        
+        #trailsButton {
+            border: medium solid #87A330;
+        }
+        
+        #trailsTitle {
+            opacity: 1;
+        }
+        
+        #formArea {
+            background: #E6E6E6;
+            opacity: 0.9;
+            margin-left: 10px;
+            padding: 10px;
+        }
+        
+        .formLabels {
+            color: #39393A;
+            font-family: "Gill Sans";
+            font-weight: bold;
+            text-transform: uppercase;
+            padding-left: 10px;
+            font-size: 16px;
+        }
+        
+        #trailNameBox {
+            font-size: 16px;
+            font-family: "Gill Sans";
+            width: 500px;
+            margin-left: 10px;
+        }
+        
+        #locationBox {
+            color: #39393A;
+            font-family: "Gill Sans";
+            font-size: 16px;
+            margin-left: 10px;
+        }
+        
+        #routeTypeBox {
+            color: #39393A;
+            font-family: "Gill Sans";
+            font-size: 16px;
+            margin-left: 10px;
+        }
+        
+        #difficultyRatingBox {
+            color: #39393A;
+            font-family: "Gill Sans";
+            font-size: 16px;
+            margin-left: 10px;
+        }
+        
+        #distanceBox {
+            font-size: 16px;
+            font-family: "Gill Sans";
+            margin-left: 10px;
+        }
+        
+        #elevationGainBox {
+            font-size: 16px;
+            font-family: "Gill Sans";
+            margin-left: 10px;
+        }
+        
+        #tripTable {
+            font-size: 16px;
+            font-family: "Gill Sans";
+        }
+        
+        #locationTable {
+            font-size: 16px;
+            font-family: "Gill Sans";
+        }
+        
+        .table > tbody > tr > td {
+            vertical-align: middle;
+        }
+        
+        #filePath {
+            color: #39393A;
+            font-size: 16px;
+            font-family: "Gill Sans";
+            width: 600px;
+            margin-left: 10px;
+        }
+        
+        #filePathMap {
+            color: #39393A;
+            font-size: 16px;
+            font-family: "Gill Sans";
+            width: 600px;
+            margin-left: 10px;
+        }
+        
+        #editButton {
+            font-size: 16px;
+            color: #39393A;
+            font-family: "Gill Sans";
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: -10px;
+        }
+        
+        #deleteButton {
+            font-size: 16px;
+            color: #E6E6E6;
+            font-family: "Gill Sans";
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: 10px;
+        }
+        
+        .trailCard {
+            position: relative;
+            background-position: center;
+            background-size: cover;
+            width: 800px;
+            height: 150px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 50px;
+        }
+        
+        .layer {
+            background-color: rgba(0, 0, 0, 0.17);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .trailCardText {
+            color: #E6E6E6;
+            font-family: "Gill Sans";
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 20px;
+            margin-top: 60px;
+            margin-left: 25px;
+            text-align: center;
+        }
+        
+        #map {
+            height: 100%;
+        }
+    </style>
+    
+    <body>
+        <div class="bg-image"></div>
+        
+        <div class="container">
+            <!-- Space for any error messages to pop up-->
+            <ul class="list-group" id="errorMessages"></ul>
+            
+            <!-- Add main row to page for main content-->
+            <div class="row">
+                
+                <!-- Left side panel for site navigation-->
+                <div class="col-lg-2" id="leftBar">
+                    <div class="bg-navigation"></div>
+                    <form class="form-horizontal" role="form" id="navigationForm">
+                        <img src="img/PageBackground.jpeg" alt="HikingVentures" id="logoPage">
+                        <input type="image" src="img/Trips.png" alt="Trips" title="Hiking Trips" class="navigationButtons" id="tripsButton">
+                        <h5 class="navigationTitles" id="tripsTitle">Hiking Trips</h5>
+                        <input type="image" src="img/TrailsSelected.png" alt="Trails" title="Trails" class="navigationButtons" id="trailsButton">
+                        <h5 class="navigationTitles" id="trailsTitle">Trails</h5>
+                        <input type="image" src="img/Travelers.png" alt="Travelers" title="Travelers" class="navigationButtons" id="travelersButton">
+                        <h5 class="navigationTitles" id="travelersTitle">Travelers</h5>
+                        <input type="image" src="img/Equipment.png" alt="Equipment" title="Equipment" class="navigationButtons" id="equipmentButton">
+                        <h5 class="navigationTitles" id="equipmentTitle">Equipment</h5>
+                        <input type="image" src="img/Locations.png" alt="Locations" title="Locations" class="navigationButtons" id="locationsButton">
+                        <h5 class="navigationTitles" id="locationsTitle">Locations</h5>
+                        <input type="image" src="img/About.png" alt="About" title="About Us" class="navigationButtons" id="aboutButton">
+                        <h5 class="navigationTitles" id="aboutTitle">About</h5>
+                    </form>
+                    <p id="copyright">&copy Copyright <br/>2020<br/>Garrett Becker</p>
+                    
+                </div>
+                
+                <!-- Main Page Content-->
+                <div class="col-lg-10">
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <div class="col-md-11">
+                                <div class="pageHeader">
+                                    <div class="pageTitle">
+                                        <h2>View Trail Details</h2>
+                                    </div>
+                                <div class="divider"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="pageHeader">
+                                    <input type="image" src="img/Back.png" alt="Create" title="Go Back" class="pageHeaderButtons" id="backButton">
+                                    <h5 class="pageHeaderTitles" id="backTitle">Go Back</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="trailCard" th:style="'background-image: url(img/' + ${trail.photoFilePath} + ');'">
+                            <div class="layer"></div>
+                            <div class="row" id="trailCardInfo">
+                                <div class="col-md-12">
+                                    <div class="trailCardText" th:text="${trail.trailName}">Trail Name</div>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                    
+                    <div class="row" id="formArea">
+                        <div class="col-md-10">
+                            <div class="form-group">
+                            <form class="form-horizontal" role="form" id="viewTrailForm">
+                                <div class="form-group row">
+                                    <div class="col-sm-11">
+                                        <h3 class="formLabels">Trail Name</h3>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="trailNameBox" 
+                                               id="trailNameBox" 
+                                               th:value="${trail.trailName}" readonly>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="id" id="id" 
+                                               th:value="${trail.trailId}" 
+                                               style="display: none">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-5">
+                                        <h3 class="formLabels">Location</h3>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="locationBox" 
+                                               id="locationBox" 
+                                               th:value="${location.parkName}" readonly>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <h3 class="formLabels">Route Type</h3>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="routeTypeBox" 
+                                               id="routeTypeBox" 
+                                               th:value="${routeType.type}" readonly>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <h3 class="formLabels">Difficulty Rating</h3>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="difficultyRatingBox" 
+                                               id="difficultyRatingBox" 
+                                               th:value="${difficultyRating.type}" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3">
+                                        <h3 class="formLabels">Distance (ft)</h3>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="distanceBox" 
+                                               id="distanceBox" 
+                                               th:value="${trail.distance}" readonly>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <h3 class="formLabels">Elevation Gain (ft)</h3>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="elevationGainBox" 
+                                               id="elevationGainBox" 
+                                               th:value="${trail.elevationGain}" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <h3 class="formLabels">Trips using this trail</h3>
+                                        <div class="col text-left">
+                                            <table class="table table-striped table-hover" id="tripTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Trip Name</th>
+                                                        <th>Cost Per Person</th>
+                                                        <th>Start Date</th>
+                                                        <th>End Date</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="active" th:each="trip : ${trips}">
+                                                        <td class="active" th:text="${trip.tripName}">Name</td>
+                                                        <td class="active" th:text="'$' + ${trip.tripCostPerTraveler}">Cost</td>
+                                                        <td class="active"th:text="${trip.startDate}">Start</td>
+                                                        <td class="active" th:text="${trip.endDate}">End</td>
+                                                        <td><a class="btn btn-default" 
+                                                               th:href="@{/tripsViewDetails(id=${trip.tripId})}">View Trip</a></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <h3 class="formLabels">Location Details</h3>
+                                        <div class="col text-left">
+                                            <table class="table table-hover" id="locationTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Park Name</th>
+                                                        <th>Nearby City</th>
+                                                        <th>State</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="active">
+                                                        <td class="active" th:text="${location.parkName}">Park Name</td>
+                                                        <td class="active" th:text="${location.nearbyCity}">Nearby City</td>
+                                                        <td class="active"th:text="${location.state}">State</td>
+                                                        <td><a class="btn btn-default" 
+                                                               th:href="@{/locationsViewDetails(id=${location.locationId})}">View Location</a></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <h3 class="formLabels">Trail Map</h3>
+                                        <div id="map"></div>
+    <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 8
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4RBYvUKaYaiL2FUM408f2do1iFU0rLL8&callback=initMap"
+    async defer></script>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <h3 class="formLabels">Map Link URL</h3>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="filePathMap" 
+                                               id="filePathMap" 
+                                               th:value="${trail.mapLink}" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <h3 class="formLabels">Trail Image URL</h3>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="filePath" 
+                                               id="filePath" 
+                                               th:value="${trail.photoLink}" readonly>
+                                    </div>
+                                </div>
+                            </form>
+                            </div>
+                            <div class="col-md-8">
+                                <a id="editButton" class="btn btn-default" href="#" th:href="@{/trailsEdit(id=${trail.trailId})}">Edit</a>
+                                <a id="deleteButton" class="btn btn-danger" href="#"  th:onclick="|deleteTrail('${trail.trailId}');|">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="js/jquery-2.2.4.min.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/trailsViewDetails.js"></script>
+    </body>
+</html>

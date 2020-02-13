@@ -40,9 +40,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LocationController {
     @Autowired
     HVService service;
-    
-    ImageServlet is = new ImageServlet();
-    
+        
     //Locations Home
     @RequestMapping("/locationsHome")
     public String openLocationsHome() {
@@ -163,17 +161,33 @@ public class LocationController {
         return "redirect:/locationsHome";
     }
     
-    //Delete methods
+    //Delete method
     @GetMapping("/locationsDelete")
     public String deleteLocation(@RequestParam Integer id) {
-        service.deleteLocationByID(id);
-        return "redirect:/locationsHome";
-    }
-    
-    @GetMapping("/locationsDeleteFromView")
-    public String deleteLocationFromView(@RequestParam Integer id) {
-        //Delete trails and trips here
+        //Delete Trips associated with the Location
+        List<Trip> allTrips = service.findAllTrips();
+        for (Trip t : allTrips) {
+            List<Trail> trailsInTrip = t.getTrails();
+            for (Trail tr : trailsInTrip) {
+                Location l = tr.getLocation();
+                int locationId = l.getLocationId();
+                if (locationId == id) {
+                    service.deleteTripByID(t.getTripId());
+                }
+            }
+        }
         
+        //Delete Trails associated with the Location
+        List<Trail> allTrails = service.findAllTrails();
+        for (Trail tr : allTrails) {
+            Location l = tr.getLocation();
+            int locationId = l.getLocationId();
+            if (locationId == id) {
+                service.deleteTrailByID(tr.getTrailId());
+            }
+        }
+        
+        //Delete the actual Location
         service.deleteLocationByID(id);
         return "redirect:/locationsHome";
     }

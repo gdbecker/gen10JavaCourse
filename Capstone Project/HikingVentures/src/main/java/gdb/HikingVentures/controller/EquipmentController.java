@@ -102,6 +102,19 @@ public class EquipmentController {
         return "redirect:/equipmentHome";
     }
     
+    //View specific details for an equipment item
+    @GetMapping("/equipmentViewDetails")
+    public String openEquipmentViewDetails(@RequestParam Integer id, Model model) {
+        Equipment e = service.findEquipmentByID(id);
+        model.addAttribute("equipment", e);
+        
+        //Only get trips that contain the item
+        List<Trip> tripsWithItem = e.getTrips();
+        model.addAttribute("trips", tripsWithItem);
+        
+        return "equipmentViewDetails";
+    }
+    
     //Open page for editing a specific equipment item
     @GetMapping("/equipmentEdit")
     public String openEquipmentEditDetails(@RequestParam Integer id, Model model) {

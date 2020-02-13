@@ -1,6 +1,7 @@
 package gdb.HikingVentures.controller;
 
 import gdb.HikingVentures.entities.Equipment;
+import gdb.HikingVentures.entities.Location;
 import gdb.HikingVentures.entities.Trail;
 import gdb.HikingVentures.entities.Traveler;
 import gdb.HikingVentures.entities.Trip;
@@ -125,6 +126,28 @@ public class TripController {
         return "redirect:/tripsHome";
     }
     
+    //View specific details for an equipment item
+    @GetMapping("/tripsViewDetails")
+    public String openTripViewDetails(@RequestParam Integer id, Model model) {
+        Trip t = service.findTripByID(id);
+        model.addAttribute("trip", t);
+        
+        List<Traveler> travelers = t.getTravelers();
+        model.addAttribute("travelers", travelers);
+        
+        List<Equipment> equipment = t.getEquipment();
+        model.addAttribute("equipment", equipment);
+        
+        List<Trail> trails = t.getTrails();
+        model.addAttribute("trails", trails);
+        
+        Trail tr = trails.get(0);
+        Location loc = tr.getLocation();
+        model.addAttribute("location", loc);
+        
+        return "tripsViewDetails";
+    }
+    
     //Open page for editing a specific trip
     @GetMapping("/tripsEdit")
     public String openLocationsEditDetails(@RequestParam Integer id, Model model) {
@@ -214,6 +237,13 @@ public class TripController {
         service.addUpdateTrip(newT);
       
         //Go back to travelersHome
+        return "redirect:/tripsHome";
+    }
+    
+    //Delete methods
+    @GetMapping("/tripsDelete")
+    public String deleteTrip(@RequestParam Integer id) {
+        service.deleteTripByID(id);
         return "redirect:/tripsHome";
     }
 }

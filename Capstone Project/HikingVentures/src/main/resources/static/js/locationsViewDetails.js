@@ -94,7 +94,7 @@ function deleteLocation(id) {
     
     //Delete if true
     if (r == true) {
-        var url = "locationsDeleteFromView?id=" + id;
+        var url = "locationsDelete?id=" + id;
         $.ajax ({
         type: 'GET',
         url: url,
