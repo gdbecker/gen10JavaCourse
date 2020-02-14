@@ -58,56 +58,6 @@ body {
     transform: scale(1.5);
 }
 
-#loginPageContent {
-    animation: fadeIn 3s;
-    border: medium solid #E6E6E6;
-    display: block;
-}
-
-#logoLogin {
-    width: 200px;
-    height: 200px;
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
-    margin-bottom: 40px;
-    margin-top: 40px;
-}
-
-#subtitleLogin {
-    color: #E6E6E6;
-    font-family: "Gill Sans";
-    text-align: center;
-    font-weight: bold;
-    padding-bottom: 5px;
-    margin-bottom: 14px;
-}
-
-.loginSignIn {
-    color: #E6E6E6;
-    font-family: "Gill Sans";
-    text-align: center;
-    font-weight: bold;
-}
-
-.loginFormLabels {
-    color: #E6E6E6;
-    font-family: "Gill Sans";
-    text-align: center;
-    font-weight: bold;
-    margin-top: 15px;
-}
-
-#loginButton {
-    color: #E6E6E6;
-    font-family: "Gill Sans";
-    text-align: center;
-    font-weight: bold;
-    background: #297373;
-    margin-top: 15px;
-    margin-bottom: 30px;
-}
-
 /**********************************/
 /*HOME PAGE (MAIN MENU)*/
 .hrMenuBorder {

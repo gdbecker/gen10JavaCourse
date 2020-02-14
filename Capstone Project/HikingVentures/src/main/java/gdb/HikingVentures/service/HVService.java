@@ -7,17 +7,26 @@ import gdb.HikingVentures.data.RouteTypeRepository;
 import gdb.HikingVentures.data.TrailRepository;
 import gdb.HikingVentures.data.TravelerRepository;
 import gdb.HikingVentures.data.TripRepository;
+import gdb.HikingVentures.data.UserRepository;
 import gdb.HikingVentures.entities.DifficultyRating;
 import gdb.HikingVentures.entities.Equipment;
 import gdb.HikingVentures.entities.Location;
+import gdb.HikingVentures.entities.Role;
 import gdb.HikingVentures.entities.RouteType;
 import gdb.HikingVentures.entities.Trail;
 import gdb.HikingVentures.entities.Traveler;
 import gdb.HikingVentures.entities.Trip;
+import gdb.HikingVentures.entities.User;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 /**
@@ -26,16 +35,10 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class HVService {
+public class HVService implements UserDetailsService {
     
     @Autowired
-    TripRepository trip;
-    
-    @Autowired
-    TrailRepository trail;
-    
-    @Autowired
-    TravelerRepository traveler;
+    DifficultyRatingRepository difficultyRating;
     
     @Autowired
     EquipmentRepository equipment;
@@ -47,34 +50,29 @@ public class HVService {
     RouteTypeRepository routeType;
     
     @Autowired
-    DifficultyRatingRepository difficultyRating;
+    TravelerRepository traveler;
     
-    /*
-    private final EquipmentRepository equipment;
-    private final LocationRepository location;
-    private final RouteTypeRepository routeType;
-    private final DifficultyRatingRepository difficultyRating;
-    private final TrailRepository trail;
-    private final TravelerRepository traveler;
-    private final TripRepository trip;
-
-    public HVService(EquipmentRepository equipment, 
-            LocationRepository location, 
-            RouteTypeRepository routeType,
-            DifficultyRatingRepository difficultyRating,
-            TrailRepository trail, 
-            TravelerRepository traveler, 
-            TripRepository trip) {
-        this.equipment = equipment;
-        this.location = location;
-        this.routeType = routeType;
-        this.difficultyRating = difficultyRating;
-        this.trail = trail;
-        this.traveler = traveler;
-        this.trip = trip;
+    @Autowired
+    TrailRepository trail;
+    
+    @Autowired
+    TripRepository trip;
+    
+    //Security entities/methods
+    @Autowired
+    UserRepository users;
+  
+    // *************************** //
+    
+    //Methods for DifficultyRating
+    public List<DifficultyRating> findAllDifficultyRatings() {
+        return difficultyRating.findAll();
     }
-    */    
-
+    
+    public DifficultyRating findDifficultyRatingByID(int id) {
+        return difficultyRating.findById(id).orElse(null);
+    }
+    
     //Methods for Equipment
     public List<Equipment> findAllEquipment() {
         return equipment.findAll();
@@ -133,15 +131,6 @@ public class HVService {
     
     public RouteType findRouteTypeByID(int id) {
         return routeType.findById(id).orElse(null);
-    }
-    
-    //Methods for DifficultyRating
-    public List<DifficultyRating> findAllDifficultyRatings() {
-        return difficultyRating.findAll();
-    }
-    
-    public DifficultyRating findDifficultyRatingByID(int id) {
-        return difficultyRating.findById(id).orElse(null);
     }
     
     //Methods for Trail
@@ -280,5 +269,26 @@ public class HVService {
         }
         
         return tripsWithLocation;
+    }
+    
+    //Security Methods
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        
+        //Get the user from the dv that matches the one inputted
+        List<User> allUsers = users.findAll();
+        User user = new User();
+        for (User u : allUsers) {
+            if (u.getUsername().equals(username)) {
+                user = u;
+            }
+        }
+        
+        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
+        for(Role role : user.getRoles()) {
+            grantedAuthorities.add(new SimpleGrantedAuthority(role.getRole()));
+        }
+        
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
     }
 }

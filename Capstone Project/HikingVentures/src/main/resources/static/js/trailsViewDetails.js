@@ -28,9 +28,7 @@ $(document).ready(function () {
     $("#backButton").on("click", function() {
         window.open("/trailsHome", "_self");
     });
-    
-    $(".dropDownMenu").hide();
-    
+        
     //Hovering over each menu button
     $(".navigationButtons").hover(function() {
         if($(this).attr("id") == "tripsButton") {

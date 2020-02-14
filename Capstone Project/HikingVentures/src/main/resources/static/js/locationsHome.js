@@ -32,7 +32,7 @@ $(document).ready(function () {
         window.open("/locationsAdd", "_self");
     });
     
-    $(".dropDownMenu").hide();
+    $(".dropDownMenu").style.display = "none";
     
     //Hovering over each menu button
     $(".navigationButtons").hover(function() {
@@ -147,12 +147,6 @@ function clearLocations() {
     $('#locationsDiv').empty();
 }
 
-function openViewDetails(id) {
-    $("#viewDetailsButton" + id).on("click", function() {
-        window.open("/locationsViewDetails/" + id);
-    });
-}
-
 function deleteLocation(id) {
     //Confirm that user wants to delete
     var r = confirm("Are you sure you want to delete this location and all trips and trails associated with it?");
@@ -179,5 +173,12 @@ function deleteLocation(id) {
 }
 
 function showMoreOptionsMenu(id) {
+    /*if ($("#dropDownMenu" + id).css("visibility", "hidden")) {
+        $("#dropDownMenu" + id).css("visibility", "visible");
+    }
+    
+    if ($("#dropDownMenu" + id).css("visibility", "visible")) {
+        $("#dropDownMenu" + id).css("visibility", "hidden");
+    }*/
     $("#dropDownMenu" + id).toggle();
 }

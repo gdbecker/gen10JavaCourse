@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Hiking Ventures: Log In</title>
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/site.css" rel="stylesheet">
+    </head>
+    
+    <style>
+        /*
+        Color Palette:
+        Hansa Yellow: #E9D758
+        Myrtle Green: #297373
+        Coral: #FF8552
+        Platinum: #E6E6E6
+        Onyx: #39393A
+        Old Moss Green: #87A330
+        */
+        
+        #userName {
+            font-family: "Gill Sans";
+            font-size: 16px;
+        }
+        
+        #password {
+            font-family: "Gill Sans";
+            font-size: 16px;
+        }
+        
+        #loginPageContent {
+            animation: fadeIn 2s;
+            border: medium solid #E6E6E6;
+            display: block;
+        }
+
+        #logoLogin {
+            width: 200px;
+            height: 200px;
+            display: block;
+            margin-right: auto;
+            margin-left: auto;
+            margin-bottom: 40px;
+            margin-top: 40px;
+        }
+
+        #subtitleLogin {
+            color: #E6E6E6;
+            font-family: "Gill Sans";
+            text-align: center;
+            font-weight: bold;
+            padding-bottom: 5px;
+            margin-bottom: 14px;
+        }
+
+        .loginSignIn {
+            color: #E6E6E6;
+            font-family: "Gill Sans";
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .loginFormLabels {
+            color: #E6E6E6;
+            font-family: "Gill Sans";
+            text-align: center;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        #loginButton {
+            color: #E6E6E6;
+            font-family: "Gill Sans";
+            text-align: center;
+            font-weight: bold;
+            background: #297373;
+            margin-top: 15px;
+            margin-bottom: 30px;
+        }   
+    </style>
+    
+    <script>
+        //Hovering over the login button
+        $("#loginButton").hover(function() {
+            $(this).css("background", "#E9D758");
+        }, function() {
+            $(this).css("background", "#297373");
+        });
+    </script>
+    
+    <body>
+        <div class="bg-image-index"></div>
+        
+        <div class="container">
+            <!-- Space for any error messages to pop up-->
+            <ul class="list-group" id="errorMessages"></ul>
+            
+            <!-- Main Menu page content-->
+            <!-- spacer row-->
+            <div class="row"> 
+                <p></p>
+            </div>
+            
+            <!-- Main Content row-->
+            <div class="row"> 
+                <div class="col-md-offset-3 col-md-6" id="loginPageContent">
+                    <img src="img/PageBackground.jpeg" alt="HikingVentures" id="logoLogin">
+                    <h3 id="subtitleLogin">Are you ready to plan the trip of your dreams?</h3>
+                    <h5 class="loginSignIn">Sign In:</h5>
+                    
+                    <h3 th:if="${#request.getParameter('login_error') == '1'}">
+                        Wrong id or password!</h3>
+                    
+                    <form method="post" 
+                          action="login"
+                          class="form-horizontal" 
+                          role = "form" 
+                          id="loginForm">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-6">
+                                    <label class="loginFormLabels">User Name:</label>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           name="userName" 
+                                           id="userName"
+                                           placeholder="Username">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-6">
+                                    <label class="loginFormLabels">Password:</label>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           name="password" 
+                                           id="password"
+                                           placeholder="Password">
+                                </div>
+                            </div>
+                            
+                            <!-- Helps protect against Cross-Site Request Forgery attacks -->
+                            <input type="hidden" 
+                                   th:name="${_csrf.parameterName}"
+                                   th:value="${_csrf.token}"/>
+                            
+                            <div class="row">
+                                <div class="col-md-offset-4 col-md-4">
+                                    <button type="submit" 
+                                            class="form-control" 
+                                            id="loginButton">LOG IN</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </form>
+                    
+                </div>
+            </div>
+            
+            <!-- spacer row-->
+            <div class="row"> 
+                <p></p>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-offset-5 col-md-2">
+                    <p id="copyright">&copy Copyright <br/>2020<br/>Garrett Becker</p>      
+                </div>
+            </div>
+        </div>
+        
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="js/jquery-2.2.4.min.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <!--<script src="js/index.js"></script>-->
+    </body>
+</html>
