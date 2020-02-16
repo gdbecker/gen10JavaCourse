@@ -19,7 +19,7 @@
         */
         
         #tripsButton {
-            border: medium solid #87A330;
+            border: medium solid #FF8552;
         }
         
         #tripsTitle {
@@ -27,7 +27,7 @@
         }
         
         .tripCard {
-            width: 350px; 
+            width: 400px; 
             background: #297373;
             opacity: 0.9;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -35,7 +35,7 @@
         }
         
         .card-img-top {
-            width: 350px;
+            width: 400px;
             height: 200px;
             display: block;
             position: static;
@@ -67,7 +67,7 @@
             height: 15px;
             display: block;
             margin-top: 18px;
-            margin-left: 78px;
+            margin-left: 95px;
         }
 
         .dropDownMenu {
@@ -80,7 +80,7 @@
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
             margin-top: 9px;
-            margin-left: auto;
+            margin-left: 30px;
             margin-right: auto;
         }
 
@@ -103,35 +103,44 @@
             <!-- Space for any error messages to pop up-->
             <ul class="list-group" id="errorMessages"></ul>
             
+            <!-- Add main row for the page menu-->
+            <div class="row">
+                <div id="logoRow"></div>
+                <div class="col-lg-6">
+                    <img src="img/HikingVenturesLogoLong.png" alt="HikingVentures" id="logo">
+                </div>
+                <div class="col-lg-1">
+                    <input type="image" src="img/TripsSelected.png" alt="Trips" title="Hiking Trips" class="navigationButtons" id="tripsButton">
+                    <h5 class="navigationTitles" id="tripsTitle">Trips</h5>
+                </div>
+                <div class="col-lg-1">
+                    <input type="image" src="img/Trails.png" alt="Trails" title="Trails" class="navigationButtons" id="trailsButton">
+                    <h5 class="navigationTitles" id="trailsTitle">Trails</h5>
+                </div>
+                <div class="col-lg-1">
+                    <input type="image" src="img/Travelers.png" alt="Travelers" title="Travelers" class="navigationButtons" id="travelersButton">
+                    <h5 class="navigationTitles" id="travelersTitle">Travelers</h5>
+                </div>
+                <div class="col-lg-1">
+                    <input type="image" src="img/Equipment.png" alt="Equipment" title="Equipment" class="navigationButtons" id="equipmentButton">
+                    <h5 class="navigationTitles" id="equipmentTitle">Equipment</h5>
+                </div>
+                <div class="col-lg-1">
+                    <input type="image" src="img/Locations.png" alt="Locations" title="Locations" class="navigationButtons" id="locationsButton">
+                    <h5 class="navigationTitles" id="locationsTitle">Locations</h5>
+                </div>
+                <div class="col-lg-1">
+                    <input type="image" src="img/About.png" alt="About" title="About Us" class="navigationButtons" id="aboutButton">
+                    <h5 class="navigationTitles" id="aboutTitle">About</h5>
+                </div>
+            </div>
+            
             <!-- Add main row to page for main content-->
             <div class="row">
-                
-                <!-- Left side panel for site navigation-->
-                <div class="col-lg-2" id="leftBar">
-                    <div class="bg-navigation"></div>
-                    <form class="form-horizontal" role="form" id="navigationForm">
-                        <img src="img/PageBackground.jpeg" alt="HikingVentures" id="logoPage">
-                        <input type="image" src="img/TripsSelected.png" alt="Trips" title="Hiking Trips" class="navigationButtons" id="tripsButton">
-                        <h5 class="navigationTitles" id="tripsTitle">Hiking Trips</h5>
-                        <input type="image" src="img/Trails.png" alt="Trails" title="Trails" class="navigationButtons" id="trailsButton">
-                        <h5 class="navigationTitles" id="trailsTitle">Trails</h5>
-                        <input type="image" src="img/Travelers.png" alt="Travelers" title="Travelers" class="navigationButtons" id="travelersButton">
-                        <h5 class="navigationTitles" id="travelersTitle">Travelers</h5>
-                        <input type="image" src="img/Equipment.png" alt="Equipment" title="Equipment" class="navigationButtons" id="equipmentButton">
-                        <h5 class="navigationTitles" id="equipmentTitle">Equipment</h5>
-                        <input type="image" src="img/Locations.png" alt="Locations" title="Locations" class="navigationButtons" id="locationsButton">
-                        <h5 class="navigationTitles" id="locationsTitle">Locations</h5>
-                        <input type="image" src="img/About.png" alt="About" title="About Us" class="navigationButtons" id="aboutButton">
-                        <h5 class="navigationTitles" id="aboutTitle">About</h5>
-                    </form>
-                    <p id="copyright">&copy Copyright <br/>2020<br/>Garrett Becker</p>
-                    
-                </div>
-                
                 <!-- Main Page Content-->
-                <div class="col-lg-10">
+                <div class="col-lg-12">
                     <div class="row">
-                        <div class="col-lg-10">
+                        <div class="col-lg-11">
                             <div class="col-md-11">
                                 <div class="pageHeader">
                                     <div class="pageTitle">

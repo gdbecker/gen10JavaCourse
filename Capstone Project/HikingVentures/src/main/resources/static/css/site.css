@@ -34,7 +34,6 @@ body {
 
 /**********************************/
 /*LOGIN PAGE*/
-/*Background also for main menu page*/
 .bg-image-index {
     position: fixed;
     left: 0;
@@ -42,7 +41,7 @@ body {
     background-image: url("../img/BackgroundVideo3.mp4");
     
     filter: blur(2px);
-    -webkit-filter: blur(3px);
+    -webkit-filter: blur(4px);
     
     left: -15px;
     right: -15px;
@@ -58,6 +57,56 @@ body {
     transform: scale(1.5);
 }
 
+#loginPageContent {
+    animation: fadeIn 3s;
+    border: medium solid #E6E6E6;
+    display: block;
+}
+
+#logoLogin {
+    width: 95%;
+    height: auto;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+#subtitleLogin {
+    color: #E6E6E6;
+    font-family: "Gill Sans";
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 5px;
+    margin-bottom: 14px;
+}
+
+.loginSignIn {
+    color: #E6E6E6;
+    font-family: "Gill Sans";
+    text-align: center;
+    font-weight: bold;
+}
+
+.loginFormLabels {
+    color: #E6E6E6;
+    font-family: "Gill Sans";
+    text-align: center;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+#loginButton {
+    color: #E6E6E6;
+    font-family: "Gill Sans";
+    text-align: center;
+    font-weight: bold;
+    background: #297373;
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+
 /**********************************/
 /*HOME PAGE (MAIN MENU)*/
 .hrMenuBorder {
@@ -67,8 +116,8 @@ body {
 }
 
 #logoMenu {
-    width: 170px;
-    height: 170px;
+    width: 60%;
+    height: auto;
     display: block;
     margin-right: auto;
     margin-left: auto;
@@ -93,7 +142,6 @@ body {
     color: #E6E6E6;
     font-family: "Gill Sans";
     text-transform:uppercase;
-    font-weight: bold;
     padding-bottom: 5px;
     opacity: 0;
     transition: 0.25s;
@@ -103,11 +151,30 @@ body {
 
 /**********************************/
 /*CONTENT PAGES*/
+#logo {
+    display: block;
+    width: 87%;
+    height: auto;
+    margin-top: 16px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+        
+#logoRow {
+    position:absolute;
+    left: -5px;
+    right: 0px;
+    height: 120px;
+    background: #39393A;
+    opacity: 0.4;
+    z-index: -3;
+}
+        
 .bg-image {
     position: fixed;
     left: 0;
     right: 0;
-    background-image: url("../img/BackgroundVideo4.mp4");
+    background-image: url("../img/BackgroundVideo3.mp4");
     
     filter: blur(2px);
     -webkit-filter: blur(4px);
@@ -141,6 +208,7 @@ body {
     left: -5px;
     right: 0px;
     height: 100%;
+    width: 100px;
     background: #39393A;
     opacity: 0.7;
     z-index: -3;
@@ -152,11 +220,11 @@ body {
     display: block;
     padding-bottom: 5px;
     padding-top: 5px;
-    padding-left: 5px;
+    padding-left: 4px;
     padding-right: 5px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 15px;
+    margin-top: 25px;
     filter: none;
 }
 
