@@ -21,16 +21,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     UserDetailsService userDetails;
     
-    /*
+    
     @Autowired
     public void configureGlobalInMemory(AuthenticationManagerBuilder auth) throws Exception {
         auth
             .inMemoryAuthentication()
-                .withUser("user").password("{noop}password").roles("USER")
+                .withUser("user").password("password").roles("USER")
                 .and()
-                .withUser("admin").password("{noop}password").roles("ADMIN", "USER");
+                .withUser("admin").password("password").roles("ADMIN", "USER");
     }
-    */
+    
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -51,6 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .permitAll();          
     }
     
+    
     @Autowired
     public void configureGlobalInDB(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetails).passwordEncoder(bCryptPasswordEncoder());
@@ -60,17 +61,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
-    
-    /*
-        Program to run to create encrypted passwords
-        public class PWEnc {
-            public static void main(String[] args) {
-                String clearTxtPw = "password";
-                // BCrypt
-                BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-                String hashedPw = encoder.encode(clearTxtPw);
-                System.out.println(hashedPw);
-            }
-        }
-    */
 }

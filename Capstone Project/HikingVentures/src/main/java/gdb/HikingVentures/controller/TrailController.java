@@ -75,7 +75,7 @@ public class TrailController {
         String[] locations = request.getParameterValues("locationBox");
         List<Location> allLocations = service.findAllLocations();
         Location locationForTrail = new Location();
-        if (!locations.equals(null)) {
+        if (locations != null) {
             for (Location l : allLocations) {
                 for (String s : locations) {
                     if (l.getLocationId() == Integer.parseInt(s)) {
@@ -90,7 +90,7 @@ public class TrailController {
         String[] routeTypesString = request.getParameterValues("routeTypeBox");
         List<RouteType> allRT = service.findAllRouteTypes();
         RouteType rtForTrail = new RouteType();
-        if (!routeTypesString.equals(null)) {
+        if (routeTypesString != null) {
             for (RouteType r : allRT) {
                 for (String s : routeTypesString) {
                     if (r.getRouteTypeId() == Integer.parseInt(s)) {
@@ -105,7 +105,7 @@ public class TrailController {
         String[] ratingsString = request.getParameterValues("difficultyRatingBox");
         List<DifficultyRating> allDR = service.findAllDifficultyRatings();
         DifficultyRating drForTrail = new DifficultyRating();
-        if (!ratingsString.equals(null)) {
+        if (ratingsString != null) {
             for (DifficultyRating d : allDR) {
                 for (String s : ratingsString) {
                     if (d.getDifficultyRatingId() == Integer.parseInt(s)) {
@@ -123,7 +123,7 @@ public class TrailController {
         String[] trips = request.getParameterValues("tripsBox");
         List<Trip> allTrips = service.findAllTrips();
         List<Trip> tripsForTraveler = new ArrayList<>();
-        if (!trips.equals(null)) {
+        if (trips != null) {
             for (Trip t : allTrips) {
                 for (String s : trips) {
                     if (t.getTripId() == Integer.parseInt(s)) {
@@ -138,7 +138,10 @@ public class TrailController {
         
         //Image URL
         String urlFromForm = request.getParameter("filePath");
-        URL url = new URL(urlFromForm);
+        URL url = null;
+        if (!urlFromForm.equals("")) {
+            url = new URL(urlFromForm);
+        }
         String fileName = trailName + ".jpg";
         
         //Remove spaces from the fileName and replace with '-'
@@ -159,16 +162,18 @@ public class TrailController {
         service.addUpdateTrail(newT);
         
         //Save the image from url as a file in directory
-        InputStream is = url.openStream();
-        OutputStream os = new FileOutputStream("src/main/resources/static/img/" + fileName);
+        if (!urlFromForm.equals("")) {
+            InputStream is = url.openStream();
+            OutputStream os = new FileOutputStream("src/main/resources/static/img/" + fileName);
         
-        byte[] b = new byte[2048];
-        int length;
+            byte[] b = new byte[2048];
+            int length;
 
-        while ((length = is.read(b)) != -1) {
-            os.write(b, 0, length);
+            while ((length = is.read(b)) != -1) {
+                os.write(b, 0, length);
+            }
         }
-        
+   
         //Go back to travelersHome
         return "redirect:/trailsHome";
     }
@@ -235,7 +240,7 @@ public class TrailController {
         String[] locations = request.getParameterValues("locationBox");
         List<Location> allLocations = service.findAllLocations();
         Location locationForTrail = new Location();
-        if (!locations.equals(null)) {
+        if (locations != null) {
             for (Location l : allLocations) {
                 for (String s : locations) {
                     if (l.getLocationId() == Integer.parseInt(s)) {
@@ -250,7 +255,7 @@ public class TrailController {
         String[] routeTypesString = request.getParameterValues("routeTypeBox");
         List<RouteType> allRT = service.findAllRouteTypes();
         RouteType rtForTrail = new RouteType();
-        if (!routeTypesString.equals(null)) {
+        if (routeTypesString != null) {
             for (RouteType r : allRT) {
                 for (String s : routeTypesString) {
                     if (r.getRouteTypeId() == Integer.parseInt(s)) {
@@ -265,7 +270,7 @@ public class TrailController {
         String[] ratingsString = request.getParameterValues("difficultyRatingBox");
         List<DifficultyRating> allDR = service.findAllDifficultyRatings();
         DifficultyRating drForTrail = new DifficultyRating();
-        if (!ratingsString.equals(null)) {
+        if (ratingsString != null) {
             for (DifficultyRating d : allDR) {
                 for (String s : ratingsString) {
                     if (d.getDifficultyRatingId() == Integer.parseInt(s)) {
@@ -283,7 +288,7 @@ public class TrailController {
         String[] trips = request.getParameterValues("tripsBox");
         List<Trip> allTrips = service.findAllTrips();
         List<Trip> tripsForTraveler = new ArrayList<>();
-        if (!trips.equals(null)) {
+        if (trips != null) {
             for (Trip t : allTrips) {
                 for (String s : trips) {
                     if (t.getTripId() == Integer.parseInt(s)) {
@@ -298,7 +303,10 @@ public class TrailController {
         
         //Image URL
         String urlFromForm = request.getParameter("filePath");
-        URL url = new URL(urlFromForm);
+        URL url = null;
+        if (!urlFromForm.equals("")) {
+            url = new URL(urlFromForm);
+        }
         String fileName = trailName + ".jpg";
         
         //Remove spaces from the fileName and replace with '-'
@@ -320,14 +328,16 @@ public class TrailController {
         service.addUpdateTrail(newT);
         
         //Save the image from url as a file in directory
-        InputStream is = url.openStream();
-        OutputStream os = new FileOutputStream("src/main/resources/static/img/" + fileName);
+        if (!urlFromForm.equals("")) {
+            InputStream is = url.openStream();
+            OutputStream os = new FileOutputStream("src/main/resources/static/img/" + fileName);
         
-        byte[] b = new byte[2048];
-        int length;
+            byte[] b = new byte[2048];
+            int length;
 
-        while ((length = is.read(b)) != -1) {
-            os.write(b, 0, length);
+            while ((length = is.read(b)) != -1) {
+                os.write(b, 0, length);
+            }
         }
         
         //Go back to travelersHome

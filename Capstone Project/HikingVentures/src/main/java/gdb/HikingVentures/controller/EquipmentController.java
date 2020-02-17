@@ -19,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -61,7 +62,7 @@ public class EquipmentController {
         String[] trips = request.getParameterValues("tripsBox");
         List<Trip> allTrips = service.findAllTrips();
         List<Trip> tripsForEquipment = new ArrayList<>();
-        if (!trips.equals(null)) {
+        if (trips != null) {
             for (Trip t : allTrips) {
                 for (String s : trips) {
                     if (t.getTripId() == Integer.parseInt(s)) {
@@ -73,7 +74,10 @@ public class EquipmentController {
         
         //Image URL
         String urlFromForm = request.getParameter("filePath");
-        URL url = new URL(urlFromForm);
+        URL url = null;
+        if (!urlFromForm.equals("")) {
+            url = new URL(urlFromForm);
+        }
         String fileName = name + ".jpg";
         
         //Remove spaces from the fileName and replace with '-'
@@ -88,14 +92,16 @@ public class EquipmentController {
         service.addUpdateEquipment(newE);
         
         //Save the image from url as a file in directory
-        InputStream is = url.openStream();
-        OutputStream os = new FileOutputStream("src/main/resources/static/img/" + fileName);
+        if (!urlFromForm.equals("")) {
+            InputStream is = url.openStream();
+            OutputStream os = new FileOutputStream("src/main/resources/static/img/" + fileName);
         
-        byte[] b = new byte[2048];
-        int length;
+            byte[] b = new byte[2048];
+            int length;
 
-        while ((length = is.read(b)) != -1) {
-            os.write(b, 0, length);
+            while ((length = is.read(b)) != -1) {
+                os.write(b, 0, length);
+            }
         }
         
         //Go back to equipmentHome
@@ -152,7 +158,10 @@ public class EquipmentController {
         
         //Image URL
         String urlFromForm = request.getParameter("filePath");
-        URL url = new URL(urlFromForm);
+        URL url = null;
+        if (!urlFromForm.equals("")) {
+            url = new URL(urlFromForm);
+        }
         String fileName = name + ".jpg";
         
         //Remove spaces from the fileName and replace with '-'
@@ -168,14 +177,16 @@ public class EquipmentController {
         service.addUpdateEquipment(newE);
         
         //Save the image from url as a file in directory
-        InputStream is = url.openStream();
-        OutputStream os = new FileOutputStream("src/main/resources/static/img/" + fileName);
+        if (!urlFromForm.equals("")) {
+            InputStream is = url.openStream();
+            OutputStream os = new FileOutputStream("src/main/resources/static/img/" + fileName);
         
-        byte[] b = new byte[2048];
-        int length;
+            byte[] b = new byte[2048];
+            int length;
 
-        while ((length = is.read(b)) != -1) {
-            os.write(b, 0, length);
+            while ((length = is.read(b)) != -1) {
+                os.write(b, 0, length);
+            }
         }
         
         //Go back to equipmentHome

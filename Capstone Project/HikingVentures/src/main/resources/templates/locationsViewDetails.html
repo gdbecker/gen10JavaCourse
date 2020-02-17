@@ -197,7 +197,7 @@
                             </div>
                             <div class="col-md-2">
                                 <div class="pageHeader">
-                                    <input type="image" src="img/Back.png" alt="Create" title="Go Back" class="pageHeaderButtons" id="backButton">
+                                    <input type="image" src="img/BackWhite.png" alt="Create" title="Go Back" class="pageHeaderButtons" id="backButton">
                                     <h5 class="pageHeaderTitles" id="backTitle">Locations Home</h5>
                                 </div>
                             </div>
@@ -222,25 +222,38 @@
                                 <div class="form-group row">
                                     <div class="col-sm-12">
                                         <h3 class="formLabels">Park Name</h3>
-                                        <input type="text" class="form-control" id="parkNameBox" th:value="${location.parkName}" readonly/>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               id="parkNameBox" 
+                                               th:value="${location.parkName}" readonly/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-12">
                                         <h3 class="formLabels">Nearby City</h3>
-                                        <input type="text" class="form-control" id="nearbyCityBox" th:value="${location.nearbyCity}" readonly/>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               id="nearbyCityBox" 
+                                               th:value="${location.nearbyCity}" readonly/>
                                     </div> 
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-12">
                                         <h3 class="formLabels">State</h3>
-                                        <input type="text" class="form-control" id="stateBox" th:value="${location.state}" readonly/>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               id="stateBox" 
+                                               th:value="${location.state}" readonly/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-12">
                                         <h3 class="formLabels">Park Image URL</h3>
-                                        <input type="text" class="form-control" name="filePath" id="filePath" th:value="${location.photoLink}" readonly>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="filePath" 
+                                               id="filePath" 
+                                               th:value="${location.photoLink}" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -307,11 +320,27 @@
                             </form>
                             </div>
                             <div class="col-md-8">
-                                <a id="editButton" class="btn btn-default" href="#" th:href="@{/locationsEdit(id=${location.locationId})}">Edit</a>
-                                <a id="deleteButton" class="btn btn-danger" href="#"  th:onclick="|deleteLocation('${location.locationId}');|">Delete</a>
+                                <a id="editButton" 
+                                   class="btn btn-default" 
+                                   href="#" 
+                                   th:href="@{/locationsEdit(id=${location.locationId})}">Edit</a>
+                                <a id="deleteButton" 
+                                   class="btn btn-danger" 
+                                   href="#"  
+                                   th:onclick="|deleteLocation('${location.locationId}');|">Delete</a>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            
+            <div class="row"> 
+                <hr class="hrMenuBorder">
+            </div>
+            
+            <div class="row">
+                <div class="col-md-offset-5 col-md-2">
+                    <p id="copyright">&copy 2020 <br/>Garrett Becker<br/>All Rights Reserved</p>       
                 </div>
             </div>
         </div>

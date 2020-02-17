@@ -62,14 +62,17 @@ public class TravelerController {
         
         //BirthDate - get as String, convert to LocalDate
         String birth = request.getParameter("birthDateBox");
-        LocalDate birthDate = LocalDate.parse(birth);
+        LocalDate birthDate = null;
+        if (!birth.equals("")) {
+            birthDate = LocalDate.parse(birth);
+        }
         
         //Trips - get as String array, then find the actual Trip objects and
         //create a List of Trip
         String[] trips = request.getParameterValues("tripsBox");
         List<Trip> allTrips = service.findAllTrips();
         List<Trip> tripsForTraveler = new ArrayList<>();
-        if (!trips.equals(null)) {
+        if (trips != null) {
             for (Trip t : allTrips) {
                 for (String s : trips) {
                     if (t.getTripId() == Integer.parseInt(s)) {
@@ -81,9 +84,14 @@ public class TravelerController {
         
         //Image URL
         String urlFromForm = request.getParameter("filePath");
-        URL url = new URL(urlFromForm);
+        URL url = null;
+        if (!urlFromForm.equals("")) {
+            url = new URL(urlFromForm);
+        }
         String fileName = firstName + lastName + ".jpg";
         
+        //Remove spaces from the fileName and replace with '-'
+        fileName = fileName.replace(' ', '-');
         
         //Add everything to the object
         newT.setFirstName(firstName);
@@ -95,22 +103,21 @@ public class TravelerController {
         newT.setBirthDate(birthDate);
         newT.setTrips(tripsForTraveler);
         newT.setPhotoLink(urlFromForm);
-        
-        //Remove spaces from the fileName and replace with '-'
-        fileName = fileName.replace(' ', '-');
         newT.setPhotoFilePath(fileName);
         
         service.addUpdateTraveler(newT);
         
         //Save the image from url as a file in directory
-        InputStream is = url.openStream();
-        OutputStream os = new FileOutputStream("src/main/resources/static/img/" + fileName);
+        if (!urlFromForm.equals("")) {
+            InputStream is = url.openStream();
+            OutputStream os = new FileOutputStream("src/main/resources/static/img/" + fileName);
         
-        byte[] b = new byte[2048];
-        int length;
+            byte[] b = new byte[2048];
+            int length;
 
-        while ((length = is.read(b)) != -1) {
-            os.write(b, 0, length);
+            while ((length = is.read(b)) != -1) {
+                os.write(b, 0, length);
+            }
         }
         
         //Go back to travelersHome
@@ -165,14 +172,17 @@ public class TravelerController {
         
         //BirthDate - get as String, convert to LocalDate
         String birth = request.getParameter("birthDateBox");
-        LocalDate birthDate = LocalDate.parse(birth);
+        LocalDate birthDate = null;
+        if (!birth.equals("")) {
+            birthDate = LocalDate.parse(birth);
+        }
         
         //Trips - get as String array, then find the actual Trip objects and
         //create a List of Trip
         String[] trips = request.getParameterValues("tripsBox");
         List<Trip> allTrips = service.findAllTrips();
         List<Trip> tripsForTraveler = new ArrayList<>();
-        if (!trips.equals(null)) {
+        if (trips != null) {
             for (Trip t : allTrips) {
                 for (String s : trips) {
                     if (t.getTripId() == Integer.parseInt(s)) {
@@ -184,9 +194,14 @@ public class TravelerController {
         
         //Image URL
         String urlFromForm = request.getParameter("filePath");
-        URL url = new URL(urlFromForm);
+        URL url = null;
+        if (!urlFromForm.equals("")) {
+            url = new URL(urlFromForm);
+        }
         String fileName = firstName + lastName + ".jpg";
         
+        //Remove spaces from the fileName and replace with '-'
+        fileName = fileName.replace(' ', '-');
         
         //Add everything to the object
         newT.setTravelerId(Integer.parseInt(id));
@@ -199,22 +214,21 @@ public class TravelerController {
         newT.setBirthDate(birthDate);
         newT.setTrips(tripsForTraveler);
         newT.setPhotoLink(urlFromForm);
-        
-        //Remove spaces from the fileName and replace with '-'
-        fileName = fileName.replace(' ', '-');
         newT.setPhotoFilePath(fileName);
         
         service.addUpdateTraveler(newT);
         
         //Save the image from url as a file in directory
-        InputStream is = url.openStream();
-        OutputStream os = new FileOutputStream("src/main/resources/static/img/" + fileName);
+        if (!urlFromForm.equals("")) {
+            InputStream is = url.openStream();
+            OutputStream os = new FileOutputStream("src/main/resources/static/img/" + fileName);
         
-        byte[] b = new byte[2048];
-        int length;
+            byte[] b = new byte[2048];
+            int length;
 
-        while ((length = is.read(b)) != -1) {
-            os.write(b, 0, length);
+            while ((length = is.read(b)) != -1) {
+                os.write(b, 0, length);
+            }
         }
         
         //Go back to travelersHome

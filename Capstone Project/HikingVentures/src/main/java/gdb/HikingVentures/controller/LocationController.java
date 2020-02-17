@@ -60,31 +60,37 @@ public class LocationController {
         String parkName = request.getParameter("parkNameBox");
         String nearbyCity = request.getParameter("nearbyCityBox");
         String state = request.getParameter("stateBox");
+        
+        //Image URL
         String urlFromForm = request.getParameter("filePath");
-        URL url = new URL(urlFromForm);
+        URL url = null;
+        if (!urlFromForm.equals("")) {
+            url = new URL(urlFromForm);
+        }
         String fileName = parkName + ".jpg";
+        
+        //Remove spaces from the fileName and replace with '-'
+        fileName = fileName.replace(' ', '-');
         
         newL.setParkName(parkName);
         newL.setNearbyCity(nearbyCity);
         newL.setState(state);
-        newL.setPhotoLink(urlFromForm);
-        
-        //Remove spaces from the fileName and replace with '-'
-        fileName = fileName.replace(' ', '-');
-                
+        newL.setPhotoLink(urlFromForm); 
         newL.setPhotoFilePath(fileName);
         
         service.addUpdateLocation(newL);
         
         //Save the image from url as a file in directory
-        InputStream is = url.openStream();
-        OutputStream os = new FileOutputStream("src/main/resources/static/img/" + fileName);
+        if (!urlFromForm.equals("")) {
+            InputStream is = url.openStream();
+            OutputStream os = new FileOutputStream("src/main/resources/static/img/" + fileName);
         
-        byte[] b = new byte[2048];
-        int length;
+            byte[] b = new byte[2048];
+            int length;
 
-        while ((length = is.read(b)) != -1) {
-            os.write(b, 0, length);
+            while ((length = is.read(b)) != -1) {
+                os.write(b, 0, length);
+            }
         }
         
         //Go back to locationsHome

@@ -148,7 +148,7 @@
                             </div>
                             <div class="col-md-2">
                                 <div class="pageHeader">
-                                    <input type="image" src="img/Back.png" alt="Create" title="Go Back" class="pageHeaderButtons" id="backButton">
+                                    <input type="image" src="img/BackWhite.png" alt="Create" title="Go Back" class="pageHeaderButtons" id="backButton">
                                     <h5 class="pageHeaderTitles" id="backTitle">Equipment Home</h5>
                                 </div>
                             </div>
@@ -162,16 +162,33 @@
                                 <div class="form-group row">
                                     <div class="col-sm-11">
                                         <h3 class="formLabels">Item Name</h3>
-                                        <input type="text" class="form-control" name="itemNameBox" id="itemNameBox" th:value="${equipment.name}">
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="itemNameBox" 
+                                               id="itemNameBox" 
+                                               th:value="${equipment.name}"
+                                               maxlength="30"
+                                               required="required">
                                     </div>
                                     <div class="col-sm-1">
-                                        <input type="text" class="form-control" name="id" id="id" th:value="${equipment.equipmentId}" style="display: none">
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="id" 
+                                               id="id" 
+                                               th:value="${equipment.equipmentId}" 
+                                               style="display: none">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6">
                                         <h3 class="formLabels">Description</h3>
-                                        <textarea class="form-control" name="descriptionBox" id="descriptionBox" rows="4" th:text="${equipment.description}"></textarea>
+                                        <textarea class="form-control" 
+                                                  name="descriptionBox" 
+                                                  id="descriptionBox" 
+                                                  rows="4" 
+                                                  th:text="${equipment.description}"
+                                                  maxlength="100"
+                                                  required="required"></textarea>
                                     </div>
                                     <div class="col-sm-6">
                                         <h3 class="formLabels">Select Trip(s)</h3>
@@ -186,7 +203,12 @@
                                 <div class="form-group row">
                                     <div class="col-sm-9">
                                         <h3 class="formLabels">Equipment Item Image URL</h3>
-                                        <input type="text" class="form-control" name="filePath" id="filePath" th:value="${equipment.photoLink}">
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="filePath" 
+                                               id="filePath" 
+                                               th:value="${equipment.photoLink}"
+                                               maxlength="300">
                                     </div>
                                     <div class="col-sm-3">
                                         <img id="itemPic" th:src="'img/' + ${equipment.photoFilePath}">
@@ -194,12 +216,24 @@
                                     
                                 </div>
                                 <div class="col-md-8">
-                                    <button type="submit" id="editEquipmentButton" class="btn btn-default">Edit Item</button>
+                                    <button type="submit" 
+                                            id="editEquipmentButton" 
+                                            class="btn btn-default">Edit Item</button>
                                 </div>
                             </form>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            
+            <div class="row"> 
+                <hr class="hrMenuBorder">
+            </div>
+            
+            <div class="row">
+                <div class="col-md-offset-5 col-md-2">
+                    <p id="copyright">&copy 2020 <br/>Garrett Becker<br/>All Rights Reserved</p>       
                 </div>
             </div>
         </div>

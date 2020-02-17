@@ -206,7 +206,7 @@
                             </div>
                             <div class="col-md-2">
                                 <div class="pageHeader">
-                                    <input type="image" src="img/Back.png" alt="Create" title="Go Back" class="pageHeaderButtons" id="backButton">
+                                    <input type="image" src="img/BackWhite.png" alt="Create" title="Go Back" class="pageHeaderButtons" id="backButton">
                                     <h5 class="pageHeaderTitles" id="backTitle">Trails Home</h5>
                                 </div>
                             </div>
@@ -231,16 +231,29 @@
                                 <div class="form-group row">
                                     <div class="col-sm-11">
                                         <h3 class="formLabels">Trail Name</h3>
-                                        <input type="text" class="form-control" name="trailNameBox" id="trailNameBox" th:value="${trail.trailName}">
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="trailNameBox" 
+                                               id="trailNameBox" 
+                                               th:value="${trail.trailName}"
+                                               maxlength="50"
+                                               required="required">
                                     </div>
                                     <div class="col-sm-1">
-                                        <input type="text" class="form-control" name="id" id="id" th:value="${trail.trailId}" style="display: none">
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="id" 
+                                               id="id" 
+                                               th:value="${trail.trailId}" 
+                                               style="display: none">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-5">
                                         <h3 class="formLabels">Location</h3>
-                                        <select name="locationBox" id="locationBox" class="form-control">
+                                        <select name="locationBox" 
+                                                id="locationBox" 
+                                                class="form-control" required>
                                             <option th:each="l : ${locations}" 
                                                     th:value="${l.locationId}" 
                                                     th:text="${l.parkName}"
@@ -249,7 +262,9 @@
                                     </div>
                                     <div class="col-sm-3">
                                         <h3 class="formLabels">Route Type</h3>
-                                        <select name="routeTypeBox" id="routeTypeBox" class="form-control">
+                                        <select name="routeTypeBox" 
+                                                id="routeTypeBox" 
+                                                class="form-control" required>
                                             <option th:each="type : ${routeTypes}" 
                                                     th:value="${type.routeTypeId}" 
                                                     th:text="${type.type}"
@@ -258,7 +273,9 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <h3 class="formLabels">Difficulty Rating</h3>
-                                        <select  name="difficultyRatingBox" id="difficultyRatingBox" class="form-control">
+                                        <select  name="difficultyRatingBox" 
+                                                 id="difficultyRatingBox" 
+                                                 class="form-control" required>
                                             <option th:each="rating : ${ratings}" 
                                                     th:value="${rating.difficultyRatingId}" 
                                                     th:text="${rating.type}"
@@ -269,11 +286,21 @@
                                 <div class="form-group row">
                                     <div class="col-sm-3">
                                         <h3 class="formLabels">Distance (ft)</h3>
-                                        <input type="text" class="form-control" name="distanceBox" id="distanceBox" th:value="${trail.distance}">
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="distanceBox" 
+                                               id="distanceBox" 
+                                               th:value="${trail.distance}"
+                                               required="required">
                                     </div>
                                     <div class="col-sm-4">
                                         <h3 class="formLabels">Elevation Gain (ft)</h3>
-                                        <input type="text" class="form-control" name="elevationGainBox" id="elevationGainBox" th:value="${trail.elevationGain}">
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="elevationGainBox" 
+                                               id="elevationGainBox" 
+                                               th:value="${trail.elevationGain}"
+                                               required="required">
                                     </div>
                                     <div class="col-sm-5">
                                         <h3 class="formLabels">Select Trip(s)</h3>
@@ -287,13 +314,23 @@
                                 <div class="form-group row">
                                     <div class="col-sm-12">
                                         <h3 class="formLabels">Map Link URL</h3>
-                                        <input type="text" class="form-control" name="filePathMap" id="filePathMap" th:value="${trail.mapLink}">
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="filePathMap" 
+                                               id="filePathMap" 
+                                               th:value="${trail.mapLink}"
+                                               maxlength="500">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-12">
                                         <h3 class="formLabels">Trail Image URL</h3>
-                                        <input type="text" class="form-control" name="filePath" id="filePath" th:value="${trail.photoLink}">
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="filePath" 
+                                               id="filePath" 
+                                               th:value="${trail.photoLink}"
+                                               maxlength="300">
                                     </div>
                                 </div>
                                 <div class="col-md-8">
@@ -303,6 +340,16 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            
+            <div class="row"> 
+                <hr class="hrMenuBorder">
+            </div>
+            
+            <div class="row">
+                <div class="col-md-offset-5 col-md-2">
+                    <p id="copyright">&copy 2020 <br/>Garrett Becker<br/>All Rights Reserved</p>       
                 </div>
             </div>
         </div>

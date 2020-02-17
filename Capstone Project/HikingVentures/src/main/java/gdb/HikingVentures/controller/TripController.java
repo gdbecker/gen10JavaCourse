@@ -59,7 +59,7 @@ public class TripController {
     
     //Actually add a new trail to the db
     @PostMapping("/addNewTrip")
-    public String addNewEquipment(HttpServletRequest request, HttpServletResponse response, Model model) throws ServletException, IOException{
+    public String addNewTrip(HttpServletRequest request, HttpServletResponse response, Model model) throws ServletException, IOException{
         Trip newT = new Trip();
         String tripName = request.getParameter("tripNameBox");
         String startDate = request.getParameter("startDateBox");
@@ -71,7 +71,7 @@ public class TripController {
         String[] trails = request.getParameterValues("trailBox");
         List<Trail> allTrails = service.findAllTrails();
         List<Trail> trailsForTrip = new ArrayList<>();
-        if (!trails.equals(null)) {
+        if (trails != null) {
             for (Trail t : allTrails) {
                 for (String s : trails) {
                     if (t.getTrailId() == Integer.parseInt(s)) {
@@ -86,7 +86,7 @@ public class TripController {
         String[] equipment = request.getParameterValues("equipmentBox");
         List<Equipment> allEquipment = service.findAllEquipment();
         List<Equipment> equipmentForTrip = new ArrayList<>();
-        if (!equipment.equals(null)) {
+        if (equipment != null) {
             for (Equipment e : allEquipment) {
                 for (String s : equipment) {
                     if (e.getEquipmentId() == Integer.parseInt(s)) {
@@ -101,7 +101,7 @@ public class TripController {
         String[] travelers = request.getParameterValues("travelerBox");
         List<Traveler> allTravelers = service.findAllTravelers();
         List<Traveler> travelersForTrip = new ArrayList<>();
-        if (!travelers.equals(null)) {
+        if (travelers != null) {
             for (Traveler t : allTravelers) {
                 for (String s : travelers) {
                     if (t.getTravelerId() == Integer.parseInt(s)) {
@@ -141,16 +141,20 @@ public class TripController {
         List<Trail> trails = t.getTrails();
         model.addAttribute("trails", trails);
         
-        Trail tr = trails.get(0);
-        Location loc = tr.getLocation();
-        model.addAttribute("location", loc);
+        try {
+            Trail tr = trails.get(0);
+            Location loc = tr.getLocation();
+            model.addAttribute("location", loc);
+        } catch (IndexOutOfBoundsException e) {
+            
+        }
         
         return "tripsViewDetails";
     }
     
     //Open page for editing a specific trip
     @GetMapping("/tripsEdit")
-    public String openLocationsEditDetails(@RequestParam Integer id, Model model) {
+    public String openTripsEditDetails(@RequestParam Integer id, Model model) {
         Trip t = service.findTripByID(id);
         model.addAttribute("trip", t);
         
@@ -184,7 +188,7 @@ public class TripController {
         String[] trails = request.getParameterValues("trailBox");
         List<Trail> allTrails = service.findAllTrails();
         List<Trail> trailsForTrip = new ArrayList<>();
-        if (!trails.equals(null)) {
+        if (trails != null) {
             for (Trail t : allTrails) {
                 for (String s : trails) {
                     if (t.getTrailId() == Integer.parseInt(s)) {
@@ -199,7 +203,7 @@ public class TripController {
         String[] equipment = request.getParameterValues("equipmentBox");
         List<Equipment> allEquipment = service.findAllEquipment();
         List<Equipment> equipmentForTrip = new ArrayList<>();
-        if (!equipment.equals(null)) {
+        if (equipment != null) {
             for (Equipment e : allEquipment) {
                 for (String s : equipment) {
                     if (e.getEquipmentId() == Integer.parseInt(s)) {
@@ -214,7 +218,7 @@ public class TripController {
         String[] travelers = request.getParameterValues("travelerBox");
         List<Traveler> allTravelers = service.findAllTravelers();
         List<Traveler> travelersForTrip = new ArrayList<>();
-        if (!travelers.equals(null)) {
+        if (travelers != null) {
             for (Traveler t : allTravelers) {
                 for (String s : travelers) {
                     if (t.getTravelerId() == Integer.parseInt(s)) {

@@ -79,15 +79,6 @@
         }  
     </style>
     
-    <script>
-        //Hovering over the login button
-        $("#loginButton").hover(function() {
-            $(this).css("background", "#E9D758");
-        }, function() {
-            $(this).css("background", "#297373");
-        });
-    </script>
-    
     <body>
         <div class="bg-image-index"></div>
         
@@ -119,12 +110,12 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-offset-3 col-md-6">
-                                    <label class="loginFormLabels">User Name:</label>
+                                    <label class="loginFormLabels">Username:</label>
                                     <input type="text" 
                                            class="form-control" 
                                            name="userName" 
-                                           id="userName"
-                                           placeholder="Username">
+                                           id="username"
+                                           placeholder="Username"/>
                                 </div>
                             </div>
                             <div class="row">
@@ -134,14 +125,14 @@
                                            class="form-control" 
                                            name="password" 
                                            id="password"
-                                           placeholder="Password">
+                                           placeholder="Password"/>
                                 </div>
                             </div>
                             
                             <!-- Helps protect against Cross-Site Request Forgery attacks -->
-                            <input type="hidden" 
+                            <!--<input type="hidden" 
                                    th:name="${_csrf.parameterName}"
-                                   th:value="${_csrf.token}"/>
+                                   th:value="${_csrf.token}"/>-->
                             
                             <div class="row">
                                 <div class="col-md-offset-4 col-md-4">
