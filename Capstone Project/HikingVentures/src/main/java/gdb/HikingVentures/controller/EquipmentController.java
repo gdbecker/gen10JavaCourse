@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -93,14 +94,20 @@ public class EquipmentController {
         
         //Save the image from url as a file in directory
         if (!urlFromForm.equals("")) {
-            InputStream is = url.openStream();
-            OutputStream os = new FileOutputStream("src/main/resources/static/img/" + fileName);
+            try {
+                InputStream is = url.openStream();
+                OutputStream os = new FileOutputStream("src/main/resources/static/img/" + fileName);
         
-            byte[] b = new byte[2048];
-            int length;
+                byte[] b = new byte[2048];
+                int length;
 
-            while ((length = is.read(b)) != -1) {
-                os.write(b, 0, length);
+                while ((length = is.read(b)) != -1) {
+                    os.write(b, 0, length);
+                }
+            } catch (MalformedURLException e) {
+                
+            } catch (IOException ex) {
+                
             }
         }
         
@@ -146,7 +153,7 @@ public class EquipmentController {
         String[] trips = request.getParameterValues("tripsBox");
         List<Trip> allTrips = service.findAllTrips();
         List<Trip> tripsForEquipment = new ArrayList<>();
-        if (!trips.equals(null)) {
+        if (trips != null) {
             for (Trip t : allTrips) {
                 for (String s : trips) {
                     if (t.getTripId() == Integer.parseInt(s)) {
@@ -178,14 +185,20 @@ public class EquipmentController {
         
         //Save the image from url as a file in directory
         if (!urlFromForm.equals("")) {
-            InputStream is = url.openStream();
-            OutputStream os = new FileOutputStream("src/main/resources/static/img/" + fileName);
+            try {
+                InputStream is = url.openStream();
+                OutputStream os = new FileOutputStream("src/main/resources/static/img/" + fileName);
         
-            byte[] b = new byte[2048];
-            int length;
+                byte[] b = new byte[2048];
+                int length;
 
-            while ((length = is.read(b)) != -1) {
-                os.write(b, 0, length);
+                while ((length = is.read(b)) != -1) {
+                    os.write(b, 0, length);
+                }
+            } catch (MalformedURLException e) {
+                
+            } catch (IOException ex) {
+                
             }
         }
         

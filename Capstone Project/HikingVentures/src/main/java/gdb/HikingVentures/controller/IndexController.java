@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class IndexController {
     
+    /*
     @GetMapping("/login")
     public String displayIndexPage(HttpServletRequest request) {
         /*
@@ -19,10 +20,10 @@ public class IndexController {
             return "login";
         } else {
             return "index";
-        }*/
+        }
         
         return "index";
         
-    }
+    }*/
     
 }

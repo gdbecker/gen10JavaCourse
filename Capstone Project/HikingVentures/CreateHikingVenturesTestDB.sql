@@ -88,7 +88,7 @@ create table if not exists Trail (
 		references route_type(route_type_id),
 	Distance double,
     elevation_gain double,
-    map_link varchar(500),
+    map_link varchar(1000),
     photo_link varchar(300),
     photo_file_path varchar(100)
 );

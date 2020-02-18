@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -88,7 +89,7 @@ public class TravelerController {
         if (!urlFromForm.equals("")) {
             url = new URL(urlFromForm);
         }
-        String fileName = firstName + lastName + ".jpg";
+        String fileName = firstName + " " + lastName + ".jpg";
         
         //Remove spaces from the fileName and replace with '-'
         fileName = fileName.replace(' ', '-');
@@ -109,14 +110,20 @@ public class TravelerController {
         
         //Save the image from url as a file in directory
         if (!urlFromForm.equals("")) {
-            InputStream is = url.openStream();
-            OutputStream os = new FileOutputStream("src/main/resources/static/img/" + fileName);
+            try {
+                InputStream is = url.openStream();
+                OutputStream os = new FileOutputStream("src/main/resources/static/img/" + fileName);
         
-            byte[] b = new byte[2048];
-            int length;
+                byte[] b = new byte[2048];
+                int length;
 
-            while ((length = is.read(b)) != -1) {
-                os.write(b, 0, length);
+                while ((length = is.read(b)) != -1) {
+                    os.write(b, 0, length);
+                }
+            } catch (MalformedURLException e) {
+                
+            } catch (IOException ex) {
+                
             }
         }
         
@@ -198,7 +205,7 @@ public class TravelerController {
         if (!urlFromForm.equals("")) {
             url = new URL(urlFromForm);
         }
-        String fileName = firstName + lastName + ".jpg";
+        String fileName = firstName + " " + lastName + ".jpg";
         
         //Remove spaces from the fileName and replace with '-'
         fileName = fileName.replace(' ', '-');
@@ -220,14 +227,20 @@ public class TravelerController {
         
         //Save the image from url as a file in directory
         if (!urlFromForm.equals("")) {
-            InputStream is = url.openStream();
-            OutputStream os = new FileOutputStream("src/main/resources/static/img/" + fileName);
+            try {
+                InputStream is = url.openStream();
+                OutputStream os = new FileOutputStream("src/main/resources/static/img/" + fileName);
         
-            byte[] b = new byte[2048];
-            int length;
+                byte[] b = new byte[2048];
+                int length;
 
-            while ((length = is.read(b)) != -1) {
-                os.write(b, 0, length);
+                while ((length = is.read(b)) != -1) {
+                    os.write(b, 0, length);
+                }
+            } catch (MalformedURLException e) {
+                
+            } catch (IOException ex) {
+                
             }
         }
         

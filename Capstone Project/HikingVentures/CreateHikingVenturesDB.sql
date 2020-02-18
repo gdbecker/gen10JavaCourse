@@ -88,7 +88,7 @@ create table if not exists Trail (
 		references route_type(route_type_id),
 	Distance double not null,
     elevation_gain double not null,
-    map_link varchar(500),
+    map_link varchar(1000),
     photo_link varchar(300),
     photo_file_path varchar(100)
 );
@@ -103,27 +103,27 @@ create table if not exists Trip_Trail (
 		references Trail(trail_id)
 );
 
-insert into Traveler(first_name, last_name, Address, City, State, Zip, birth_date, photo_file_path) values
-('Mark', 'Watney', '2987 Hickory Lane', 'Charlotte', 'NC', '28971', '1981-01-02', 'Mark-Watney.jpg'),
-('Sarah', 'Walker', '67 Fox Avenue', 'Matthews', 'NC', '20862', '1993-08-22', 'Sarah-Walker.jpg'),
-('Bethany', 'Callahan', '281 Mint Row', 'Gastonia', 'NC', '22881', '1989-12-04', 'Bethany-Callahan.jpg'),
-('Sam', 'Smith', '9752 Hidden Pond St', 'Charlotte', 'NC', '28971', '1978-05-01', 'Sam-Smith.jpg'),
-('Laura', 'Flowers', '798 Canterbury St', 'Raleigh', 'NC', '27602', '1994-10-12', 'Laura-Flowers.jpg'),
-('Luke', 'Berkeley', '12 Candlewick Avenue', 'Charlotte', 'NC', '29241', '1996-03-09', 'Luke-Berkeley.jpg'),
-('Kate', 'Cowell', '5327 Trojan Horse Lane', 'Mint Hill', 'NC', '22374', '1990-01-24', 'Kate-Cowell.jpg'),
-('Spencer', 'Burt', '671 Waterfall St', 'Charlotte', 'NC', '28971', '1995-03-29', 'Spencer-Burt.jpg');
+insert into Traveler(first_name, last_name, Address, City, State, Zip, birth_date, photo_link, photo_file_path) values
+('Mark', 'Watney', '2987 Hickory Lane', 'Charlotte', 'NC', '28971', '1981-01-02', 'https://previews.123rf.com/images/avemario/avemario1612/avemario161200023/67563798-hardworking-man-with-inspired-smile-looking-at-screen-of-his-generic-laptop-while-watching-video-onl.jpg', 'Mark-Watney.jpg'),
+('Sarah', 'Walker', '67 Fox Avenue', 'Matthews', 'NC', '20862', '1993-08-22', 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Yvonne_strahovski_%28cropped%29.jpg/220px-Yvonne_strahovski_%28cropped%29.jpg', 'Sarah-Walker.jpg'),
+('Bethany', 'Callahan', '281 Mint Row', 'Gastonia', 'NC', '22881', '1989-12-04', 'https://st.depositphotos.com/3438085/4785/i/950/depositphotos_47859411-stock-photo-generic-expressions.jpg', 'Bethany-Callahan.jpg'),
+('Sam', 'Smith', '9752 Hidden Pond St', 'Charlotte', 'NC', '28971', '1978-05-01', 'https://image1.masterfile.com/getImage/NzAwLTAxNTg3MDk3ZW4uMDAwMDAwMDA=AJ-a0a/700-01587097en_Masterfile.jpg', 'Sam-Smith.jpg'),
+('Laura', 'Flowers', '798 Canterbury St', 'Raleigh', 'NC', '27602', '1994-10-12', 'https://pbs.twimg.com/profile_images/646496617525288960/kNke3rKq_400x400.jpg', 'Laura-Flowers.jpg'),
+('Luke', 'Berkeley', '12 Candlewick Avenue', 'Charlotte', 'NC', '29241', '1996-03-09', 'https://www.vermontgas.com/wp-content/uploads/2016/11/Phil-Schiller-headshot-e1362692403868.jpg', 'Luke-Berkeley.jpg'),
+('Kate', 'Cowell', '5327 Trojan Horse Lane', 'Mint Hill', 'NC', '22374', '1990-01-24', 'https://media.istockphoto.com/photos/woman-talking-on-generic-phone-near-river-and-bridge-picture-id839363644?k=6&m=839363644&s=612x612&w=0&h=uhrczlnn7h-o388m1b2FH43MdQ1TjFEZygxTy4PZcNM=', 'Kate-Cowell.jpg'),
+('Spencer', 'Burt', '671 Waterfall St', 'Charlotte', 'NC', '28971', '1995-03-29', 'https://image.freepik.com/free-photo/young-man-traveler-with-backpack-relaxing-outdoor_1421-175.jpg', 'Spencer-Burt.jpg');
 
-insert Equipment(`Name`, `Description`, photo_file_path) values
-('Sleeping Bag', 'Used for sleeping comfortably at night', 'Sleeping-Bag.jpg'),
-('Water Bottle', 'Hydrate!', 'Water-Bottle.jpg'),
-('Backpack', 'Carry everything you need', 'Backpack.jpg'),
-('Hiking Boots', 'Protect your feet as you are out there', 'Hiking-Boots.jpg'),
-('Compass', 'Navigate old-school', 'Compass.jpg'),
-('First Aid Kit', 'Be prepared for any emergency', 'First-Aid-Kit.jpg'),
-('Handheld GPS', 'Naviagte with ease', 'Handheld-GPS.jpg'),
-('Wool Socks', 'Keep your feet warm and comfortable', 'Wool-Socks.jpeg'),
-('Rain Jacket', 'Repel the rain', 'Rain-Jacket.jpg'),
-('Hiking Pants', 'Flexible for wearing as shorts or pants', 'Hiking-Pants.jpg');
+insert Equipment(`Name`, `Description`, photo_link, photo_file_path) values
+('Sleeping Bag', 'Used for sleeping comfortably at night', 'https://images-na.ssl-images-amazon.com/images/I/710ZIY%2BvMLL._AC_SX466_.jpg', 'Sleeping-Bag.jpg'),
+('Water Bottle', 'Hydrate!', 'https://media1.s-nbcnews.com/i/newscms/2019_27/1456290/screen_shot_2019-07-05_at_12-09-39_pm_3279718479aabc2067270235b6b037bc.png', 'Water-Bottle.jpg'),
+('Backpack', 'Carry everything you need', 'https://i5.walmartimages.com/asr/bf178d0b-f187-44f1-8146-0189f70711da_1.afd2401889eac3d5ea2383f343b928b6.jpeg?odnWidth=450&odnHeight=450&odnBg=ffffff', 'Backpack.jpg'),
+('Hiking Boots', 'Protect your feet as you are out there', 'https://www.switchbacktravel.com/sites/default/files/articles%20/Hiking%20Boots%20Round-up%20%28m%29.jpg', 'Hiking-Boots.jpg'),
+('Compass', 'Navigate old-school', 'https://travelgearzone.com/wp-content/uploads/2017/01/Suunto-A-10-Field-Compass.png', 'Compass.jpg'),
+('First Aid Kit', 'Be prepared for any emergency', 'https://images-na.ssl-images-amazon.com/images/I/91QCnvvW5YL._AC_SL1500_.jpg', 'First-Aid-Kit.jpg'),
+('Handheld GPS', 'Naviagte with ease', 'https://www.thegpsstore.com/Assets/ProductImages/Garmin-Etrex-10-Handheld-GPS.jpg', 'Handheld-GPS.jpg'),
+('Wool Socks', 'Keep your feet warm and comfortable', 'https://www.rei.com/media/product/604587', 'Wool-Socks.jpeg'),
+('Rain Jacket', 'Repel the rain', 'https://shop.geocaching.com/media/catalog/product/cache/8a26566e3285c035850b6b415dcfb529/r/a/rain-jacket.jpg', 'Rain-Jacket.jpg'),
+('Hiking Pants', 'Flexible for wearing as shorts or pants', 'https://cdn.shopify.com/s/files/1/1815/0901/products/hiking-pants-waterproof-camping-trekking-fleece-outdoor-hiking-pants-3_2000x.jpg?v=1571611303', 'Hiking-Pants.jpg');
 
 insert into difficulty_rating(`Type`) values
 ('Easy'),
@@ -135,24 +135,24 @@ insert into route_type(`Type`, `Description`) values
 ('Out-and-Back', 'Starts and ends at the same location and follows a single trail or multiple trails to an end point and then returns along the same route.'),
 ('Point-to-Point', 'Starts and ends in different locations. These routes are often part of a multi-day hiking or backpacking trip or segments of a long distance trail such as the Appalachian Trail or Pacific Crest Trail.');
 
-insert into Location(park_name, nearby_city, State, photo_file_path) values
-('Great Smoky Mountains National Park', 'Cherokee', 'NC', 'Great-Smoky-Mountains-National-Park.jpg'),
-('Cherokee National Forest', 'Boone', 'NC', 'Cherokee-National-Forest.jpg'),
-('Uwharrie National Forest', 'Albemarle', 'NC', 'Uwharrie-National-Forest.jpg'),
-('Crowders Mountain State Park', 'Kings Mountain', 'NC', 'Crowders-Mountain-State-Park.jpg'),
-('Lake Norman State Park', 'Troutman', 'NC', 'Lake-Norman-State-Park.jpg');
+insert into Location(park_name, nearby_city, State, photo_link, photo_file_path) values
+('Great Smoky Mountains National Park', 'Cherokee', 'NC', 'https://koa.com/blog/images/Our-guide-to-the-best-sites-in-and-around-Great-Smoky-Mountains-National-Park..jpg?preset=blogPhoto', 'Great-Smoky-Mountains-National-Park.jpg'),
+('Cherokee National Forest', 'Boone', 'NC', 'https://www.fs.usda.gov/Internet/FSE_MEDIA/stelprdb5196738.jpg', 'Cherokee-National-Forest.jpg'),
+('Uwharrie National Forest', 'Albemarle', 'NC', 'https://taketothetrail.com/wp-content/uploads/2018/11/uwharrie-forest-fp-1080x628.jpg', 'Uwharrie-National-Forest.jpg'),
+('Crowders Mountain State Park', 'Kings Mountain', 'NC', 'https://media2.trover.com/T/5d9cdb926e1f1f5258007874/fixedw_large_2x.jpg', 'Crowders-Mountain-State-Park.jpg'),
+('Lake Norman State Park', 'Troutman', 'NC', 'https://www.orthocarolina.com/imagecache/mobile/compReg/the_insiders_guide_to_lake_norman_state_park.jpg', 'Lake-Norman-State-Park.jpg');
 
-insert into Trail(location_id, trail_name, difficulty_rating_id, route_type_id, Distance, elevation_gain, map_link, photo_file_path) values
-(1, 'Chimney Tops Trail', 3, 2, '3.6', '1289', 'https://www.alltrails.com/trail/us/tennessee/chimney-tops-trail/print?title=Chimney%2BTops%2BTrail&at_map_id=22388256&map_center_lat=35.629762033890714&map_center_lon=-83.47392797470093&map_type=alltrailsOutdoorsV2&timestamp=1581274271&paper_size=letter&paper_orientation=portrait&grid_format=decimal&map_zoom=15&map_datum=wgs84', 'Chimney-Tops-Trail.jpg'),
-(1, 'Rainbow Falls Trail', 3, 2, '5.5', '1653', 'https://www.alltrails.com/trail/us/tennessee/rainbow-falls-trail/print', 'Rainbow-Falls-Trail.jpg'),
-(2, 'Blue Hole Falls', 1, 1, '0.5', '137', 'https://www.alltrails.com/trail/us/tennessee/blue-hole-falls/print?map_center_lat=36.43250132616073&map_center_lon=-82.07253999999999&map_zoom=17&map_type=alltrailsOutdoorsV2', 'Blue-Hole-Falls.jpg'),
-(2, "Martin's Creek Falls", 2, 2, '2.0', '364', 'https://www.alltrails.com/trail/us/tennessee/martins-creek-falls/print?map_center_lat=36.12035678978906&map_center_lon=-82.394835&map_zoom=15&map_type=alltrailsOutdoorsV2', 'Martins-Creek-Falls.jpg'),
-(3, 'Badin Lake Trail', 2, 1, '5.2', '301', 'https://www.alltrails.com/trail/us/north-carolina/badin-lake-trail/print?map_center_lat=35.451266467612555&map_center_lon=-80.07380962371826&map_zoom=14&map_type=alltrailsOutdoorsV2', 'Badin-Lake-Trail.jpg'),
-(3, 'Uwharrie OHV Trail', 2, 1, '9.3', '1197', 'https://www.alltrails.com/trail/us/north-carolina/uwharrie-jeep-trail/print?map_center_lat=35.41472589791322&map_center_lon=-80.05282500000001&map_zoom=13&map_type=alltrailsOutdoorsV2', 'Uwharrie-OHV-Trail.jpg'),
-(4, 'Pinnacle Trail', 2, 2, '3.7', '767', 'https://www.alltrails.com/trail/us/north-carolina/pinnacle-trail--2/print?map_center_lat=35.21215578931309&map_center_lon=-81.303035&map_zoom=15&map_type=alltrailsOutdoorsV2', 'Pinnacle-Trail.jpg'),
-(4, 'Rocktop Trail', 3, 1, '5.9', '1387', 'https://www.alltrails.com/trail/us/north-carolina/rocktop-trail/print?map_center_lat=35.22784763526057&map_center_lon=-81.2817907333374&map_zoom=14&map_type=alltrailsOutdoorsV2', 'Rocktop-Trail.jpg'),
-(5, 'Lake Norman Lakeshore Trail', 2, 1, '5.7', '511', 'https://www.alltrails.com/trail/us/north-carolina/lake-norman-lakeshore-trail--2/print', 'Lake-Norman-Lakeshore-Trail.jpg'),
-(5, 'Alder Trail', 1, 1, '0.9', '49', 'https://www.alltrails.com/trail/us/north-carolina/alder-trail-loop-hike/print', 'Alder-Trail.jpg');
+insert into Trail(location_id, trail_name, difficulty_rating_id, route_type_id, Distance, elevation_gain, map_link, photo_link, photo_file_path) values
+(1, 'Chimney Tops Trail', 3, 2, '3.6', '1289', '<iframe class="alltrails" src="https://www.alltrails.com/widget/trail/us/tennessee/chimney-tops-trail?u=i" width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="AllTrails: Trail Guides and Maps for Hiking, Camping, and Running"></iframe>', 'https://static.rootsrated.com/image/upload/s--Yg3a_Amy--/t_rr_large_traditional/e73vrzffkhpqevff6ctm.jpg', 'Chimney-Tops-Trail.jpg'),
+(1, 'Rainbow Falls Trail', 3, 2, '5.5', '1653', '', 'https://www.chaletvillage.com/wp-content/uploads/2017/03/Beautiful-photo-of-Abrams-Falls-in-the-Smoky-Mountains.jpg', 'Rainbow-Falls-Trail.jpg'),
+(2, 'Blue Hole Falls', 1, 1, '0.5', '137', '', 'https://www.shutterbug.com/images/styles/960-wide/public/photo_post/%5Buid%5D/JTM_5575.jpg', 'Blue-Hole-Falls.jpg'),
+(2, "Martins Creek Falls", 2, 2, '2.0', '364', '', 'https://waterfallsingeorgia.com/wp-content/uploads/2017/08/Martin-Creek-Falls2.jpg', 'Martins-Creek-Falls.jpg'),
+(3, 'Badin Lake Trail', 2, 1, '5.2', '301', '', 'https://media-cdn.tripadvisor.com/media/photo-s/04/7a/2b/46/badin-lake.jpg', 'Badin-Lake-Trail.jpg'),
+(3, 'Uwharrie OHV Trail', 2, 1, '9.3', '1197', '', 'https://www.riderplanet-usa.com/atv/trails/photo/51a47dd220194a7a946c4fe4390b7291.jpg', 'Uwharrie-OHV-Trail.jpg'),
+(4, 'Pinnacle Trail', 2, 2, '3.7', '767', '', 'https://static.rootsrated.com/image/upload/s--E15vZ4YX--/t_rr_large_traditional/t8zzvrurewkfvdw0tqdh.jpg', 'Pinnacle-Trail.jpg'),
+(4, 'Rocktop Trail', 3, 1, '5.9', '1387', '', 'https://hikingthecarolinas.com/crowders/mountain_distance.jpg', 'Rocktop-Trail.jpg'),
+(5, 'Lake Norman Lakeshore Trail', 2, 1, '5.7', '511', '', 'https://cdn-assets.alltrails.com/uploads/photo/image/11308508/extra_large_00a2bb43d1fac98e4a94a61fc81d2b90.jpg', 'Lake-Norman-Lakeshore-Trail.jpg'),
+(5, 'Alder Trail', 1, 1, '0.9', '49', '', 'https://3.bp.blogspot.com/-C29Ji6ArTAg/V5FhNKn9TmI/AAAAAAAAVa0/3B8ecyIaSSgYXWCjIkUl0HQ2lXTS7PA5wCLcB/s1600/IMG_5833.JPG', 'Alder-Trail.jpg');
 
 insert into Trip(trip_name, trip_cost_per_traveler, start_date, end_date) values
 ('Bro Trip 2020', '50.50', '2020-04-02', '2020-04-04'),

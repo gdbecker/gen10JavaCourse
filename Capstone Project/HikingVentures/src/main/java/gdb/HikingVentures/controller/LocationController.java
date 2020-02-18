@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -82,14 +83,20 @@ public class LocationController {
         
         //Save the image from url as a file in directory
         if (!urlFromForm.equals("")) {
-            InputStream is = url.openStream();
-            OutputStream os = new FileOutputStream("src/main/resources/static/img/" + fileName);
+            try {
+                InputStream is = url.openStream();
+                OutputStream os = new FileOutputStream("src/main/resources/static/img/" + fileName);
         
-            byte[] b = new byte[2048];
-            int length;
+                byte[] b = new byte[2048];
+                int length;
 
-            while ((length = is.read(b)) != -1) {
-                os.write(b, 0, length);
+                while ((length = is.read(b)) != -1) {
+                    os.write(b, 0, length);
+                }
+            } catch (MalformedURLException e) {
+                
+            } catch (IOException ex) {
+                
             }
         }
         
@@ -152,14 +159,20 @@ public class LocationController {
         //Save the image from url as a file in directory
         //Only if there actually was a URL inputted
         if (!urlFromForm.equals("")) {
-            InputStream is = url.openStream();
-            OutputStream os = new FileOutputStream("src/main/resources/static/img/" + fileName);
+            try {
+                InputStream is = url.openStream();
+                OutputStream os = new FileOutputStream("src/main/resources/static/img/" + fileName);
         
-            byte[] b = new byte[2048];
-            int length;
+                byte[] b = new byte[2048];
+                int length;
 
-            while ((length = is.read(b)) != -1) {
-                os.write(b, 0, length);
+                while ((length = is.read(b)) != -1) {
+                    os.write(b, 0, length);
+                }
+            } catch (MalformedURLException e) {
+                
+            } catch (IOException ex) {
+                
             }
         }
  
@@ -171,7 +184,7 @@ public class LocationController {
     @GetMapping("/locationsDelete")
     public String deleteLocation(@RequestParam Integer id) {
         //Delete Trips associated with the Location
-        List<Trip> allTrips = service.findAllTrips();
+        /*List<Trip> allTrips = service.findAllTrips();
         for (Trip t : allTrips) {
             List<Trail> trailsInTrip = t.getTrails();
             for (Trail tr : trailsInTrip) {
@@ -181,7 +194,7 @@ public class LocationController {
                     service.deleteTripByID(t.getTripId());
                 }
             }
-        }
+        }*/
         
         //Delete Trails associated with the Location
         List<Trail> allTrails = service.findAllTrails();
