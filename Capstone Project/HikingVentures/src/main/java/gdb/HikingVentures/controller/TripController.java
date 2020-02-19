@@ -25,7 +25,30 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Capstone Project
  * @author garrettbecker
- * For opening Trip web pages
+ * 
+ * This Controller focuses on managing all pages relating to the Trip object
+ * 
+ * Methods:
+ * -openTripsHome()
+ * Open tripsHome.html
+ * 
+ * -openTripsAdd(Model model)
+ * Open tripsAdd.html
+ * 
+ * -addNewTrip(HttpServletRequest request, HttpServletResponse response, Model model)
+ * Actually add a new trail to the db
+ * 
+ * -openTripViewDetails(@RequestParam Integer id, Model model)
+ * View specific details for an equipment item
+ * 
+ * -openTripsEditDetails(@RequestParam Integer id, Model model)
+ * Open page for editing a specific trip
+ * 
+ * -editTrip(HttpServletRequest request, HttpServletResponse response, Model model)
+ * Actually editing a trip
+ * 
+ * -deleteTrip(@RequestParam Integer id)
+ * Deleting a Trip from the database
  */
 
 @Controller
@@ -33,13 +56,11 @@ public class TripController {
     @Autowired
     HVService service;
     
-    //Open tripsHome.html
     @RequestMapping("/tripsHome")
     public String openTripsHome() {
         return "/tripsHome";
     }
     
-    //Open tripsAdd.html
     @RequestMapping("/tripsAdd")
     public String openTripsAdd(Model model) {
         //Add the Trail options to the page
@@ -57,7 +78,6 @@ public class TripController {
         return "/tripsAdd";
     }
     
-    //Actually add a new trail to the db
     @PostMapping("/addNewTrip")
     public String addNewTrip(HttpServletRequest request, HttpServletResponse response, Model model) throws ServletException, IOException{
         Trip newT = new Trip();
@@ -126,7 +146,6 @@ public class TripController {
         return "redirect:/tripsHome";
     }
     
-    //View specific details for an equipment item
     @GetMapping("/tripsViewDetails")
     public String openTripViewDetails(@RequestParam Integer id, Model model) {
         Trip t = service.findTripByID(id);
@@ -152,7 +171,6 @@ public class TripController {
         return "tripsViewDetails";
     }
     
-    //Open page for editing a specific trip
     @GetMapping("/tripsEdit")
     public String openTripsEditDetails(@RequestParam Integer id, Model model) {
         Trip t = service.findTripByID(id);
@@ -173,7 +191,6 @@ public class TripController {
         return "tripsEdit";
     }
     
-    //Actually editing a trip
     @PostMapping("/editTrip")
     public String editTrip(HttpServletRequest request, HttpServletResponse response, Model model) throws ServletException, IOException{
         Trip newT = new Trip();
@@ -244,7 +261,6 @@ public class TripController {
         return "redirect:/tripsHome";
     }
     
-    //Delete methods
     @GetMapping("/tripsDelete")
     public String deleteTrip(@RequestParam Integer id) {
         service.deleteTripByID(id);

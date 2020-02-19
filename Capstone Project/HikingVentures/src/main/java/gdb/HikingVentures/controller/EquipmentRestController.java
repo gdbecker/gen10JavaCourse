@@ -12,7 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Capstone Project
  * @author garrettbecker
- * For grabbing data for Equipment
+ * 
+ * This controller is a specifically a REST Controller built just for grabbing
+ * some specific data. These methods are called on the client side through
+ * JavaScript.
+ * 
+ * Methods:
+ * -getAllEquipment()
+ * Used for loading all Equipment from the database into equipmentHome.html
+ * 
+ * -getEquipment(@RequestParam int id)
+ * Used for grabbing a specific Equipment object to load
  */
 
 @RestController
@@ -20,8 +30,6 @@ public class EquipmentRestController {
     @Autowired
     HVService service;
     
-    //Get all equipment
-    //Use to load into equipmentHome.html
     @GetMapping("/getAllEquipment")
     public List<Equipment> getAllEquipment() {
         return service.findAllEquipment();

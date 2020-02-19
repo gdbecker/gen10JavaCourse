@@ -34,7 +34,30 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Capstone Project
  * @author garrettbecker
- * For opening Location web pages
+ * 
+ * This Controller focuses on managing all pages relating to the Location object
+ * 
+ * Methods:
+ * -openLocationsHome()
+ * Opens locationsHome.html
+ * 
+ * -openLocationsAdd()
+ * Opens locationsAdd.html
+ * 
+ * -addNewLocation(HttpServletRequest request, HttpServletResponse response, Model model)
+ * Actually adds a new Location object to the db
+ * 
+ * -openLocationsViewDetails(@RequestParam Integer id, Model model)
+ * View specific details for a Location object
+ * 
+ * -openLocationsEditDetails(@RequestParam Integer id, Model model)
+ * Open page for editing a specific Location object
+ * 
+ * -editLocation(HttpServletRequest request, HttpServletResponse response, Model model)
+ * Actually editing a Location object
+ * 
+ * -deleteLocation(@RequestParam Integer id)
+ * Deleting a Location object
  */
 
 @Controller
@@ -42,19 +65,16 @@ public class LocationController {
     @Autowired
     HVService service;
         
-    //Locations Home
     @RequestMapping("/locationsHome")
     public String openLocationsHome() {
         return "/locationsHome";
     }
     
-    //Go to "Add a Location" page
     @RequestMapping("/locationsAdd")
     public String openLocationsAdd() {
         return "/locationsAdd";
     }
     
-    //Actually add a new location to the db
     @PostMapping("/addNewLocation")
     public String addNewLocation(HttpServletRequest request, HttpServletResponse response, Model model) throws ServletException, IOException{
         Location newL = new Location();
@@ -104,7 +124,6 @@ public class LocationController {
         return "redirect:/locationsHome";
     }
     
-    //View specific details for a location
     @GetMapping("/locationsViewDetails")
     public String openLocationsViewDetails(@RequestParam Integer id, Model model) {
         Location l = service.findLocationByID(id);
@@ -119,7 +138,6 @@ public class LocationController {
         return "locationsViewDetails";
     }
     
-    //Open page for editing a specific location
     @GetMapping("/locationsEdit")
     public String openLocationsEditDetails(@RequestParam Integer id, Model model) {
         Location l = service.findLocationByID(id);
@@ -127,7 +145,6 @@ public class LocationController {
         return "locationsEdit";
     }
     
-    //Actually editing a location
     @PostMapping("/editLocation")
     public String editLocation(HttpServletRequest request, HttpServletResponse response, Model model) throws ServletException, IOException{
         Location l = new Location();
@@ -180,7 +197,6 @@ public class LocationController {
         return "redirect:/locationsHome";
     }
     
-    //Delete method
     @GetMapping("/locationsDelete")
     public String deleteLocation(@RequestParam Integer id) {
         //Delete Trips associated with the Location
@@ -209,11 +225,5 @@ public class LocationController {
         //Delete the actual Location
         service.deleteLocationByID(id);
         return "redirect:/locationsHome";
-    }
-    
-    //Go to About page (used for all controllers)
-    @RequestMapping("/about")
-    public String openAbout() {
-        return "/about";
     }
 }

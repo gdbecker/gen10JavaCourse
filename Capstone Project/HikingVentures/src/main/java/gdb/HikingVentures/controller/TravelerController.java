@@ -26,7 +26,30 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * Capstone Project
  * @author garrettbecker
- * For opening Traveler web pages
+ * 
+ * This Controller focuses on managing all pages relating to the Traveler object
+ * 
+ * Methods:
+ * -openTravelersHome()
+ * Open travelersHome.html
+ * 
+ * -openTravelersAdd(Model model)
+ * Open travelersAdd.html
+ * 
+ * -addNewEquipment(HttpServletRequest request, HttpServletResponse response, Model model)
+ * Actually add a new traveler to the db
+ * 
+ * -openTravelerViewDetails(@RequestParam Integer id, Model model)
+ * View specific details for a traveler
+ * 
+ * -openTravelersEditDetails(@RequestParam Integer id, Model model)
+ * Open page for editing a specific traveler
+ * 
+ * -editTraveler(HttpServletRequest request, HttpServletResponse response, Model model)
+ * Actually editing a traveler
+ * 
+ * -deleteTraveler(@RequestParam Integer id)
+ * Deleting a Traveler from the db
  */
 
 @Controller
@@ -34,13 +57,11 @@ public class TravelerController {
     @Autowired
     HVService service;
     
-    //Open travelersHome.html
     @RequestMapping("/travelersHome")
     public String openTravelersHome() {
         return "/travelersHome";
     }
     
-    //Open travelersAdd.html
     @RequestMapping("/travelersAdd")
     public String openTravelersAdd(Model model) {
         //Add the different Trip options to the page for the user to select from
@@ -50,7 +71,6 @@ public class TravelerController {
         return "/travelersAdd";
     }
     
-    //Actually add a new traveler to the db
     @PostMapping("/addNewTraveler")
     public String addNewEquipment(HttpServletRequest request, HttpServletResponse response, Model model) throws ServletException, IOException{
         Traveler newT = new Traveler();
@@ -131,7 +151,6 @@ public class TravelerController {
         return "redirect:/travelersHome";
     }
     
-    //View specific details for a traveler
     @GetMapping("/travelersViewDetails")
     public String openTravelerViewDetails(@RequestParam Integer id, Model model) {
         Traveler tr = service.findTravelerByID(id);
@@ -153,7 +172,6 @@ public class TravelerController {
         return "travelersViewDetails";
     }
     
-    //Open page for editing a specific traveler
     @GetMapping("/travelersEdit")
     public String openTravelersEditDetails(@RequestParam Integer id, Model model) {
         Traveler t = service.findTravelerByID(id);
@@ -165,7 +183,6 @@ public class TravelerController {
         return "travelersEdit";
     }
     
-    //Actually editing a traveler
     @PostMapping("/editTraveler")
     public String editTraveler(HttpServletRequest request, HttpServletResponse response, Model model) throws ServletException, IOException{
         Traveler newT = new Traveler();
@@ -248,7 +265,6 @@ public class TravelerController {
         return "redirect:/travelersHome";
     }
     
-    //Delete methods
     @GetMapping("/travelersDelete")
     public String deleteTraveler(@RequestParam Integer id) {
         service.deleteTravelerByID(id);

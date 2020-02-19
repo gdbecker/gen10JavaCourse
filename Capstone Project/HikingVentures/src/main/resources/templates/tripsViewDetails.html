@@ -111,9 +111,13 @@
             margin-bottom: 10px;
             margin-left: 10px;
         }
+        
+        iframe {
+            margin-bottom: 30px;
+        }
     </style>
     
-    <body>
+    <body th:onload="|appendMaps('${trip.tripId}');|">
         <div class="bg-image"></div>
         
         <div class="container">
@@ -179,9 +183,9 @@
                         </div>
                     </div>
                     
-                    <div class="row" id="formArea">
-                        <div class="col-md-10">
-                            <div class="form-group">
+                    <div class="row" id="formArea" style="height:100%; width: 100%;">
+                        <div class="col-md-10" style="height:100%; width: 100%;">
+                            <div class="form-group" style="height:100%; width: 100%;">
                             <form class="form-horizontal" role="form" id="viewTripForm">
                                 <div class="form-group row">
                                     <div class="col-sm-11">
@@ -235,6 +239,8 @@
                                         <div class="col text-left">
                                             <table class="table table-hover" id="trailTable">
                                                 <thead>
+                                                    <col align="left">
+                                                    <col align="right">
                                                     <tr>
                                                         <th></th>
                                                         <th></th>
@@ -243,7 +249,7 @@
                                                 <tbody>
                                                     <tr class="active" th:each="trail : ${trails}">
                                                         <td th:text="${trail.trailName}">Trail Name</td>
-                                                        <td><a class="btn btn-default" 
+                                                        <td><a id="viewButtons" class="btn btn-primary" 
                                                                th:href="@{/trailsViewDetails(id=${trail.trailId})}">View Trail</a></td>
                                                     </tr>
                                                 </tbody>
@@ -263,7 +269,7 @@
                                                 <tbody>
                                                     <tr class="active" th:each="e : ${equipment}">
                                                         <td th:text="${e.name}">Item Name</td>
-                                                        <td><a class="btn btn-default" 
+                                                        <td><a id="viewButtons" class="btn btn-primary" 
                                                                th:href="@{/equipmentViewDetails(id=${e.equipmentId})}">View Item</a></td>
                                                     </tr>
                                                 </tbody>
@@ -283,12 +289,18 @@
                                                 <tbody>
                                                     <tr class="active" th:each="t : ${travelers}">
                                                         <td th:text="${t.firstName} + ' ' + ${t.lastName}">Traveler Name</td>
-                                                        <td><a class="btn btn-default" 
+                                                        <td><a id="viewButtons" class="btn btn-primary" 
                                                                th:href="@{/travelersViewDetails(id=${t.travelerId})}">View Traveler</a></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <h3 class="formLabels">Trail Map</h3>
+                                        <div id="map"></div>                                        
                                     </div>
                                 </div>
                             </form>

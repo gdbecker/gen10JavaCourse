@@ -12,7 +12,21 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Capstone Project
  * @author garrettbecker
- * For grabbing data for Trip
+ * 
+ * This controller is a specifically a REST Controller built just for grabbing
+ * some specific data. These methods are called on the client side through
+ * JavaScript.
+ * 
+ * Methods:
+ * -getAllTrips()
+ * Used for loading all Trip from the database into tripsHome.html
+ * 
+ * -getTrip(@RequestParam int id)
+ * Used for grabbing a specific Trip object to load
+ * 
+ * -getTrailsForTrip(@RequestParam int id)
+ * Used for grabbing all the Trail objects associated with a Trip by taking in a
+ * Trip id.
  */
 
 @RestController
@@ -20,8 +34,6 @@ public class TripRestController {
     @Autowired
     HVService service;
     
-    //Get all trip
-    //Use to load into tripHome.html
     @GetMapping("/getAllTrips")
     public List<Trip> getAllTrips() {
         return service.findAllTrips();

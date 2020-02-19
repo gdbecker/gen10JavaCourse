@@ -3,49 +3,52 @@ $(document).ready(function () {
     
     //Add functionality for each menu button - be able to access each page
     $("#tripsButton").on("click", function() {
-        window.open("tripsHome.html");
+        window.open("/tripsHome", "_self");
     });
     
     $("#trailsButton").on("click", function() {
-        window.open("trailsHome.html");
+        window.open("/trailsHome", "_self");
     });
     
     $("#travelersButton").on("click", function() {
-        window.open("travelersHome.html");
+        window.open("/travelersHome", "_self");
     });
     
     $("#equipmentButton").on("click", function() {
-        window.open("equipmentHome.html");
+        window.open("/equipmentHome", "_self");
     });
     
     $("#locationsButton").on("click", function() {
-        window.open("locationshome.html");
+        window.open("/locationsHome", "_self");
     });
     
     $("#aboutButton").on("click", function() {
-        window.open("tripsHome.html");
+        window.open("/about", "_self");
     });
     
     //Hovering over each menu button
     $(".navigationButtons").hover(function() {
         if($(this).attr("id") == "tripsButton") {
-            $(this).css("border", "thin solid #87A330");
+            $(this).css("border", "thin solid #6BBF59");
             $("#tripsTitle").css("opacity", "1");
         } else if ($(this).attr("id") == "trailsButton") {
-            $(this).css("border", "thin solid #87A330");
+            $(this).css("border", "thin solid #6BBF59");
             $("#trailsTitle").css("opacity", "1");
         } else if ($(this).attr("id") == "travelersButton") {
-            $(this).css("border", "thin solid #87A330");
+            $(this).css("border", "thin solid #6BBF59");
             $("#travelersTitle").css("opacity", "1");
         } else if ($(this).attr("id") == "equipmentButton")  {
-            $(this).css("border", "thin solid #87A330");
+            $(this).css("border", "thin solid #6BBF59");
             $("#equipmentTitle").css("opacity", "1");
         } else if ($(this).attr("id") == "locationsButton") {
-            $(this).css("border", "thin solid #87A330");
+            $(this).css("border", "thin solid #6BBF59");
             $("#locationsTitle").css("opacity", "1");
         } else if ($(this).attr("id") == "aboutButton") {
-            $(this).css("border", "medium solid #87A330");
+            $(this).css("border", "medium solid #6BBF59");
             $("#aboutTitle").css("opacity", "1");
+        } else if ($(this).attr("id") == "logoutButton") {
+            $(this).css("border", "thin solid #6BBF59");
+            $("#logoutTitle").css("opacity", "1");
         }
         
     }, function() {
@@ -65,8 +68,11 @@ $(document).ready(function () {
             $(this).css("border", "none");
             $("#locationsTitle").css("opacity", "0");
         } else if ($(this).attr("id") == "aboutButton") {
-            $(this).css("border", "medium solid #87A330");
-            $("#aboutTitle").css("opacity", "0");
+            $(this).css("border", "medium solid #6BBF59");
+            $("#aboutTitle").css("opacity", "1");
+        } else if ($(this).attr("id") == "logoutButton") {
+            $(this).css("border", "none");
+            $("#logoutTitle").css("opacity", "0");
         }
     });
 });

@@ -23,7 +23,7 @@
         */
         
         #tripsButton {
-            border: medium solid #87A330;
+            border: medium solid #6BBF59;
         }
         
         #tripsTitle {
@@ -49,6 +49,7 @@
         #tripNameBox {
             color: #39393A;
             font-family: "Gill Sans";
+            font-size: 16px;
             width: 500px;
             margin-left: 10px;
         }
@@ -74,7 +75,7 @@
             margin-left: 10px;
         }
         
-        #locationBox {
+        #trailBox {
             color: #39393A;
             font-family: "Gill Sans";
             font-size: 16px;
@@ -98,6 +99,7 @@
         #addTripButton {
             color: #39393A;
             font-family: "Gill Sans";
+            font-size: 16px;
             margin-top: 10px;
             margin-bottom: 10px;
             margin-left: -7px;
@@ -111,36 +113,49 @@
             <!-- Space for any error messages to pop up-->
             <ul class="list-group" id="errorMessages"></ul>
             
+            <!-- Add main row for the page menu-->
+            <div class="row">
+                <div id="logoRow"></div>
+                <div class="col-lg-5">
+                    <img src="img/HikingVenturesLogoLong.png" alt="HikingVentures" id="logo">
+                </div>
+                <div class="col-lg-1">
+                    <input type="image" src="img/TripsSelected.png" alt="Trips" title="Hiking Trips" class="navigationButtons" id="tripsButton">
+                    <h5 class="navigationTitles" id="tripsTitle">Trips</h5>
+                </div>
+                <div class="col-lg-1">
+                    <input type="image" src="img/Trails.png" alt="Trails" title="Trails" class="navigationButtons" id="trailsButton">
+                    <h5 class="navigationTitles" id="trailsTitle">Trails</h5>
+                </div>
+                <div class="col-lg-1">
+                    <input type="image" src="img/Travelers.png" alt="Travelers" title="Travelers" class="navigationButtons" id="travelersButton">
+                    <h5 class="navigationTitles" id="travelersTitle">Travelers</h5>
+                </div>
+                <div class="col-lg-1">
+                    <input type="image" src="img/Equipment.png" alt="Equipment" title="Equipment" class="navigationButtons" id="equipmentButton">
+                    <h5 class="navigationTitles" id="equipmentTitle">Equipment</h5>
+                </div>
+                <div class="col-lg-1">
+                    <input type="image" src="img/Locations.png" alt="Locations" title="Locations" class="navigationButtons" id="locationsButton">
+                    <h5 class="navigationTitles" id="locationsTitle">Locations</h5>
+                </div>
+                <div class="col-lg-1">
+                    <input type="image" src="img/About.png" alt="About" title="About Us" class="navigationButtons" id="aboutButton">
+                    <h5 class="navigationTitles" id="aboutTitle">About</h5>
+                </div>
+                <div class="col-lg-1">
+                    <input type="image" src="img/LogoutWhite.png" alt="Logout" class="navigationButtons" id="logoutButton">
+                    <h5 class="navigationTitles" id="logoutTitle">Log Out</h5>
+                </div>
+            </div>
+            
             <!-- Add main row to page for main content-->
             <div class="row">
-                
-                <!-- Left side panel for site navigation-->
-                <div class="col-lg-2" id="leftBar">
-                    <div class="bg-navigation"></div>
-                    <form class="form-horizontal" role="form" id="navigationForm">
-                        <img src="img/PageBackground.jpeg" alt="HikingVentures" id="logoPage">
-                        <input type="image" src="img/TripsSelected.png" alt="Trips" title="Hiking Trips" class="navigationButtons" id="tripsButton">
-                        <h5 class="navigationTitles" id="tripsTitle">Hiking Trips</h5>
-                        <input type="image" src="img/Trails.png" alt="Trails" title="Trails" class="navigationButtons" id="trailsButton">
-                        <h5 class="navigationTitles" id="trailsTitle">Trails</h5>
-                        <input type="image" src="img/Travelers.png" alt="Travelers" title="Travelers" class="navigationButtons" id="travelersButton">
-                        <h5 class="navigationTitles" id="travelersTitle">Travelers</h5>
-                        <input type="image" src="img/Equipment.png" alt="Equipment" title="Equipment" class="navigationButtons" id="equipmentButton">
-                        <h5 class="navigationTitles" id="equipmentTitle">Equipment</h5>
-                        <input type="image" src="img/Locations.png" alt="Locations" title="Locations" class="navigationButtons" id="locationsButton">
-                        <h5 class="navigationTitles" id="locationsTitle">Locations</h5>
-                        <input type="image" src="img/About.png" alt="About" title="About Us" class="navigationButtons" id="aboutButton">
-                        <h5 class="navigationTitles" id="aboutTitle">About</h5>
-                    </form>
-                    <p id="copyright">&copy Copyright <br/>2020<br/>Garrett Becker</p>
-                    
-                </div>
-                
                 <!-- Main Page Content-->
-                <div class="col-lg-10">
+                <div class="col-lg-12">
                     <div class="row">
-                        <div class="col-lg-10">
-                            <div class="col-md-11">
+                        <div class="col-lg-12">
+                            <div class="col-md-10">
                                 <div class="pageHeader">
                                     <div class="pageTitle">
                                         <h2>Add New Trip</h2>
@@ -148,62 +163,85 @@
                                 <div class="divider"></div>
                                 </div>
                             </div>
-                            <div class="col-md-1">
+                            <div class="col-md-2">
                                 <div class="pageHeader">
-                                    <input type="image" src="img/Back.png" alt="Create" title="Go Back" class="pageHeaderButtons" id="backButton">
-                                    <h5 class="pageHeaderTitles" id="backTitle">Go Back</h5>
+                                    <input type="image" src="img/BackWhite.png" alt="Create" title="Go Back" class="pageHeaderButtons" id="backButton">
+                                    <h5 class="pageHeaderTitles" id="backTitle">Trips Home</h5>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="row" id="formArea">
-                        <div class="col-md-10">
-                            <div class="form-group">
-                            <form class="form-horizontal" role="form" id="addTripForm">
+                    <div class="row" id="formArea" style="height:100%; width: 100%;">
+                        <div class="col-md-10" style="height:100%; width: 100%;">
+                            <div class="form-group" style="height:100%; width: 100%;">
+                            <form action="addNewTrip" method="post" enctype="multipart/form-data" class="form-horizontal" role="form" id="addTripForm">
                                 <div class="form-group row">
                                     <div class="col-sm-12">
                                         <h3 class="formLabels">Trip Name</h3>
-                                        <input type="text" class="form-control" id="tripNameBox" />
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="tripNameBox" 
+                                               id="tripNameBox"
+                                               maxlength="50"
+                                               required="required">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-3">
                                         <h3 class="formLabels">Start Date</h3>
-                                        <input type="date" class="form-control" id="startDateBox" min="1900-01-01">
+                                        <input type="date" 
+                                               class="form-control" 
+                                               name="startDateBox" 
+                                               id="startDateBox"
+                                               placeholder="YYYY-MM-DD"
+                                               pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"
+                                               min="1900-01-01"
+                                               required="required">
                                     </div>
                                     <div class="col-sm-3">
                                         <h3 class="formLabels">End Date</h3>
-                                        <input type="date" class="form-control" id="endDateBox" min="1900-01-01">
+                                        <input type="date" 
+                                               class="form-control" 
+                                               name="endDateBox" 
+                                               id="endDateBox"
+                                               placeholder="YYYY-MM-DD"
+                                               pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"
+                                               min="1900-01-01"
+                                               required="required">
                                     </div>
                                     <div class="col-sm-4">
                                         <h3 class="formLabels">Cost Per Traveler ($)</h3>
-                                        <input type="text" class="form-control" id="costBox" />
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="costBox" 
+                                               id="costBox"
+                                               required="required">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-4">
-                                        <h3 class="formLabels">Location</h3>
-                                        <select id="locationBox" class="form-control" multiple>
-                                            <option value="">Option</option>
-                                            <option value="">Option</option>
-                                            <option value="">Option</option>
+                                        <h3 class="formLabels">Select Trail(s)</h3>
+                                        <select name="trailBox" id="trailBox" class="form-control" multiple>
+                                            <option th:each="t : ${trails}" 
+                                                    th:value="${t.trailId}" 
+                                                    th:text="${t.trailName}">Trail Name</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-4">
-                                        <h3 class="formLabels">Equipment</h3>
-                                        <select id="equipmentBox" class="form-control" multiple>
-                                            <option value="">Option</option>
-                                            <option value="">Option</option>
-                                            <option value="">Option</option>
+                                        <h3 class="formLabels">Select Equipment</h3>
+                                        <select name="equipmentBox" id="equipmentBox" class="form-control" multiple>
+                                            <option th:each="e : ${equipment}" 
+                                                    th:value="${e.equipmentId}" 
+                                                    th:text="${e.name}">Equipment Name</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-4">
-                                        <h3 class="formLabels">Travelers</h3>
-                                        <select id="travelerBox" class="form-control" multiple>
-                                            <option value="">Option</option>
-                                            <option value="">Option</option>
-                                            <option value="">Option</option>
+                                        <h3 class="formLabels">Select Travelers</h3>
+                                        <select name="travelerBox" id="travelerBox" class="form-control" multiple>
+                                            <option th:each="t : ${travelers}" 
+                                                    th:value="${t.travelerId}" 
+                                                    th:text="${t.firstName} + ' ' + ${t.lastName}">Traveler Name</option>
                                         </select>
                                     </div>
                                 </div>
@@ -214,6 +252,16 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            
+            <div class="row"> 
+                <hr class="hrMenuBorder">
+            </div>
+            
+            <div class="row">
+                <div class="col-md-offset-5 col-md-2">
+                    <p id="copyright">&copy 2020 <br/>Garrett Becker<br/>All Rights Reserved</p>       
                 </div>
             </div>
         </div>

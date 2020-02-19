@@ -73,7 +73,7 @@
             font-size: 16px;
             font-family: "Gill Sans";
             margin-left: 10px;
-            width: 600px;
+            width: 900px;
         }
         
         #trailTable {
@@ -219,9 +219,9 @@
                         </div>
                     </div>
                     
-                    <div class="row" id="formArea">
-                        <div class="col-md-10">
-                            <div class="form-group">
+                    <div class="row" id="formArea" style="height:100%; width: 100%;">
+                        <div class="col-md-10" style="height:100%; width: 100%;">
+                            <div class="form-group" style="height:100%; width: 100%;">
                             <form class="form-horizontal" role="form" id="viewLocationForm">
                                 <div class="form-group row">
                                     <div class="col-sm-12">
@@ -282,7 +282,7 @@
                                                         <td th:text="${trail.elevationGain}">Gain</td>
                                                         <td th:text="${trail.routeType.type}">Type</td>
                                                         <td th:text="${trail.difficultyRating.type}">Rating</td>
-                                                        <td><a class="btn btn-default" 
+                                                        <td><a class="btn btn-primary" 
                                                                th:href="@{/trailsViewDetails(id=${trail.trailId})}">View Trail</a></td>
                                                     </tr>
                                                 </tbody>
@@ -311,7 +311,7 @@
                                                         <td th:text="${trip.tripCostPerTraveler}">Cost</td>
                                                         <td th:text="${trip.startDate}">Start</td>
                                                         <td th:text="${trip.endDate}">End</td>
-                                                        <td><a class="btn btn-default" 
+                                                        <td><a class="btn btn-primary" 
                                                                th:href="@{/tripsViewDetails(id=${trip.tripId})}">View Trip</a></td>
                                                     </tr>
                                                 </tbody>

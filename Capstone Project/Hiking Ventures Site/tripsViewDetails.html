@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <title>View Trip Details</title>
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/site.css" rel="stylesheet">
+    </head>
+    
+    <style>
+        /*
+        Color Palette:
+        Hansa Yellow: #E9D758
+        Myrtle Green: #297373
+        Coral: #FF8552
+        Platinum: #E6E6E6
+        Onyx: #39393A
+        Old Moss Green: #87A330
+        */
+        
+        #tripsButton {
+            border: medium solid #6BBF59;
+        }
+        
+        #tripsTitle {
+            opacity: 1;
+        }
+        
+        #formArea {
+            background: #297373;
+            opacity: 0.9;
+            margin-left: 10px;
+            padding: 10px;
+        }
+        
+        .formLabels {
+            color: #E6E6E6;
+            font-family: "Gill Sans";
+            font-weight: bold;
+            text-transform: uppercase;
+            padding-left: 10px;
+            font-size: 16px;
+        }
+        
+        #tripNameBox {
+            color: #39393A;
+            font-family: "Gill Sans";
+            font-size: 16px;
+            width: 500px;
+            margin-left: 10px;
+        }
+        
+        #startDateBox {
+            color: #39393A;
+            font-family: "Gill Sans";
+            font-size: 16px;
+            margin-left: 10px;
+        }
+        
+        #endDateBox {
+            color: #39393A;
+            font-family: "Gill Sans";
+            font-size: 16px;
+            margin-left: 10px;
+        }
+        
+        #costBox {
+            color: #39393A;
+            font-family: "Gill Sans";
+            font-size: 16px;
+            margin-left: 10px;
+        }
+        
+        #trailTable {
+            font-size: 16px;
+            font-family: "Gill Sans";
+        }
+        
+        #equipmentTable {
+            font-size: 16px;
+            font-family: "Gill Sans";
+        }
+        
+        #travelerTable {
+            font-size: 16px;
+            font-family: "Gill Sans";
+        }
+        
+        .table > tbody > tr > td {
+            vertical-align: middle;
+        }
+       
+        #editButton {
+            font-size: 16px;
+            color: #39393A;
+            font-family: "Gill Sans";
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: -10px;
+        }
+        
+        #deleteButton {
+            font-size: 16px;
+            color: #E6E6E6;
+            font-family: "Gill Sans";
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: 10px;
+        }
+    </style>
+    
+    <body th:onload="|appendMaps('${trip.tripId}');|">
+        <div class="bg-image"></div>
+        
+        <div class="container">
+            <!-- Space for any error messages to pop up-->
+            <ul class="list-group" id="errorMessages"></ul>
+            
+            <!-- Add main row for the page menu-->
+            <div class="row">
+                <div id="logoRow"></div>
+                <div class="col-lg-5">
+                    <img src="img/HikingVenturesLogoLong.png" alt="HikingVentures" id="logo">
+                </div>
+                <div class="col-lg-1">
+                    <input type="image" src="img/TripsSelected.png" alt="Trips" title="Hiking Trips" class="navigationButtons" id="tripsButton">
+                    <h5 class="navigationTitles" id="tripsTitle">Trips</h5>
+                </div>
+                <div class="col-lg-1">
+                    <input type="image" src="img/Trails.png" alt="Trails" title="Trails" class="navigationButtons" id="trailsButton">
+                    <h5 class="navigationTitles" id="trailsTitle">Trails</h5>
+                </div>
+                <div class="col-lg-1">
+                    <input type="image" src="img/Travelers.png" alt="Travelers" title="Travelers" class="navigationButtons" id="travelersButton">
+                    <h5 class="navigationTitles" id="travelersTitle">Travelers</h5>
+                </div>
+                <div class="col-lg-1">
+                    <input type="image" src="img/Equipment.png" alt="Equipment" title="Equipment" class="navigationButtons" id="equipmentButton">
+                    <h5 class="navigationTitles" id="equipmentTitle">Equipment</h5>
+                </div>
+                <div class="col-lg-1">
+                    <input type="image" src="img/Locations.png" alt="Locations" title="Locations" class="navigationButtons" id="locationsButton">
+                    <h5 class="navigationTitles" id="locationsTitle">Locations</h5>
+                </div>
+                <div class="col-lg-1">
+                    <input type="image" src="img/About.png" alt="About" title="About Us" class="navigationButtons" id="aboutButton">
+                    <h5 class="navigationTitles" id="aboutTitle">About</h5>
+                </div>
+                <div class="col-lg-1">
+                    <input type="image" src="img/LogoutWhite.png" alt="Logout" class="navigationButtons" id="logoutButton">
+                    <h5 class="navigationTitles" id="logoutTitle">Log Out</h5>
+                </div>
+            </div>
+            
+            <!-- Add main row to page for main content-->
+            <div class="row">
+                <!-- Main Page Content-->
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="col-md-10">
+                                <div class="pageHeader">
+                                    <div class="pageTitle">
+                                        <h2>View Trip Details</h2>
+                                    </div>
+                                <div class="divider"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="pageHeader">
+                                    <input type="image" src="img/BackWhite.png" alt="Create" title="Go Back" class="pageHeaderButtons" id="backButton">
+                                    <h5 class="pageHeaderTitles" id="backTitle">Trips Home</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row" id="formArea" style="height:100%; width: 100%;">
+                        <div class="col-md-10" style="height:100%; width: 100%;">
+                            <div class="form-group" style="height:100%; width: 100%;">
+                            <form class="form-horizontal" role="form" id="viewTripForm">
+                                <div class="form-group row">
+                                    <div class="col-sm-11">
+                                        <h3 class="formLabels">Trip Name</h3>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="tripNameBox" 
+                                               id="tripNameBox" 
+                                               th:value="${trip.tripName}" readonly>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="id" 
+                                               id="id" 
+                                               th:value="${trip.tripId}" 
+                                               style="display: none">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3">
+                                        <h3 class="formLabels">Start Date</h3>
+                                        <input type="date" 
+                                               class="form-control" 
+                                               name="startDateBox" 
+                                               id="startDateBox" 
+                                               min="1900-01-01" 
+                                               th:value="${trip.startDate}" readonly>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <h3 class="formLabels">End Date</h3>
+                                        <input type="date" 
+                                               class="form-control" 
+                                               name="endDateBox" 
+                                               id="endDateBox" 
+                                               min="1900-01-01" 
+                                               th:value="${trip.endDate}" readonly>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <h3 class="formLabels">Cost Per Traveler ($)</h3>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               name="costBox" 
+                                               id="costBox" 
+                                               th:value="'$' + ${trip.tripCostPerTraveler}" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        <h3 class="formLabels">Trail(s)</h3>
+                                        <div class="col text-left">
+                                            <table class="table table-hover" id="trailTable">
+                                                <thead>
+                                                    <col align="left">
+                                                    <col align="right">
+                                                    <tr>
+                                                        <th></th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="active" th:each="trail : ${trails}">
+                                                        <td th:text="${trail.trailName}">Trail Name</td>
+                                                        <td><a id="viewButtons" class="btn btn-primary" 
+                                                               th:href="@{/trailsViewDetails(id=${trail.trailId})}">View Trail</a></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <h3 class="formLabels">Equipment</h3>
+                                        <div class="col text-left">
+                                            <table class="table table-striped table-hover" id="equipmentTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="active" th:each="e : ${equipment}">
+                                                        <td th:text="${e.name}">Item Name</td>
+                                                        <td><a id="viewButtons" class="btn btn-primary" 
+                                                               th:href="@{/equipmentViewDetails(id=${e.equipmentId})}">View Item</a></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <h3 class="formLabels">Travelers</h3>
+                                        <div class="col text-left">
+                                            <table class="table table-striped table-hover" id="equipmentTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="active" th:each="t : ${travelers}">
+                                                        <td th:text="${t.firstName} + ' ' + ${t.lastName}">Traveler Name</td>
+                                                        <td><a id="viewButtons" class="btn btn-primary" 
+                                                               th:href="@{/travelersViewDetails(id=${t.travelerId})}">View Traveler</a></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <h3 class="formLabels">Trail Map</h3>
+                                        <div id="map"></div>                                        
+                                    </div>
+                                </div>
+                            </form>
+                            </div>
+                            <div class="col-md-8">
+                                <a id="editButton" class="btn btn-default" href="#" th:href="@{/tripsEdit(id=${trip.tripId})}">Edit</a>
+                                <a id="deleteButton" class="btn btn-danger" href="#"  th:onclick="|deleteTrip('${trip.tripId}');|">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row"> 
+                <hr class="hrMenuBorder">
+            </div>
+            
+            <div class="row">
+                <div class="col-md-offset-5 col-md-2">
+                    <p id="copyright">&copy 2020 <br/>Garrett Becker<br/>All Rights Reserved</p>       
+                </div>
+            </div>
+        </div>
+        
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="js/jquery-2.2.4.min.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/tripsViewDetails.js"></script>
+    </body>
+</html>

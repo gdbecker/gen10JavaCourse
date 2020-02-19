@@ -29,7 +29,30 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Capstone Project
  * @author garrettbecker
- * For opening Trail web pages
+ * 
+ * This Controller focuses on managing all pages relating to the Trail object
+ * 
+ * Methods:
+ * -openTrailsHome()
+ * Opens trailsHome.html
+ * 
+ * -openTrailsAdd(Model model)
+ * Opens trailsAdd.html
+ * 
+ * -addNewEquipment(HttpServletRequest request, HttpServletResponse response, Model model)
+ * Actually add a new trail to the db
+ * 
+ * -openTrailViewDetails(@RequestParam Integer id, Model model)
+ * View specific details for a trail
+ * 
+ * -openTrailsEditDetails(@RequestParam Integer id, Model model)
+ * Open page for editing a specific trail
+ * 
+ * -editTrail(HttpServletRequest request, HttpServletResponse response, Model model)
+ * Actually add a new trail to the db
+ * 
+ * -deleteTrail(@RequestParam Integer id)
+ * Deleting a trail from the db
  */
 
 @Controller
@@ -37,13 +60,11 @@ public class TrailController {
     @Autowired
     HVService service;
     
-    //Open trailsHome.html
     @RequestMapping("/trailsHome")
     public String openTrailsHome() {
         return "/trailsHome";
     }
     
-    //Open trailsAdd.html
     @RequestMapping("/trailsAdd")
     public String openTrailsAdd(Model model) {
         //Add the different location options to the page
@@ -65,7 +86,6 @@ public class TrailController {
         return "/trailsAdd";
     }
     
-    //Actually add a new trail to the db
     @PostMapping("/addNewTrail")
     public String addNewEquipment(HttpServletRequest request, HttpServletResponse response, Model model) throws ServletException, IOException{
         Trail newT = new Trail();
@@ -185,7 +205,6 @@ public class TrailController {
         return "redirect:/trailsHome";
     }
     
-    //View specific details for a trail
     @GetMapping("/trailsViewDetails")
     public String openTrailViewDetails(@RequestParam Integer id, Model model) {
         Trail thisTrail = service.findTrailByID(id);
@@ -210,7 +229,6 @@ public class TrailController {
         return "trailsViewDetails";
     }
     
-    //Open page for editing a specific trail
     @GetMapping("/trailsEdit")
     public String openTrailsEditDetails(@RequestParam Integer id, Model model) {
         Trail t = service.findTrailByID(id);
@@ -235,7 +253,6 @@ public class TrailController {
         return "trailsEdit";
     }
     
-    //Actually add a new trail to the db
     @PostMapping("/editTrail")
     public String editTrail(HttpServletRequest request, HttpServletResponse response, Model model) throws ServletException, IOException{
         Trail newT = new Trail();
@@ -357,7 +374,6 @@ public class TrailController {
         return "redirect:/trailsHome";
     }
     
-    //Delete methods
     @GetMapping("/trailsDelete")
     public String deleteTrail(@RequestParam Integer id) {
         service.deleteTrailByID(id);

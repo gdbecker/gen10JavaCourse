@@ -4,56 +4,68 @@ $(document).ready(function () {
     
     //Add functionality for each menu button - be able to access each page
     $("#tripsButton").on("click", function() {
-        window.open("tripsHome.html");
+        window.open("/tripsHome", "_self");
     });
     
     $("#trailsButton").on("click", function() {
-        window.open("trailsHome.html");
+        window.open("/trailsHome", "_self");
     });
     
     $("#travelersButton").on("click", function() {
-        window.open("travelersHome.html");
+        window.open("/travelersHome", "_self");
     });
     
     $("#equipmentButton").on("click", function() {
-        window.open("equipmentHome.html");
+        window.open("/equipmentHome", "_self");
     });
     
     $("#locationsButton").on("click", function() {
-        window.open("locationsHome.html");
+        window.open("/locationsHome", "_self");
     });
     
     $("#aboutButton").on("click", function() {
-        window.open("about.html");
+        window.open("/about", "_self");
+    });
+    
+    $("#logoutButton").on("click", function() {
+        //Confirm that user wants to logout
+        var r = confirm("Are you sure you want to log out?");
+        
+        if (r == true) {
+            window.open("/", "_self");
+        }
     });
     
     //Add functionality for page header buttons
     $("#createNewLocationButton").on("click", function() {
-        window.open("locationsAdd.html");
+        window.open("/locationsAdd", "_self");
     });
     
-    $(".dropDownMenu").hide();
+    //$(".dropDownMenu").style.display = "none";
     
     //Hovering over each menu button
     $(".navigationButtons").hover(function() {
         if($(this).attr("id") == "tripsButton") {
-            $(this).css("border", "thin solid #87A330");
+            $(this).css("border", "thin solid #6BBF59");
             $("#tripsTitle").css("opacity", "1");
         } else if ($(this).attr("id") == "trailsButton") {
-            $(this).css("border", "thin solid #87A330");
+            $(this).css("border", "thin solid #6BBF59");
             $("#trailsTitle").css("opacity", "1");
         } else if ($(this).attr("id") == "travelersButton") {
-            $(this).css("border", "thin solid #87A330");
+            $(this).css("border", "thin solid #6BBF59");
             $("#travelersTitle").css("opacity", "1");
         } else if ($(this).attr("id") == "equipmentButton")  {
-            $(this).css("border", "thin solid #87A330");
+            $(this).css("border", "thin solid #6BBF59");
             $("#equipmentTitle").css("opacity", "1");
         } else if ($(this).attr("id") == "locationsButton") {
-            $(this).css("border", "medium solid #87A330");
+            $(this).css("border", "medium solid #6BBF59");
             $("#locationsTitle").css("opacity", "1");
         } else if ($(this).attr("id") == "aboutButton") {
-            $(this).css("border", "thin solid #87A330");
+            $(this).css("border", "thin solid #6BBF59");
             $("#aboutTitle").css("opacity", "1");
+        } else if ($(this).attr("id") == "logoutButton") {
+            $(this).css("border", "thin solid #6BBF59");
+            $("#logoutTitle").css("opacity", "1");
         }
         
     }, function() {
@@ -70,18 +82,21 @@ $(document).ready(function () {
             $(this).css("border", "none");
             $("#equipmentTitle").css("opacity", "0");
         } else if ($(this).attr("id") == "locationsButton") {
-            $(this).css("border", "medium solid #87A330");
+            $(this).css("border", "medium solid #6BBF59");
             $("#locationsTitle").css("opacity", "1");
         } else if ($(this).attr("id") == "aboutButton") {
             $(this).css("border", "none");
             $("#aboutTitle").css("opacity", "0");
+        } else if ($(this).attr("id") == "logoutButton") {
+            $(this).css("border", "none");
+            $("#logoutTitle").css("opacity", "0");
         }
     });
     
     //Hovering over buttons at top of page
     $(".pageHeaderButtons").hover(function() {
         if($(this).attr("id") == "createNewLocationButton") {
-            $(this).css("border", "medium solid #87A330");
+            $(this).css("border", "medium solid #6BBF59");
             $("#createNewLocationTitle").css("opacity", "1");
         }
         
@@ -100,26 +115,27 @@ function loadLocations() {
     //Load all locations from db into the page 
     $.ajax ({
         type: 'GET',
-        url: 'http://localhost:8080/locationsHome.html',
+        url: '/getAllLocations',
         success: function (data, status) {
-            $.each(data, function (index, location) {
-                var id = location.LocationID;
-                var name = location.ParkName;
-                var city = location.NearbyCity;
-                var state = location.State;
-                var pic = location.PhotoLink;
+            $.each(data, function (index, Location) {
+                var id = Location.locationId;
+                var name = Location.parkName;
+                var city = Location.nearbyCity;
+                var state = Location.state;
+                var pic = Location.photoFilePath;
                 
                 var toAdd = '<div class="row">';
                     toAdd += '<div class="locationCard" style="background-image: url(img/' + pic + ');">';
+                    toAdd += '<div class="layer"><div>';
                     toAdd += '<div class="row" id="locationCardInfo">';
                     toAdd += '<div class="col-md-8">';
                     toAdd += '<div class="locationCardText">' + name + '</div>';
                     toAdd += '</div>';
                     toAdd += '<div class="col-md-2">';
                     toAdd += '<div class="dropDownMenu" id="dropDownMenu' + id + '">';
-                    toAdd += '<a href="#">View More Details</a>';
-                    toAdd += '<a href="#">Edit</a>';
-                    toAdd += '<a href="#">Delete</a>';
+                    toAdd += '<a href="locationsViewDetails?id=' + id + '">View More Details</a>';
+                    toAdd += '<a href="locationsEdit?id=' + id + '">Edit</a>';
+                    toAdd += '<a href="" onclick="deleteLocation(' + id + ')" >Delete</a>';
                     toAdd += '</div>';
                     toAdd += '</div>';
                     toAdd += '<div class="col-md-2">';
@@ -146,6 +162,38 @@ function clearLocations() {
     $('#locationsDiv').empty();
 }
 
+function deleteLocation(id) {
+    //Confirm that user wants to delete
+    var r = confirm("Are you sure you want to delete this location and all trips and trails associated with it?");
+    
+    //Delete if true
+    if (r == true) {
+        var url = "locationsDelete?id=" + id;
+        $.ajax ({
+        type: 'GET',
+        url: url,
+        success: function (data, status) {
+            //Do nothing
+        }, 
+        error: function() {
+            $('#errorMessages')
+                .append($('<li>')
+                .attr({class: 'list-group-item list-group-item-danger'})
+                .text('Error calling web service.  Please try again later.'));
+        }
+    });
+    } else {
+        //Do nothing
+    }
+}
+
 function showMoreOptionsMenu(id) {
+    /*if ($("#dropDownMenu" + id).css("visibility", "hidden")) {
+        $("#dropDownMenu" + id).css("visibility", "visible");
+    }
+    
+    if ($("#dropDownMenu" + id).css("visibility", "visible")) {
+        $("#dropDownMenu" + id).css("visibility", "hidden");
+    }*/
     $("#dropDownMenu" + id).toggle();
 }

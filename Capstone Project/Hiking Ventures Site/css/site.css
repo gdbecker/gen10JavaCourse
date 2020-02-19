@@ -38,7 +38,7 @@ body {
     position: fixed;
     left: 0;
     right: 0;
-    background-image: url("../img/BackgroundVideo2.mp4");
+    background-image: url("../img/BackgroundVideo3.mp4");
     
     filter: blur(2px);
     -webkit-filter: blur(4px);
@@ -151,11 +151,30 @@ body {
 
 /**********************************/
 /*CONTENT PAGES*/
+#logo {
+    display: block;
+    width: 87%;
+    height: auto;
+    margin-top: 24px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+        
+#logoRow {
+    position:absolute;
+    left: -5px;
+    right: 0px;
+    height: 120px;
+    background: #39393A;
+    opacity: 0.4;
+    z-index: -3;
+}
+        
 .bg-image {
     position: fixed;
     left: 0;
     right: 0;
-    background-image: url("../img/BackgroundVideo2.mp4");
+    background-image: url("../img/BackgroundVideo4.mp4");
     
     filter: blur(2px);
     -webkit-filter: blur(4px);
@@ -234,13 +253,13 @@ body {
 .divider {
     flex-grow: 1;
     height: 3px;
-    background-color: #39393A;
+    background-color: #E6E6E6;
     margin-left: 15px;
     margin-bottom: 15px;
 }
 
 h2 {
-    color: #39393A;
+    color: #E6E6E6;
     font-family: "Gill Sans";
     font-weight: bold;
     text-transform: uppercase;
@@ -272,7 +291,7 @@ p {
 }
 
 .pageHeaderTitles {
-    color: #39393A;
+    color: #E6E6E6;
     font-family: "Gill Sans";
     text-transform:uppercase;
     text-align: left;

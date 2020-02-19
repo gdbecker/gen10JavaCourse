@@ -27,7 +27,31 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Capstone Project
  * @author garrettbecker
- * For opening Equipment web pages
+ * 
+ * This Controller focuses on managing all pages relating to the Equipment object
+ * 
+ * Methods:
+ * -openEquipmentHome()
+ * Opens equipmentHome.html
+ * 
+ * -openEquipmentAdd(Model model)
+ * Opens equipmentAdd.html. Loads in all the Trips from the db.
+ * 
+ * -addNewEquipment(HttpServletRequest request, HttpServletResponse response, Model model)
+ * Actually adds a new Equipment object to the db
+ * 
+ * -openEquipmentViewDetails(@RequestParam Integer id, Model model)
+ * View specific details for an Equipment object
+ * 
+ * -openEquipmentEditDetails(@RequestParam Integer id, Model model)
+ * Open page for editing a specific Equipment object
+ * 
+ * -editEquipment(HttpServletRequest request, HttpServletResponse response, Model model)
+ * Actually editing an Equipment object
+ * 
+ * -deleteEquipment(@RequestParam Integer id)
+ * Deleting an Equipment object
+ * 
  */
 
 @Controller
@@ -35,13 +59,11 @@ public class EquipmentController {
     @Autowired
     HVService service;
     
-    //Open equipmentHome.html
     @RequestMapping("/equipmentHome")
     public String openEquipmentHome() {
         return "/equipmentHome";
     }
     
-    //Open equipmentAdd.html
     @RequestMapping("/equipmentAdd")
     public String openEquipmentAdd(Model model) {
         //Add the different Trip options to the page for the user to select from
@@ -51,7 +73,6 @@ public class EquipmentController {
         return "/equipmentAdd";
     }
     
-    //Actually add a new equipment to the db
     @PostMapping("/addNewEquipment")
     public String addNewEquipment(HttpServletRequest request, HttpServletResponse response, Model model) throws ServletException, IOException{
         Equipment newE = new Equipment();
@@ -115,7 +136,6 @@ public class EquipmentController {
         return "redirect:/equipmentHome";
     }
     
-    //View specific details for an equipment item
     @GetMapping("/equipmentViewDetails")
     public String openEquipmentViewDetails(@RequestParam Integer id, Model model) {
         Equipment e = service.findEquipmentByID(id);
@@ -128,7 +148,6 @@ public class EquipmentController {
         return "equipmentViewDetails";
     }
     
-    //Open page for editing a specific equipment item
     @GetMapping("/equipmentEdit")
     public String openEquipmentEditDetails(@RequestParam Integer id, Model model) {
         Equipment e = service.findEquipmentByID(id);
@@ -140,7 +159,6 @@ public class EquipmentController {
         return "equipmentEdit";
     }
     
-    //Actually editing an equipment item
     @PostMapping("/editEquipment")
     public String editEquipment(HttpServletRequest request, HttpServletResponse response, Model model) throws ServletException, IOException{
         Equipment newE = new Equipment();
@@ -206,7 +224,6 @@ public class EquipmentController {
         return "redirect:/equipmentHome";
     }
     
-    //Delete methods
     @GetMapping("/equipmentDelete")
     public String deleteEquipment(@RequestParam Integer id) {
         service.deleteEquipmentByID(id);

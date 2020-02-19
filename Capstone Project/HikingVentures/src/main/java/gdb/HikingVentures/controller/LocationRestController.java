@@ -14,7 +14,17 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Capstone Project
  * @author garrettbecker
- * For grabbing data for Location
+ * 
+ * This controller is a specifically a REST Controller built just for grabbing
+ * some specific data. These methods are called on the client side through
+ * JavaScript.
+ * 
+ * Methods:
+ * -getAllLocations()
+ * Used for loading all Location from the database into locationsHome.html
+ * 
+ * -getLocation(@RequestParam int id)
+ * Used for grabbing a specific Location object to load
  */
 
 @RestController
@@ -22,8 +32,6 @@ public class LocationRestController {
     @Autowired
     HVService service;
     
-    //Get all locations
-    //Use to load into locationsHome.html
     @GetMapping("/getAllLocations")
     public List<Location> getAllLocations() {
         return service.findAllLocations();
