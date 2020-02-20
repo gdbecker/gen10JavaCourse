@@ -156,6 +156,11 @@
             height: 100%;
             width: 100%;
         }
+        
+        :required {
+            border-color: red;
+            border-width: 3px;
+        }
     </style>
     
     <body th:onload="|appendMap('${trail.trailId}');|">
@@ -279,7 +284,7 @@
                                             <option th:each="type : ${routeTypes}" 
                                                     th:value="${type.routeTypeId}" 
                                                     th:text="${type.type}"
-                                                    th:selected="${trail.routeType.type = type.type}">Route Type</option>
+                                                    th:selected="${trail.routeType.type == type.type}">Route Type</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-4">
