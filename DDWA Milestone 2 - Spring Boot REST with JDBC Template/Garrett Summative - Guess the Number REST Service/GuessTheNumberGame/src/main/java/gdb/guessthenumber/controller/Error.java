@@ -1,0 +1,30 @@
+package gdb.guessthenumber.controller;
+
+import java.time.LocalDateTime;
+
+/**
+ * M2 Summative
+ * @date Monday January 20, 2020
+ * @author garrettbecker
+ */
+
+public class Error {
+    private LocalDateTime timestamp = LocalDateTime.now();
+    private String message;
+    
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+    
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
+    }
+    
+    public String getMessage() {
+        return message;
+    }
+    
+    public void setMessage(String message) {
+        this.message = message;
+    }
+}
